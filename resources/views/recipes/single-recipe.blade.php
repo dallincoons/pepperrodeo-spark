@@ -1,7 +1,7 @@
 @extends('layouts.app', ['vue' => 'single-recipe'])
 
 @section('content')
-
+<show-single-recipe inline-template>
 <div class="recipe-wrapper">
     <h2 class="page-title">{{$recipe->title}}</h2>
     <h6 class="recipe-cat">Categories: <a>Lunch</a>, <a>Dinner</a></h6>
@@ -34,10 +34,7 @@
         @endforeach
     </ul>
 
-    <input type="hidden" value="{{$recipe->getKey()}}" v-model="recipeId">
-
 </div>
-
-
+</show-single-recipe>
 
 @endsection

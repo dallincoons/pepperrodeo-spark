@@ -42,7 +42,7 @@ class RecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateRecipeRequest $request)
+    public function store(Request $request)
     {
         $recipe = Recipe::create([
             'user_id' => \Auth::user()->getKey(),
@@ -75,6 +75,8 @@ class RecipeController extends Controller
         $listsWithoutRecipe = \Auth::user()->groceryLists->filter(function($grocerylist, $key) use($recipe){
             return($grocerylist->recipes()->where('id', $recipe->getKey())->count() === 0);
         });
+
+        \JavaScript::put('recipe_id', $recipe->id);
 
         return view('recipes.single-recipe', compact('recipe', 'listsWithoutRecipe'));
     }

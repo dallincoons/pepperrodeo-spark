@@ -12,4 +12,6 @@
 require('./../spark-components/bootstrap');
 
 require('./home');
-require('./add-recipe');
+require('./recipe/add-recipe');
+require('./recipe/show-single');
+require('./recipe/show-all');

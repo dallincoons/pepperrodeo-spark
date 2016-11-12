@@ -1,6 +1,8 @@
 @extends('layouts.app', ['vue' => 'show-all-recipes'])
 
 @section('content')
+<show-all-recipes inline-template>
+<div>
         <h2 class="page-title">My Recipes</h2>
 
         <form method="POST" action="/recipe/deleteMultiple" id="deleteForm">
@@ -33,4 +35,6 @@
             </ul>
         </div>
         </form>
+</div>
+</show-all-recipes>
 @endsection
