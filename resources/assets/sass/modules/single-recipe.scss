@@ -1,0 +1,41 @@
+.recipe-wrapper {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.recipe-cat {
+  text-align: center;
+  color: #3f3f3f;
+}
+
+.recipe-cat a {
+  color: #3f3f3f;
+  text-decoration: underline;
+}
+
+.recipe-wrapper .mini-nav ul {
+  width: 100%;
+}
+
+.ingredients {
+  list-style: none;
+  color: #3f3f3f;
+  font-weight: bold;
+  font-size: 1.2em;
+  opacity: .7;
+}
+
+.add-list-title {
+text-align: left;
+margin: 50px 0 20px;
+}
+
+.recipe-wrapper .lists {
+  padding-left: 0;
+}
+
+@media  (min-width: 725px) {
+  .recipe-wrapper {
+    width: 50%;
+  }
+}
