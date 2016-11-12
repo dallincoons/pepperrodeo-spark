@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
-use App\Recipe;
 use JavaScript;
 
 class GroceryListController extends Controller
@@ -63,9 +61,15 @@ class GroceryListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(GroceryList $grocerylist, GroceryListPresenterBuilder $listBuilder)
+    public function show(GroceryList $grocerylist, GroceryListPresenterBuilder $listBuilder, Request $request)
     {
-        $grocerylist = $listBuilder->build($grocerylist)->byCategory();
+        if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
+            $grocerylist = $listBuilder->build($grocerylist)->byCategory();
+        }
+
+        if($request->get('sortBy') == 'recipe'){
+            $grocerylist = $listBuilder->build($grocerylist)->byRecipe();
+        }
 
         return view('grocerylists.single-grocery-list', compact('grocerylist'));
     }
