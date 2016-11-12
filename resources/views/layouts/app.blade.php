@@ -33,17 +33,27 @@
     @include('includes.javascript')
 
 </head>
-<body>
-    <div id="spark-app">
+<body id="spark-app">
+
+    <aside id="large-sidebar">
         @unless(!\Auth::user())
             @include('includes.nav')
         @endunless
+    </aside>
+
+    <div id="main-content">
+
+        <header id="header-mobile">
+            <h1>Pepper Rodeo</h1>
+        </header>
 
         @yield('content')
 
-        @unless(!\Auth::user())
-            @include('includes.footer')
-        @endunless
+        <nav id="nav-mobile">
+            @unless(!\Auth::user())
+                @include('includes.nav')
+            @endunless
+        </nav>
     </div>
 
     <!-- Scripts -->
