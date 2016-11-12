@@ -61,4 +61,25 @@ class RecipeRepository
             }
         }
     }
+
+    public static function store($recipeData)
+    {
+        $recipe = Recipe::create([
+            'user_id' => \Auth::user()->getKey(),
+            'title' => $recipeData['title'],
+            'directions' => $recipeData['directions'],
+        ]);
+        $recipe->category()->associate($recipeData['category']);
+        foreach($recipeData['recipeFields'] as $itemJson)
+        {
+            $item = Item::create($itemJson);
+
+            $recipe->items()->save($item);
+
+        }
+
+        $recipe->save();
+
+        return $recipe;
+    }
 }
