@@ -11,7 +11,6 @@ class GroceryListPresenterBuilder
     public function build($grocerylist)
     {
         $this->items = $grocerylist->items;
-
         $presenter = $this->createListPresenter($grocerylist);
 
         $this->mapNameToLowerCase();
@@ -71,7 +70,8 @@ class GroceryListPresenterBuilder
                 'quantity' => $likeItems->sum('quantity'),
                 'type' => $likeItems->first()->type,
                 'item_category_id' => $likeItems->first()->item_category_id,
-                'category' => $likeItems->first()->category
+                'category' => $likeItems->first()->category,
+                'recipe' => $likeItems->first()->recipe_title
             ]));
         }
 

@@ -19,7 +19,8 @@
         </nav>
 
         <div class="list-view-toggle">
-            <a class="toggle-active">By Items</a><a class="toggle-inactive">By Recipe</a>
+            <a href="/grocerylist/{{$grocerylist->getKey()}}?sortBy=item" class="toggle-active">By Items</a>
+            <a href="/grocerylist/{{$grocerylist->getKey()}}?sortBy=recipe" class="toggle-inactive">By Recipe</a>
         </div>
 
         @foreach($grocerylist->items as $category => $list_items)
