@@ -1,0 +1,32 @@
+//Desktop
+
+@media only screen and (min-width: 800px) {
+  #l-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #ff4b2e;
+    color: #FFFFFF;
+    font-size: .85em;
+  }
+
+  .l-footer-content {
+    display: flex;
+  }
+
+  .l-footer-content li {
+    flex: 1 1 auto;
+  }
+
+  .l-footer-content a {
+    font-size: 1.1em;
+    color: #FFFFFF;
+    text-decoration: underline;
+  }
+
+  .l-footer-content a:hover {
+    cursor: pointer;
+  }
+;
+
+}

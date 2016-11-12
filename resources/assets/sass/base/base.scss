@@ -1,5 +1,9 @@
+html {
+  height: 100vh;
+}
 body {
   background: #FFFFFF;
+  height:100%;
 }
 
 h1 {
@@ -12,4 +16,9 @@ h2, h3, h4, h5, h6, p, a, li {
 
 ul {
   list-style: none;
+  padding: 0;
+}
+
+a {
+  font-size: 1em;
 }

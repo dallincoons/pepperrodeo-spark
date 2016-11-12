@@ -39,6 +39,10 @@
         @unless(!\Auth::user())
             @include('includes.nav')
         @endunless
+
+        @unless(!\Auth::user())
+            @include('includes.footer')
+        @endunless
     </aside>
 
     <div id="main-content">
@@ -55,6 +59,12 @@
             @endunless
         </nav>
     </div>
+
+    <nav id="nav-mobile">
+        @unless(!\Auth::user())
+            @include('includes.nav')
+        @endunless
+    </nav>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>

@@ -16,8 +16,31 @@
   #large-sidebar {
     float: left;
     width: 35%;
-
+    min-height: 100%;
+    position: relative;
   }
+
+  .l-brand {
+    text-align: center;
+  }
+
+  .l-brand:last-child {
+    margin-bottom: 20%;
+  }
+;
+
+  .l-nav h1 {
+    color: #ff4b2e;
+    margin: 20px 0 0;
+  }
+
+  .l-nav ul {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 0 auto;
+  }
+
 }
 
 //Mobile

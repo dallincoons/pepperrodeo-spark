@@ -1,5 +1,9 @@
+html {
+  height: 100vh; }
+
 body {
-  background: #FFFFFF; }
+  background: #FFFFFF;
+  height: 100%; }
 
 h1 {
   font-family: 'Leckerli One', cursive; }
@@ -8,7 +12,11 @@ h2, h3, h4, h5, h6, p, a, li {
   font-family: 'Lato', sans-serif; }
 
 ul {
-  list-style: none; }
+  list-style: none;
+  padding: 0; }
+
+a {
+  font-size: 1em; }
 
 @media only screen and (min-width: 800px) {
   #header-mobile {
@@ -19,7 +27,24 @@ ul {
     display: none; }
   #large-sidebar {
     float: left;
-    width: 35%; } }
+    width: 35%;
+    min-height: 100%;
+    position: relative; }
+  .l-brand {
+    text-align: center; }
+  .l-brand:last-child {
+    margin-bottom: 20%; }
+  .l-nav h1 {
+    color: #ff4b2e;
+    margin: 20px 0 0; }
+  .l-nav ul {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    width: 85%;
+    margin: 0 auto; } }
 
 @media only screen and (max-width: 799px) {
   #large-sidebar {
@@ -31,5 +56,26 @@ ul {
   #main-content {
     float: right;
     width: 65%; } }
+
+@media only screen and (min-width: 800px) {
+  #l-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #ff4b2e;
+    color: #FFFFFF;
+    font-size: .85em; }
+  .l-footer-content {
+    display: -webkit-box;
+    display: flex; }
+  .l-footer-content li {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto; }
+  .l-footer-content a {
+    font-size: 1.1em;
+    color: #FFFFFF;
+    text-decoration: underline; }
+  .l-footer-content a:hover {
+    cursor: pointer; } }
 
 /*# sourceMappingURL=app.css.map */
