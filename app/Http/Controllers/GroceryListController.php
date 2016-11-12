@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
@@ -47,19 +48,11 @@ class GroceryListController extends Controller
      */
     public function store(Request $request)
     {
-        $items = [];
-
-        $grocerylist = GroceryList::create(['user_id' => \Auth::user()->getKey(), 'title' => $request->title]);
-
-        foreach($request->input('items') as $itemJson)
-        {
-            $items[] = Item::create($itemJson);
-        }
-        $grocerylist->items()->saveMany($items);
-        foreach(explode(',', $request->recipeIds) as $recipeId)
-        {
-            $grocerylist->recipes()->save(Recipe::find($recipeId));
-        }
+        $grocerylist = GroceryListRepository::store([
+            'title' => $request->title,
+            'items' => $request->items,
+            'recipeIds' => $request->recipeIds
+        ]);
 
         return redirect('/grocerylist/' . $grocerylist->getKey());
     }
