@@ -1,4 +1,4 @@
-@extends('layouts.app', ['vue' => 'show-all-recipes'])
+@extends('layouts.app')
 
 @section('content')
 <show-all-recipes inline-template>

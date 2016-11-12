@@ -55,9 +55,8 @@ class GroceryListController extends Controller
         {
             $items[] = Item::create($itemJson);
         }
-
         $grocerylist->items()->saveMany($items);
-        foreach($request->recipeIds as $recipeId)
+        foreach(explode(',', $request->recipeIds) as $recipeId)
         {
             $grocerylist->recipes()->save(Recipe::find($recipeId));
         }
@@ -88,9 +87,10 @@ class GroceryListController extends Controller
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        JavaScript::put(['items' => $grocerylist->items]);
-        JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
-        JavaScript::put(['recipes' => $recipes->keyBy('id')]);
+        \JavaScript::put(['items' => $grocerylist->items]);
+        \JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
+        \JavaScript::put(['title' => $grocerylist->title]);
+        \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
 
         return view('grocerylists.edit-grocery-list', compact('grocerylist'));
     }
@@ -108,6 +108,10 @@ class GroceryListController extends Controller
         $itemIds = collect($request->input('items'))->pluck('id');
 
         $grocerylist->items()->sync($itemIds->toArray());
+
+        $grocerylist->title = $request->title;
+
+        $grocerylist->save();
 
         return redirect('/grocerylist/' . $grocerylist->getKey());
     }

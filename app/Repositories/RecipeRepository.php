@@ -38,7 +38,7 @@ class RecipeRepository
 
         foreach( $recipe->items as $item )
         {
-            if( $itemJson = $recipeFields->whereLoose('id', $item->id)->first() ){
+            if( $itemJson = $recipeFields->where('id', $item->id)->first() ){
 
                 $item->quantity = $itemJson['quantity'];
                 $item->type = $itemJson['type'];

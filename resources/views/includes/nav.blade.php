@@ -3,7 +3,7 @@
         <li class="{{ set_active('/') }}"><a href="/"><h1>Pepper Rodeo</h1></a></li>
         <li class="{{ set_active('recipe') }}"><a href="/recipe"><i class="fa fa-cutlery"></i> Recipes</a></li>
         <li class="{{ set_active('grocerylist') }}"><a href="/grocerylist"><i class="fa fa-shopping-cart"></i> Lists</a></li>
-        <li><a><i class="fa fa-user"></i> Account</a></li>
+        <li><a href="/settings#/profile"><i class="fa fa-user"></i> Account</a></li>
     </ul>
 </nav>
 
