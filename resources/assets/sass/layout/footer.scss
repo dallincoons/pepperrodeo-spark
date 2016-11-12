@@ -12,6 +12,7 @@
 
   .l-footer-content {
     display: flex;
+    margin: 2%;
   }
 
   .l-footer-content li {
@@ -27,6 +28,9 @@
   .l-footer-content a:hover {
     cursor: pointer;
   }
-;
+
+  .footer-info {
+    text-align: end;
+  }
 
 }
