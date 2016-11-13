@@ -55,8 +55,12 @@ Vue.component('create-grocery-list', {
             this.newItemName       = '';
             this.newItemCategoryId = '';
         },
-        removeItem(itemIndex){
-            this.items.splice(itemIndex, 1);
+        removeItem(itemId){
+            window._.remove(this.items, function(item){
+                return item.id == itemId;
+            });
+            this.items.push({});
+            this.items.pop();
         },
         removeAddedRecipe(recipeIndex){
             this.addedRecipes.splice(recipeIndex, 1);

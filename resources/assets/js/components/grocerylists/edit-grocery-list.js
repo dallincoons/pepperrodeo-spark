@@ -1,16 +1,20 @@
 Vue.component('edit-grocery-list', {
     data     : function () {
         return {
-            items          : PepperRodeo.items,
-            title          : PepperRodeo.title,
-            addedRecipes   : PepperRodeo.addedRecipes,
-            unaddedRecipes : Object.assign({}, PepperRodeo.recipes),
-            categories     : PepperRodeo.categories,
-            showRecipes    : false,
-            recipesToAdd   : [],
-            addAnItem      : false,
-            recipeIds      : [],
-            groupByValue   : 'category',
+            items             : PepperRodeo.items,
+            title             : PepperRodeo.title,
+            addedRecipes      : PepperRodeo.addedRecipes,
+            unaddedRecipes    : Object.assign({}, PepperRodeo.recipes),
+            categories        : PepperRodeo.categories,
+            showRecipes       : false,
+            recipesToAdd      : [],
+            addAnItem         : false,
+            recipeFields      : [],
+            recipeIds         : [],
+            newItemName       : '',
+            newItemQty        : '',
+            newItemCategoryId : '',
+            groupByValue      : 'category',
         }
     },
     computed : {
@@ -42,8 +46,12 @@ Vue.component('edit-grocery-list', {
             this.newItemName       = '';
             this.newItemCategoryId = '';
         },
-        removeItem(itemIndex){
-            this.items.splice(itemIndex, 1);
+        removeItem(itemId){
+            window._.remove(this.items, function (item) {
+                return item.id == itemId;
+            });
+            this.items.push({});
+            this.items.pop();
         },
         removeAddedRecipe(recipeIndex){
             this.addedRecipes.splice(recipeIndex, 1);

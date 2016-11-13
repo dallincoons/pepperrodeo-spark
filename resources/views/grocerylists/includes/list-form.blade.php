@@ -43,7 +43,7 @@
                 <span>@{{ item.quantity }}</span>
                 <span>@{{ item.type }}</span>
                 <span>@{{ item.name }} </span>
-                <span v-on:click="removeItem(index)" class="remove-item">X</span>
+                <span v-on:click="removeItem(item.id)" class="remove-item">X</span>
 
                 <input type="hidden" :name="'items[' + index + '][quantity]'" :value="item.quantity">
                 <input type="hidden" :name="'items[' + index + '][name]'" :value="item.name">
