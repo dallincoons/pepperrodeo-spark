@@ -16,6 +16,7 @@
 
 require('spark-bootstrap');
 
+require('./bootstrap');
 require('./components/bootstrap');
 
 var app = new Vue({

@@ -5,10 +5,15 @@
 <div>
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Create List</h2>
+        <div class="list-view-toggle">
+            <a  v-bind:class="{ 'toggle-active': groupByValue == 'category', 'toggle-inactive': groupByValue != 'category' }"  v-on:click="setGroupBy('category')">By Items</a>
+            <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')">By Recipe</a>
+        </div>
         {{Form::open(['url' => '/grocerylist'])}}
             @include('grocerylists.includes.list-form')
         {{Form::close()}}
     </div>
+
     <div v-if="showRecipes" class="choose-recipe">
         <h3 class="page-title">My Recipes</h3>
 

@@ -10,6 +10,13 @@ use JavaScript;
 
 class GroceryListController extends Controller
 {
+    protected $listBuilder;
+
+    public function __construct(GroceryListPresenterBuilder $listBuilder)
+    {
+        $this->listBuilder = $listBuilder;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,6 +41,7 @@ class GroceryListController extends Controller
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
         JavaScript::put(['recipes' => $recipes->keyBy('id')]);
+        JavaScript::put(['categories' => \Auth::user()->recipeCategories()->get()->keyBy('id')]);
 
         return view('grocerylists.create-grocery-list', compact('recipes'));
     }
@@ -61,14 +69,14 @@ class GroceryListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(GroceryList $grocerylist, GroceryListPresenterBuilder $listBuilder, Request $request)
+    public function show(GroceryList $grocerylist, Request $request)
     {
         if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
-            $grocerylist = $listBuilder->build($grocerylist)->byCategory();
+            $grocerylist = $this->listBuilder->build($grocerylist)->byCategory();
         }
 
         if($request->get('sortBy') == 'recipe'){
-            $grocerylist = $listBuilder->build($grocerylist)->byRecipe();
+            $grocerylist = $this->listBuilder->build($grocerylist)->byRecipe();
         }
 
         return view('grocerylists.single-grocery-list', compact('grocerylist'));
@@ -80,11 +88,21 @@ class GroceryListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(GroceryList $grocerylist)
+    public function edit(GroceryList $grocerylist, Request $request)
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        \JavaScript::put(['items' => $grocerylist->items]);
+        $items = $grocerylist->items;
+
+        if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
+            $items = $grocerylist->items->groupBy('category');
+        }
+
+        if($request->get('sortBy') == 'recipe'){
+            $items = $grocerylist->items->groupBy('recipe');
+        }
+
+        \JavaScript::put(['itemsGrouped' => $items]);
         \JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
         \JavaScript::put(['title' => $grocerylist->title]);
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);

@@ -1,5 +1,4 @@
 <label for="title" class="form-heading">Title*</label>
-
 <input type="text" placeholder="September Grocery List" v-model="title" id="title" class="form-heading" name="title">
 <a v-on:click="setShowRecipes(true)"><i class="fa fa-plus-circle"></i> Add a recipe</a>
 
@@ -37,10 +36,10 @@
 </div>
 
 <div class="category-wrapper">
-    <ul class="category">
-        <li class="category-title"><h3>General</h3></li>
+    <ul class="category" v-for="(items, index) in itemsGrouped">
+        <li class="category-title"><h3>@{{ index }}</h3></li>
         <ul class="recipes list-items">
-            <li v-for="(item, index) in items">
+            <li v-for="item in items">
                 <span>@{{ item.quantity }}</span>
                 <span>@{{ item.type }}</span>
                 <span>@{{ item.name }} </span>

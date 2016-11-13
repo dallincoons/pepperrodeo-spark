@@ -1,7 +1,7 @@
 Vue.component('edit-grocery-list', {
     data    : function () {
         return {
-            items          : PepperRodeo.items,
+            itemsGrouped   : PepperRodeo.itemsGrouped,
             title          : PepperRodeo.title,
             addedRecipes   : PepperRodeo.addedRecipes,
             unaddedRecipes : Object.assign({}, PepperRodeo.recipes),
