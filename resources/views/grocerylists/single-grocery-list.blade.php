@@ -26,7 +26,7 @@
         @foreach($grocerylist->items as $category => $list_items)
             <div class="category-wrapper">
                 <ul class="category">
-                    <li class="category-title"><h3>{{$category}}</h3></li>
+                    <li class="category-title"><h3>{{$category ?: 'N/A'}}</h3></li>
                     <li>
                         <ul class="recipes list-items">
                             @foreach($list_items as $item)

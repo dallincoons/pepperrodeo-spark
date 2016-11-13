@@ -34,6 +34,7 @@ Vue.component('edit-grocery-list', {
         },
         addItem(){
             var newItem = {
+                id               : -1,
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
                 item_category_id : this.newItemCategoryId,

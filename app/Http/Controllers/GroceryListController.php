@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
 use App\ItemCategory;
+use App\Item;
 use JavaScript;
 
 class GroceryListController extends Controller
@@ -97,7 +98,7 @@ class GroceryListController extends Controller
         \JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
         \JavaScript::put(['title' => $grocerylist->title]);
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
-        JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
+        \JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
 
         return view('grocerylists.edit-grocery-list', compact('grocerylist'));
     }
@@ -112,13 +113,10 @@ class GroceryListController extends Controller
      */
     public function update(Request $request, GroceryList $grocerylist)
     {
-        $itemIds = collect($request->input('items'))->pluck('id');
-
-        $grocerylist->items()->sync($itemIds->toArray());
-
-        $grocerylist->title = $request->title;
-
-        $grocerylist->save();
+       GroceryListRepository::update([
+        'items' => $request->items,
+        'title' => $request->title
+       ], $grocerylist);
 
         return redirect('/grocerylist/' . $grocerylist->getKey());
     }

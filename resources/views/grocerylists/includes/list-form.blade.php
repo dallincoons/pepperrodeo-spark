@@ -45,10 +45,10 @@
                 <span>@{{ item.name }} </span>
                 <span v-on:click="removeItem(item.id)" class="remove-item">X</span>
 
-                <input type="hidden" :name="'items[' + index + '][quantity]'" :value="item.quantity">
-                <input type="hidden" :name="'items[' + index + '][name]'" :value="item.name">
-                <input type="hidden" :name="'items[' + index + '][item_category_id]'" :value="item.item_category_id">
-                <input type="hidden" :name="'items[' + index + '][id]'" :value="item.id">
+                <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
+                <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
+                <input type="hidden" :name="'items[' + item.id + '][item_category_id]'" :value="item.item_category_id">
+                <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
             </li>
         </ul>
     </ul>
