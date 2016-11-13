@@ -10,5 +10,8 @@
 
 //Mobile
 @media only screen and (max-width: 799px) {
-
+  #main-content {
+    height: 100%;
+    position: relative;
+  }
 }

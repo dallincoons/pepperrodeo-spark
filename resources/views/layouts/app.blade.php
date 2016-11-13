@@ -60,11 +60,7 @@
         </nav>
     </div>
 
-    <nav id="nav-mobile">
-        @unless(!\Auth::user())
-            @include('includes.nav')
-        @endunless
-    </nav>
+
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>

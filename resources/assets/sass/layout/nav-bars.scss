@@ -75,9 +75,10 @@
     background: rgba(255, 75, 46, .2);
   }
 
-  .active {
-    //background: rgba(255, 75, 46, .2);
+  .active  {
+    background: rgba(255, 75, 46, .2);
   }
+
 }
 
 //Mobile
@@ -89,5 +90,39 @@
 
   .l-nav {
     display: none;
+  }
+
+  #nav-mobile {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 0;
+    display: flex;
+    width: 100%;
+  }
+
+  .l-nav-mobile {
+    width: 100%;
+    background: rgba(172, 172, 172, .1);
+    border-top: 1px solid #acacac;
+  }
+
+
+  .l-nav-ul {
+    display: flex;
+    margin: 10px;
+  }
+
+  .l-nav-ul > li {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .l-nav-ul  a {
+    font-size: 2em;
+    color: #acacac;
+  }
+
+  .active > a {
+    color: #ff4b2e;
   }
 }
