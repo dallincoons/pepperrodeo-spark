@@ -6,6 +6,7 @@ use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
+use App\ItemCategory;
 use JavaScript;
 
 class GroceryListController extends Controller
@@ -41,7 +42,7 @@ class GroceryListController extends Controller
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
         JavaScript::put(['recipes' => $recipes->keyBy('id')]);
-        JavaScript::put(['categories' => \Auth::user()->recipeCategories()->get()->keyBy('id')]);
+        JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
 
         return view('grocerylists.create-grocery-list', compact('recipes'));
     }
@@ -92,20 +93,11 @@ class GroceryListController extends Controller
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        $items = $grocerylist->items;
-
-        if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
-            $items = $grocerylist->items->groupBy('category');
-        }
-
-        if($request->get('sortBy') == 'recipe'){
-            $items = $grocerylist->items->groupBy('recipe');
-        }
-
-        \JavaScript::put(['itemsGrouped' => $items]);
+        \JavaScript::put(['items' =>  $grocerylist->items]);
         \JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
         \JavaScript::put(['title' => $grocerylist->title]);
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
+        JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
 
         return view('grocerylists.edit-grocery-list', compact('grocerylist'));
     }

@@ -24,6 +24,9 @@ Vue.component('create-grocery-list', {
             return window._.groupBy(this.items, this.groupByValue);
         }
     },
+    created(){
+        console.log(this.categories);
+    },
     methods  : {
         setShowRecipes($bool) {
             this.showRecipes = $bool;

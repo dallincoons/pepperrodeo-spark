@@ -1,17 +1,27 @@
 Vue.component('edit-grocery-list', {
-    data    : function () {
+    data     : function () {
         return {
-            itemsGrouped   : PepperRodeo.itemsGrouped,
+            items          : PepperRodeo.items,
             title          : PepperRodeo.title,
             addedRecipes   : PepperRodeo.addedRecipes,
             unaddedRecipes : Object.assign({}, PepperRodeo.recipes),
+            categories     : PepperRodeo.categories,
             showRecipes    : false,
             recipesToAdd   : [],
             addAnItem      : false,
             recipeIds      : [],
+            groupByValue   : 'category',
         }
     },
-    methods : {
+    computed : {
+        itemsGrouped : function () {
+            return window._.groupBy(this.items, this.groupByValue);
+        }
+    },
+    methods  : {
+        setGroupBy(groupBy){
+            this.groupByValue = groupBy;
+        },
         setShowRecipes($bool) {
             this.showRecipes = $bool;
         },
@@ -22,7 +32,9 @@ Vue.component('edit-grocery-list', {
             var newItem = {
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
-                item_category_id : this.newItemCategoryId
+                item_category_id : this.newItemCategoryId,
+                recipe_title     : 'Other',
+                category         : this.categories[this.newItemCategoryId].name
             };
             this.items.push(newItem);
 
@@ -37,11 +49,15 @@ Vue.component('edit-grocery-list', {
             this.addedRecipes.splice(recipeIndex, 1);
         },
         addRecipes(recipeIds){
-            var self = this;
+            var self = this,
+                recipe;
             recipeIds.forEach(function (recipeId) {
+                self.recipeIds.push(recipeId);
                 self.addedRecipes.push(self.unaddedRecipes[recipeId]);
-                var recipe = self.unaddedRecipes[recipeId];
-                Array.prototype.push.apply(self.items, recipe.items);
+                recipe = self.unaddedRecipes[recipeId];
+
+                self.items = Array.from(self.items).concat(recipe.items);
+
                 self.recipesToAdd = [];
                 delete self.unaddedRecipes[recipeId];
             });
