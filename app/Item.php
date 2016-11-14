@@ -8,9 +8,9 @@ use App\GroceryList;
 
 class Item extends Model
 {
-    protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'item_category_id', 'category');
+    protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'item_category_id', 'category', 'recipe');
 
-    protected $appends = ['recipe_id'];
+    protected $appends = ['recipe_id', 'category', 'recipe_title'];
 
     public function recipe()
     {
@@ -31,6 +31,15 @@ class Item extends Model
     {
         if($this->recipe()->first()){
             return $this->recipe()->first()->id;
+        }
+
+        return null;
+    }
+
+    public function getRecipeTitleAttribute()
+    {
+        if($this->recipe()->first()){
+            return $this->recipe()->first()->title;
         }
 
         return null;
