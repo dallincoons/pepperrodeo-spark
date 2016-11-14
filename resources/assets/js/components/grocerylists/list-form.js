@@ -1,9 +1,9 @@
-Vue.component('edit-grocery-list', {
+Vue.component('list-form', {
     data     : function () {
         return {
-            items             : PepperRodeo.items,
+            items             : PepperRodeo.items || [],
             title             : PepperRodeo.title,
-            addedRecipes      : PepperRodeo.addedRecipes,
+            addedRecipes      : PepperRodeo.addedRecipes || [],
             unaddedRecipes    : Object.assign({}, PepperRodeo.recipes),
             categories        : PepperRodeo.categories,
             showRecipes       : false,
