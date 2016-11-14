@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
+use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
-use App\Recipe;
+use App\ItemCategory;
+use App\Item;
 use JavaScript;
 
 class GroceryListController extends Controller
 {
+    protected $listBuilder;
+
+    public function __construct(GroceryListPresenterBuilder $listBuilder)
+    {
+        $this->listBuilder = $listBuilder;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,6 +43,7 @@ class GroceryListController extends Controller
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
         JavaScript::put(['recipes' => $recipes->keyBy('id')]);
+        JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
 
         return view('grocerylists.create-grocery-list', compact('recipes'));
     }
@@ -47,19 +56,11 @@ class GroceryListController extends Controller
      */
     public function store(Request $request)
     {
-        $items = [];
-
-        $grocerylist = GroceryList::create(['user_id' => \Auth::user()->getKey(), 'title' => $request->title]);
-
-        foreach($request->input('items') as $itemJson)
-        {
-            $items[] = Item::create($itemJson);
-        }
-        $grocerylist->items()->saveMany($items);
-        foreach(explode(',', $request->recipeIds) as $recipeId)
-        {
-            $grocerylist->recipes()->save(Recipe::find($recipeId));
-        }
+        $grocerylist = GroceryListRepository::store([
+            'title' => $request->title,
+            'items' => $request->items,
+            'recipeIds' => $request->recipeIds
+        ]);
 
         return redirect('/grocerylist/' . $grocerylist->getKey());
     }
@@ -70,9 +71,15 @@ class GroceryListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(GroceryList $grocerylist, GroceryListPresenterBuilder $listBuilder)
+    public function show(GroceryList $grocerylist, Request $request)
     {
-        $grocerylist = $listBuilder->build($grocerylist)->byCategory();
+        if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
+            $grocerylist = $this->listBuilder->build($grocerylist)->byCategory();
+        }
+
+        if($request->get('sortBy') == 'recipe'){
+            $grocerylist = $this->listBuilder->build($grocerylist)->byRecipe();
+        }
 
         return view('grocerylists.single-grocery-list', compact('grocerylist'));
     }
@@ -83,14 +90,15 @@ class GroceryListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(GroceryList $grocerylist)
+    public function edit(GroceryList $grocerylist, Request $request)
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        \JavaScript::put(['items' => $grocerylist->items]);
+        \JavaScript::put(['items' =>  $grocerylist->items]);
         \JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
         \JavaScript::put(['title' => $grocerylist->title]);
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
+        \JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
 
         return view('grocerylists.edit-grocery-list', compact('grocerylist'));
     }
@@ -105,13 +113,10 @@ class GroceryListController extends Controller
      */
     public function update(Request $request, GroceryList $grocerylist)
     {
-        $itemIds = collect($request->input('items'))->pluck('id');
-
-        $grocerylist->items()->sync($itemIds->toArray());
-
-        $grocerylist->title = $request->title;
-
-        $grocerylist->save();
+       GroceryListRepository::update([
+        'items' => $request->items,
+        'title' => $request->title
+       ], $grocerylist);
 
         return redirect('/grocerylist/' . $grocerylist->getKey());
     }
