@@ -98,11 +98,12 @@
     margin-bottom: 0;
     display: flex;
     width: 100%;
+    z-index: 9999;
   }
 
   .l-nav-mobile {
     width: 100%;
-    background: rgba(172, 172, 172, .1);
+    background: #F5F5F5;
     border-top: 1px solid #acacac;
   }
 
