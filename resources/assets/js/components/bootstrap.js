@@ -20,6 +20,5 @@ require('./recipe/edit-single');
 
 /* Grocery Lists */
 require('./grocerylists/all-grocery-lists');
-require('./grocerylists/create-grocery-list');
-require('./grocerylists/edit-grocery-list');
 require('./grocerylists/single-list');
+require('./grocerylists/list-form');

@@ -35,4 +35,11 @@ class GroceryListPresenter extends Model
 
         return $this;
     }
+
+    public function byRecipe()
+    {
+        $this->items = $this->items->groupBy('recipe');
+
+        return $this;
+    }
 }
