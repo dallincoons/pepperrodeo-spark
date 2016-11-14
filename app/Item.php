@@ -10,7 +10,7 @@ class Item extends Model
 {
     protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'item_category_id', 'category', 'recipe');
 
-    protected $appends = ['recipe_id'];
+    protected $appends = ['recipe_id', 'category', 'recipe_title'];
 
     public function recipe()
     {
