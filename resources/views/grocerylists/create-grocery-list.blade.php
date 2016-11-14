@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<create-grocery-list inline-template>
+<list-form inline-template>
 <div>
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Create List</h2>
@@ -35,5 +35,5 @@
         </div>
     </div>
 </div>
-</create-grocery-list>
+</list-form>
 @endsection

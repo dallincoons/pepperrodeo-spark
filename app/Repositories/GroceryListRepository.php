@@ -19,16 +19,17 @@ class GroceryListRepository
             $items[] = $item;
         }
 
-        foreach($listData['items'] as $itemJson)
+        foreach(collect($listData['items'])->where('id', -1) as $item)
         {
-            if(!$itemJson['id'] || $itemJson < 1){
-                $items[] = Item::create($itemJson);
-            }
+            $items[] = Item::create($item);
         }
+
         $grocerylist->items()->saveMany($items);
         foreach(explode(',', $listData['recipeIds']) as $recipeId)
         {
-            $grocerylist->recipes()->save(Recipe::find($recipeId));
+            if($recipeId) {
+                $grocerylist->recipes()->save(Recipe::find($recipeId));
+            }
         }
 
         return $grocerylist;
