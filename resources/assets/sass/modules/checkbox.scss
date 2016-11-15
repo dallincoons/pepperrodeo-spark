@@ -76,3 +76,9 @@
 .control--checkbox input:disabled ~ .control__indicator:after {
   border-color: #7b7b7b;
 }
+
+@media only screen and (max-width: 799px) {
+  .control__indicator {
+    background: #FFF4F1;
+  }
+}

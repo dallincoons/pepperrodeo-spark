@@ -9,8 +9,8 @@
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        <nav class="mini-nav recipe-nav">
-             <ul>
+        <nav class="mini-nav">
+             <ul class="mini-nav-options">
                  <li><a href="/recipe/create"><i class="fa fa-plus"></i></a></li>
                  <li><a v-on:click="deleteRecipes()"><i class="fa fa-trash"></i></a></li>
              </ul>

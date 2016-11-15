@@ -34,3 +34,38 @@
     color: #3f3f3f;
   }
 }
+
+//Mobile
+
+@media only screen and (max-width: 799px) {
+
+  .category-wrapper {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+
+  .category-title {
+    color: #FFFFFF;
+    background: #ff4b2e;
+    font-size: 1.2em;
+    font-weight: 300;
+    padding: 5px 0 5px 10px;
+  }
+
+  .category-title h3 {
+    margin: 0;
+  }
+
+  .recipe {
+    background: rgba(255, 75, 46, .2);
+    margin: 5px 0;
+    padding: 5px 10px;
+  }
+
+  .recipe a {
+    font-size: 1.4em;
+    font-weight: 300;
+    color: #3f3f3f;
+  }
+}
