@@ -18,6 +18,7 @@
     width: 25%;
     min-height: 100%;
     position: relative;
+    display: flex;
   }
 
   .l-brand {
@@ -27,7 +28,10 @@
   .l-subtitle {
     margin-bottom: 20%;
   }
-;
+
+  .l-nav {
+    width: 100%;
+  }
 
   .l-nav h1 {
     color: #ff4b2e;
@@ -37,6 +41,7 @@
   .l-nav ul {
     display: flex;
     flex-direction: column;
+    margin-top: 0;
   }
 
   .l-nav-li {

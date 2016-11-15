@@ -1,9 +1,8 @@
 @extends('layouts.app', ['vue' => 'all-grocery-lists'])
 
 @section('content')
-<all-grocery-lists inline-template>
+<all-grocery-lists inline-template class="grocery-lists">
 <div>
-    <div class="grocery-lists">
 
     <form method="POST" action="/grocerylist/deleteMultiple" id="deleteForm">
 
@@ -18,7 +17,7 @@
             </ul>
         </nav>
 
-        <ul class="lists">
+        <ul class="lists-wrapper">
             @foreach($grocerylists as $list)
                 <li class="list">
                     <label class="control control--checkbox"><i class="fa fa-list list-info"></i> <a href="grocerylist/{{$list->id}}" class="list-info">{{$list->title}}</a>
@@ -30,8 +29,6 @@
             @endforeach
         </ul>
     </form>
-
-    </div>
 
 </div>
 </all-grocery-lists>
