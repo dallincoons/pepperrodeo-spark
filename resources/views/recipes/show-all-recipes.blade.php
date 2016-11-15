@@ -24,7 +24,7 @@
                             @foreach($recipes as $recipe)
                                 <li>
                                     <label class="control control--checkbox"><a href="/recipe/{{$recipe->id}}">{{$recipe->title}}</a>
-                                        <input type="checkbox" id="cbox1" name="recipeIds[]" class="recipe-check" value="{{$recipe->id}}">
+                                        <input type="checkbox" v-model="recipes" id="cbox1" name="recipeIds[]" class="recipe-check" value="{{$recipe}}">
                                         <div v-if="showCheckBoxes" class="control__indicator"></div>
                                     </label>
                                 </li>
@@ -35,7 +35,7 @@
                 </ul>
             </div>
 
-            <input v-if="showCheckBoxes" type="submit" value="Delete">
+            <input v-if="showCheckBoxes" v-on:click="deleteRecipes()" type="button" value="Delete">
         </form>
 </div>
 </show-all-recipes>

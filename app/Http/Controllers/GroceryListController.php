@@ -141,7 +141,14 @@ class GroceryListController extends Controller
      */
     public function destroyMultiple()
     {
-        GroceryList::destroy(\Request::input('listIds'));
+        $ids = [];
+
+        foreach(\Request::input('lists') as $list)
+        {
+            $ids[] = json_decode($list)->id;
+        }
+
+        GroceryList::destroy($ids);
 
         return redirect('/grocerylist');
     }
