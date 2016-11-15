@@ -1,4 +1,4 @@
-Vue.component('all-grocery-lists', {
+Vue.component('show-all-recipes', {
     data : function(){
         return {
             showCheckBoxes : false
@@ -8,8 +8,9 @@ Vue.component('all-grocery-lists', {
         setShowCheckBoxes($bool){
             this.showCheckBoxes = $bool;
         },
-        deleteLists : function(){
+        deleteRecipes : function(){
             document.getElementById("deleteForm").submit();
         }
-    }
+    },
+
 });
