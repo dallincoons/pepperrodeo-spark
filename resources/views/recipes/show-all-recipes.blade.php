@@ -9,20 +9,20 @@
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        <nav class="mini-nav recipe-nav">
-             <ul>
+        <nav class="mini-nav">
+             <ul class="mini-nav-options">
                  <li><a href="/recipe/create"><i class="fa fa-plus"></i></a></li>
                  <li><a v-on:click="deleteRecipes()"><i class="fa fa-trash"></i></a></li>
              </ul>
         </nav>
         <div class="category-wrapper">
-            <ul class="category">
+            <ul>
                 @foreach($recipesWithCategories as $category => $recipes)
                 <li class="category-title"><h3>{{$category}}</h3></li>
                 <li>
                     <ul class="recipes">
                         @foreach($recipes as $recipe)
-                            <li>
+                            <li class="recipe">
                                 <label class="control control--checkbox"><a href="/recipe/{{$recipe->id}}">{{$recipe->title}}</a>
                                     <input type="checkbox" id="cbox1" name="recipeIds[]" class="recipe-check" value="{{$recipe->id}}">
                                     <div class="control__indicator"></div>
