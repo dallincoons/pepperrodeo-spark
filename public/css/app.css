@@ -157,6 +157,9 @@ a {
   margin-top: 5%;
   font-weight: 900; }
 
+.content-wrapper {
+  width: 100%; }
+
 @media only screen and (min-width: 800px) {
   #main-content {
     float: right;
@@ -364,8 +367,6 @@ a {
     font-size: 1.2em; } }
 
 @media only screen and (min-width: 800px) {
-  .grocery-lists {
-    width: 100%; }
   .lists-wrapper {
     width: 85%;
     margin: 0 auto; }
@@ -382,8 +383,6 @@ a {
     background: rgba(255, 255, 255, 0.9); } }
 
 @media only screen and (max-width: 799px) {
-  .grocery-lists {
-    width: 100%; }
   .lists-wrapper {
     width: 85%;
     margin: 0 auto; }
