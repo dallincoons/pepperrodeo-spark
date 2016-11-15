@@ -23,6 +23,9 @@ a {
   font-size: 1em;
   text-decoration: none; }
 
+#spark-app {
+  width: 100%; }
+
 @media only screen and (min-width: 800px) {
   #header-mobile {
     display: none; }

@@ -33,8 +33,8 @@
     @include('includes.javascript')
 
 </head>
-<body id="spark-app">
-
+<body>
+<div id="spark-app">
     <aside id="large-sidebar">
         @unless(!\Auth::user())
             @include('includes.nav')
@@ -62,8 +62,9 @@
 
 
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
 
+</div>
+<!-- Scripts -->
+<script src="/js/app.js"></script>
 </body>
 </html>

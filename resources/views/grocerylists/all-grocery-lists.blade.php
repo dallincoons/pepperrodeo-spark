@@ -1,8 +1,8 @@
 @extends('layouts.app', ['vue' => 'all-grocery-lists'])
 
 @section('content')
-<all-grocery-lists inline-template class="content-wrapper">
-<div>
+<all-grocery-lists inline-template>
+<div class="content-wrapper">
 
     <form method="POST" action="/grocerylist/deleteMultiple" id="deleteForm">
 
