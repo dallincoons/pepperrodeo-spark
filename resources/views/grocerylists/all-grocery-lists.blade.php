@@ -14,7 +14,7 @@
         <nav class="mini-nav">
             <ul>
                 <li><a href="/grocerylist/create"><i class="fa fa-plus"></i></a></li>
-                <li><a v-on:click="deleteLists()"><i class="fa fa-trash"></i></a></li>
+                <li><a v-on:click="setShowCheckBoxes(true)"><i class="fa fa-trash"></i></a></li>
             </ul>
         </nav>
 
@@ -22,13 +22,15 @@
             @foreach($grocerylists as $list)
                 <li class="list">
                     <label class="control control--checkbox"><i class="fa fa-list list-info"></i> <a href="grocerylist/{{$list->id}}" class="list-info">{{$list->title}}</a>
-                        <input type="checkbox" id="cbox1" name="listIds[]" class="recipe-check" value="{{$list->id}}">
-                        <div class="control__indicator"></div>
+                        <input type="checkbox" v-model="lists" id="cbox1" name="lists[]" class="recipe-check" value="{{$list}}">
+                        <div v-if="showCheckBoxes" class="control__indicator"></div>
                     </label>
                 </li>
                 <li></li>
             @endforeach
         </ul>
+
+        <input v-if="showCheckBoxes" v-on:click="deleteLists()" type="button" value="Delete">
     </form>
 
     </div>
