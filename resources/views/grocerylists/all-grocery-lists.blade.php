@@ -11,7 +11,7 @@
 
         <h2 class="page-title">My Lists</h2>
         <nav class="mini-nav">
-            <ul>
+            <ul class="mini-nav-options">
                 <li><a href="/grocerylist/create"><i class="fa fa-plus"></i></a></li>
                 <li><a v-on:click="deleteLists()"><i class="fa fa-trash"></i></a></li>
             </ul>
