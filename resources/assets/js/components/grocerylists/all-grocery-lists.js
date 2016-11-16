@@ -6,8 +6,8 @@ Vue.component('all-grocery-lists', {
         }
     },
     methods : {
-        setShowCheckBoxes($bool){
-            this.showCheckBoxes = $bool;
+        toggleShowCheckBoxes(){
+            this.showCheckBoxes = !this.showCheckBoxes;
         },
         deleteLists : function () {
 

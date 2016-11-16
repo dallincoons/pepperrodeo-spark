@@ -6,8 +6,8 @@ Vue.component('show-all-recipes', {
         }
     },
     methods : {
-        setShowCheckBoxes($bool){
-            this.showCheckBoxes = $bool;
+        toggleShowCheckBoxes(){
+            this.showCheckBoxes = !this.showCheckBoxes;
         },
         deleteRecipes : function () {
 
