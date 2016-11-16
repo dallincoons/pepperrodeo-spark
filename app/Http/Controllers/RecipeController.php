@@ -44,7 +44,7 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        $category = $request->category;
+        $category = explode(',', $request->category);
         $recipe = RecipeRepository::store([
             'title' => $request->title,
             'directions' => $request->directions,
