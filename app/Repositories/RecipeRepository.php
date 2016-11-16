@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\RecipeCategory;
 use App\Recipe;
 use App\Item;
 
@@ -11,6 +12,9 @@ class RecipeRepository
         $recipesWithCategories = [];
         foreach(Recipe::where('user_id', \Auth::user()->getKey())->with('category')->get() as $recipe)
         {
+            if(!$recipe->category){
+                throw new \RecipeCategoryNotExistException('Recipe category does not exist for recipe with id of: ' . $recipe->id);
+            };
             $category = $recipe->category->name;
             if(!isset($recipesWithCategories[$category])){
                 $recipesWithCategories[$category] = [];
@@ -23,9 +27,18 @@ class RecipeRepository
 
     public static function updateRecipe($recipe, $recipeData)
     {
+        $category = $recipeData['category'];
+
         $recipe->title = $recipeData['title'];
-        $recipe->recipe_category_id = $recipeData['recipe_category_id'];
         $recipe->directions = $recipeData['directions'];
+
+        if($category['id'] == -1 || !RecipeCategory::exists($category['id'])){
+            $category = RecipeCategory::create([
+                'user_id' => \Auth::user()->getKey(),
+                'name' => $category['name']
+            ]);
+        }
+        $recipe->category()->associate($category['id']);
 
         if($recipe->isDirty()){
             $recipe->save();
@@ -64,12 +77,19 @@ class RecipeRepository
 
     public static function store($recipeData)
     {
+        $category = $recipeData['category'];
         $recipe = Recipe::create([
             'user_id' => \Auth::user()->getKey(),
             'title' => $recipeData['title'],
             'directions' => $recipeData['directions'],
         ]);
-        $recipe->category()->associate($recipeData['category']);
+        if($category['id'] == -1 || !RecipeCategory::exists($category['id'])){
+            $category = RecipeCategory::create([
+                'user_id' => \Auth::user()->getKey(),
+                'name' => $category['name']
+            ]);
+        }
+        $recipe->category()->associate($category['id']);
         foreach($recipeData['recipeFields'] as $itemJson)
         {
             $item = Item::create($itemJson);

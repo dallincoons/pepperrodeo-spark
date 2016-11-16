@@ -40,8 +40,15 @@ $factory->define(App\Item::class, function (Faker\Generator $faker) use($randInd
     ];
 });
 
+$factory->define(ItemCategory::class, function(Faker\Generator $faker){
+    return [
+        'name' => $faker->word
+    ];
+});
+
 $factory->define(RecipeCategory::class, function (Faker\Generator $faker){
     return [
+        'user_id' => \Auth::user()->getKey(),
         'name' => $faker->word
     ];
 });
@@ -61,4 +68,3 @@ $factory->define(App\GroceryList::class, function (Faker\Generator $faker) {
         'user_id' => App\User::all()->random()->id
     ];
 });
-

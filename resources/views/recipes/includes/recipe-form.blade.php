@@ -7,14 +7,14 @@
     <label for="category" class="form-heading">Category*</label>
     <div class="recipe-section__selection-group--category">
         <select v-model="selectedCategory" class="recipe-section__selection--category" name="category" style="flex:1;" >
-            <option v-for="category in categories" :value="category.id">@{{category.name}}</option>
+            <option v-for="category in categories" :value="[category.id, category.name]">@{{category.name}}</option>
         </select>
-        <button type="button" v-show="!addingCategory" v-on:click="this.addingCategory = true" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add New</button>
+        <button type="button" v-show="!addingCategory" v-on:click="addingCategory = true" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add New</button>
     </div>
     <div v-show="addingCategory" class="addingCategory">
         <input v-model="newCategory" />
         <button v-on:click="addNewCategory()" type="button" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add</button>
-        <button v-on:click="this.addingCategory = false" type="button" class="recipe-section__button">Cancel</button>
+        <button v-on:click="addingCategory = false" type="button" class="recipe-section__button">Cancel</button>
     </div>
 </div>
 
@@ -35,7 +35,7 @@
 
         <div class="ingredient">
             <label for="ingredient" class="sub-heading">Ingredient</label>
-            <input type="text" id="ingredient" v-model="item.ingredient" :name="'recipeFields[' + index + '][name]'" class="ingredient-input" placeholder="flour" :value="item.name"/>
+            <input type="text" id="ingredient" v-model="item.name" :name="'recipeFields[' + index + '][name]'" class="ingredient-input" placeholder="flour" :value="item.name"/>
         </div>
 
         <div class="dept">

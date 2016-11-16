@@ -12,6 +12,7 @@ Vue.component('edit-single-recipe', {
         }
     },
     created(){
+        console.log(PepperRodeo.selectedCategory);
         this.intializeRecipeItems();
     },
     methods : {

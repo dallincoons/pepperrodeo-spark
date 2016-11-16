@@ -44,10 +44,14 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
+        $category = $request->category;
         $recipe = RecipeRepository::store([
             'title' => $request->title,
             'directions' => $request->directions,
-            'category' => $request->category,
+            'category' => [
+                'id' => $category[0],
+                'name' => $category[1]
+            ],
             'recipeFields' => $request->recipeFields ?: []
         ]);
 
@@ -82,7 +86,7 @@ class RecipeController extends Controller
         $categories = \Auth::user()->recipeCategories()->get();
 
         \JavaScript::put(['categories' => $categories->toArray()]);
-        \JavaScript::put(['selectedCategory' => $recipe->recipe_category_id]);
+        \JavaScript::put(['selectedCategory' => [$recipe->category->getKey(), $recipe->category->name]]);
         \JavaScript::put(['recipeItems' => $recipe->items->toArray()]);
 
         return view('recipes.edit-single', compact('recipe'));
@@ -97,9 +101,13 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
+        $category = explode(',', $request->category);
         RecipeRepository::updateRecipe($recipe, [
             'title' => $request->title,
-            'recipe_category_id' => $request->category,
+            'category' => [
+                'id' => $category[0],
+                'name' => $category[1]
+            ],
             'directions' => $request->directions
         ]);
 
