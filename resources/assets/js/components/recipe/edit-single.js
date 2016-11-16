@@ -20,7 +20,7 @@ Vue.component('edit-single-recipe', {
         },
         addNewCategory() {
             this.categories.push({'name' : this.newCategory, 'id' : -1});
-            this.selectedCategory = -1;
+            this.selectedCategory = [-1,this.newCategory];
             this.addingCategory = false;
         },
         intializeRecipeItems(){

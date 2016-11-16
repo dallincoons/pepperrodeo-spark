@@ -7,6 +7,7 @@ use App\User;
 use App\Recipe;
 use App\RecipeCategory;
 use App\Item;
+use App\ItemCategory;
 
 class RecipeRepositoryTest extends TestCase
 {
@@ -55,18 +56,18 @@ class RecipeRepositoryTest extends TestCase
     public function update_recipe()
     {
         $recipe = factory(Recipe::class)->create();
+        $recipeCategory = factory(RecipeCategory::class)->create();
 
         $newTitle = str_random();
-        $newCategory = 1337;
         $newDirections = str_random();
         RecipeRepository::updateRecipe($recipe, [
             'title' => $newTitle,
-            'recipe_category_id' => $newCategory,
+            'category' => ['id' => $recipeCategory->getKey(), 'name' => $recipeCategory->name],
             'directions' => $newDirections
         ]);
 
         $this->assertEquals($newTitle, $recipe->title);
-        $this->assertEquals($newCategory, $recipe->recipe_category_id);
+        $this->assertEquals($recipeCategory->getKey(), $recipe->fresh()->category->getKey());
         $this->assertEquals($newDirections, $recipe->directions);
     }
 
@@ -154,5 +155,28 @@ class RecipeRepositoryTest extends TestCase
         ]);
 
         $this->assertEquals(2, $recipe->fresh()->items->count());
+    }
+
+    /**
+     * @group repository-tests
+     * @group recipe-repository-tests
+     * @test
+     */
+    public function creates_recipe_using_new_category()
+    {
+        $itemCategory = factory(ItemCategory::class)->create();
+
+        $recipe = RecipeRepository::store([
+            'title' => 'poop',
+            'directions' => 'preheat',
+            'category' => ['id' => -1, 'name' => 'foocategory'],
+            'category_name' => 'test',
+            'recipeFields' => [[
+                'name' => 'pee',
+                'item_category_id' => $itemCategory->getKey()
+            ]]
+        ]);
+
+        $this->assertEquals('foocategory', $recipe->category->name);
     }
 }
