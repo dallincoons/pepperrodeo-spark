@@ -19,7 +19,7 @@ class RecipeController extends Controller
     {
         $recipesWithCategories = RecipeRepository::recipesWithCategories();
 
-        return view('recipes.show-all-recipes', compact('recipesWithCategories'));
+        return view('recipes.all-recipes', compact('recipesWithCategories'));
     }
 
     /**
@@ -33,7 +33,7 @@ class RecipeController extends Controller
 
         \JavaScript::put(['categories' => $categories->toArray()]);
 
-        return view('recipes.add-recipe', compact('categories'));
+        return view('recipes.create-recipe', compact('categories'));
     }
 
     /**

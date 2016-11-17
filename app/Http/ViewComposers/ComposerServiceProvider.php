@@ -15,7 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \View::composer(['recipes.add-recipe',
+        \View::composer(['recipes.create-recipe',
                          'recipes.edit-single',
                          'grocerylists.create-grocery-list',
                          'grocerylists.edit-grocery-list'
