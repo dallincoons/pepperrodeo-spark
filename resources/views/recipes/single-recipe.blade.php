@@ -4,7 +4,7 @@
 <show-single-recipe inline-template>
 <div class="recipe-wrapper">
     <h2 class="page-title">{{$recipe->title}}</h2>
-    <h6 class="recipe-cat">Categories: <a>Lunch</a>, <a>Dinner</a></h6>
+    <h6 class="recipe-cat">Category: <a href="/recipecategory/{{$recipe->category->getKey()}}">{{$recipe->category->name}}</a></h6>
     <nav class="mini-nav">
         <ul>
             <li><a href="/recipe/create"><i class="fa fa-cart-plus"></i></a></li>

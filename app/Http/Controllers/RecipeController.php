@@ -70,6 +70,8 @@ class RecipeController extends Controller
             return($grocerylist->recipes()->where('id', $recipe->getKey())->count() === 0);
         });
 
+        $recipe->append('category');
+
         \JavaScript::put('recipe_id', $recipe->id);
 
         return view('recipes.single-recipe', compact('recipe', 'listsWithoutRecipe'));
