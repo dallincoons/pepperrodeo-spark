@@ -9,8 +9,8 @@
 
         <nav class="mini-nav">
             <ul class="list-nav">
-                <li><a href="/grocerylist/{{$grocerylist->id}}/edit"><i class="fa fa-pencil"></i></a></li>
-                <li><form action="/grocerylist/{{$grocerylist->id}}" method="POST" id="list-delete">
+                <li><a href="/grocerylist/{{$grocerylist->getKey()}}/edit"><i class="fa fa-pencil"></i></a></li>
+                <li><form action="/grocerylist/{{$grocerylist->getKey()}}" method="POST" id="list-delete">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <a v-on:click="submitDeleteList()"><i class="fa fa-trash"></i></a>

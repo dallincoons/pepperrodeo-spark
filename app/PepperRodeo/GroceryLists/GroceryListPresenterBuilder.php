@@ -1,5 +1,6 @@
 <?php namespace App\PepperRodeo\GroceryLists;
 
+use App\Entities\GroceryList;
 use Illuminate\Database\Eloquent\Collection;
 use App\Entities\Item;
 
@@ -7,6 +8,10 @@ class GroceryListPresenterBuilder
 {
     protected $items;
 
+    /**
+     * @param $grocerylist
+     * @return \App\Entities\GroceryList
+     */
     public function build($grocerylist)
     {
         $this->items = $grocerylist->items;
@@ -21,7 +26,7 @@ class GroceryListPresenterBuilder
 
             foreach($this->combineLikeItems($likeItems) as $combinedItem)
             {
-                $presenter->addItem($combinedItem);
+                $presenter->storeItem($combinedItem);
             }
         }
 
@@ -79,14 +84,14 @@ class GroceryListPresenterBuilder
 
     protected function createListPresenter($list)
     {
-        //@todo don't know why I can't set these fields in constructor
-        $presenter = new GroceryListPresenter([
+        $presenter = new GroceryList([
             'title' => $list->title,
-            'recipes' => $list->recipes
         ]);
 
-        $presenter->title = $list->title;
-        $presenter->recipes = $list->recipes;
+        foreach($list->recipes as $recipe)
+        {
+            $presenter->recipes->add($recipe);
+        }
 
         return $presenter;
     }

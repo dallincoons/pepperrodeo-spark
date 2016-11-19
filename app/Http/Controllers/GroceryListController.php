@@ -73,11 +73,11 @@ class GroceryListController extends Controller
     public function show(GroceryList $grocerylist, Request $request)
     {
         if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
-            $grocerylist = $grocerylist->present()->items()->byCategory();
+            $grocerylist['items'] = $grocerylist->present()->items()->byCategory();
         }
 
         if($request->get('sortBy') == 'recipe'){
-            $grocerylist = $grocerylist->present()->items()->byRecipe();
+            $grocerylist['items'] = $grocerylist->present()->items()->byRecipe();
         }
 
         return view('grocerylists.single-grocery-list', compact('grocerylist'));

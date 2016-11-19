@@ -26,6 +26,16 @@ class GroceryListPresenterTest2 extends TestCase
      */
     public function combines_like_items_from_multiple_recipes()
     {
+        $this->add_recipes_with_like_items();
+
+        $presentableList = $this->grocerylist->present()->items;
+
+        $this->assertEquals(1, count($presentableList->items()->unSorted()));
+        $this->assertEquals(4, $presentableList->items()->unSorted()->first()->quantity);
+    }
+
+    protected function add_recipes_with_like_items()
+    {
         $recipe1 = factory(Recipe::class)->create();
         $recipe2 = factory(Recipe::class)->create();
         $likeItems = factory(Item::class, 2)->create([
@@ -39,11 +49,6 @@ class GroceryListPresenterTest2 extends TestCase
 
         $this->grocerylist->addRecipe($recipe1);
         $this->grocerylist->addRecipe($recipe2);
-
-        $presentableList = $this->grocerylist->present()->items;
-
-        $this->assertEquals(1, count($presentableList->items));
-        $this->assertEquals(4, $presentableList->items->first()->quantity);
     }
 
     /**
@@ -53,26 +58,11 @@ class GroceryListPresenterTest2 extends TestCase
  */
     public function combines_and_groups_like_items_by_category()
     {
-        $recipe1 = factory(Recipe::class)->create();
-        $recipe2 = factory(Recipe::class)->create();
-        $category = factory(ItemCategory::class)->create();
-        $category2 = factory(ItemCategory::class)->create();
-        $item1 = factory(Item::class)->create([
-            'item_category_id' => $category->getKey()
-        ]);
-        $item2 = factory(Item::class)->create([
-            'item_category_id' => $category2->getKey()
-        ]);
+        list($item1, $item2) = $this->addItemsToGroceryList();
 
-        $recipe1->items()->save($item1);
-        $recipe2->items()->save($item2);
+        $items = $this->grocerylist->present()->items()->byCategory();
 
-        $this->grocerylist->addRecipe($recipe1);
-        $this->grocerylist->addRecipe($recipe2);
-
-        $presentableList = $this->grocerylist->present()->items()->byCategory();
-
-        $this->assertEquals([$item1->category, $item2->category], array_keys($presentableList->items->toArray()));
+        $this->assertEquals([$item1->category, $item2->category], array_keys($items->toArray()));
     }
 
     /**
@@ -81,6 +71,17 @@ class GroceryListPresenterTest2 extends TestCase
      * @test
      */
     public function combines_and_groups_like_items_by_recipe()
+    {
+        $this->addItemsToGroceryList();
+        $recipe1 = $this->grocerylist->recipes->first();
+        $recipe2 = $this->grocerylist->recipes->find(2);
+
+        $items = $this->grocerylist->present()->items()->byRecipe();
+
+        $this->assertEquals([$recipe1->title, $recipe2->title], array_keys($items->toArray()));
+    }
+
+    protected function addItemsToGroceryList()
     {
         $recipe1 = factory(Recipe::class)->create();
         $recipe2 = factory(Recipe::class)->create();
@@ -99,8 +100,19 @@ class GroceryListPresenterTest2 extends TestCase
         $this->grocerylist->addRecipe($recipe1);
         $this->grocerylist->addRecipe($recipe2);
 
-        $presentableList = $this->grocerylist->present()->items()->byRecipe();
+        return [$item1, $item2];
+    }
 
-        $this->assertEquals([$recipe1->title, $recipe2->title], array_keys($presentableList->items->toArray()));
+    /**
+     * @group grocery-list-presenter-tests2
+     *
+     * @test
+     */
+    public function expects_exception_when_using_sorting_methods_before_items_method()
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('items property is not. Call items method before any sorting methods');
+
+        $this->grocerylist->present()->byCategory();
     }
 }

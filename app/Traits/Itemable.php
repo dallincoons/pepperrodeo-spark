@@ -15,6 +15,15 @@ Trait Itemable
         $this->items()->save($item);
     }
 
+    public function storeItem($item)
+    {
+        if(is_array($item)){
+            $item = new Item($item);
+        }
+
+        $this->items->add($item);
+    }
+
     public function addItems($items)
     {
         foreach($items as $item){
