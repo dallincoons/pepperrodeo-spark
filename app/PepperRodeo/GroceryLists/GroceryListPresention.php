@@ -6,38 +6,25 @@ use App\Entities\Item;
 
 class GroceryListPresention
 {
-    protected $items;
+    protected static $items;
 
     /**
-     * @param $grocerylist
+     * @param GroceryList $grocerylist
      * @return \App\Entities\GroceryList
      */
-    public function build($grocerylist)
+    public static function build(GroceryList $grocerylist)
     {
-        $this->items = $grocerylist->items;
-        $presenter = $this->createListPresenter($grocerylist);
+        self::$items = self::mapNamesToLowerCase($grocerylist->items)->keyBy('id');
 
-        $this->mapNameToLowerCase();
-        $this->items = $this->items->keyBy('id');
-
-        foreach($this->items as $item)
-        {
-            $likeItems = $this->findLikeItems($item);
-
-            foreach($this->combineLikeItems($likeItems) as $combinedItem)
-            {
-                $presenter->storeItem($combinedItem);
-            }
-        }
-
-        $presenter['id'] = $grocerylist->id;
+        $presenter = self::createListPresenter($grocerylist);
+        $presenter->storeMany(self::combinedItems());
 
         return $presenter;
     }
 
-    protected function mapNameToLowerCase()
+    protected static function mapNamesToLowerCase($collection)
     {
-        return $this->items->map(function($item, $key){
+        return $collection->map(function($item){
             $item->name  = strtolower($item->name);
             return $item;
         });
@@ -47,42 +34,52 @@ class GroceryListPresention
      * @param $item
      * @return mixed
      */
-    protected function findLikeItems($item)
+    protected static function findLikeItems($item)
     {
-        $items = $this->items;
+        $items = self::$items;
 
-        $likeItems = $items->filter(function ($value, $key) use ($item) {
+        $likeItems = $items->filter(function ($value) use ($item) {
                 return strtolower($value->name) === strtolower($item->name);
         });
         return $likeItems;
     }
 
     /**
-     * @param $likeItems
-     *
      * @return Collection
      */
-    protected function combineLikeItems($likeItems)
+    protected static function combinedItems()
     {
         $newCollection = new Collection();
-        if(is_object($likeItems->first())) {
-            $newCollection->add(new Item([
-                'name' => $likeItems->first()->name,
-                'quantity' => $likeItems->sum('quantity'),
-                'type' => $likeItems->first()->type,
-                'item_category_id' => $likeItems->first()->item_category_id,
-                'category' => $likeItems->first()->category,
-                'recipe' => $likeItems->first()->recipe_title
-            ]));
+
+        foreach(self::$items as $item)
+        {
+            $likeItems = self::findLikeItems($item);
+
+            if(is_object($likeItems->first())) {
+                $newCollection->add(self::newItem($likeItems));
+            }
+
+            foreach ($likeItems->pluck('id') as $id) {
+                self::$items->forget($id);
+            }
         }
 
-        foreach ($likeItems->pluck('id') as $id) {
-            $this->items->forget($id);
-        }
         return $newCollection;
     }
 
-    protected function createListPresenter($list)
+    protected static function newItem($items)
+    {
+        return (new Item([
+            'name' => $items->first()->name,
+            'quantity' => $items->sum('quantity'),
+            'type' => $items->first()->type,
+            'item_category_id' => $items->first()->item_category_id,
+            'category' => $items->first()->category,
+            'recipe' => $items->first()->recipe_title
+        ]));
+    }
+
+    protected static function createListPresenter($list)
     {
         $presenter = new GroceryList([
             'title' => $list->title,

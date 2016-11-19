@@ -15,7 +15,7 @@ class GroceryListPresenter extends Present
      */
     public function items()
     {
-        $this->items = \App::make(GroceryListPresention::class)->build($this->entity)->items;
+        $this->items = GroceryListPresention::build($this->entity)->items;
 
         return $this;
     }
