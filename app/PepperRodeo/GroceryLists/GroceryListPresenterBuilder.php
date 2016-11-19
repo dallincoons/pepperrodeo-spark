@@ -1,8 +1,8 @@
 <?php namespace App\PepperRodeo\GroceryLists;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\ItemCategory;
-use App\Item;
+use App\Entities\ItemCategory;
+use App\Entities\Item;
 
 class GroceryListPresenterBuilder
 {

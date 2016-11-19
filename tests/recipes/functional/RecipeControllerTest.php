@@ -3,9 +3,9 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Recipe;
-use App\GroceryList;
-use App\Item;
+use App\Entities\Recipe;
+use App\Entities\GroceryList;
+use App\Entities\Item;
 
 class RecipeControllerTest extends TestCase
 {

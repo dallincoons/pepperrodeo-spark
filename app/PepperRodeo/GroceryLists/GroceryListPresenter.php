@@ -4,7 +4,7 @@
 namespace App\PepperRodeo\GroceryLists;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
-use App\ItemCategory;
+use App\Entities\ItemCategory;
 
 class GroceryListPresenter extends Model
 {

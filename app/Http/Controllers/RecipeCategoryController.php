@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RecipeCategory;
+use App\Entities\RecipeCategory;
 use Illuminate\Http\Request;
 
 class RecipeCategoryController extends Controller

@@ -1,10 +1,11 @@
 <?php
 
-use App\Item;
-use App\Recipe;
-use App\GroceryList;
-use App\ItemCategory;
-use App\RecipeCategory;
+use App\Entities\Item;
+use App\Entities\Recipe;
+use App\Entities\GroceryList;
+use App\Entities\ItemCategory;
+use App\Entities\RecipeCategory;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\RecipeCategory;
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
@@ -29,7 +30,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $cnt = ItemCategory::count();
 $randIndex = rand(0, $cnt-1);
 
-$factory->define(App\Item::class, function (Faker\Generator $faker) use($randIndex) {
+$factory->define(Item::class, function (Faker\Generator $faker) use($randIndex) {
     return [
         'quantity' => $faker->randomNumber(2),
         'name' => $faker->word,
@@ -53,16 +54,16 @@ $factory->define(RecipeCategory::class, function (Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Recipe::class, function (Faker\Generator $faker){
+$factory->define(Recipe::class, function (Faker\Generator $faker){
     return [
         'title' => $faker->text(15),
-        'user_id' => App\User::all()->random()->id,
+        'user_id' => User::all()->random()->id,
         'directions' => $faker->paragraph,
         'recipe_category_id' => RecipeCategory::first()->getKey()
     ];
 });
 
-$factory->define(App\GroceryList::class, function (Faker\Generator $faker) {
+$factory->define(GroceryList::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->name,
         'user_id' => App\User::all()->random()->id

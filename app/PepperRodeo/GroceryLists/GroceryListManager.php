@@ -1,7 +1,7 @@
 <?php namespace App\PepperRodeo\GroceryLists;
 
-use App\Recipe;
-use App\GroceryList;
+use App\Entities\Recipe;
+use App\Entities\GroceryList;
 
 class GroceryListManager
 {

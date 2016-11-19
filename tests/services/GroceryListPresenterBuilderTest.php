@@ -4,8 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
-use App\Item;
-use App\Recipe;
+use App\Entities\Item;
+use App\Entities\Recipe;
 use Illuminate\Database\Eloquent\Collection;
 
 class GroceryListPresenterBuilderTest extends TestCase
@@ -29,7 +29,7 @@ class GroceryListPresenterBuilderTest extends TestCase
      */
      public function combines_items_with_the_same_name_from_collection_of_times()
      {
-        $list = factory(\App\GroceryList::class)->create();
+        $list = factory(\App\Entities\GroceryList::class)->create();
 
         $list->recipes()->save(factory(Recipe::class)->create());
 

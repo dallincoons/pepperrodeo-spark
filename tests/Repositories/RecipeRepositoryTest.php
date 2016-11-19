@@ -4,10 +4,10 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\Repositories\RecipeRepository;
 use App\User;
-use App\Recipe;
-use App\RecipeCategory;
-use App\Item;
-use App\ItemCategory;
+use App\Entities\Recipe;
+use App\Entities\RecipeCategory;
+use App\Entities\Item;
+use App\Entities\ItemCategory;
 
 class RecipeRepositoryTest extends TestCase
 {

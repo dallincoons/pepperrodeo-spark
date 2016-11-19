@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
-use App\GroceryList;
+use App\Entities\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
-use App\ItemCategory;
-use App\Item;
+use App\Entities\ItemCategory;
+use App\Entities\Item;
 use JavaScript;
 
 class GroceryListController extends Controller

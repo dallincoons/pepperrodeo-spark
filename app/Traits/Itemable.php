@@ -1,7 +1,7 @@
 <?php
 namespace App\Traits;
 
-use App\Item;
+use App\Entities\Item;
 use Illuminate\Database\Eloquent\Collection;
 
 Trait Itemable

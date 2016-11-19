@@ -1,9 +1,9 @@
 <?php
 namespace App\Repositories;
 
-use App\RecipeCategory;
-use App\Recipe;
-use App\Item;
+use App\Entities\RecipeCategory;
+use App\Entities\Recipe;
+use App\Entities\Item;
 
 class RecipeRepository
 {

@@ -3,10 +3,10 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\GroceryList;
+use App\Entities\GroceryList;
 use App\User;
-use App\Item;
-use App\Recipe;
+use App\Entities\Item;
+use App\Entities\Recipe;
 use Illuminate\Http\Request;
 
 class GroceryListTest extends TestCase
@@ -56,7 +56,7 @@ class GroceryListTest extends TestCase
         $this->GroceryList->addItem([
             'quantity' => 2,
             'name' => 'Ketchup',
-            'item_category_id' => \App\ItemCategory::first()->getKey()
+            'item_category_id' => \App\Entities\ItemCategory::first()->getKey()
         ]);
 
         $this->assertEquals($this->getItemCount(), ($itemCount + 1));

@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Recipe;
+use App\Entities\Recipe;
 
 class RecipeCategory extends Model
 {

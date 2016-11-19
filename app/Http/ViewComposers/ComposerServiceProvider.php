@@ -2,8 +2,8 @@
 
 namespace App\Http\ViewComposers;
 
-use App\ItemCategory;
-use App\RecipeCategory;
+use App\Entities\ItemCategory;
+use App\Entities\RecipeCategory;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider

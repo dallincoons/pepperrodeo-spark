@@ -1,8 +1,8 @@
 <?php
 
 use  App\PepperRodeo\GroceryLists\GroceryListPresenter;
-use App\Item;
-use App\Recipe;
+use App\Entities\Item;
+use App\Entities\Recipe;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

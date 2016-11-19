@@ -1,11 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Entities;
 
 use App\Traits\Itemable;
 use App\Traits\Copyable;
 use Illuminate\Database\Eloquent\Model;
 use App\PepperRodeo\GroceryLists\GroceryListPresenter;
+use App\Entities\Item;
+use App\User;
 
 class GroceryList extends Model
 {
