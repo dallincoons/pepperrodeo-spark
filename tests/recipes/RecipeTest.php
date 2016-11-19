@@ -1,13 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\Entities\Recipe;
 use App\User;
 use App\Entities\Item;
-use App\Entities\RecipeCategory;
 
 class RecipeTest extends TestCase
 {

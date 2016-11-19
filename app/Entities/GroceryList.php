@@ -5,17 +5,18 @@ namespace App\Entities;
 use App\Traits\Itemable;
 use App\Traits\Copyable;
 use Illuminate\Database\Eloquent\Model;
-use App\PepperRodeo\GroceryLists\GroceryListPresenter;
-use App\Entities\Item;
+use App\Entities\Presenters\GroceryList\GroceryListPresenter;
 use App\User;
+use App\Traits\Presentable;
 
 class GroceryList extends Model
 {
-    use Itemable, Copyable;
+    use Itemable, Copyable, Presentable;
 
     private $foreignKey = 'grocery_list_id';
 
     protected $fillable = array('user_id', 'title');
+    protected $presenter = GroceryListPresenter::class;
 
     public function user()
     {

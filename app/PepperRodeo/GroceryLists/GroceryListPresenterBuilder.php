@@ -1,7 +1,6 @@
 <?php namespace App\PepperRodeo\GroceryLists;
 
 use Illuminate\Database\Eloquent\Collection;
-use App\Entities\ItemCategory;
 use App\Entities\Item;
 
 class GroceryListPresenterBuilder
@@ -40,7 +39,6 @@ class GroceryListPresenterBuilder
     }
 
     /**
-     * @param $items
      * @param $item
      * @return mixed
      */
@@ -55,9 +53,7 @@ class GroceryListPresenterBuilder
     }
 
     /**
-     * @param $items
      * @param $likeItems
-     * @param $newCollection
      *
      * @return Collection
      */

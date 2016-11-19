@@ -27,10 +27,10 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$cnt = ItemCategory::count();
-$randIndex = rand(0, $cnt-1);
-
-$factory->define(Item::class, function (Faker\Generator $faker) use($randIndex) {
+$factory->define(Item::class, function (Faker\Generator $faker) {
+    if(!ItemCategory::count()){
+        factory(ItemCategory::class, 5)->create();
+    }
     return [
         'quantity' => $faker->randomNumber(2),
         'name' => $faker->word,
@@ -59,7 +59,7 @@ $factory->define(Recipe::class, function (Faker\Generator $faker){
         'title' => $faker->text(15),
         'user_id' => User::all()->random()->id,
         'directions' => $faker->paragraph,
-        'recipe_category_id' => RecipeCategory::first()->getKey()
+        'recipe_category_id' => RecipeCategory::firstOrCreate(['name' => $faker->word, 'user_id' => \Auth::user()->getKey()])->getKey()
     ];
 });
 

@@ -108,7 +108,7 @@ class GroceryListTest extends TestCase
 
         $this->GroceryList->removeRecipe($recipe);
 
-        $this->assertFalse($this->GroceryList->items->contains($recipe));
+        $this->assertFalse($this->GroceryList->recipes->contains($recipe));
     }
 
     /**
@@ -163,7 +163,7 @@ class GroceryListTest extends TestCase
 
          $this->GroceryList->removeItem($items[2]);
 
-         $this->assertTrue(!$this->GroceryList->items->contains($items[2]));
+         $this->assertFalse($this->GroceryList->items->contains($items[2]));
      }
 
     private function createItem()
