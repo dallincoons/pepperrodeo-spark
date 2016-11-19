@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Item;
-use App\RecipeCategory;
+use App\Entities\Item;
+use App\Entities\RecipeCategory;
 use App\Traits\Itemable;
 use App\Traits\Copyable;
+use App\Entities\GroceryList;
 
 class Recipe extends Model
 {

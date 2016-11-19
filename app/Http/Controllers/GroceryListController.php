@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
-use App\GroceryList;
+use App\Entities\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
-use App\ItemCategory;
-use App\Item;
+use App\Entities\ItemCategory;
+use App\Entities\Item;
 use JavaScript;
 
 class GroceryListController extends Controller
@@ -66,29 +66,27 @@ class GroceryListController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Entities\GroceryList $grocerylist
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(GroceryList $grocerylist, Request $request)
     {
         if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
-            $grocerylist = $this->listBuilder->build($grocerylist)->byCategory();
+            $grocerylist['items'] = $grocerylist->present()->items()->byCategory();
         }
 
         if($request->get('sortBy') == 'recipe'){
-            $grocerylist = $this->listBuilder->build($grocerylist)->byRecipe();
+            $grocerylist['items'] = $grocerylist->present()->items()->byRecipe();
         }
 
         return view('grocerylists.single-grocery-list', compact('grocerylist'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Entities\GroceryList $grocerylist
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(GroceryList $grocerylist, Request $request)
     {
@@ -104,12 +102,9 @@ class GroceryListController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     * @PUT/PATCH
+     * @param \Illuminate\Http\Request  $request
+     * @param \App\Entities\GroceryList $grocerylist
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, GroceryList $grocerylist)
     {

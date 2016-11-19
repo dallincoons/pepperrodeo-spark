@@ -1,10 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Recipe;
-use App\GroceryList;
+use App\Entities\Recipe;
+use App\Entities\GroceryList;
+use App\Entities\ItemCategory;
 
 class Item extends Model
 {

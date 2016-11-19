@@ -1,7 +1,7 @@
 <?php
 namespace App\Traits;
 
-use App\Item;
+use App\Entities\Item;
 use Illuminate\Database\Eloquent\Collection;
 
 Trait Itemable
@@ -13,6 +13,15 @@ Trait Itemable
         }
 
         $this->items()->save($item);
+    }
+
+    public function storeItem($item)
+    {
+        if(is_array($item)){
+            $item = new Item($item);
+        }
+
+        $this->items->add($item);
     }
 
     public function addItems($items)

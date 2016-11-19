@@ -4,8 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
-use App\Recipe;
-use App\Item;
+use App\Entities\Recipe;
+use App\Entities\Item;
 use Carbon\Carbon;
 
 class UserHome extends TestCase

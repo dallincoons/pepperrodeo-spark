@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Repositories\RecipeRepository;
 use Illuminate\Http\Request;
-use App\Recipe;
-use App\Item;
+use App\Entities\Recipe;
+use App\Entities\Item;
 use App\Http\Requests\CreateRecipeRequest;
 
 class RecipeController extends Controller

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\GroceryList;
-use App\Item;
+use App\Entities\GroceryList;
+use App\Entities\Item;
 
 class GroceryListSeeder extends Seeder
 {

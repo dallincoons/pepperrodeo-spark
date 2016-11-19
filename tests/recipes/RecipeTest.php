@@ -1,13 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\Recipe;
+use App\Entities\Recipe;
 use App\User;
-use App\Item;
-use App\RecipeCategory;
+use App\Entities\Item;
 
 class RecipeTest extends TestCase
 {
@@ -54,7 +51,7 @@ class RecipeTest extends TestCase
         $this->MainRecipe->addItem([
             'quantity' => 2,
             'name' => 'Ketchup',
-            'item_category_id' => \App\ItemCategory::first()->getKey()
+            'item_category_id' => \App\Entities\ItemCategory::first()->getKey()
         ]);
 
         $this->assertEquals(count($this->MainRecipe->items()->get()), ($itemCount + 1));

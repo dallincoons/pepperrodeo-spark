@@ -1,7 +1,7 @@
 <?php
 
-use App\GroceryList;
-use App\Item;
+use App\Entities\GroceryList;
+use App\Entities\Item;
 use App\Repositories\GroceryListRepository;
 
 class GrocerylistRepositoryTest extends TestCase

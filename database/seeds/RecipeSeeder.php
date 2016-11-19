@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Recipe;
-use App\Item;
-use App\RecipeCategory;
+use App\Entities\Recipe;
+use App\Entities\Item;
+use App\Entities\RecipeCategory;
 
 class RecipeSeeder extends Seeder
 {

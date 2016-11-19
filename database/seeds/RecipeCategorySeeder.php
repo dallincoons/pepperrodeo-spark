@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\RecipeCategory;
+use App\Entities\RecipeCategory;
 
 class RecipeCategorySeeder extends Seeder
 {

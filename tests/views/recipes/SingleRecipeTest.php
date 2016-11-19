@@ -3,9 +3,9 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Recipe;
+use App\Entities\Recipe;
 use App\User;
-use App\Item;
+use App\Entities\Item;
 
 class SingleRecipeTest extends TestCase
 {

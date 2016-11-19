@@ -3,6 +3,9 @@
 namespace App;
 
 use Laravel\Spark\User as SparkUser;
+use App\Entities\GroceryList;
+use App\Entities\Recipe;
+use App\Entities\RecipeCategory;
 
 class User extends SparkUser
 {

@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\GroceryList;
-use App\Item;
-use App\Recipe;
+use App\Entities\GroceryList;
+use App\Entities\Item;
+use App\Entities\Recipe;
 
 class GroceryListRepository
 {
