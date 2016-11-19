@@ -15,7 +15,7 @@ require('./../spark-components/bootstrap');
 require('./home');
 require('./recipe/add-recipe');
 require('./recipe/show-single');
-require('./recipe/show-all');
+require('./recipe/all-recipes');
 require('./recipe/edit-single');
 
 /* Grocery Lists */

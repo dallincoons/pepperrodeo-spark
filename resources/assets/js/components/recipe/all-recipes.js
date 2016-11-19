@@ -1,15 +1,15 @@
-Vue.component('all-grocery-lists', {
+Vue.component('show-all-recipes', {
     data    : function () {
         return {
             showCheckBoxes : false,
-            lists          : []
+            recipes        : []
         }
     },
     methods : {
         setShowCheckBoxes($bool){
             this.showCheckBoxes = $bool;
         },
-        deleteLists : function () {
+        deleteRecipes : function () {
 
             swal({
                     title              : "",
@@ -23,17 +23,17 @@ Vue.component('all-grocery-lists', {
                 function () {
                     document.getElementById("deleteForm").submit();
                 });
-
         },
         deleteConfirmMessage(){
 
-            var itemNames = '<p>Are you sure you want to delete these lists?</p>';
+            var recipeNames = '<p>Are you sure you want to delete these recipes?</p>';
 
-            this.lists.forEach(function(list){
-                itemNames += "<p>" + JSON.parse(list).title + "</p>";
+            this.recipes.forEach(function (recipe) {
+                recipeNames += "<p>" + JSON.parse(recipe).title + "</p>";
             });
 
-            return itemNames;
+            return recipeNames;
         }
-    }
+    },
+
 });

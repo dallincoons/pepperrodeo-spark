@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/sweetalert.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -34,37 +35,36 @@
 
 </head>
 <body>
-<div id="spark-app">
-    <aside id="large-sidebar">
-        @unless(!\Auth::user())
-            @include('includes.nav')
-        @endunless
-
-        @unless(!\Auth::user())
-            @include('includes.footer')
-        @endunless
-    </aside>
-
-    <div id="main-content">
-
-        <header id="header-mobile">
-            <h1>Pepper Rodeo</h1>
-        </header>
-
-        @yield('content')
-
-        <nav id="nav-mobile">
+    <div id="spark-app">
+        <aside id="large-sidebar">
             @unless(!\Auth::user())
                 @include('includes.nav')
             @endunless
-        </nav>
+
+            @unless(!\Auth::user())
+                @include('includes.footer')
+            @endunless
+        </aside>
+
+        <div id="main-content">
+
+            <header id="header-mobile">
+                <h1>Pepper Rodeo</h1>
+            </header>
+
+            @yield('content')
+
+            <nav id="nav-mobile">
+                @unless(!\Auth::user())
+                    @include('includes.nav')
+                @endunless
+            </nav>
+        </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
 
-
-
-</div>
-<!-- Scripts -->
-<script src="/js/app.js"></script>
 </body>
 </html>
