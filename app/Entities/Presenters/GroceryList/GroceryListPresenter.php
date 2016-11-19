@@ -57,7 +57,7 @@ class GroceryListPresenter extends Present
     protected function assertItemsSet()
     {
         if(!$this->items instanceof Collection){
-            throw new \Exception('items property is not. Call items method before any sorting methods');
+            throw new \PresenterException('items property is not. Call items method before any sorting methods');
         }
     }
 }

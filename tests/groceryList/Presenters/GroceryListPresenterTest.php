@@ -110,7 +110,7 @@ class GroceryListPresenterTest2 extends TestCase
      */
     public function expects_exception_when_using_sorting_methods_before_items_method()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(\PresenterException::class);
         $this->expectExceptionMessage('items property is not. Call items method before any sorting methods');
 
         $this->grocerylist->present()->byCategory();
