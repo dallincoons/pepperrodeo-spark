@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\Entities\GroceryList;
-use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
+use App\PepperRodeo\GroceryLists\GroceryListPresention;
 use App\Entities\ItemCategory;
 use App\Entities\Item;
 use JavaScript;
@@ -14,7 +14,7 @@ class GroceryListController extends Controller
 {
     protected $listBuilder;
 
-    public function __construct(GroceryListPresenterBuilder $listBuilder)
+    public function __construct(GroceryListPresention $listBuilder)
     {
         $this->listBuilder = $listBuilder;
     }

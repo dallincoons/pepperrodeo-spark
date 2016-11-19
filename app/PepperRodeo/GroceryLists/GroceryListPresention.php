@@ -4,7 +4,7 @@ use App\Entities\GroceryList;
 use Illuminate\Database\Eloquent\Collection;
 use App\Entities\Item;
 
-class GroceryListPresenterBuilder
+class GroceryListPresention
 {
     protected $items;
 

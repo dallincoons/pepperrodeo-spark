@@ -3,7 +3,7 @@
 namespace App\Entities\Presenters\GroceryList;
 
 use App\Entities\Presenters\Present;
-use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
+use App\PepperRodeo\GroceryLists\GroceryListPresention;
 use Illuminate\Database\Eloquent\Collection;
 
 class GroceryListPresenter extends Present
@@ -15,7 +15,7 @@ class GroceryListPresenter extends Present
      */
     public function items()
     {
-        $this->items = \App::make(GroceryListPresenterBuilder::class)->build($this->entity)->items;
+        $this->items = \App::make(GroceryListPresention::class)->build($this->entity)->items;
 
         return $this;
     }
