@@ -2,7 +2,7 @@
 
 @section('content')
     <add-recipe inline-template>
-    <div>
+    <div class="add-recipe-content">
         <h3 class="page-title">New Recipe</h3>
         <div class="recipe-form">
             {!! Form::open(array('url' => '/recipe')) !!}
