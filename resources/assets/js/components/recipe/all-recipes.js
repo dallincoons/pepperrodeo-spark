@@ -5,6 +5,13 @@ Vue.component('show-all-recipes', {
             recipes        : []
         }
     },
+
+    created(){
+        if(typeof PepperRodeo !== 'undefined'){
+            this.showCheckBoxes = (PepperRodeo.showCheckBoxes == true);
+        }
+    },
+
     methods : {
         toggleShowCheckBoxes(){
             this.showCheckBoxes = !this.showCheckBoxes;
@@ -24,6 +31,7 @@ Vue.component('show-all-recipes', {
                     document.getElementById("deleteForm").submit();
                 });
         },
+
         deleteConfirmMessage(){
 
             var recipeNames = '<p>Are you sure you want to delete these recipes?</p>';

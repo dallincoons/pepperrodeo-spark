@@ -13,10 +13,16 @@ class RecipeController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //should we toggle delete functionality
+        if(parse_url($request->url())['path'] == '/recipe/delete'){
+            \JavaScript::put(['showCheckBoxes' => true]);
+        }
+
         $recipesWithCategories = RecipeRepository::recipesWithCategories();
 
         return view('recipes.all-recipes', compact('recipesWithCategories'));
