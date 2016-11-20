@@ -1,5 +1,3 @@
-<desktop-nav inline-template>
-
 <nav class="l-nav">
     <ul>
         <li class="l-brand"><a href="/"><h1>Pepper Rodeo</h1></a></li>
@@ -23,5 +21,3 @@
         <li class="l-nav-li"><a><i class="fa fa-user"></i> My Settings</a></li>
     </ul>
 </nav>
-
-</desktop-nav>
