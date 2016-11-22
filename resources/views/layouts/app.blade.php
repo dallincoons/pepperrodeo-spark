@@ -38,7 +38,7 @@
     <div id="spark-app">
         <aside id="large-sidebar">
             @unless(!\Auth::user())
-                @include('includes.nav')
+                @include('includes.navs.desktop')
             @endunless
 
             @unless(!\Auth::user())
@@ -56,7 +56,7 @@
 
             <nav id="nav-mobile">
                 @unless(!\Auth::user())
-                    @include('includes.nav')
+                    @include('includes.navs.mobile')
                 @endunless
             </nav>
         </div>

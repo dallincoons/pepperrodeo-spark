@@ -19,6 +19,7 @@
     min-height: 100%;
     position: relative;
     display: flex;
+    background: rgba(255, 75, 46, .05);
   }
 
   .l-brand {
@@ -81,7 +82,7 @@
   }
 
   .active  {
-    background: rgba(255, 75, 46, .2);
+    background: #FFFFFF;
   }
 
 }

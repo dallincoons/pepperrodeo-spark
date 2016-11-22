@@ -7,7 +7,7 @@
             <div class="l-dropdown-content">
                 <a href="/recipe/create" class="{{ set_active_strict('recipe/create') }}"><i class="fa fa-plus"></i> Add a Recipe</a>
                 <a><i class="fa fa-cart-plus"></i> Add Recipes to List</a>
-                <a href="/recipe"><i class="fa fa-trash"></i> Delete Recipes</a>
+                <a href="/recipe/delete" class="{{ set_active_strict('recipe/delete') }}"><i class="fa fa-trash"></i> Delete Recipes</a>
             </div>
 
         </li>
@@ -21,19 +21,3 @@
         <li class="l-nav-li"><a><i class="fa fa-user"></i> My Settings</a></li>
     </ul>
 </nav>
-
-
-
-{{--Mobile "footer" navigation--}}
-
-<nav class="l-nav-mobile">
-    <ul class="l-nav-ul">
-        <li class="{{ set_active('recipe') }}"><a href="/recipe"><i class="fa fa-cutlery"></i></a></li>
-        <li class="{{ set_active('grocerylist') }}"><a href="/grocerylist"><i class="fa fa-shopping-cart"></i></a></li>
-        <li class="{{ set_active('/') }}"><a href="/"><i class="fa fa-home"></i></a></li>
-        <li><a><i class="fa fa-user"></i></a></li>
-    </ul>
-</nav>
-
-
-

@@ -18,6 +18,7 @@ Route::get('/', 'HomeController@index');
 Route::group(['middleware' => ['web', 'auth']], function(){
 
     Route::delete('recipe/deleteMultiple', 'RecipeController@destroyMultiple');
+    Route::get('recipe/delete', 'RecipeController@index');
     Route::resource('recipe', 'RecipeController');
 
     Route::delete('grocerylist/deleteMultiple', 'GroceryListController@destroyMultiple');
