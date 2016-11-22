@@ -22,6 +22,3 @@ require('./recipe/edit-single');
 require('./grocerylists/all-grocery-lists');
 require('./grocerylists/single-list');
 require('./grocerylists/list-form');
-
-/* Navigation */
-require('./nav/desktop-nav.js');
