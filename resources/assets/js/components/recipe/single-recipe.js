@@ -2,6 +2,7 @@ Vue.component('single-recipe', {
     data    : function () {
         return {
             recipeId          : PepperRodeo.recipe_id,
+            grocerylists      : PepperRodeo.grocerylists,
             selectedList      : '',
             showListSelection : false
         }
@@ -9,7 +10,10 @@ Vue.component('single-recipe', {
     methods : {
         addToGroceryList        : function () {
             this.$http.post('/grocerylist/' + this.selectedList + '/add/' + this.recipeId).then(function (response) {
-                console.log(response.data);
+                this.grocerylists = response.data.grocerylists;
+                if(response.status === 200){
+                    alert('you have successed');
+                }
             });
         },
         toggleShowListSelection : function () {

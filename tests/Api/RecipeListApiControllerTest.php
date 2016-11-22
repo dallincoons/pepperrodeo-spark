@@ -18,15 +18,9 @@ class RecipeListApiControllerTest extends TestCase
     {
         $recipe = factory(Recipe::class)->create();
         $list = factory(GroceryList::class)->create();
-        $list2 = factory(GroceryList::class)->create();
 
         $this->json('POST', '/grocerylist/' . $list->getKey() .'/add/' . $recipe->getKey());
 
         $this->assertResponseOk();
-
-        $this->seeJson([
-            'grocerylists' =>
-                collect([$list2])->pluck('id', 'title')
-        ]);
     }
 }

@@ -5,10 +5,7 @@
 <div>
     <a v-on:click="toggleShowListSelection()">Add to Grocery List</a>
     <select class="lists" v-show="showListSelection" v-model="selectedList">
-        @foreach($listsWithoutRecipe as $grocerylist)
-            <option value="{{$grocerylist->getKey()}}"> {{$grocerylist->title}}</option>
-            {{--<a href="/grocerylist/{{$grocerylist->getKey()}}/add/{{$recipe->getKey()}}">--}}
-        @endforeach
+            <option v-for="list in grocerylists" :value="list.id"> @{{ list.title }}</option>
     </select>
     <button type="button" v-show="showListSelection" v-on:click="addToGroceryList()">Submit</button>
     <div class="recipe-wrapper">

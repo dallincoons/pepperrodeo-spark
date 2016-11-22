@@ -41,7 +41,7 @@ class RecipeListApiController extends Controller
         $grocerylists = GroceryListRepository::addRecipe($request->grocerylist, $request->recipe);
 
         return response()->json([
-            'grocerylists' => $grocerylists->pluck('id', 'title')
+            'grocerylists' => $grocerylists
         ], 200);
     }
 
