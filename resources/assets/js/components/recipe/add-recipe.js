@@ -21,7 +21,7 @@ Vue.component('add-recipe', {
     },
     methods : {
         addNewItem() {
-            this.recipeItems.unshift({
+            this.recipeItems.push({
                 'quantity' : '',
                 'type' : '',
                 'ingredient' : '',
