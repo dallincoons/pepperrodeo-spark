@@ -33,6 +33,13 @@ Vue.component('list-form', {
             this.addAnItem = $bool;
         },
         addItem(){
+
+            if( this.newItemQty == "" ||
+                this.newItemName == "" ||
+                this.newItemCategoryId == ""){
+                return;
+            }
+
             var newItem = {
                 id               : -1,
                 quantity         : this.newItemQty,
@@ -41,6 +48,7 @@ Vue.component('list-form', {
                 recipe_title     : 'Other',
                 category         : this.categories[this.newItemCategoryId].name
             };
+
             this.items.push(newItem);
 
             this.newItemQty        = '';
