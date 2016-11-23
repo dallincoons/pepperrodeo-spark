@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGroceryListRequest;
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\Entities\GroceryList;
@@ -51,11 +52,12 @@ class GroceryListController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreGroceryListRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGroceryListRequest $request)
     {
+        dd($request->items);
         $grocerylist = GroceryListRepository::store([
             'title' => $request->title,
             'items' => $request->items,
