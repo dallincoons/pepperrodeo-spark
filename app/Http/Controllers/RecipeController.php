@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\GroceryList;
+use App\Http\Requests\StoreRecipeRequest;
 use App\Repositories\RecipeRepository;
 use Illuminate\Http\Request;
 use App\Entities\Recipe;
@@ -44,10 +45,10 @@ class RecipeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreRecipeRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRecipeRequest $request)
     {
         $category = explode(',', $request->category);
         $recipe = RecipeRepository::store([
