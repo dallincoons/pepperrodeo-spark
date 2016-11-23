@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<show-single-recipe inline-template>
+<single-recipe inline-template>
 <div class="recipe-wrapper">
     <h2 class="page-title">{{$recipe->title}}</h2>
     <h6 class="recipe-cat">Category: <a href="/recipecategory/{{$recipe->category->getKey()}}">{{$recipe->category->name}}</a></h6>
@@ -9,7 +9,7 @@
         <ul class="mini-nav-options">
             <li><a v-on:click="toggleShowListSelection()"><i class="fa fa-cart-plus"></i></a></li>
             <li><a href="{{$recipe->getKey()}}/edit"><i class="fa fa-pencil"></i></a></li>
-            <li><form action="/recipe/{{$recipe->id}}" method="POST" id="recipe-delete" class="mini-delete">
+            <li><form action="/recipe/{{$recipe->id}}" method="POST" id="recipe-delete">
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <a v-on:click="submitDeleteRecipe()"><i class="fa fa-trash"></i></a>
@@ -32,9 +32,7 @@
     </nav>
 
     <ul class="lists" v-show="showListSelection">
-        @foreach($listsWithoutRecipe as $grocerylist)
-            <li class="list"><i class="fa fa-list"></i> <a href="/grocerylist/{{$grocerylist->getKey()}}/add/{{$recipe->getKey()}}">{{$grocerylist->title}}</a></li>
-        @endforeach
+        <li class="list" v-for="list in grocerylists" :value="list.id" v-on:click="addToGroceryList(list)"><i class="fa fa-list"></i><a> @{{ list.title }}</a></li>
     </ul>
 
     <h3 class="form-heading">Ingredients</h3>
@@ -47,8 +45,7 @@
     <h3 class="form-heading">Directions</h3>
     <p class="recipe-directions">{{$recipe->directions}}</p>
 
-
 </div>
-</show-single-recipe>
+</single-recipe>
 
 @endsection

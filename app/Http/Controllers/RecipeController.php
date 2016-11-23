@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\GroceryList;
 use App\Repositories\RecipeRepository;
 use Illuminate\Http\Request;
 use App\Entities\Recipe;
-use App\Entities\Item;
-use App\Http\Requests\CreateRecipeRequest;
 
 class RecipeController extends Controller
 {
@@ -67,18 +66,15 @@ class RecipeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
     public function show(Recipe $recipe)
     {
-        $listsWithoutRecipe = \Auth::user()->groceryLists->filter(function($grocerylist, $key) use($recipe){
-            return($grocerylist->recipes()->where('id', $recipe->getKey())->count() === 0);
-        });
+        $listsWithoutRecipe = GroceryList::ListsWithoutRecipe($recipe);
 
-        $recipe->append('category');
-
-        \JavaScript::put('recipe_id', $recipe->id);
+        \JavaScript::put('recipe', $recipe->toArray());
+        \JavaScript::put('grocerylists', GroceryList::ListsWithoutRecipe($recipe));
 
         return view('recipes.single-recipe', compact('recipe', 'listsWithoutRecipe'));
     }
@@ -86,7 +82,7 @@ class RecipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
     public function edit(Recipe $recipe)
@@ -104,7 +100,7 @@ class RecipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Recipe $recipe)
@@ -127,7 +123,7 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
     public function destroy(Recipe $recipe)

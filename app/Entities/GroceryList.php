@@ -33,6 +33,13 @@ class GroceryList extends Model
         return $this->belongsToMany(Recipe::class);
     }
 
+    public function scopeListsWithoutRecipe($query, $recipe)
+    {
+        return \Auth::user()->groceryLists->filter(function($grocerylist, $key) use($recipe){
+            return($grocerylist->recipes()->where('id', $recipe->getKey())->count() === 0);
+        });
+    }
+
     public function addRecipe($recipe)
     {
         $this->recipes()->attach($recipe->id);

@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Entities\Item;
 use App\Entities\RecipeCategory;
