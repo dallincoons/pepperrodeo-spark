@@ -6,7 +6,7 @@
         <li  class="l-nav-li"><a href="/recipe" class="{{ set_active_strict('recipe') }}"><i class="fa fa-cutlery"></i> My Recipes</a>
             <div class="l-dropdown-content">
                 <a href="/recipe/create" class="{{ set_active_strict('recipe/create') }}"><i class="fa fa-plus"></i> Add a Recipe</a>
-                <a><i class="fa fa-cart-plus"></i> Add Recipes to List</a>
+                {{--<a><i class="fa fa-cart-plus"></i> Add Recipes to List</a>--}}
                 <a href="/recipe/delete" class="{{ set_active_strict('recipe/delete') }}"><i class="fa fa-trash"></i> Delete Recipes</a>
             </div>
 
