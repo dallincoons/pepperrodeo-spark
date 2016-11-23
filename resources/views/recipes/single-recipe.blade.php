@@ -32,9 +32,7 @@
     </nav>
 
     <ul class="lists" v-show="showListSelection">
-        @foreach($listsWithoutRecipe as $grocerylist)
-            <li class="list"><i class="fa fa-list"></i> <a href="/grocerylist/{{$grocerylist->getKey()}}/add/{{$recipe->getKey()}}">{{$grocerylist->title}}</a></li>
-        @endforeach
+        <li class="list" v-for="list in grocerylists" :value="list.id" v-on:click="addToGroceryList(list)"><i class="fa fa-list"></i><a> @{{ list.title }}</a></li>
     </ul>
 
     <h3 class="form-heading">Ingredients</h3>

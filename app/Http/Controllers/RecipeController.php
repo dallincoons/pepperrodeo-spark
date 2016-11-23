@@ -73,9 +73,7 @@ class RecipeController extends Controller
     {
         $listsWithoutRecipe = GroceryList::ListsWithoutRecipe($recipe);
 
-        $recipe->append('category');
-
-        \JavaScript::put('recipe_id', $recipe->id);
+        \JavaScript::put('recipe', $recipe->toArray());
         \JavaScript::put('grocerylists', GroceryList::ListsWithoutRecipe($recipe));
 
         return view('recipes.single-recipe', compact('recipe', 'listsWithoutRecipe'));

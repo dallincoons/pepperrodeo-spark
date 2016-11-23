@@ -1,20 +1,30 @@
 Vue.component('single-recipe', {
     data    : function () {
         return {
-            recipeId          : PepperRodeo.recipe_id,
+            recipe          : PepperRodeo.recipe,
             grocerylists      : PepperRodeo.grocerylists,
             selectedList      : '',
             showListSelection : false
         }
     },
     methods : {
-        addToGroceryList        : function () {
-            this.$http.post('/grocerylist/' + this.selectedList + '/add/' + this.recipeId).then(function (response) {
+        addToGroceryList        : function (list) {
+            this.$http.post('/grocerylist/' + list.id + '/add/' + this.recipe.id).then(function (response) {
                 this.grocerylists = response.data.grocerylists;
                 if(response.status === 200){
-                    alert('you have successed');
+                    swal({
+                            title              : "",
+                            text               : this.addConfirmMessage(list),
+                            confirmButtonColor : "#DD6B55",
+                            confirmButtonText  : "Ok",
+                            closeOnConfirm     : true,
+                            html               : true
+                        });
                 }
             });
+        },
+        addConfirmMessage : function(list){
+            return 'You have successfully added ' + this.recipe.title + ' to <a href="/grocerylist/' + list.id + '">' + list.title + '</a>';
         },
         toggleShowListSelection : function () {
             this.showListSelection = !this.showListSelection;

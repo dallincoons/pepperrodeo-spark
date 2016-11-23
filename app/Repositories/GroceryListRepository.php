@@ -63,11 +63,11 @@ class GroceryListRepository
      */
     public static function addRecipe($list, $recipe)
     {
-//        $grocerylist = GroceryList::findOrFail($list);
+        $grocerylist = GroceryList::findOrFail($list);
 
         $recipe = Recipe::findOrFail($recipe);
 
-//        $grocerylist->addRecipe($recipe);
+        $grocerylist->addRecipe($recipe);
 
         $listsWithoutRecipe = GroceryList::ListsWithoutRecipe($recipe);
 
