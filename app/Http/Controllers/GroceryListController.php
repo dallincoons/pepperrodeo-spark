@@ -23,10 +23,16 @@ class GroceryListController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //should we toggle delete functionality
+        if(parse_url($request->url())['path'] == '/grocerylist/delete'){
+            \JavaScript::put(['showCheckBoxes' => true]);
+        }
+
         $user = \Auth::user();
 
         $grocerylists = $user->groceryLists;
@@ -57,7 +63,6 @@ class GroceryListController extends Controller
      */
     public function store(StoreGroceryListRequest $request)
     {
-        dd($request->items);
         $grocerylist = GroceryListRepository::store([
             'title' => $request->title,
             'items' => $request->items,
@@ -147,6 +152,6 @@ class GroceryListController extends Controller
 
         GroceryList::destroy($ids);
 
-        return redirect('/grocerylist');
+        return redirect('/grocerylist/delete');
     }
 }

@@ -5,6 +5,9 @@ Vue.component('all-grocery-lists', {
             lists          : []
         }
     },
+    created(){
+        this.showCheckBoxes = (typeof PepperRodeo !== 'undefined' && PepperRodeo.showCheckBoxes == true);
+    },
     methods : {
         toggleShowCheckBoxes(){
             this.showCheckBoxes = !this.showCheckBoxes;

@@ -21,8 +21,9 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('recipe/delete', 'RecipeController@index');
     Route::resource('recipe', 'RecipeController');
 
-    Route::post('/grocerylist/{grocerylist}/add/{recipe}', 'Api\RecipeListApiController@store');
+    Route::get('grocerylist/delete', 'GroceryListController@index');
     Route::delete('grocerylist/deleteMultiple', 'GroceryListController@destroyMultiple');
+    Route::post('/grocerylist/{grocerylist}/add/{recipe}', 'Api\RecipeListApiController@store');
     Route::resource('grocerylist', 'GroceryListController');
 
     Route::resource('recipecategory', 'RecipeCategoryController');

@@ -7,9 +7,7 @@ Vue.component('show-all-recipes', {
     },
 
     created(){
-        if(typeof PepperRodeo !== 'undefined'){
-            this.showCheckBoxes = (PepperRodeo.showCheckBoxes == true);
-        }
+        this.showCheckBoxes = (typeof PepperRodeo !== 'undefined' && PepperRodeo.showCheckBoxes == true);
     },
 
     methods : {
