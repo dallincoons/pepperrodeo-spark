@@ -12,7 +12,7 @@
         <nav class="mini-nav">
              <ul class="mini-nav-options">
                  <li><a href="/recipe/create"><i class="fa fa-plus"></i></a></li>
-                 <li><a v-on:click="setShowCheckBoxes(true)"><i class="fa fa-trash"></i></a></li>
+                 <li><a v-on:click="toggleShowCheckBoxes(true)"><i class="fa fa-trash"></i></a></li>
              </ul>
         </nav>
         <div class="category-wrapper">

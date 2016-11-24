@@ -15,7 +15,7 @@
         <li class="l-nav-li"><a href="/grocerylist" class="{{ set_active_strict('grocerylist') }}"><i class="fa fa-shopping-cart"></i> My Lists</a>
             <div class="l-dropdown-content">
                 <a href="/grocerylist/create" class="{{ set_active_strict('grocerylist/create') }}"><i class="fa fa-plus"></i> Create New List</a>
-                <a><i class="fa fa-trash"></i> Delete Lists</a>
+                <a href="/grocerylist/delete"><i class="fa fa-trash"></i> Delete Lists</a>
             </div>
         </li>
         <li class="l-nav-li"><a href="/settings"><i class="fa fa-user"></i> My Settings</a></li>

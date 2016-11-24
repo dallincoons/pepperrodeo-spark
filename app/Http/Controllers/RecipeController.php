@@ -150,6 +150,6 @@ class RecipeController extends Controller
 
         Recipe::destroy($ids);
 
-        return redirect('/recipe');
+        return redirect('/recipe/delete');
     }
 }
