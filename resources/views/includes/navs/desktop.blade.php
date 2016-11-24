@@ -18,6 +18,6 @@
                 <a><i class="fa fa-trash"></i> Delete Lists</a>
             </div>
         </li>
-        <li class="l-nav-li"><a><i class="fa fa-user"></i> My Settings</a></li>
+        <li class="l-nav-li"><a href="/settings"><i class="fa fa-user"></i> My Settings</a></li>
     </ul>
 </nav>
