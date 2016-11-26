@@ -4,10 +4,11 @@ use App\Entities\GroceryList;
 use App\Entities\Recipe;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class RecipeListApiControllerTest extends TestCase
 {
+    use WithoutMiddleware, DatabaseMigrations;
+
     /**
      * @group recipe-list-controller-tests
      * @group api-tests

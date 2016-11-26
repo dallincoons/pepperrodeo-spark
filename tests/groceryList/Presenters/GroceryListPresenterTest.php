@@ -5,10 +5,11 @@ use App\Entities\GroceryList;
 use App\Entities\ItemCategory;
 use App\Entities\Recipe;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class GroceryListPresenterTest2 extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
 
     protected $grocerylist;
 

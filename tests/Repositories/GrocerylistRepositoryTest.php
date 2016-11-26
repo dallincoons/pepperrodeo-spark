@@ -3,9 +3,12 @@
 use App\Entities\GroceryList;
 use App\Entities\Item;
 use App\Repositories\GroceryListRepository;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class GrocerylistRepositoryTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * @group repository-tests
      * @group grocerylist-repository-tests

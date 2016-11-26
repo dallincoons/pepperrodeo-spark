@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 use App\Repositories\RecipeRepository;
 use App\User;
@@ -11,7 +12,7 @@ use App\Entities\ItemCategory;
 
 class RecipeRepositoryTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
 
     protected $repository;
     protected $user;

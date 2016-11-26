@@ -2,8 +2,8 @@
 
 namespace App\Entities;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
-use App\Entities\Recipe;
 
 class RecipeCategory extends Model
 {

@@ -16,10 +16,10 @@ class Recipes extends Migration
             $table->increments('id');
             $table->string('title');
             $table->mediumText('directions')->nullable();
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('recipe_category_id')->unsigned()->nullable();
-            $table->foreign('recipe_category_id')->references('id')->on('recipe_category');
+            $table->unsignedInteger('recipe_category_id')->nullable();
+            $table->foreign('recipe_category_id')->references('id')->on('recipe_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
