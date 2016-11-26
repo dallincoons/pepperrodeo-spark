@@ -29,6 +29,12 @@ class GrocerylistRepositoryTest extends TestCase
                     'name' => 'shapoopy',
                     'quantity' => 2,
                     'item_category_id' => 1
+                ],
+                [
+                    'id' => -2,
+                    'name' => 'shapoopy_dos',
+                    'quantity' => 2,
+                    'item_category_id' => 1
                 ]
             ],
             'title' => $grocerylist->title
@@ -36,5 +42,6 @@ class GrocerylistRepositoryTest extends TestCase
 
         $this->assertFalse($grocerylist->items->pluck('name')->contains($item->name));
         $this->assertTrue($grocerylist->items->pluck('name')->contains('shapoopy'));
+        $this->assertTrue($grocerylist->items->pluck('name')->contains('shapoopy_dos'));
     }
 }

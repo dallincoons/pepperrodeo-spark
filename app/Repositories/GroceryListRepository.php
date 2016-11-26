@@ -19,7 +19,7 @@ class GroceryListRepository
             $items[] = $item;
         }
 
-        foreach(collect($listData['items'])->where('id', -1) as $item)
+        foreach(collect($listData['items'])->where('id', '<', 0) as $item)
         {
             $items[] = Item::create($item);
         }
@@ -37,9 +37,9 @@ class GroceryListRepository
 
     public static function update($data, $grocerylist)
     {
-        $itemIds = collect($data['items'])->where('id', '!=', -1)->pluck('id');
+        $itemIds = collect($data['items'])->where('id', '>', 0)->pluck('id');
 
-        $newItems = collect($data['items'])->where('id', -1);
+        $newItems = collect($data['items'])->where('id', '<', 0);
 
         foreach($newItems as $itemJson)
         {

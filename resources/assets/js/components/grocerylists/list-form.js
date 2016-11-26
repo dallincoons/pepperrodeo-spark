@@ -15,6 +15,7 @@ Vue.component('list-form', {
             newItemName       : '',
             newItemQty        : '',
             newItemCategoryId : '',
+            newItemId         : 0,
             groupByValue      : 'category',
         }
     },
@@ -59,7 +60,7 @@ Vue.component('list-form', {
             }
 
             var newItem = {
-                id               : -1,
+                id               : --this.newItemId,
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
                 item_category_id : this.newItemCategoryId,
