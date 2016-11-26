@@ -1,16 +1,13 @@
 <?php
 
-use App\PepperRodeo\GroceryLists\GroceryListManager;
-use App\Entities\GroceryList;
 use App\Entities\Recipe;
 use App\Entities\Item;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class GroceryListManagerTest extends TestCase
 {
+    use DatabaseMigrations;
 
     public function setUp()
     {

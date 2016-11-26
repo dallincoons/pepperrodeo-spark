@@ -66,6 +66,6 @@ $factory->define(Recipe::class, function (Faker\Generator $faker){
 $factory->define(GroceryList::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->name,
-        'user_id' => App\User::all()->random()->id
+        'user_id' => User::firstOrCreate(['name' => 'les', 'email' => 'donkeyballs@hotmail.com', 'password' => 'password123'])
     ];
 });

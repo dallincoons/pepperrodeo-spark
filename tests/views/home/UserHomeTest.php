@@ -10,7 +10,7 @@ use Carbon\Carbon;
 
 class UserHome extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
     use testHelpers;
 
     protected $User;

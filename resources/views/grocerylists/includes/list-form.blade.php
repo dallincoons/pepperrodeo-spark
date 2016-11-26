@@ -1,5 +1,5 @@
 <label for="title" class="form-heading">Title*</label>
-<input type="text" placeholder="September Grocery List" v-model="title" id="title" class="form-heading" name="title">
+<input type="text" placeholder="September Grocery List" v-model="title" id="title" class="form-heading" name="title" required data-parsley-errors-messages-disabled data-parsley-trigger="change focusout">
 <a v-on:click="setShowRecipes(true)"><i class="fa fa-plus-circle"></i> Add a recipe</a>
 
 <div class="recipes-added">
@@ -55,7 +55,7 @@
 </div>
 
 <div class="save-button">
-    <button type="submit" class="pr-button">Save List</button>
+    <button v-on:click="submitListForm()" class="pr-button">Save List</button>
 </div>
 
 @if (count($errors) > 0)

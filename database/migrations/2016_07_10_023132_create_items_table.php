@@ -18,8 +18,8 @@ class CreateItemsTable extends Migration
             $table->string('type')->nullable();
             $table->float('quantity')->nullable();
             $table->integer('isCheckedOff')->default(0);
-            $table->integer('item_category_id');
-            $table->foreign('item_category_id')->references('id')->on('item_categories');
+            $table->unsignedInteger('item_category_id');
+            $table->foreign('item_category_id')->references('id')->on('item_categories')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
