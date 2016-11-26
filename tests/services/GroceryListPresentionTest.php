@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\PepperRodeo\GroceryLists\GroceryListPresention;
 use App\Entities\Item;
 use App\Entities\Recipe;
 
 class GroceryListPresentionTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
 
     protected $ListBuilder;
 

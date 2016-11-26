@@ -9,8 +9,13 @@
             <a  v-bind:class="{ 'toggle-active': groupByValue == 'category', 'toggle-inactive': groupByValue != 'category' }"  v-on:click="setGroupBy('category')" class="toggle">By Dept.</a>
             <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
         </div>
-        {{Form::open(['url' => '/grocerylist'])}}
+        {{Form::open(['url' => '/grocerylist', 'id' => 'list-form', 'data-parsley-validate' => ''])}}
             @include('grocerylists.includes.list-form')
+
+        <ul v-if="list_form_errors">
+            <li v-for="error in list_form_errors">@{{ error.reason }}</li>
+        </ul>
+
         {{Form::close()}}
     </div>
 

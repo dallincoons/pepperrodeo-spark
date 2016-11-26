@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Entities\GroceryList;
@@ -12,7 +11,7 @@ use Illuminate\Http\Request;
 class GroceryListTest extends TestCase
 {
 
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
     use testHelpers;
 
     private $MainUser;
