@@ -17,7 +17,7 @@
             </ul>
         </nav>
 
-        <div class="list-view-toggle">
+        <div class="centering-buttons">
             <a href="/grocerylist/{{$grocerylist->getKey()}}?sortBy=item" class="toggle toggle-active">By Dept.</a>
             <a href="/grocerylist/{{$grocerylist->getKey()}}?sortBy=recipe" class="toggle toggle-inactive">By Recipe</a>
         </div>

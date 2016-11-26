@@ -17,10 +17,11 @@
     cursor: pointer;
   }
 
-  .list-view-toggle {
+  .centering-buttons {
     display: flex;
     width: 85%;
     margin: 0 auto;
+    margin-bottom: 20px;
     text-align: center;
     justify-content: center;
   }
@@ -69,12 +70,14 @@
     display: flex;
   }
 
-  .list-view-toggle {
+  .centering-buttons {
     display: flex;
     width: 85%;
     margin: 0 auto;
+    margin-bottom: 20px;
     text-align: center;
     justify-content: center;
+
   }
 
   .toggle {
