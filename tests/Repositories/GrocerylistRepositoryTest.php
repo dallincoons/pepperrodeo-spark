@@ -2,12 +2,58 @@
 
 use App\Entities\GroceryList;
 use App\Entities\Item;
+use App\Entities\Recipe;
 use App\Repositories\GroceryListRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class GrocerylistRepositoryTest extends TestCase
 {
     use DatabaseMigrations;
+
+    /**
+     * @group repository-tests
+     * @group grocerylist-repository-tests
+     *
+     * @test
+     */
+    public function stores_new_list()
+    {
+        $recipes = factory(Recipe::class, 2)->create();
+        $items = factory(Item::class, 2)->create();
+
+        $newItem = [
+            'id' => -1,
+            'name' => 'foobar_name',
+            'quantity' => 1,
+            'item_category_id' => 1
+        ];
+
+        $newItem2 = [
+            'id' => -2,
+            'name' => 'foobar_name2',
+            'quantity' => 2,
+            'item_category_id' => 2
+        ];
+
+        $items->add($newItem);
+        $items->add($newItem2);
+
+        $grocerylist = GroceryListRepository::store([
+            'title' => 'foobar_title',
+            'items' => $items,
+            'recipeIds' => $recipes->pluck('id')->implode(',')
+        ]);
+
+        foreach($items->pluck('name') as $itemName)
+        {
+            $this->assertContains($itemName, $grocerylist->items->pluck('name'));
+        }
+
+        foreach($recipes as $recipe)
+        {
+            $this->assertContains($recipe->title, $grocerylist->recipes->pluck('title'));
+        }
+    }
 
     /**
      * @group repository-tests
