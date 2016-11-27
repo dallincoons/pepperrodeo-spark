@@ -63,7 +63,7 @@
 </div>
 
 <div class="centering-buttons">
-    <button v-on:click="submitListForm()" class="save-button pr-button">Save List</button>
+    <button type="button" v-on:click="submitListForm()" class="save-button pr-button" :disabled="!items.length">Save List</button>
 </div>
 
 @if (count($errors) > 0)
