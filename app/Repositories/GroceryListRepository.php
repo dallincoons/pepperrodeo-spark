@@ -18,7 +18,6 @@ class GroceryListRepository
         {
             $items[] = $item;
         }
-
         foreach(collect($listData['items'])->where('id', '<', 0) as $item)
         {
             $items[] = Item::create($item);
