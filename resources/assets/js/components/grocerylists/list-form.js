@@ -14,6 +14,7 @@ Vue.component('list-form', {
             list_form_errors  : [],
             newItemName       : '',
             newItemQty        : '',
+            newItemType       : '',
             newItemCategoryId : '',
             newItemId         : 0,
             groupByValue      : 'category',
@@ -59,6 +60,7 @@ Vue.component('list-form', {
 
             if( this.newItemQty == "" ||
                 this.newItemName == "" ||
+                this.newItemType == "" ||
                 this.newItemCategoryId == ""){
                 return;
             }
@@ -67,6 +69,7 @@ Vue.component('list-form', {
                 id               : --this.newItemId,
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
+                type             : this.newItemType,
                 item_category_id : this.newItemCategoryId,
                 recipe_title     : 'Other',
                 category         : this.categories[this.newItemCategoryId].name
@@ -76,6 +79,7 @@ Vue.component('list-form', {
 
             this.newItemQty        = '';
             this.newItemName       = '';
+            this.newItemType       = '';
             this.newItemCategoryId = '';
         },
         removeItem(itemId){
