@@ -57,7 +57,7 @@ $factory->define(RecipeCategory::class, function (Faker\Generator $faker){
 $factory->define(Recipe::class, function (Faker\Generator $faker){
     return [
         'title' => $faker->text(15),
-        'user_id' => User::all()->random()->id,
+        'user_id' => User::firstOrCreate(['name' => 'les', 'email' => 'donkeyballs@hotmail.com', 'password' => 'password123']),
         'directions' => $faker->paragraph,
         'recipe_category_id' => RecipeCategory::firstOrCreate(['name' => $faker->word, 'user_id' => \Auth::user()->getKey()])->getKey()
     ];

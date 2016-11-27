@@ -24,6 +24,7 @@ class GrocerylistRepositoryTest extends TestCase
         $newItem = [
             'id' => -1,
             'name' => 'foobar_name',
+            'type' => 'bottle',
             'quantity' => 1,
             'item_category_id' => 1
         ];
@@ -31,6 +32,7 @@ class GrocerylistRepositoryTest extends TestCase
         $newItem2 = [
             'id' => -2,
             'name' => 'foobar_name2',
+            'type' => 'can',
             'quantity' => 2,
             'item_category_id' => 2
         ];
@@ -47,6 +49,11 @@ class GrocerylistRepositoryTest extends TestCase
         foreach($items->pluck('name') as $itemName)
         {
             $this->assertContains($itemName, $grocerylist->items->pluck('name'));
+        }
+
+        foreach($items->pluck('type') as $itemName)
+        {
+            $this->assertContains($itemName, $grocerylist->items->pluck('type'));
         }
 
         foreach($recipes as $recipe)
