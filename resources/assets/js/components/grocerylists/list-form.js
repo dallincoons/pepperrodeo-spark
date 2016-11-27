@@ -27,9 +27,10 @@ Vue.component('list-form', {
     methods  : {
         submitListForm : function(){
             this.validateForm();
+            let $form = $('#list-form');
 
-            if(this.noFormErrors()){
-                document.getElementById('list-form').submit();
+            if($form.parsley().validate() && this.noFormErrors()){
+                $form.submit();
             }
         },
         validateForm : function(){
@@ -37,7 +38,10 @@ Vue.component('list-form', {
                 this.list_form_errors.push({
                     'reason' : 'No items added'
                 });
+                return;
             }
+
+            this.list_form_errors = [];
         },
         noFormErrors : function(){
             return this.list_form_errors.length < 1;
