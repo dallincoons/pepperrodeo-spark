@@ -2,15 +2,20 @@
 
 @section('content')
 <list-form inline-template>
-<div>
+<div class="create-list-wrapper">
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Create List</h2>
-        <div class="list-view-toggle">
-            <a  v-bind:class="{ 'toggle-active': groupByValue == 'category', 'toggle-inactive': groupByValue != 'category' }"  v-on:click="setGroupBy('category')">By Items</a>
-            <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')">By Recipe</a>
+        <div class="centering-buttons">
+            <a  v-bind:class="{ 'toggle-active': groupByValue == 'category', 'toggle-inactive': groupByValue != 'category' }"  v-on:click="setGroupBy('category')" class="toggle">By Dept.</a>
+            <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
         </div>
-        {{Form::open(['url' => '/grocerylist'])}}
+        {{Form::open(['url' => '/grocerylist', 'id' => 'list-form', 'data-parsley-validate' => ''])}}
             @include('grocerylists.includes.list-form')
+
+        <ul v-if="list_form_errors">
+            <li v-for="error in list_form_errors">@{{ error.reason }}</li>
+        </ul>
+
         {{Form::close()}}
     </div>
 
@@ -20,7 +25,7 @@
         <div class="category-wrapper">
             <ul class="category recipes">
                 <li v-for="recipe in unaddedRecipes" class="add-recipe-options">
-                    <label class="control control--checkbox"><a>@{{recipe.title}}</a>
+                    <label class="control control--checkbox"><a class="add-recipe-list">@{{recipe.title}}</a>
                         <input type="checkbox" :value="recipe.id" v-model="recipesToAdd" class="recipe-check"/>
                         <div class="control__indicator"></div>
                     </label>

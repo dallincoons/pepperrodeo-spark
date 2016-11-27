@@ -1,23 +1,22 @@
+<div class="content">
+    <div class="section">
+            <a href="/recipe/create" class="home-option">+ <i class="fa fa-cutlery fa-fw"> </i>  Add a Recipe</a>
+    </div>
 
-<div class="home">
-    <div class="home-buttons">
-        <button type="button" class="pr-button pr-button--home">
-            <a href="/recipe/create">+ <i class="fa fa-cutlery"></i> Add a Recipe</a>
-        </button>
-        <button type="button" class="pr-button pr-button--home">
-            <a href="/grocerylist/create">+ <i class="fa fa-shopping-cart"></i> Create a List</a>
-        </button>
+    <div class="section">
+            <a href="/grocerylist/create" class="home-option">+ <i class="fa fa-shopping-cart fa-fw"> </i>  Create a List</a>
     </div>
 
     <div class="divider"></div>
 
+    <div class="section">
+        <h2>Recent Lists</h2>
+        @foreach($lists as $list)
+            <h3><i class="fa fa-list"></i> <a href="grocerylist/{{$list->getKey()}}">{{$list->title}}</a></h3>
+        @endforeach
+
+        <a href="/grocerylist" class="more">All Lists</a>
+    </div>
 </div>
 
-<div class="home-lists">
-    @foreach($lists as $list)
-        <h3><i class="fa fa-list"></i> <a href="grocerylist/{{$list->getKey()}}">{{$list->title}}</a></h3>
-    @endforeach
-
-    <a href="/grocerylist" class="pr-button pr-button--home-lists">All Lists</a>
-</div>
 

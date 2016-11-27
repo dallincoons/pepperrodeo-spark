@@ -1,25 +1,16 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\PepperRodeo\GroceryLists\GroceryListPresention;
 use App\Entities\Item;
 use App\Entities\Recipe;
-use Illuminate\Database\Eloquent\Collection;
 
-class GroceryListPresenterBuilderTest extends TestCase
+class GroceryListPresentionTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
 
     protected $ListBuilder;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->ListBuilder = new GroceryListPresenterBuilder();
-    }
 
     /**
      * A basic test example.
@@ -41,7 +32,7 @@ class GroceryListPresenterBuilderTest extends TestCase
 
         $list->items()->saveMany($this->getSampleItemCollection());
 
-        $list = $this->ListBuilder->build($list);
+        $list = GroceryListPresention::build($list);
 
         $pickles = $list->items->filter(function($value, $key){
             return ($value->name == 'pickles');

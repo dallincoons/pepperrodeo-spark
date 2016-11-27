@@ -9,7 +9,7 @@ use App\Entities\Item;
 
 class SingleRecipeTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
     use testHelpers;
 
     protected $User;

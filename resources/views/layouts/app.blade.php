@@ -36,20 +36,36 @@
 </head>
 <body>
     <div id="spark-app">
-        @unless(!\Auth::user())
-            @include('includes.nav')
-        @endunless
+        <aside id="large-sidebar">
+            @unless(!\Auth::user())
+                @include('includes.navs.desktop')
+            @endunless
 
-        @yield('content')
+            @unless(!\Auth::user())
+                @include('includes.footer')
+            @endunless
+        </aside>
 
-        @unless(!\Auth::user())
-            @include('includes.footer')
-        @endunless
+        <div id="main-content">
+
+            <header id="header-mobile">
+                <h1>Pepper Rodeo</h1>
+            </header>
+
+            @yield('content')
+
+            <nav id="nav-mobile">
+                @unless(!\Auth::user())
+                    @include('includes.navs.mobile')
+                @endunless
+            </nav>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/js/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.6.0/parsley.min.js"></script>
 
 </body>
 </html>

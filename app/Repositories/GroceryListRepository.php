@@ -18,8 +18,7 @@ class GroceryListRepository
         {
             $items[] = $item;
         }
-
-        foreach(collect($listData['items'])->where('id', -1) as $item)
+        foreach(collect($listData['items'])->where('id', '<', 0) as $item)
         {
             $items[] = Item::create($item);
         }
@@ -37,9 +36,9 @@ class GroceryListRepository
 
     public static function update($data, $grocerylist)
     {
-        $itemIds = collect($data['items'])->where('id', '!=', -1)->pluck('id');
+        $itemIds = collect($data['items'])->where('id', '>', 0)->pluck('id');
 
-        $newItems = collect($data['items'])->where('id', -1);
+        $newItems = collect($data['items'])->where('id', '<', 0);
 
         foreach($newItems as $itemJson)
         {
@@ -54,5 +53,23 @@ class GroceryListRepository
         $grocerylist->save();
 
         return $grocerylist;
+    }
+
+    /**
+     * @param $list
+     * @param $recipe
+     * @return mixed
+     */
+    public static function addRecipe($list, $recipe)
+    {
+        $grocerylist = GroceryList::findOrFail($list);
+
+        $recipe = Recipe::findOrFail($recipe);
+
+        $grocerylist->addRecipe($recipe);
+
+        $listsWithoutRecipe = GroceryList::ListsWithoutRecipe($recipe);
+
+        return $listsWithoutRecipe;
     }
 }

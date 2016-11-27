@@ -5,7 +5,7 @@
 <div>
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Edit List</h2>
-        <div class="list-view-toggle">
+        <div class="centering-buttons">
             <a  v-bind:class="{ 'toggle-active': groupByValue == 'category', 'toggle-inactive': groupByValue != 'category' }"  v-on:click="setGroupBy('category')">By Items</a>
             <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')">By Recipe</a>
         </div>

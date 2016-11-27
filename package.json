@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.0.0",
+    "bootstrap-sass": "^3.0.0",
     "jquery": "^2.1.4",
     "js-cookie": "^2.1.0",
     "laravel-elixir": "^6.0.0-11",
@@ -16,7 +17,6 @@
     "underscore": "^1.8.3",
     "urijs": "^1.17.0",
     "vue": "~2.0.1",
-    "vue-resource": "~1.0.1",
-    "bootstrap-sass": "^3.0.0"
+    "vue-resource": "~1.0.1"
   }
 }

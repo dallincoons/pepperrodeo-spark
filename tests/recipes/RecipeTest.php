@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 use App\Entities\Recipe;
 use App\User;
@@ -8,7 +9,7 @@ use App\Entities\Item;
 
 class RecipeTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
 
     private $MainUser;
     private $MainRecipe;

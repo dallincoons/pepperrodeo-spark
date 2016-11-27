@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGroceryListRequest;
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\Entities\GroceryList;
-use App\PepperRodeo\GroceryLists\GroceryListPresenterBuilder;
+use App\PepperRodeo\GroceryLists\GroceryListPresention;
 use App\Entities\ItemCategory;
 use App\Entities\Item;
 use JavaScript;
@@ -14,7 +15,7 @@ class GroceryListController extends Controller
 {
     protected $listBuilder;
 
-    public function __construct(GroceryListPresenterBuilder $listBuilder)
+    public function __construct(GroceryListPresention $listBuilder)
     {
         $this->listBuilder = $listBuilder;
     }
@@ -22,10 +23,16 @@ class GroceryListController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //should we toggle delete functionality
+        if(parse_url($request->url())['path'] == '/grocerylist/delete'){
+            \JavaScript::put(['showCheckBoxes' => true]);
+        }
+
         $user = \Auth::user();
 
         $grocerylists = $user->groceryLists;
@@ -51,10 +58,10 @@ class GroceryListController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreGroceryListRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGroceryListRequest $request)
     {
         $grocerylist = GroceryListRepository::store([
             'title' => $request->title,
@@ -145,6 +152,6 @@ class GroceryListController extends Controller
 
         GroceryList::destroy($ids);
 
-        return redirect('/grocerylist');
+        return redirect('/grocerylist/delete');
     }
 }

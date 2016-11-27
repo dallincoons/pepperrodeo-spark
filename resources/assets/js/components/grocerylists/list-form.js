@@ -11,9 +11,11 @@ Vue.component('list-form', {
             addAnItem         : false,
             recipeFields      : [],
             recipeIds         : [],
+            list_form_errors  : [],
             newItemName       : '',
             newItemQty        : '',
             newItemCategoryId : '',
+            newItemId         : 0,
             groupByValue      : 'category',
         }
     },
@@ -23,6 +25,27 @@ Vue.component('list-form', {
         }
     },
     methods  : {
+        submitListForm : function(){
+            this.validateForm();
+            let $form = $('#list-form');
+
+            if($form.parsley().validate() && this.noFormErrors()){
+                $form.submit();
+            }
+        },
+        validateForm : function(){
+            if(this.items.length < 1){
+                this.list_form_errors.push({
+                    'reason' : 'No items added'
+                });
+                return;
+            }
+
+            this.list_form_errors = [];
+        },
+        noFormErrors : function(){
+            return this.list_form_errors.length < 1;
+        },
         setGroupBy(groupBy){
             this.groupByValue = groupBy;
         },
@@ -33,14 +56,22 @@ Vue.component('list-form', {
             this.addAnItem = $bool;
         },
         addItem(){
+
+            if( this.newItemQty == "" ||
+                this.newItemName == "" ||
+                this.newItemCategoryId == ""){
+                return;
+            }
+
             var newItem = {
-                id               : -1,
+                id               : --this.newItemId,
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
                 item_category_id : this.newItemCategoryId,
                 recipe_title     : 'Other',
                 category         : this.categories[this.newItemCategoryId].name
             };
+
             this.items.push(newItem);
 
             this.newItemQty        = '';

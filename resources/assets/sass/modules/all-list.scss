@@ -1,36 +1,55 @@
-.grocery-lists .mini-nav {
-  color: #ff4b2e;
-  text-align: center;
+//Desktop
+
+@media only screen and (min-width: 800px) {
+
+
+  .lists-wrapper {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .list {
+    background: #FFF2ED;
+    padding: 2%;
+    color: #ff4b2e;
+    margin-bottom: 5px;
+  }
+
+  .list a {
+    color: #3f3f3f;
+    font-size: 1.2em;
+    font-weight: 300;
+  }
+
+  .list:hover {
+    background: rgba(255, 75, 46, .2);
+  }
 }
 
-.grocery-lists .mini-nav li {
-  margin: 10px;
-}
+//Mobile
 
-.lists {
-  list-style: none;
-  font-size: 2em;
-  margin: 25px 5px 5px;
-}
+@media only screen and (max-width: 799px) {
 
-.lists li {
-  margin-bottom: 15px;
-}
 
-.lists a {
-  color: #ff4b2e;
-}
+  .lists-wrapper {
+    width: 85%;
+    margin: 0 auto;
+  }
 
-.lists i {
-  color: #acacac;
-}
+  .list {
+    background: #FFF2ED;
+    padding: 2%;
+    color: #ff4b2e;
+    margin-bottom: 5px;
+  }
 
-.list .control {
-  padding-left: 40px;
-  margin-bottom: 5px;
-}
+  .list a {
+    color: #3f3f3f;
+    font-size: 1.2em;
+    font-weight: 300;
+  }
 
-.list-info {
-  font-size: 1.5em;
+  .list:hover {
+    background: rgba(255, 75, 46, .05);
+  }
 }
-

@@ -1,0 +1,44 @@
+//All Sizes
+
+.page-title {
+  color: #ff4b2e;
+  text-align: center;
+  font-size: 1.7em;
+  margin-top: 5%;
+  font-weight: 900;
+}
+
+.content-wrapper {
+  width: 100%;
+}
+
+//Desktop
+@media only screen and (min-width: 800px) {
+  #main-content {
+    float: right;
+    width: 75%;
+    min-height: 100%;
+    background: #FFFFFF;
+    display: flex;
+  }
+}
+
+//Mobile
+@media only screen and (max-width: 799px) {
+  #main-content {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  #header-mobile {
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    background: #ff4b2e;
+  }
+
+  #header-mobile h1 {
+    margin: 0;
+  }
+}

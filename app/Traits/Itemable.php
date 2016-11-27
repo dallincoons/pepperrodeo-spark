@@ -24,6 +24,14 @@ Trait Itemable
         $this->items->add($item);
     }
 
+    public function storeMany($items)
+    {
+        foreach($items as $item)
+        {
+            $this->storeItem($item);
+        }
+    }
+
     public function addItems($items)
     {
         foreach($items as $item){

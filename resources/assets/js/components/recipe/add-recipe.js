@@ -21,10 +21,21 @@ Vue.component('add-recipe', {
     },
     methods : {
         addNewItem() {
-            this.recipeItems.unshift({
+            var lastItem = this.recipeItems.slice(-1).pop();
+
+            if(
+                lastItem.quantity == "" ||
+                lastItem.type == "" ||
+                lastItem.name == "" ||
+                lastItem.item_category_id == ""
+            ){
+                return;
+            }
+
+            this.recipeItems.push({
                 'quantity' : '',
                 'type' : '',
-                'ingredient' : '',
+                'name' : '',
                 'item_category_id' : ''
             });
         },
