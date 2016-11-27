@@ -90,4 +90,26 @@ class GrocerylistRepositoryTest extends TestCase
         $this->assertTrue($grocerylist->items->pluck('name')->contains('shapoopy'));
         $this->assertTrue($grocerylist->items->pluck('name')->contains('shapoopy_dos'));
     }
+
+    /**
+     * @group repository-tests
+     * @group grocerylist-repository-tests
+     *
+     * @test
+     */
+    public function add_a_recipe_to_grocery_list()
+    {
+        $grocerylist = factory(GroceryList::class)->create();
+        $grocerylist2 = factory(GroceryList::class)->create();
+        $recipe = factory(Recipe::class)->create();
+        $items = factory(Item::class, 2)->create();
+        $recipe->items()->saveMany($items);
+        \Auth::user()->groceryLists()->save($grocerylist);
+        \Auth::user()->groceryLists()->save($grocerylist2);
+
+        $listsWithoutRecipes = GroceryListRepository::addRecipe($grocerylist2->getKey(), $recipe->getKey());
+
+        $this->assertEquals($items->count(), $grocerylist2->fresh()->items->count());
+        $this->assertEquals([$grocerylist->getKey()], $listsWithoutRecipes->pluck('id')->all());
+    }
 }
