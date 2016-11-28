@@ -6,6 +6,10 @@
   transition: background-color 0.2s;
 }
 
+.btn-primary {
+  background: #ff4b2e;
+}
+
 .btn-primary, .btn-info, .btn-success, .btn-warning, .btn-danger {
   border: 0;
 }

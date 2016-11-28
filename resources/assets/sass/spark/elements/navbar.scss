@@ -3,9 +3,27 @@
     font-weight: 400;
 }
 
+.navbar-inverse {
+    background: #ff4b2e;
+    border: 1px solid #d44331;
+
+}
+
+.icon{
+    color: #FFFFFF;
+}
+
+.caret {
+    color: #FFFFFF;
+}
+
+.active {
+    background: #ff4b2e;
+}
+
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-    color: $navbar-inverse-link-color;
+    color: $navbar-inverse-color;
 }
 
 .navbar-nav > li > a {
