@@ -16,17 +16,17 @@
     <div class="items-inputs">
         <div class="ingredient-input">
             <label for="quantity" class="sub-heading">Qty</label>
-            <input type="text" id="quantity" v-model="newItemQty" name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="1" />
+            <input type="text" id="quantity" v-model="newItemQty" name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="1" @keyup.enter="addItem(recipeFields)"/>
         </div>
 
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Type</label>
-            <input type="text" id="type" v-model="newItemType" name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="bottle">
+            <input type="text" id="type" v-model="newItemType" name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="bottle" @keyup.enter="addItem(recipeFields)">
         </div>
 
         <div class="ingredient-input">
             <label for="item" class="sub-heading">Item</label>
-            <input type="text" id="item" v-model="newItemName" name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="shampoo"/>
+            <input type="text" id="item" v-model="newItemName" name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="shampoo" @keyup.enter="addItem(recipeFields)"/>
         </div>
 
         <div class="ingredient-input">
