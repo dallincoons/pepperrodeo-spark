@@ -25,7 +25,7 @@
                         <label class="col-md-4 control-label">&nbsp;</label>
 
                         <div class="col-md-6">
-                            <label type="button" class="btn btn-primary btn-upload" :disabled="form.busy">
+                            <label type="button" id="bs-override" class="btn btn-primary btn-upload" :disabled="form.busy">
                                 <span>Select New Photo</span>
 
                                 <input ref="photo" type="file" class="form-control" name="photo" @change="update">

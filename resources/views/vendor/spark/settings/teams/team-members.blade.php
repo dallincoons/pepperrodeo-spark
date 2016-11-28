@@ -42,7 +42,7 @@
 
                             <!-- Edit Button -->
                             <td v-if="roles.length > 1">
-                                <button class="btn btn-primary"
+                                <button class="btn btn-primary" id="bs-override"
                                     @click="editTeamMember(member)"
                                     v-if="canEditTeamMember(member)">
 
@@ -102,7 +102,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                        <button type="button" class="btn btn-primary" @click="update" :disabled="updateTeamMemberForm.busy">
+                        <button type="button" class="btn btn-primary" id="bs-override" @click="update" :disabled="updateTeamMemberForm.busy">
                             Update
                         </button>
                     </div>

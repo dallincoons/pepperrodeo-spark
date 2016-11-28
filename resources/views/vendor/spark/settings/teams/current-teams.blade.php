@@ -43,7 +43,7 @@
                             <!-- Edit Button -->
                             <td>
                                 <a :href="'/settings/{{str_plural(Spark::teamString())}}/'+team.id">
-                                    <button class="btn btn-primary">
+                                    <button class="btn btn-primary" id="bs-override">
                                         <i class="fa fa-cog"></i>
                                     </button>
                                 </a>

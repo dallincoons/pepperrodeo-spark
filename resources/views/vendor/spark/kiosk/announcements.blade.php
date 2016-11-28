@@ -54,7 +54,7 @@
                     <!-- Create Button -->
                     <div class="form-group">
                         <div class="col-md-offset-4 col-md-6">
-                            <button type="submit" class="btn btn-primary"
+                            <button type="submit" class="btn btn-primary" id="bs-override"
                                     @click.prevent="create"
                                     :disabled="createForm.busy">
 
@@ -95,7 +95,7 @@
 
                             <!-- Edit Button -->
                             <td>
-                                <button class="btn btn-primary" @click="editAnnouncement(announcement)">
+                                <button class="btn btn-primary" id="bs-override" @click="editAnnouncement(announcement)">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                             </td>
@@ -173,7 +173,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                        <button type="button" class="btn btn-primary" @click="update" :disabled="updateForm.busy">
+                        <button type="button" class="btn btn-primary" id="bs-override" @click="update" :disabled="updateForm.busy">
                             Update
                         </button>
                     </div>

@@ -41,7 +41,7 @@
 
             <!-- Modal Actions -->
             <div class="modal-footer border-none">
-                <button type="button" class="btn btn-primary" @click.prevent="sendSupportRequest" :disabled="supportForm.busy">
+                <button type="button" class="btn btn-primary" id="bs-override" @click.prevent="sendSupportRequest" :disabled="supportForm.busy">
                     <i class="fa fa-btn fa-paper-plane"></i>Send
                 </button>
             </div>

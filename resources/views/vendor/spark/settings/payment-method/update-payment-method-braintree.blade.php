@@ -42,7 +42,7 @@
                 <!-- Update Button -->
                 <div class="form-group m-b-none p-b-none">
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary" :disabled="form.busy">
+                        <button type="submit" class="btn btn-primary" id="bs-override" :disabled="form.busy">
                             <span v-if="form.busy">
                                 <i class="fa fa-btn fa-spinner fa-spin"></i>Updating
                             </span>

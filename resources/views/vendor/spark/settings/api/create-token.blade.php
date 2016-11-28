@@ -61,7 +61,7 @@
                     <!-- Create Button -->
                     <div class="form-group">
                         <div class="col-md-offset-4 col-md-6">
-                            <button type="submit" class="btn btn-primary"
+                            <button type="submit" class="btn btn-primary" id="bs-override"
                                     @click.prevent="create"
                                     :disabled="form.busy">
 
@@ -99,7 +99,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="selectToken">
+                        <button type="button" class="btn btn-primary" id="bs-override" @click="selectToken">
                         <span v-if="copyCommandSupported">Copy To Clipboard</span>
                         <span v-else>Select All</span>
                         </button>

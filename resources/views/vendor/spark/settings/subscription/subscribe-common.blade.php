@@ -90,7 +90,7 @@
                             Select
                         </button>
 
-                        <button class="btn btn-primary btn-plan"
+                        <button id="bs-override" class="btn btn-primary btn-plan"
                                 v-if="selectedPlan === plan"
                                 disabled>
 

@@ -24,7 +24,7 @@
                 <!-- Redeem Button -->
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-6">
-                        <button type="submit" class="btn btn-primary"
+                        <button type="submit" class="btn btn-primary" id="bs-override"
                                 @click.prevent="redeem"
                                 :disabled="form.busy">
 

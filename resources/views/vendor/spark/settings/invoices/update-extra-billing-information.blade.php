@@ -30,7 +30,7 @@
                 <!-- Update Button -->
                 <div class="form-group m-b-none">
                     <div class="col-md-offset-4 col-md-8 text-right">
-                        <button type="submit" class="btn btn-primary" @click.prevent="update" :disabled="form.busy">
+                        <button type="submit" class="btn btn-primary" id="bs-override" @click.prevent="update" :disabled="form.busy">
                             Update
                         </button>
                     </div>
