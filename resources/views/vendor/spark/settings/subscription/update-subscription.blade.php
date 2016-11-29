@@ -94,7 +94,7 @@
 
                             <!-- Plan Select Button -->
                             <td class="text-right">
-                                <button class="btn btn-primary btn-plan" v-if="isActivePlan(plan)" disabled>
+                                <button id="bs-override" class="btn btn-primary btn-plan" v-if="isActivePlan(plan)" disabled>
                                     <i class="fa fa-btn fa-check"></i>Current Plan
                                 </button>
 
@@ -106,7 +106,7 @@
                                     Switch
                                 </button>
 
-                                <button class="btn btn-primary btn-plan"
+                                <button id="bs-override" class="btn btn-primary btn-plan"
                                         v-if="selectingPlan && selectingPlan === plan"
                                         disabled>
 
@@ -142,7 +142,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">No, Go Back</button>
 
-                        <button type="button" class="btn btn-primary" @click="approvePlanUpdate">Yes, I'm Sure</button>
+                        <button type="button" class="btn btn-primary" id="bs-override" @click="approvePlanUpdate">Yes, I'm Sure</button>
                     </div>
                 </div>
             </div>

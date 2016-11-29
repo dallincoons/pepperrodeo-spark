@@ -11,16 +11,16 @@ $panel-default-border: $spark-border-color;
 $panel-inner-border: $spark-border-color;
 
 // Brands
-$brand-primary: #3097D1;
+$brand-primary: #ff4b2e;
 $brand-info: #8eb4cb;
 $brand-success: #4eb76e;
 $brand-warning: #cbb956;
 $brand-danger:  #bf5329;
 
 // Typography
-$font-family-sans-serif: "Open Sans", Helvetica, Arial, sans-serif;
+$font-family-sans-serif: "Lato", Helvetica, Arial, sans-serif;
 $line-height-base: 1.6;
-$text-color: #636b6f;
+$text-color: #3f3f3f;
 
 // Buttons
 $btn-default-color: $text-color;
@@ -37,7 +37,7 @@ $navbar-height: 50px;
 $navbar-margin-bottom: 0;
 
 $navbar-inverse-bg: #fff;
-$navbar-inverse-color:  lighten($text-color, 30%);
+$navbar-inverse-color:  #ff4b2e;
 $navbar-inverse-border: $spark-border-color;
 
 $navbar-inverse-link-color: lighten($text-color, 25%);

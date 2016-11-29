@@ -110,7 +110,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-                        <button type="button" class="btn btn-primary" @click="applyDiscount" :disabled="form.busy">
+                        <button type="button" class="btn btn-primary" id="bs-override" @click="applyDiscount" :disabled="form.busy">
                             <span v-if="form.busy">
                                 <i class="fa fa-btn fa-spinner fa-spin"></i>Applying
                             </span>

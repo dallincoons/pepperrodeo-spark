@@ -117,7 +117,7 @@
                     <!-- Subscribe Button -->
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary" @click.prevent="subscribe" :disabled="form.busy">
+                            <button type="submit" class="btn btn-primary" id="bs-override" @click.prevent="subscribe" :disabled="form.busy">
                             <span v-if="form.busy">
                                 <i class="fa fa-btn fa-spinner fa-spin"></i>Subscribing
                             </span>

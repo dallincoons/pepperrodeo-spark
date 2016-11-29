@@ -37,7 +37,7 @@
 
                                 <!-- Edit Button -->
                                 <td>
-                                    <button class="btn btn-primary" @click="editToken(token)">
+                                    <button class="btn btn-primary" id="bs-override" @click="editToken(token)">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                 </td>
@@ -112,7 +112,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                        <button type="button" class="btn btn-primary" @click="updateToken" :disabled="updateTokenForm.busy">
+                        <button type="button" class="btn btn-primary" id="bs-override" @click="updateToken" :disabled="updateTokenForm.busy">
                             Update
                         </button>
                     </div>

@@ -126,7 +126,7 @@
 
                             <!-- Plan Select Button -->
                             <td class="text-right">
-                                <button class="btn btn-primary btn-plan" v-if="isSelected(plan)" disabled>
+                                <button id="bs-override" class="btn btn-primary btn-plan" v-if="isSelected(plan)" disabled>
                                     <i class="fa fa-btn fa-check"></i>Selected
                                 </button>
 

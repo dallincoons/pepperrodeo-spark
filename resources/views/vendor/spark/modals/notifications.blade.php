@@ -68,7 +68,7 @@
                                     <div class="notification-body" v-html="notification.parsed_body"></div>
 
                                     <!-- Notification Action -->
-                                    <a :href="notification.action_url" class="btn btn-primary" v-if="notification.action_text">
+                                    <a :href="notification.action_url" class="btn btn-primary" id="bs-override" v-if="notification.action_text">
                                         @{{ notification.action_text }}
                                     </a>
 
@@ -98,7 +98,7 @@
                                     <div class="notification-body" v-html="announcement.parsed_body"></div>
 
                                     <!-- Announcement Action -->
-                                    <a :href="announcement.action_url" class="btn btn-primary" v-if="announcement.action_text">
+                                    <a :href="announcement.action_url" class="btn btn-primary" id="bs-override" v-if="announcement.action_text">
                                         @{{ announcement.action_text }}
                                     </a>
 
