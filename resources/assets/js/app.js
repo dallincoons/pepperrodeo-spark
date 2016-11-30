@@ -14,13 +14,13 @@
  |
  */
 
+require('./bootstrap');
+
 require('spark-bootstrap');
 
 require('bootstrap-sass');
 
 require('./components/bootstrap');
-
-require('./bootstrap');
 
 var app = new Vue({
     mixins: [require('spark')]
