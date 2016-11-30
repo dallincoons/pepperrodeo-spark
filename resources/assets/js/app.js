@@ -25,3 +25,6 @@ require('./components/bootstrap');
 var app = new Vue({
     mixins: [require('spark')]
 });
+
+//loads after spark because spark uses underscore
+window._ = require('lodash');
