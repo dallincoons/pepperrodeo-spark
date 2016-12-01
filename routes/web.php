@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
+Auth::routes();
+
 Route::group(['middleware' => ['web', 'auth']], function(){
 
     Route::delete('recipe/deleteMultiple', 'RecipeController@destroyMultiple');
