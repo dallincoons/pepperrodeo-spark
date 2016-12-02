@@ -34,7 +34,7 @@
     color: #3f3f3f;
   }
 
-  .all-recipes-btn {
+  .pr-btn {
     padding: 5px;
     border-radius: 5px;
     color: #FFFFFF;
@@ -45,13 +45,13 @@
     width: 15%;
     margin: 0 auto;
   }
-  .all-recipes-btn > a {
+  .pr-btn > a {
     color: #FFFFFF;
     font-size: 1.2em;
     font-weight: 400;
   }
 
-  .all-recipes-btn:hover {
+  .pr-btn:hover {
     background: #ff4b2e;
     border-bottom: #FF5B46 4px solid;
   }
@@ -60,6 +60,16 @@
     margin-top: 5%;
   }
 
+  .recipe-list-delete-btn {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 1.2em;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 20%;
+  }
 
 }
 
@@ -97,7 +107,7 @@
     color: #3f3f3f;
   }
 
-  .all-recipes-btn {
+  .pr-btn {
     padding: 5px;
     border-radius: 5px;
     color: #FFFFFF;
@@ -108,13 +118,13 @@
     width: 15%;
     margin: 0 auto;
   }
-  .all-recipes-btn > a {
+  .pr-btn > a {
     color: #FFFFFF;
     font-size: 1.2em;
     font-weight: 400;
   }
 
-  .all-recipes-btn:hover {
+  .pr-btn:hover {
     background: #ff4b2e;
     border-bottom: #FF5B46 4px solid;
   }

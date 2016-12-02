@@ -18,7 +18,7 @@
                 </li>
             </ul>
         </div>
-        <div class="all-recipes-btn"><a href="/recipe"><i class="fa fa-arrow-circle-o-left"></i> All Recipes</a></div>
+        <div class="pr-btn"><a href="/recipe"><i class="fa fa-arrow-circle-o-left"></i> All Recipes</a></div>
     </div>
 
 @endsection

@@ -35,7 +35,7 @@
             </ul>
         </div>
 
-            <input v-if="showCheckBoxes" v-on:click="deleteRecipes()" type="button" value="Delete">
+            <input v-if="showCheckBoxes" v-on:click="deleteRecipes()" type="button" value="Delete" class="pr-btn recipe-list-delete-btn">
         </form>
 </div>
 </show-all-recipes>

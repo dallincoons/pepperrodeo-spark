@@ -29,7 +29,7 @@
             @endforeach
         </ul>
 
-        <input v-if="showCheckBoxes" v-on:click="deleteLists()" type="button" value="Delete">
+        <input v-if="showCheckBoxes" v-on:click="deleteLists()" type="button" value="Delete" class="pr-btn recipe-list-delete-btn">
     </form>
 
 </div>
