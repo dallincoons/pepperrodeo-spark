@@ -48,9 +48,11 @@
 
         <div id="main-content">
 
-            <header id="header-mobile">
-                <h1>Pepper Rodeo</h1>
-            </header>
+            @unless(!\Auth::user())
+                <header id="header-mobile">
+                    <h1>Pepper Rodeo</h1>
+                </header>
+            @endunless
 
             @yield('content')
 
