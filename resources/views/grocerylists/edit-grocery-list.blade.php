@@ -2,7 +2,7 @@
 
 @section('content')
 <list-form inline-template>
-<div>
+<div class="content-wrapper">
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Edit List</h2>
         <div class="centering-buttons">
