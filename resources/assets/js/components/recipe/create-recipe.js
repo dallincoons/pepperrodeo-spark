@@ -8,11 +8,7 @@ Vue.component('create-recipe', {
             selectedCategory : PepperRodeo.categories[0] ? PepperRodeo.categories[0].id : '',
             newCategory : '',
             recipeFields : [],
-            category_ids : [],
             item         : {},
-            item_quantity : '',
-            item_type : '',
-            item_ingredient : '',
         }
     },
     methods : {
@@ -20,10 +16,10 @@ Vue.component('create-recipe', {
             let newItem = this.item;
 
             if(
-                newItem.quantity == "" ||
-                newItem.type == "" ||
-                newItem.name == "" ||
-                newItem.item_category_id == ""
+                !newItem.quantity ||
+                !newItem.type ||
+                !newItem.name ||
+                !newItem.item_category_id
             ){
                 return;
             }
@@ -31,6 +27,9 @@ Vue.component('create-recipe', {
             this.recipeItems.push(this.item);
 
             this.item = {};
+        },
+        removeItem(index) {
+            this.recipeItems.splice(index, 1);
         },
         addNewCategory() {
             this.categories.push({'name' : this.newCategory, 'id' : -1});

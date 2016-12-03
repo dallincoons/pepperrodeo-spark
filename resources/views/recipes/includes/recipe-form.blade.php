@@ -53,6 +53,8 @@
                 @endforeach
             </select>
         </div>
+
+        <div v-on:click="removeItem(index)">X</div>
     </div>
 
     <div class="ingredient-input">
