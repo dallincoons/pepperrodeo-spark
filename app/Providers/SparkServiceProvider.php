@@ -57,10 +57,10 @@ class SparkServiceProvider extends ServiceProvider
                 'First', 'Second', 'Third'
             ]);
 
-        Spark::plan('Basic', 'monthly-basic')
-            ->price(9.99)
-            ->features([
-                'First', 'Second', 'Third'
-            ]);
+//        Spark::plan('Basic', 'monthly-basic')
+//            ->price(9.99)
+//            ->features([
+//                'First', 'Second', 'Third'
+//            ]);
     }
 }
