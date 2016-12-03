@@ -9,8 +9,8 @@ Vue.component('add-recipe', {
                 'item_category_id' : ''
             }],
             addingCategory : false,
-            categories : PepperRodeo.categories,
-            selectedCategory : PepperRodeo.categories[0].id,
+            categories : PepperRodeo.categories || [],
+            selectedCategory : PepperRodeo.categories[0] ? PepperRodeo.categories[0].id : '',
             newCategory : '',
             recipeFields : [],
             category_ids : [],
