@@ -13,10 +13,10 @@ require('./../spark-components/bootstrap');
 
 /* Recipes */
 require('./home');
-require('./recipe/add-recipe');
+require('./recipe/create-recipe');
 require('./recipe/single-recipe');
 require('./recipe/all-recipes');
-require('./recipe/edit-single');
+require('./recipe/edit-recipe');
 
 /* Grocery Lists */
 require('./grocerylists/all-grocery-lists');

@@ -27,6 +27,7 @@
 <label class="form-heading">Ingredients*</label>
 
 <div class="ingredient-section">
+
     <div v-for="(item, index) in recipeItems" class="ingredient-inputs">
         <input type="hidden" :name="'recipeFields[' + index + '][id]'" :value="item.id"/>
         <div class="ingredient-input">
@@ -52,6 +53,32 @@
                 @endforeach
             </select>
         </div>
+
+        <div v-on:click="removeItem(index)">X</div>
+    </div>
+
+    <div class="ingredient-input">
+        <label for="quantity" class="sub-heading">Qty</label>
+        <input type="text" id="quantity" v-model="item.quantity" class="ingredient-info" placeholder="3" :value="item.quantity" />
+    </div>
+
+    <div class="ingredient-input">
+        <label for="type" class="sub-heading">Type</label>
+        <input type="text" id="type" v-model="item.type" class="ingredient-info" placeholder="cups"  :value="item.type"/>
+    </div>
+
+    <div class="ingredient-input">
+        <label for="ingredient" class="sub-heading">Ingredient</label>
+        <input type="text" id="ingredient" v-model="item.name" class="ingredient-info" placeholder="flour" :value="item.name" />
+    </div>
+
+    <div class="ingredient-input">
+        <label for="type" class="sub-heading">Department</label>
+        <select v-model="item.item_category_id" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id">
+            @foreach($itemCategories as $category)
+                <option value="{{ $category->id }}"  class="dropdown-item">{{$category->name}}</option>
+            @endforeach
+        </select>
     </div>
 </div>
 
