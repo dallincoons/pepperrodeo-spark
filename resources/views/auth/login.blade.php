@@ -67,7 +67,7 @@
         </form>
 
         <div class="register-section">
-            <p>Not a Member? <a href="register.blade">Register Here!</a></p>
+            <p>Not a Member? <a href="/register">Register Here!</a></p>
         </div>
     </div>
 </div>
