@@ -1,4 +1,4 @@
-Vue.component('add-recipe', {
+Vue.component('create-recipe', {
     data : function(){
         return {
             recipeItemElement : '<input type="text">',
