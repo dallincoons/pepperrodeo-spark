@@ -2,18 +2,14 @@ Vue.component('create-recipe', {
     data : function(){
         return {
             recipeItemElement : '<input type="text">',
-            recipeItems : [{
-                'quantity' : '',
-                'type' : '',
-                'ingredient' : '',
-                'item_category_id' : ''
-            }],
+            recipeItems : [],
             addingCategory : false,
             categories : PepperRodeo.categories || [],
             selectedCategory : PepperRodeo.categories[0] ? PepperRodeo.categories[0].id : '',
             newCategory : '',
             recipeFields : [],
             category_ids : [],
+            item         : {},
             item_quantity : '',
             item_type : '',
             item_ingredient : '',
@@ -21,23 +17,20 @@ Vue.component('create-recipe', {
     },
     methods : {
         addNewItem() {
-            var lastItem = this.recipeItems.slice(-1).pop();
+            let newItem = this.item;
 
             if(
-                lastItem.quantity == "" ||
-                lastItem.type == "" ||
-                lastItem.name == "" ||
-                lastItem.item_category_id == ""
+                newItem.quantity == "" ||
+                newItem.type == "" ||
+                newItem.name == "" ||
+                newItem.item_category_id == ""
             ){
                 return;
             }
 
-            this.recipeItems.push({
-                'quantity' : '',
-                'type' : '',
-                'name' : '',
-                'item_category_id' : ''
-            });
+            this.recipeItems.push(this.item);
+
+            this.item = {};
         },
         addNewCategory() {
             this.categories.push({'name' : this.newCategory, 'id' : -1});
