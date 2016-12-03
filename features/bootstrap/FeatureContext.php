@@ -103,8 +103,6 @@ class FeatureContext extends MinkContext implements Context
         PHPUnit::assertTrue(\Auth::guest());
 
         $this->assertPageAddress('login');
-
-        $this->showLastResponse();
     }
 
     private function assertSignedIn()
