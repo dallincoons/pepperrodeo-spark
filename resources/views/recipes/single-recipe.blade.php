@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<single-recipe inline-template>
+<single-recipe inline-template v-cloak>
 <div class="recipe-wrapper">
     <h2 class="page-title">{{$recipe->title}}</h2>
     <h6 class="recipe-cat">Category: <a href="/recipecategory/{{$recipe->category->getKey()}}">{{$recipe->category->name}}</a></h6>

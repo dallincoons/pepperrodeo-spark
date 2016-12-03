@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<list-form inline-template>
+<list-form inline-template v-cloak>
 <div class="create-list-wrapper">
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Create List</h2>

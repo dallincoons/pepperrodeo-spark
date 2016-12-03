@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<show-all-recipes inline-template class="content-wrapper">
+<show-all-recipes inline-template class="content-wrapper" v-cloak>
 <div>
         <h2 class="page-title">My Recipes</h2>
 

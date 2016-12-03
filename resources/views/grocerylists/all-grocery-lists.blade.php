@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<all-grocery-lists inline-template>
+<all-grocery-lists inline-template v-cloak>
 <div class="content-wrapper">
 
     <form method="POST" action="/grocerylist/deleteMultiple" id="deleteForm">
