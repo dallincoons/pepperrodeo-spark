@@ -21,7 +21,7 @@
             @foreach($grocerylists as $list)
                 <li class="list">
                     <label class="control control--checkbox"><i class="fa fa-list list-info"></i> <a href="/grocerylist/{{$list->id}}" class="list-info">{{$list->title}}</a>
-                        <input type="checkbox" v-model="lists" id="cbox1" name="lists[]" class="recipe-check" value="{{$list}}">
+                        <input type="checkbox" v-model="lists" id="cbox1" name="lists[]"  value="{{$list}}">
                         <div v-if="showCheckBoxes" class="control__indicator"></div>
                     </label>
                 </li>
