@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('content')\
-    <edit-single-recipe inline-template>
+@section('content')
+    <edit-single-recipe inline-template v-cloak>
     <div>
     {!! Form::model($recipe, ['method' => 'POST', 'route' => ['recipe.update', $recipe->getKey()]]) !!}
         {!! method_field('patch') !!}

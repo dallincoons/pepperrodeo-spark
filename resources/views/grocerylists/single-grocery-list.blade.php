@@ -1,7 +1,7 @@
 @extends('layouts.app', ['vue' => 'single-list'])
 
 @section('content')
-<single-list inline-template>
+<single-list inline-template v-cloak>
 <div class="grocery-list-wrapper">
 
         <h2 class="page-title">{{$grocerylist->title}} <a href="/grocerylist/{{$grocerylist->id}}/edit" class="list-edit-large"><i class="fa fa-pencil"></i></a></h2>

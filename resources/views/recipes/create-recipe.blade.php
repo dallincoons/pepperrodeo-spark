@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <add-recipe inline-template>
+    <add-recipe inline-template v-cloak>
     <div class="add-recipe-content">
         <h3 class="page-title">New Recipe</h3>
         <div class="recipe-form">
