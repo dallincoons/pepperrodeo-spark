@@ -37,7 +37,7 @@ class RecipeController extends Controller
     {
         $categories = \Auth::user()->recipeCategories()->get();
 
-        \JavaScript::put(['categories' => $categories->toArray()]);
+        \JavaScript::put(['categories' => \Auth::user()->itemCategories->toArray()]);
 
         return view('recipes.create-recipe', compact('categories'));
     }

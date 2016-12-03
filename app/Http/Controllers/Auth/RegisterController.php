@@ -83,5 +83,26 @@ class RegisterController extends Controller
         $user->recipeCategories()->create([
             'name' => 'Favorites'
         ]);
+
+        $itemCategories = [
+            'Baking',
+            'Canned Goods',
+            'Condiments',
+            'Dairy',
+            'Dry Goods',
+            'Frozen',
+            'Household Goods',
+            'Meat',
+            'Miscellaneous',
+            'Produce',
+            'Spices'
+        ];
+
+        foreach($itemCategories as $category)
+        {
+            $user->itemCategories()->create([
+                'name' => $category
+            ]);
+        }
     }
 }

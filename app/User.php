@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Entities\ItemCategory;
 use Laravel\Spark\User as SparkUser;
 use App\Entities\GroceryList;
 use App\Entities\Recipe;
@@ -65,5 +66,10 @@ class User extends SparkUser
     public function recipeCategories()
     {
         return $this->hasMany(RecipeCategory::class);
+    }
+
+    public function itemCategories()
+    {
+        return $this->hasMany(ItemCategory::class);
     }
 }
