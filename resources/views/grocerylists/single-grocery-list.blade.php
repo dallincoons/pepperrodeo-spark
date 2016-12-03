@@ -29,13 +29,17 @@
                     <li>
                         <ul class="list-items">
                             @foreach($list_items as $item)
-                                <li class="list-item">{{$item->quantity}} {{$item->type}} {{$item->name}}</li>
+                                <li class="list-item"><div class="print-checkbox"></div>{{$item->quantity}} {{$item->type}} {{$item->name}}</li>
                             @endforeach
                         </ul>
                     </li>
                 </ul>
             </div>
         @endforeach
+
+    <input type="button" class="print-btn"
+           onClick="window.print()"
+           value="Print List"/>
 </div>
 </single-list>
 @endsection
