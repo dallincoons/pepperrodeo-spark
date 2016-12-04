@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Entities\ItemCategory;
 use App\Entities\RecipeCategory;
 use App\Entities\Recipe;
 use App\Entities\Item;
@@ -83,7 +84,7 @@ class RecipeRepository
             'title' => $recipeData['title'],
             'directions' => $recipeData['directions'],
         ]);
-        if($category['id'] == -1 || !RecipeCategory::exists($category['id'])){
+        if(self::categoryNotExist($category)){
             $category = RecipeCategory::create([
                 'user_id' => \Auth::user()->getKey(),
                 'name' => $category['name']
@@ -92,6 +93,15 @@ class RecipeRepository
         $recipe->category()->associate($category['id']);
         foreach($recipeData['recipeFields'] as $itemJson)
         {
+            if($itemJson['item_category_id'] < 0){
+                if(!$itemCategory = ItemCategory::where('name', $itemJson['item_category_name'])->first()){
+                    $itemCategory = ItemCategory::create([
+                        'user_id' => \Auth::user()->getKey(),
+                        'name'    => $itemJson['item_category_name']
+                    ]);
+                }
+                $itemJson['item_category_id'] = $itemCategory->getKey();
+            };
             $item = Item::create($itemJson);
 
             $recipe->items()->save($item);
@@ -101,5 +111,10 @@ class RecipeRepository
         $recipe->save();
 
         return $recipe;
+    }
+
+    protected static function categoryNotExist($category)
+    {
+        return $category['id'] == -1 || !RecipeCategory::exists($category['id']);
     }
 }

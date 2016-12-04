@@ -1,37 +1,50 @@
 Vue.component('edit-single-recipe', {
+
     data : function(){
         return {
             recipeItemElement : '<input type="text">',
             addingCategory : false,
             categories : PepperRodeo.categories,
+            itemCategories : PepperRodeo.itemCategories || [],
             selectedCategory : PepperRodeo.selectedCategory,
             recipeItems : PepperRodeo.recipeItems,
             recipeFields : [],
             item         : {},
             category_ids : [],
             newCategory : '',
+            newItemCategory : '',
             showNewItemInputs : false
         }
     },
     created(){
         this.intializeRecipeItems();
     },
+
+
     methods : {
+
         addNewItem() {
             this.recipeItems.push(this.item);
 
             this.item = {};
         },
+
         removeItem(index) {
             this.recipeItems.splice(index, 1);
         },
+
         addNewCategory() {
             this.categories.push({'name' : this.newCategory, 'id' : -1});
             this.selectedCategory = [-1,this.newCategory];
             this.addingCategory = false;
         },
+
+        addNewItemCategory() {
+            this.itemCategories.push({id : -1, name : this.newItemCategory});
+        },
+
         intializeRecipeItems(){
-            var self = this,
+            let self = this,
                 index = 0;
             this.recipeItems.forEach(function(item){
                 self.recipeFields[index] = {};

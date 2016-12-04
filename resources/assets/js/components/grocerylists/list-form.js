@@ -65,7 +65,7 @@ Vue.component('list-form', {
                 return;
             }
 
-            var newItem = {
+            let newItem = {
                 id               : --this.newItemId,
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
@@ -93,7 +93,7 @@ Vue.component('list-form', {
             this.addedRecipes.splice(recipeIndex, 1);
         },
         addRecipes(recipeIds){
-            var self = this,
+            let self = this,
                 recipe;
             recipeIds.forEach(function (recipeId) {
                 self.recipeIds.push(recipeId);
@@ -109,8 +109,8 @@ Vue.component('list-form', {
             this.setShowRecipes(false);
         },
         removeRecipe(recipeId, index){
-            var self        = this;
-            var itemIndexes = [];
+            let self        = this;
+            let itemIndexes = [];
             self.items.forEach(function (item) {
                 if (item.recipe_id == recipeId) {
                     itemIndexes.push(self.items.indexOf(item));

@@ -92,6 +92,7 @@ class RecipeController extends Controller
         $categories = \Auth::user()->recipeCategories()->get();
 
         \JavaScript::put(['categories' => $categories->toArray()]);
+        \JavaScript::put(['itemCategories' => \Auth::user()->itemCategories->toArray()]);
         \JavaScript::put(['selectedCategory' => [$recipe->category->getKey(), $recipe->category->name]]);
         \JavaScript::put(['recipeItems' => $recipe->items->toArray()]);
 

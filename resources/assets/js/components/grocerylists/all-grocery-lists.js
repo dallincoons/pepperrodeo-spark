@@ -30,7 +30,7 @@ Vue.component('all-grocery-lists', {
         },
         deleteConfirmMessage(){
 
-            var itemNames = '<p>Are you sure you want to delete these lists?</p>';
+            let itemNames = '<p>Are you sure you want to delete these lists?</p>';
 
             this.lists.forEach(function(list){
                 itemNames += "<p>" + JSON.parse(list).title + "</p>";

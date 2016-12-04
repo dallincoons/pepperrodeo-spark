@@ -1,9 +1,12 @@
 Vue.component('show-all-recipes', {
+
     data    : function () {
+
         return {
             showCheckBoxes : false,
             recipes        : []
         }
+
     },
 
     created(){
@@ -11,9 +14,11 @@ Vue.component('show-all-recipes', {
     },
 
     methods : {
+
         toggleShowCheckBoxes(){
             this.showCheckBoxes = !this.showCheckBoxes;
         },
+
         deleteRecipes : function () {
 
             swal({
@@ -32,7 +37,7 @@ Vue.component('show-all-recipes', {
 
         deleteConfirmMessage(){
 
-            var recipeNames = '<p>Are you sure you want to delete these recipes?</p>';
+            let recipeNames = '<p>Are you sure you want to delete these recipes?</p>';
 
             this.recipes.forEach(function (recipe) {
                 recipeNames += "<p>" + JSON.parse(recipe).title + "</p>";

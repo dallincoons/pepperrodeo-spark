@@ -2,6 +2,7 @@
 
 use App\Entities\GroceryList;
 use App\Entities\Recipe;
+use App\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 

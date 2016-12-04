@@ -1,4 +1,5 @@
 Vue.component('single-recipe', {
+
     data    : function () {
         return {
             recipe          : PepperRodeo.recipe,
@@ -8,6 +9,7 @@ Vue.component('single-recipe', {
         }
     },
     methods : {
+
         addToGroceryList        : function (list) {
             this.$http.post('/grocerylist/' + list.id + '/add/' + this.recipe.id).then(function (response) {
                 this.grocerylists = response.data.grocerylists;
@@ -23,14 +25,18 @@ Vue.component('single-recipe', {
                 }
             });
         },
+
         addConfirmMessage : function(list){
             return 'You have successfully added ' + this.recipe.title + ' to <a href="/grocerylist/' + list.id + '">' + list.title + '</a>';
         },
+
         toggleShowListSelection : function () {
             this.showListSelection = !this.showListSelection;
         },
+
         submitDeleteRecipe      : function () {
             document.getElementById('recipe-delete').submit();
         }
+        
     }
 });

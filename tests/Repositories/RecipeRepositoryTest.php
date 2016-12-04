@@ -180,4 +180,58 @@ class RecipeRepositoryTest extends TestCase
 
         $this->assertEquals('foocategory', $recipe->category->name);
     }
+
+    /**
+     * @group repository-tests
+     * @group recipe-repository-tests
+     * @test
+     */
+    public function creates_recipe_using_new_item_category()
+    {
+        $categoryName = 'poop';
+
+        $recipe = RecipeRepository::store([
+            'title' => 'poop',
+            'directions' => 'preheat',
+            'category' => ['id' => -1, 'name' => 'foocategory'],
+            'category_name' => 'test',
+            'recipeFields' => [[
+                                   'name' => 'pee',
+                                   'item_category_id' => -1,
+                                   'item_category_name' => $categoryName
+                               ]]
+        ]);
+
+        $this->assertEquals($categoryName, $recipe->items->where('name', 'pee')->first()->category);
+    }
+
+    /**
+     * @group repository-tests
+     * @group recipe-repository-tests
+     * @test
+     */
+    public function creates_recipe_using_new_item_category_that_already_exists()
+    {
+        $categoryName = 'poop';
+
+        ItemCategory::create([
+            'user_id' => \Auth::user()->getKey(),
+            'name' => $categoryName
+        ]);
+
+        $recipe = RecipeRepository::store([
+            'title' => 'poop',
+            'directions' => 'preheat',
+            'category' => ['id' => -1, 'name' => 'foocategory'],
+            'category_name' => 'test',
+            'recipeFields' => [[
+                                   'name' => 'pee',
+                                   'item_category_id' => -1,
+                                   'item_category_name' => $categoryName
+                               ]]
+        ]);
+
+        $this->assertEquals($categoryName, $recipe->items->where('name', 'pee')->first()->category);
+        $this->assertCount(1, ItemCategory::where('name',$categoryName)->get());
+    }
 }

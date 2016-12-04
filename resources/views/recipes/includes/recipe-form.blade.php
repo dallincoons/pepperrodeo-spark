@@ -32,30 +32,30 @@
         <input type="hidden" :name="'recipeFields[' + index + '][id]'" :value="item.id"/>
         <div class="ingredient-input">
             <label for="quantity" class="sub-heading">Qty</label>
-            <input type="text" id="quantity" v-model="item.quantity" :name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="text" id="quantity" :name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Type</label>
-            <input type="text" id="type" v-model="item.type" :name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="cups"  :value="item.type" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="text" id="type" :name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="cups"  :value="item.type" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
             <label for="ingredient" class="sub-heading">Ingredient</label>
-            <input type="text" id="ingredient" v-model="item.name" :name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="flour" :value="item.name" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="text" id="ingredient" :name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="flour" :value="item.name" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Department</label>
-            <select v-model="item.item_category_id" :name="'recipeFields[' + index + '][item_category_id]'" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id" required data-parsley-errors-messages-disabled data-parsley-trigger="submit">
-                @foreach($itemCategories as $category)
-                    <option value="{{ $category->id }}"  class="dropdown-item">{{$category->name}}</option>
-                @endforeach
+            <select :name="'recipeFields[' + index + '][item_category_id]'" v-model="item.item_category_id" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id" required data-parsley-errors-messages-disabled data-parsley-trigger="submit">
+                <option v-for="category in itemCategories" :value="category.id"  class="dropdown-item">@{{category.name}}</option>
             </select>
+            <input v-model="item.item_category_name" :name="'recipeFields[' + index + '][item_category_name]'" type="hidden">
         </div>
 
         <div v-on:click="removeItem(index)">X</div>
     </div>
+
 
     <template v-if="showNewItemInputs">
         <div class="ingredient-input">
@@ -75,11 +75,16 @@
 
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Department</label>
-            <select v-model="item.item_category_id" :name="'recipeFields[' + -1 + '][item_category_id]'" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id">
-                @foreach($itemCategories as $category)
-                    <option value="{{ $category->id }}"  class="dropdown-item">{{$category->name}}</option>
-                @endforeach
+            <select @change="checkAddNew(item.item_category_id)" v-model="item.item_category_id" :name="'recipeFields[' + -1 + '][item_category_id]'" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id">
+                <option v-for="category in itemCategories" :value="category.id"  class="dropdown-item">@{{category.name}}</option>
+                <option value="0">+ Add New</option>
             </select>
+            <input v-model="item.item_category_name" :name="'recipeFields[' + -1 + '][item_category_name]'" type="hidden">
+        </div>
+        <div v-show="addingItemCategory" class="addingCategory">
+            <input v-model="newItemCategory" placeholder="Produce" />
+            <button v-on:click="addNewItemCategory()" type="button" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add</button>
+            <button v-on:click="addingItemCategory = false" type="button" class="recipe-section__button">Cancel</button>
         </div>
     </template>
 </div>
