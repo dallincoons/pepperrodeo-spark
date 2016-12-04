@@ -1,0 +1,47 @@
+@media print {
+  .l-nav {
+    display: none !important;
+  }
+
+  .l-nav-mobile {
+    display: none !important;
+  }
+
+  #l-footer {
+    display: none !important;
+  }
+
+  .centering-buttons {
+    display: none !important;
+  }
+
+  .list-edit-large {
+    display: none !important;
+  }
+
+  .mini-nav {
+    display: none !important;
+  }
+
+  #header-mobile {
+    text-align: center !important;
+    width: 85% !important;
+    margin: 0 auto !important;
+  }
+
+  .print-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #3f3f3f;
+    display: inline !important;
+    padding-left: 15px;
+    margin-right: 5px;
+  }
+  .list-item {
+    margin: 10px;
+  }
+
+  .print-btn {
+    display: none !important;
+  }
+}
