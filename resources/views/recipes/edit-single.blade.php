@@ -3,7 +3,7 @@
 @section('content')
     <edit-single-recipe inline-template v-cloak>
     <div>
-    {!! Form::model($recipe, ['method' => 'POST', 'route' => ['recipe.update', $recipe->getKey()]]) !!}
+    {!! Form::model($recipe, ['method' => 'POST', 'route' => ['recipe.update', $recipe->getKey()], 'data-parsley-validate' => '']) !!}
         {!! method_field('patch') !!}
             @include('recipes.includes.recipe-form')
         {!! Form::submit() !!}

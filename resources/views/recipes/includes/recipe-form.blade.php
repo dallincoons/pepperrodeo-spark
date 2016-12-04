@@ -57,29 +57,31 @@
         <div v-on:click="removeItem(index)">X</div>
     </div>
 
-    <div class="ingredient-input">
-        <label for="quantity" class="sub-heading">Qty</label>
-        <input type="text" id="quantity" v-model="item.quantity" class="ingredient-info" placeholder="3" :value="item.quantity" />
-    </div>
+    <template v-if="showNewItemInputs">
+        <div class="ingredient-input">
+            <label for="quantity" class="sub-heading">Qty</label>
+            <input type="text" id="quantity" :name="'recipeFields[' + -1 + '][quantity]'" v-model="item.quantity" class="ingredient-info" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+        </div>
 
-    <div class="ingredient-input">
-        <label for="type" class="sub-heading">Type</label>
-        <input type="text" id="type" v-model="item.type" class="ingredient-info" placeholder="cups"  :value="item.type"/>
-    </div>
+        <div class="ingredient-input">
+            <label for="type" class="sub-heading">Type</label>
+            <input type="text" id="type" :name="'recipeFields[' + -1 + '][type]'" v-model="item.type" class="ingredient-info" placeholder="cups"  :value="item.type" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+        </div>
 
-    <div class="ingredient-input">
-        <label for="ingredient" class="sub-heading">Ingredient</label>
-        <input type="text" id="ingredient" v-model="item.name" class="ingredient-info" placeholder="flour" :value="item.name" />
-    </div>
+        <div class="ingredient-input">
+            <label for="ingredient" class="sub-heading">Ingredient</label>
+            <input type="text" id="ingredient" :name="'recipeFields[' + -1 + '][name]'" v-model="item.name" class="ingredient-info" placeholder="flour" :value="item.name" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+        </div>
 
-    <div class="ingredient-input">
-        <label for="type" class="sub-heading">Department</label>
-        <select v-model="item.item_category_id" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id">
-            @foreach($itemCategories as $category)
-                <option value="{{ $category->id }}"  class="dropdown-item">{{$category->name}}</option>
-            @endforeach
-        </select>
-    </div>
+        <div class="ingredient-input">
+            <label for="type" class="sub-heading">Department</label>
+            <select v-model="item.item_category_id" :name="'recipeFields[' + -1 + '][item_category_id]'" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id">
+                @foreach($itemCategories as $category)
+                    <option value="{{ $category->id }}"  class="dropdown-item">{{$category->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </template>
 </div>
 
 <div class="add-ingredient" v-on:click="addNewItem()"><i class="fa fa-plus-circle"></i> Add ingredient</div>

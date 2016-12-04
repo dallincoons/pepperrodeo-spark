@@ -10,6 +10,7 @@ Vue.component('edit-single-recipe', {
             item         : {},
             category_ids : [],
             newCategory : '',
+            showNewItemInputs : false
         }
     },
     created(){
@@ -17,17 +18,6 @@ Vue.component('edit-single-recipe', {
     },
     methods : {
         addNewItem() {
-            let newItem = this.item;
-
-            if(
-                !newItem.quantity ||
-                !newItem.type ||
-                !newItem.name ||
-                !newItem.item_category_id
-            ){
-                return;
-            }
-
             this.recipeItems.push(this.item);
 
             this.item = {};

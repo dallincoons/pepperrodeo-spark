@@ -9,6 +9,7 @@ Vue.component('create-recipe', {
             newCategory : '',
             recipeFields : [],
             item         : {},
+            showNewItemInputs : true
         }
     },
     methods : {
