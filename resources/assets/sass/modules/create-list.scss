@@ -110,6 +110,14 @@
     font-size: 2em;
     align-self: baseline;
   }
+
+  .centering-buttons button:disabled  {
+    pointer-events: none;
+    opacity: .6;
+    background: #acacac;
+    border-bottom: 5px solid #acacac;
+    color: #3f3f3f;
+  }
 }
 
 //Mobile
@@ -226,7 +234,15 @@
   }
 
   .pr-button {
-    flex: 1 1 auto;
+    flex: .2 .2 auto;
     margin-bottom: 20%;
+  }
+
+  .centering-buttons button:disabled  {
+    pointer-events: none;
+    opacity: .6;
+    background: #acacac;
+    border-bottom: 5px solid #acacac;
+    color: #3f3f3f;
   }
 }
