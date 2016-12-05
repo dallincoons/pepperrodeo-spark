@@ -160,6 +160,9 @@
     font-weight: bold;
     flex: .2 .2 auto;
   }
+  .rmv-ingred:hover {
+    cursor: pointer;
+  }
 }
 
 @media only screen and (max-width: 799px) {
@@ -322,5 +325,8 @@
     justify-content: flex-end;
     color: #ff4b2e;
     font-weight: bold;
+  }
+  .rmv-ingred:hover {
+    cursor: pointer;
   }
 }
