@@ -39,6 +39,7 @@
         </div>
         <div class="add-wrapper ingredient-input">
             <button type="button" v-on:click="addItem(recipeFields)" class="add-button"><i class="fa fa-plus-circle"></i></button>
+            <button type="button" v-on:click="removeItem(item.id)" class="add-button"><i class="fa fa-close"></i></button>
         </div>
     </div>
 </div>
