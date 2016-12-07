@@ -83,9 +83,9 @@ Vue.component('list-form', {
             this.newItemCategoryId = '';
         },
         removeItem(itemId){
-            window._.remove(this.items, function (item) {
-                return item.id == itemId;
-            });
+            this.items = _.without(this.items, _.findWhere(this.items, {
+                id: itemId
+            }));
             this.items.push({});
             this.items.pop();
         },
