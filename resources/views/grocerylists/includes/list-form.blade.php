@@ -5,12 +5,7 @@
 </div>
 
 <a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
-<div class="recipes-added">
-    <p v-for="(recipe, index) in addedRecipes" class="recipe-added">
-        <a v-on:click="removeRecipe(recipe.id, index)">X</a> | @{{recipe.title}}
-    </p>
-    <input type="hidden" name="recipeIds" :value="recipeIds">
-</div>
+
 <a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
 <div class="item-section" v-if="addAnItem">
     <div class="items-inputs">
@@ -46,7 +41,7 @@
 
 <div class="category-wrapper">
     <ul class="category" v-for="(items, index) in itemsGrouped">
-        <li class="category-title"><h3>@{{ index }}</h3></li>
+        <li class="category-title"><h3>@{{ index }}</h3><span class="remove-item">X</span></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
                 <div class="list-item-wrapper">
