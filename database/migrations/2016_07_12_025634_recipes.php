@@ -18,7 +18,7 @@ class Recipes extends Migration
             $table->mediumText('directions')->nullable();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger('recipe_category_id')->nullable();
+            $table->unsignedInteger('recipe_category_id');
             $table->foreign('recipe_category_id')->references('id')->on('recipe_categories')->onDelete('cascade');
             $table->timestamps();
         });

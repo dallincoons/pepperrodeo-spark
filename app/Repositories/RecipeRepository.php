@@ -13,9 +13,6 @@ class RecipeRepository
         $recipesWithCategories = [];
         foreach(Recipe::where('user_id', \Auth::user()->getKey())->with('category')->get() as $recipe)
         {
-            if(!$recipe->category){
-                throw new \RecipeCategoryNotExistException('Recipe category does not exist for recipe with id of: ' . $recipe->id);
-            };
             $category = $recipe->category->name;
             if(!isset($recipesWithCategories[$category])){
                 $recipesWithCategories[$category] = [];
@@ -78,19 +75,21 @@ class RecipeRepository
 
     public static function store($recipeData)
     {
-        $category = $recipeData['category'];
+        $categoryData = $recipeData['category'];
+        if(!$category = RecipeCategory::find($categoryData['id'])){
+            $category = RecipeCategory::create([
+                'user_id' => \Auth::user()->getKey(),
+                'name' => $categoryData['name']
+            ]);
+        }
         $recipe = Recipe::create([
             'user_id' => \Auth::user()->getKey(),
             'title' => $recipeData['title'],
             'directions' => $recipeData['directions'],
+            'recipe_category_id' => $category->getKey()
         ]);
-        if(self::categoryNotExist($category)){
-            $category = RecipeCategory::create([
-                'user_id' => \Auth::user()->getKey(),
-                'name' => $category['name']
-            ]);
-        }
-        $recipe->category()->associate($category['id']);
+
+        $recipe->category()->associate($category->getKey());
         foreach($recipeData['recipeFields'] as $itemJson)
         {
             if($itemJson['item_category_id'] < 0){
