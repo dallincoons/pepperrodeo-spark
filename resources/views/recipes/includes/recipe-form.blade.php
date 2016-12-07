@@ -58,9 +58,9 @@
 
 
     <template v-if="showNewItemInputs">
-        <div class="ingredient-input">
+        <div class="ingredient-input qty-input-wrapper">
             <label for="quantity" class="sub-heading">Qty</label>
-            <input type="text" id="quantity" :name="'recipeFields[' + -1 + '][quantity]'" v-model="item.quantity" class="ingredient-info" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="number" id="quantity" :name="'recipeFields[' + -1 + '][quantity]'" v-model="item.quantity" class="ingredient-info qty-input" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
