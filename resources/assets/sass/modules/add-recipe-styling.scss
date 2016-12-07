@@ -75,8 +75,9 @@
   .ingredient-input {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
+    flex: .33 .33 auto;
   }
+
 
   .sub-heading {
     color: #3f3f3f;
@@ -95,6 +96,11 @@
     margin-right: 20px;
     padding-left: 5px;
   }
+
+  .qty-input-wrapper {
+    flex: .05 .05 auto;
+  }
+
 
   .dept_select {
     background: none;
@@ -246,6 +252,7 @@
     width: 25%;
   }
 
+
   .sub-heading {
     color: #3f3f3f;
     font-size: .85em;
@@ -278,6 +285,10 @@
 
   .add-ingredient:hover {
     cursor: pointer;
+  }
+
+  .qty-input-wrapper {
+    flex: .05 .05 auto;
   }
 
   .recipe-section textarea {
