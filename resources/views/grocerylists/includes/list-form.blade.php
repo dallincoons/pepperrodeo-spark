@@ -49,9 +49,11 @@
         <li class="category-title"><h3>@{{ index }}</h3></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
-                <span class="list-item-added">@{{ item.quantity }}</span>
-                <span class="list-item-added">@{{ item.type }}</span>
-                <span class="list-item-added">@{{ item.name }} </span>
+                <div class="list-item-wrapper">
+                    <span class="list-item-added">@{{ item.quantity }}</span>
+                    <span class="list-item-added">@{{ item.type }}</span>
+                    <span class="list-item-added">@{{ item.name }} </span>
+                </div>
                 <span v-on:click="removeItem(item.id)" class="remove-item list-item-added">X</span>
 
                 <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">

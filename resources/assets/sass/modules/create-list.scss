@@ -78,8 +78,12 @@
     padding: 3px;
   }
 
+  .list-item-wrapper {
+    flex: 1.8 1.8 auto;
+  }
+
   .remove-item {
-    flex: 1 1 auto;
+    flex: .2 .2 auto;
     display: flex;
     justify-content: flex-end;
     color: #ff4b2e;
