@@ -92,7 +92,7 @@
 <div class="add-ingredient" v-on:click="addNewItem()"><i class="fa fa-plus-circle"></i> Add ingredient</div>
 <div class="recipe-section">
     <label for="directions" class="form-heading">Directions*</label>
-    {!! Form::textarea('directions', null,
+    {!! Form::textarea('directions', old('directions'),
         ['placeholder' => 'Preheat oven to 350°',
          'required',
          'data-parsley-errors-messages-disabled',
