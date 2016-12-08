@@ -27,7 +27,8 @@ class ItemCategorySeeder extends Seeder
 
         foreach($categories as $category){
            App\Entities\ItemCategory::create([
-                'name' => $category
+                'name' => $category,
+                'user_id' => 1
            ]);
         }
     }
