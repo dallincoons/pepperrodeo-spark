@@ -28,7 +28,8 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Item::class, function (Faker\Generator $faker) {
-    if(!\Auth::user()->itemCategories->count()){
+    $user = \Auth::user() ?: User::find(1);
+    if(!$user->itemCategories->count()){
         \Auth::user()->itemCategories()->create([
             'name' => 'Baking'
         ]);
@@ -39,14 +40,14 @@ $factory->define(Item::class, function (Faker\Generator $faker) {
         'type' => collect(['pkg', 'can', 'bottle', 'jug'])->random(),
         'isCheckedOff' => 0,
         'remember_token' => str_random(10),
-        'item_category_id' => \Auth::user()->fresh()->itemCategories()->first()->getKey()
+        'item_category_id' => $user->fresh()->itemCategories()->first()->getKey()
     ];
 });
 
 $factory->define(ItemCategory::class, function(Faker\Generator $faker){
     return [
         'name' => $faker->word,
-        'user_id' => \Auth::user()
+        'user_id' => \Auth::user()->getKey()
     ];
 });
 
