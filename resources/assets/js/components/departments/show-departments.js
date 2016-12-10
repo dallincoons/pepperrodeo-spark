@@ -18,12 +18,30 @@ Vue.component('show-departments', {
                     closeOnConfirm     : true
                 },
                 function () {
-                    self.$http.delete('departments/' + id).then(response => {
-                        self.departments = response.data;
-                    }).catch(response => {
-                        this.invalidRequest = true;
-                    });
+                    self.sendRemoveRequest(id, 'false');
                 });
+        },
+        sendRemoveRequest(id, force){
+            let self = this;
+            self.$http.delete('departments/' + id, {params : {force : force}}).then(response => {
+                if(response.status == 290){
+                    swal({
+                            title              : "There are items still associated with this department",
+                            text               : "Do you want to delete all associated items?",
+                            showCancelButton   : true,
+                            confirmButtonColor : "#DD6B55",
+                            confirmButtonText  : "Yes, nuke 'em!",
+                            closeOnConfirm     : true
+                        },
+                        function () {
+                            self.sendRemoveRequest(id, 'true');
+                        });
+                }else if(response.status = 200){
+                    self.departments = response.data;
+                }
+            }).catch(response => {
+                //
+            });
         },
         addDepartment    : function () {
             let self = this;

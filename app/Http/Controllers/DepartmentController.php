@@ -42,7 +42,7 @@ class DepartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +61,7 @@ class DepartmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,7 +72,7 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -83,8 +83,8 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  ItemCategory $department
+     * @param  \Illuminate\Http\Request $request
+     * @param  ItemCategory             $department
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ItemCategory $department)
@@ -96,10 +96,18 @@ class DepartmentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  ItemCategory $department
+     * @param  Request      $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ItemCategory $department)
+    public function destroy(ItemCategory $department, Request $request)
     {
+        if($request->force == 'false' && $department->items->count()){
+            return response(
+                $request->force,
+                290
+            );
+        }
+
         $success = $department->delete();
 
         if(!$success){
