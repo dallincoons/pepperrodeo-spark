@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemCategory extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['name', 'user_id'];
 
     protected $hidden = [];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
     }
 }
