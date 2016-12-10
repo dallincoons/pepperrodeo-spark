@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemCategory extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['name', 'user_id'];
 
     protected $hidden = [];
 

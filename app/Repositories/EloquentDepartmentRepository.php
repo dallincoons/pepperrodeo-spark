@@ -10,4 +10,14 @@ class EloquentDepartmentRepository implements DepartmentRepository
     {
         return ItemCategory::all();
     }
+
+    public function store($data)
+    {
+        return ItemCategory::create($data);
+    }
+
+    public function update($department, $data)
+    {
+        return $department->update($data);
+    }
 }

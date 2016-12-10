@@ -1,45 +1,52 @@
 Vue.component('show-departments', {
     data    : function () {
         return {
-            departments : PepperRodeo.departments,
+            departments       : PepperRodeo.departments,
+            invalidRequest : false
         }
     },
     methods : {
-        removeDepartment : function(id){
-            let index = _.findIndex(this.departments, {id : id}),
-                self = this;
+        removeDepartment : function (id) {
+            let self  = this;
 
             swal({
-                    title: "Hold on!",
-                    text: "Are you sure you want to delete this department?",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it!",
-                    closeOnConfirm: true
+                    title              : "Hold on!",
+                    text               : "Are you sure you want to delete this department?",
+                    showCancelButton   : true,
+                    confirmButtonColor : "#DD6B55",
+                    confirmButtonText  : "Yes, delete it!",
+                    closeOnConfirm     : true
                 },
-                function(){
-                    self.departments.splice(index, 1);
+                function () {
+                    self.$http.delete('departments/' + id).then(response => {
+                        self.departments = response.data;
+                    }).catch(response => {
+                        this.invalidRequest = true;
+                    });
                 });
         },
-        addDepartment : function(){
+        addDepartment    : function () {
             let self = this;
 
             swal({
-                    title: "Add a department",
-                    text: "Do eeeet",
-                    type: "input",
-                    showCancelButton: true,
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
-                    confirmButtonText: "Save",
-                    inputPlaceholder: "Write something",
-                    showLoaderOnConfirm: true,
+                    title               : "Add a department",
+                    text                : "Do eeeet",
+                    type                : "input",
+                    showCancelButton    : true,
+                    closeOnConfirm      : true,
+                    animation           : "slide-from-top",
+                    confirmButtonText   : "Save",
+                    inputPlaceholder    : "Write something",
+                    showLoaderOnConfirm : true,
                 },
-                function(inputValue){
-
-                    self.departments.push({id : -1, name : inputValue});
-
-                    return false;
+                function (inputValue) {
+                    self.$http.post('departments', JSON.stringify({
+                        'name' : inputValue
+                    })).then(response => {
+                        self.departments = response.data;
+                    }).catch(response => {
+                        this.invalidRequest = true;
+                    });
                 });
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\ItemCategory;
 use App\Repositories\DepartmentRepository;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,15 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $data['user_id'] = \Auth::user()->getKey();
+
+        $this->repository->store($data);
+
+        return response(
+            ItemCategory::all()
+        );
     }
 
     /**
@@ -75,22 +84,30 @@ class DepartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  ItemCategory $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ItemCategory $department)
     {
-        //
+        $this->repository->update($department, $request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  ItemCategory $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ItemCategory $department)
     {
-        //
+        $success = $department->delete();
+
+        if(!$success){
+            abort('422');
+        }
+
+        return response(
+            ItemCategory::all()
+        );
     }
 }
