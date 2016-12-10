@@ -22,7 +22,8 @@ Vue.component('list-form', {
     },
     computed : {
         itemsGrouped : function () {
-            return window._.groupBy(this.items, this.groupByValue);
+            let items = _.sortBy(this.items, this.groupByValue);
+            return _.groupBy(items, this.groupByValue);
         }
     },
     methods  : {
