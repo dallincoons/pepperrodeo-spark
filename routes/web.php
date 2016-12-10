@@ -26,5 +26,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::post('/grocerylist/{grocerylist}/add/{recipe}', 'Api\RecipeListApiController@store');
     Route::resource('grocerylist', 'GroceryListController');
 
+    Route::resource('departments', 'DepartmentController');
+
     Route::resource('recipecategory', 'RecipeCategoryController');
 });
