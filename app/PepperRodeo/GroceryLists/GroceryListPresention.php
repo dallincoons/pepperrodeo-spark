@@ -41,6 +41,7 @@ class GroceryListPresention
         $likeItems = $items->filter(function ($value) use ($item) {
                 return strtolower($value->name) === strtolower($item->name);
         });
+
         return $likeItems;
     }
 

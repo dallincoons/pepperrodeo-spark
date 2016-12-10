@@ -40,8 +40,8 @@
 </div>
 
 <div class="category-wrapper">
-    <ul class="category" v-for="(items, index) in itemsGrouped">
-        <li class="category-title"><h3>@{{ index }}</h3><span class="remove-item">X</span></li>
+    <ul class="category" v-for="(items, groupName) in itemsGrouped">
+        <li class="category-title"><h3>@{{ groupName }}</h3><span v-on:click="removeGroup(groupName)" class="remove-item">X</span></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
                 <div class="list-item-wrapper">
