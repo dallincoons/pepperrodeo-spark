@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRecipeRequest extends FormRequest
 {
@@ -25,7 +26,13 @@ class StoreRecipeRequest extends FormRequest
     {
         return [
             'category' => 'required|string',
-            'title' => 'required|string',
+            'title' => [
+                'required',
+                'string',
+                Rule::unique('recipes')->where(function($query){
+                    $query->where('user_id', \Auth::user()->getKey());
+                })
+            ],
             'directions' => 'required|string',
             'recipeFields.*.type' => 'required',
             'recipeFields.*.name' => 'required',

@@ -65,6 +65,11 @@
     background: rgba(255, 75, 46, .1);
   }
 
+  .recipe-wrapper > .form-heading {
+    font-size: 1.6em;
+  }
+;
+
   .form-heading {
     color: #ff4b2e;
     margin-bottom: 3px;
@@ -72,6 +77,7 @@
 
   .recipe-ingredients {
     font-weight: 300;
+    font-size: 1.3em;
     color: #3f3f3f;
   }
 

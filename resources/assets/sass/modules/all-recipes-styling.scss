@@ -16,10 +16,12 @@
     font-size: 1.2em;
     font-weight: 300;
     padding: 5px 0 5px 10px;
+    display: flex;
   }
 
   .category-title h3 {
     margin: 0;
+    flex: .8 .8 auto;
   }
 
   .recipe {
@@ -89,10 +91,12 @@
     font-size: 1.2em;
     font-weight: 300;
     padding: 5px 0 5px 10px;
+    display: flex;
   }
 
   .category-title h3 {
     margin: 0;
+    flex: .8 .8 auto;
   }
 
   .recipe {

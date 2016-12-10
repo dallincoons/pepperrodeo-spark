@@ -5,12 +5,7 @@
 </div>
 
 <a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
-<div class="recipes-added">
-    <p v-for="(recipe, index) in addedRecipes" class="recipe-added">
-        <a v-on:click="removeRecipe(recipe.id, index)">X</a> | @{{recipe.title}}
-    </p>
-    <input type="hidden" name="recipeIds" :value="recipeIds">
-</div>
+
 <a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
 <div class="item-section" v-if="addAnItem">
     <div class="items-inputs">
@@ -39,18 +34,21 @@
         </div>
         <div class="add-wrapper ingredient-input">
             <button type="button" v-on:click="addItem(recipeFields)" class="add-button"><i class="fa fa-plus-circle"></i></button>
+            <button type="button" v-on:click="removeItem(item.id)" class="add-button"><i class="fa fa-close"></i></button>
         </div>
     </div>
 </div>
 
 <div class="category-wrapper">
     <ul class="category" v-for="(items, index) in itemsGrouped">
-        <li class="category-title"><h3>@{{ index }}</h3></li>
+        <li class="category-title"><h3>@{{ index }}</h3><span class="remove-item">X</span></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
-                <span class="list-item-added">@{{ item.quantity }}</span>
-                <span class="list-item-added">@{{ item.type }}</span>
-                <span class="list-item-added">@{{ item.name }} </span>
+                <div class="list-item-wrapper">
+                    <span class="list-item-added">@{{ item.quantity }}</span>
+                    <span class="list-item-added">@{{ item.type }}</span>
+                    <span class="list-item-added">@{{ item.name }} </span>
+                </div>
                 <span v-on:click="removeItem(item.id)" class="remove-item list-item-added">X</span>
 
                 <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">

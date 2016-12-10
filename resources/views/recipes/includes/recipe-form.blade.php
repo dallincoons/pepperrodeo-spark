@@ -53,14 +53,14 @@
             <input v-model="item.item_category_name" :name="'recipeFields[' + index + '][item_category_name]'" type="hidden">
         </div>
 
-        <div v-on:click="removeItem(index)">X</div>
+        <div v-on:click="removeItem(index)" class="ingredient-input rmv-ingred">X</div>
     </div>
 
 
     <template v-if="showNewItemInputs">
-        <div class="ingredient-input">
+        <div class="ingredient-input qty-input-wrapper">
             <label for="quantity" class="sub-heading">Qty</label>
-            <input type="text" id="quantity" :name="'recipeFields[' + -1 + '][quantity]'" v-model="item.quantity" class="ingredient-info" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="number" id="quantity" :name="'recipeFields[' + -1 + '][quantity]'" v-model="item.quantity" class="ingredient-info qty-input" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
@@ -92,7 +92,7 @@
 <div class="add-ingredient" v-on:click="addNewItem()"><i class="fa fa-plus-circle"></i> Add ingredient</div>
 <div class="recipe-section">
     <label for="directions" class="form-heading">Directions*</label>
-    {!! Form::textarea('directions', null,
+    {!! Form::textarea('directions', old('directions'),
         ['placeholder' => 'Preheat oven to 350°',
          'required',
          'data-parsley-errors-messages-disabled',
