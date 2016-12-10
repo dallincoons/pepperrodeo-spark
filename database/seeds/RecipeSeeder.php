@@ -22,7 +22,7 @@ class RecipeSeeder extends Seeder
                 'user_id' => 1,
                 'title' => $faker->word,
                 'directions' => $faker->paragraph,
-                'recipe_category_id' => RecipeCategory::inRandomOrder()->get()->first()->id
+                'recipe_category_id' => RecipeCategory::inRandomOrder()->get()->first()->getKey()
             ]);
 
             foreach(range(1, 9) as $itemindex)

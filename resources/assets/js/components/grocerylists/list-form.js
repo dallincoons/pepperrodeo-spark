@@ -109,21 +109,11 @@ Vue.component('list-form', {
 
             this.setShowRecipes(false);
         },
-        removeRecipe(recipeId, index){
+        removeGroup(groupName){
             let self        = this;
-            let itemIndexes = [];
-            self.items.forEach(function (item) {
-                if (item.recipe_id == recipeId) {
-                    itemIndexes.push(self.items.indexOf(item));
-                }
+            this.itemsGrouped[groupName].forEach(function(item){
+                self.removeItem(item.id);
             });
-            itemIndexes = itemIndexes.sort(function (a, b) {
-                return b - a
-            });
-            itemIndexes.forEach(function (index) {
-                self.items.splice(index, 1);
-            });
-            self.removeAddedRecipe(index);
         }
     }
 });
