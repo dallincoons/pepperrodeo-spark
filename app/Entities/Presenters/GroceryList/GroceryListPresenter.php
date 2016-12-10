@@ -27,7 +27,7 @@ class GroceryListPresenter extends Present
     {
         $this->assertItemsSet();
 
-        $this->items = $this->items->groupBy('category');
+        $this->items = $this->items->sortBy('category')->groupBy('category');
 
         return $this->items;
     }
@@ -39,7 +39,7 @@ class GroceryListPresenter extends Present
     {
         $this->assertItemsSet();
 
-        $this->items = $this->items->groupBy('recipe');
+        $this->items = $this->items->sortBy('recipe')->groupBy('recipe');
 
         return $this->items;
     }

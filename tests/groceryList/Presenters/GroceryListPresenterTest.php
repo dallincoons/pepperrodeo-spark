@@ -7,7 +7,7 @@ use App\Entities\Recipe;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class GroceryListPresenterTest2 extends TestCase
+class GroceryListPresenterTest extends TestCase
 {
     use DatabaseTransactions, DatabaseMigrations;
 
@@ -21,7 +21,7 @@ class GroceryListPresenterTest2 extends TestCase
     }
 
     /**
-     * @group grocery-list-presenter-tests2
+     * @group grocery-list-presenter-tests
      *
      * @test
      */
@@ -53,25 +53,25 @@ class GroceryListPresenterTest2 extends TestCase
     }
 
     /**
- * @group grocery-list-presenter-tests2
+ * @group grocery-list-presenter-tests
  *
  * @test
  */
-    public function combines_and_groups_like_items_by_category()
+    public function combines_sorts_and_groups_like_items_by_category()
     {
         list($item1, $item2) = $this->addItemsToGroceryList();
 
         $items = $this->grocerylist->present()->items()->byCategory();
 
-        $this->assertEquals([$item1->category, $item2->category], array_keys($items->toArray()));
+        $this->assertEquals([$item1->category, $item2->category], array_keys($items->sort()->toArray()));
     }
 
     /**
-     * @group grocery-list-presenter-tests2
+     * @group grocery-list-presenter-tests
      *
      * @test
      */
-    public function combines_and_groups_like_items_by_recipe()
+    public function combines_sorts_and_groups_similar_items_by_recipe()
     {
         $this->addItemsToGroceryList();
         $recipe1 = $this->grocerylist->recipes->first();
@@ -79,7 +79,7 @@ class GroceryListPresenterTest2 extends TestCase
 
         $items = $this->grocerylist->present()->items()->byRecipe();
 
-        $this->assertEquals([$recipe1->title, $recipe2->title], array_keys($items->toArray()));
+        $this->assertEquals([$recipe1->title, $recipe2->title], array_keys($items->sortBy('recipe')->toArray()));
     }
 
     protected function addItemsToGroceryList()
@@ -105,7 +105,7 @@ class GroceryListPresenterTest2 extends TestCase
     }
 
     /**
-     * @group grocery-list-presenter-tests2
+     * @group grocery-list-presenter-tests
      *
      * @test
      */
