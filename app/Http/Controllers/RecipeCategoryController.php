@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Entities\RecipeCategory;
+use App\Repositories\RecipeCategoryRepository;
 use Illuminate\Http\Request;
 
 class RecipeCategoryController extends Controller
 {
+    private $repository;
+
+    public function __construct(RecipeCategoryRepository $recipeCategoryRepository)
+    {
+        $this->repository = $recipeCategoryRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,11 @@ class RecipeCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = $this->repository->getAll();
+
+        \JavaScript::put(['recipe_categories' => $categories]);
+
+        return view('recipe_categories.index');
     }
 
     /**
@@ -35,13 +47,21 @@ class RecipeCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $data['user_id'] = \Auth::user()->getKey();
+
+        $this->repository->store($data);
+
+        return response(
+            $this->repository->getAll()
+        );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  RecipeCategory $recipecategory
      * @return \Illuminate\Http\Response
      */
     public function show(RecipeCategory $recipecategory)
@@ -70,22 +90,38 @@ class RecipeCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  RecipeCategory $recipecategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, RecipeCategory $recipecategory)
     {
-        //
+        $this->repository->update($recipecategory, $request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param   RecipeCategory $recipecategory
+     * @param   Request $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(RecipeCategory $recipecategory, Request $request)
     {
-        //
+        if($request->force != 'true' && $recipecategory->recipes->count()){
+            return response(
+                $request->force,
+                290
+            );
+        }
+
+        $success = $recipecategory->delete();
+
+        if(!$success){
+            abort('422');
+        }
+
+        return response(
+            $this->repository->getAll()
+        );
     }
 }

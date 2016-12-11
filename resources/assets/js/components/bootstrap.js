@@ -24,3 +24,5 @@ require('./grocerylists/single-list');
 require('./grocerylists/list-form');
 
 require('./departments/show-departments');
+
+require('./recipe_categories/all-recipe-categories');

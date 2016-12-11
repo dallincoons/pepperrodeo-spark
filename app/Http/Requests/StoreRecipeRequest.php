@@ -34,10 +34,10 @@ class StoreRecipeRequest extends FormRequest
                 })
             ],
             'directions' => 'required|string',
-            'recipeFields.*.type' => 'required',
-            'recipeFields.*.name' => 'required',
-            'recipeFields.*.item_category_id' => 'required',
-            'recipeFields.*.quantity' => 'required'
+            'recipeFields.*.type' => 'required|string',
+            'recipeFields.*.name' => 'required|string',
+            'recipeFields.*.item_category_id' => 'required|int',
+            'recipeFields.*.quantity' => 'required|numeric'
         ];
     }
 
