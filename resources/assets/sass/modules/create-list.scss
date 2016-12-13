@@ -128,6 +128,17 @@
     border-bottom: 5px solid #acacac;
     color: #3f3f3f;
   }
+
+  .no-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .no-content > h4 {
+    font-weight: 300;
+  }
 }
 
 //Mobile
@@ -260,5 +271,20 @@
     background: #acacac;
     border-bottom: 5px solid #acacac;
     color: #3f3f3f;
+  }
+
+  .no-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .no-content > h4 {
+    font-weight: 300;
+  }
+
+  .no-content > .pr-button {
+    width: 35%;
   }
 }
