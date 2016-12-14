@@ -80,10 +80,14 @@
   }
 
   .darker-remove {
-    color: #ff4b2e;
+    color: rgba(63, 63, 63, .4);
     display: flex;
     flex: 1 1 auto;
     align-content: center;
+  }
+
+  .darker-remove:hover {
+    color: #ff4b2e;
   }
 
   .pr-button {

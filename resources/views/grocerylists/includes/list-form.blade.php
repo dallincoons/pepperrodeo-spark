@@ -34,14 +34,14 @@
         </div>
         <div class="add-wrapper ingredient-input">
             <button type="button" v-on:click="addItem(recipeFields)" class="add-button"><i class="fa fa-plus-circle"></i></button>
-            <button type="button" v-on:click="removeItem(item.id)" class="add-button"><i class="fa fa-close"></i></button>
+            <button type="button" v-on:click="removeItem(item.id)" class="add-button"><i class="fa fa-times-circle-o"></i></button>
         </div>
     </div>
 </div>
 
 <div class="category-wrapper">
     <ul class="category" v-for="(items, groupName) in itemsGrouped">
-        <li class="category-title"><h3>@{{ groupName }}</h3><span v-on:click="removeGroup(groupName)" class="remove-item">X</span></li>
+        <li class="category-title"><h3>@{{ groupName }}</h3><span class="remove-item"><a href="/departments"><i class="fa fa-pencil"></i></a></span></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
                 <div class="list-item-wrapper">
@@ -49,7 +49,7 @@
                     <span class="list-item-added">@{{ item.type }}</span>
                     <span class="list-item-added">@{{ item.name }} </span>
                 </div>
-                <span v-on:click="removeItem(item.id)" class="remove-item list-item-added">X</span>
+                <span v-on:click="removeItem(item.id)" class="remove-item list-item-added"><i class="fa fa-times-circle-o"></i></span>
 
                 <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
                 <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
