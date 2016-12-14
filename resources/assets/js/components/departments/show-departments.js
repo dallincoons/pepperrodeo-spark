@@ -1,4 +1,8 @@
+let categories = require('../mixins/categories');
+
 Vue.component('show-departments', {
+    mixins : [categories],
+
     data    : function () {
         return {
             departments       : PepperRodeo.departments,
@@ -24,7 +28,7 @@ Vue.component('show-departments', {
         sendRemoveRequest(id, force){
             let self = this;
             self.$http.delete('departments/' + id, {params : {force : force}}).then(response => {
-                if(response.status == 290){
+                if(response.status == this.confirmNeededCode){
                     swal({
                             title              : "There are items still associated with this department",
                             text               : "Do you want to delete all associated items?",
