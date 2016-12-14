@@ -16,6 +16,7 @@
              </ul>
         </nav>
         <div class="category-wrapper">
+        @if(count($recipesWithCategories))
             <ul>
                 @foreach($recipesWithCategories as $category => $recipes)
                 <li class="category-title"><h3>{{$category}}</h3></li>
@@ -33,6 +34,13 @@
                 </li>
                 @endforeach
             </ul>
+
+            @else
+                <div class="lists-wrapper no-content">
+                    <h4>Looks like you don't have any recipes yet!</h4>
+                    <a href="/recipe/create" class="pr-button save-button"><i class="fa fa-plus-circle"></i> Add a Recipe</a>
+                </div>
+        @endif
         </div>
 
             <input v-if="showCheckBoxes" v-on:click="deleteRecipes()" type="button" value="Delete" class="pr-btn recipe-list-delete-btn">

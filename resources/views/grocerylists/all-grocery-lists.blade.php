@@ -17,6 +17,7 @@
             </ul>
         </nav>
 
+        @if(count($grocerylists))
         <ul class="lists-wrapper">
             @foreach($grocerylists as $list)
                 <li class="list">
@@ -28,6 +29,15 @@
                 <li></li>
             @endforeach
         </ul>
+
+        @else
+        <div class="lists-wrapper no-content">
+            <h4>Looks like you don't have any lists yet!</h4>
+            <a href="/grocerylist/create" class="pr-button save-button"><i class="fa fa-plus-circle"></i> Create a List</a>
+        </div>
+
+
+        @endif
 
         <input v-if="showCheckBoxes" v-on:click="deleteLists()" type="button" value="Delete" class="pr-btn recipe-list-delete-btn">
     </form>
