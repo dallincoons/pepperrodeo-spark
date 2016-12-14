@@ -1,4 +1,8 @@
+let categories = require('../mixins/categories');
+
 Vue.component('all-recipe-categories', {
+    mixins : [categories],
+
     data    : function () {
         return {
             recipe_categories : PepperRodeo.recipe_categories,
@@ -24,7 +28,7 @@ Vue.component('all-recipe-categories', {
         sendRemoveRequest(id, force){
             let self = this;
             self.$http.delete('recipecategory/' + id, {params : {force : force}}).then(response => {
-                if (response.status == 290) {
+                if (response.status == this.confirmNeededCode) {
                     swal({
                             title              : "There are items still associated with this category",
                             text               : "Do you want to delete all associated items?",

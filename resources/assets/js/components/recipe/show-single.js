@@ -7,7 +7,6 @@ Vue.component('show-single-recipe', {
         }
     },
 
-
     methods : {
 
         addToGroceryList : function(groceryListId){
