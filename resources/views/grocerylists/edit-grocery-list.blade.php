@@ -28,8 +28,8 @@
             </ul>
 
             <div class="add-recipe-buttons">
-                <button v-on:click="setShowRecipes(false)" class="pr-button save-button"><i class="fa fa-chevron-circle-left"></i> Back</button>
-                <button v-on:click="addRecipes(recipesToAdd)" class="pr-button save-button"> Add <i class="fa fa-plus-circle"></i></button>
+                <button v-on:click="setShowRecipes(false)" class="  save-button"><i class="fa fa-chevron-circle-left"></i> Back</button>
+                <button v-on:click="addRecipes(recipesToAdd)" class="  save-button"> Add <i class="fa fa-plus-circle"></i></button>
             </div>
         </div>
     </div>
