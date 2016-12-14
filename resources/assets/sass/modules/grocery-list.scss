@@ -78,6 +78,23 @@
     background: #ff4b2e;
     border-bottom: #d44331 3px solid;
   }
+
+  .darker-remove {
+    color: rgba(63, 63, 63, .4);
+    display: flex;
+    flex: 1 1 auto;
+    align-content: center;
+  }
+
+  .darker-remove:hover {
+    color: #ff4b2e;
+  }
+
+  .pr-button {
+    width: 20%;
+    text-align: center;
+  }
+
 }
 
 //Mobile
@@ -139,6 +156,18 @@
 
   .print-btn {
     display: none;
+  }
+
+  .darker-remove {
+    color: #ff4b2e;
+    display: flex;
+    flex: 1 1 auto;
+    align-content: center;
+  }
+
+  .pr-button {
+    width: 20%;
+    text-align: center;
   }
 
 }

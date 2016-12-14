@@ -83,20 +83,29 @@
   }
 
   .remove-item {
-    flex: .2 .2 auto;
     display: flex;
     justify-content: flex-end;
-    color: #ff4b2e;
+    color: rgba(63, 63, 63, .5);
     font-weight: bold;
-    margin-right: 10px;
+    align-items: center;
   }
 
   .remove-item:hover {
     cursor: pointer;
+    color: #ff4b2e;
   }
-  .category-title > .remove-item {
-    color: rgba(255, 255, 255, .5);
+
+  .darker-remove:first-child {
     margin-right: 20px;
+  }
+
+  .category-title > .remove-item a {
+    color: rgba(63, 63, 63, .5);
+    margin-right: 10px;
+  }
+
+  .category-title > .remove-item a:hover {
+    color: rgba(255, 255, 255, .8);
   }
 
   .item-section {
