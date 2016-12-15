@@ -29,7 +29,7 @@
                     <li>
                         <ul class="list-items">
                             @foreach($list_items as $item)
-                                <li class="list-item"><div class="print-checkbox"></div>{{$item->quantity}} {{$item->type}} {{$item->name}}</li>
+                                <li class="list-item"><div class="print-checkbox"></div>{{$item->quantity}} {{$item->type}} {{$item->name}}<button v-on:click="showEditModal({{$item}})">Edit</button></li>
                             @endforeach
                         </ul>
                     </li>

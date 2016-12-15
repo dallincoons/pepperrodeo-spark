@@ -1,3 +1,6 @@
+import { default as swal2 } from 'sweetalert2'
+
+window.swal2 = swal2;
 
 /*
  |--------------------------------------------------------------------------
