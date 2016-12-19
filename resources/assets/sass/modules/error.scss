@@ -1,0 +1,23 @@
+.error-img-wrapper {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.error-img-wrapper > h3 {
+  font-weight: 300;
+}
+
+.error-link {
+  color: #ff4b2e;
+  font-weight: 500;
+}
+
+.error-link:hover {
+  cursor: pointer;
+  color: rgba(255, 75, 46, .7);
+}
