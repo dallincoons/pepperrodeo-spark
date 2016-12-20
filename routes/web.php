@@ -29,4 +29,8 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::resource('departments', 'DepartmentController');
 
     Route::resource('recipecategory', 'RecipeCategoryController');
+
+    Route::get('contact',function(){
+        return view('contact.contact');
+    });
 });
