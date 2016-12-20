@@ -43,7 +43,7 @@
     </ul>
 
     <h3 class="form-heading">Directions</h3>
-    <p class="recipe-directions">{{$recipe->directions}}</p>
+    <p class="recipe-directions">{!!  nl2br(e($recipe->directions)) !!}</p>
 
 </div>
 </single-recipe>
