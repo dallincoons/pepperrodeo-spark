@@ -105,6 +105,7 @@ class RecipeRepositoryTest extends TestCase
      */
     public function update_and_add_recipe_items()
     {
+        $itemCategory = factory(ItemCategory::class)->create();
         $recipe = factory(Recipe::class)->create();
 
         RecipeRepository::updateRecipeItems($recipe, [
@@ -112,14 +113,14 @@ class RecipeRepositoryTest extends TestCase
                 'id' => '',
                 'quantity' => 1,
                 'type' => str_random(),
-                'item_category_id' => 2,
+                'item_category_id' => $itemCategory->getKey(),
                 'name' => str_random()
             ],
             [
                 'id' => '',
                 'quantity' => 1,
                 'type' => str_random(),
-                'item_category_id' => 2,
+                'item_category_id' => $itemCategory->getKey(),
                 'name' => str_random()
             ],
         ]);
