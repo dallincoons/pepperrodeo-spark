@@ -78,13 +78,15 @@ class ItemCategoryTest extends TestCase
             'item_category_id' => $itemCategory->getKey()
         ]);
 
-        $this->delete('departments/' . $itemCategory->getKey());
+        $itemCategory->items()->save($item);
+
+        $this->delete('departments/' . $itemCategory->getKey(), ['force' => 'false']);
 
         $this->assertNotNull($itemCategory->fresh());
         $this->assertTrue($item->fresh()->exists());
         $this->assertResponseStatus(290);
 
-        $this->delete('departments/' . $itemCategory->getKey(), ['force' => true]);
+        $this->delete('departments/' . $itemCategory->getKey(), ['force' => 'true']);
 
         $this->assertNull($itemCategory->fresh());
         $this->assertNull($item->fresh());
