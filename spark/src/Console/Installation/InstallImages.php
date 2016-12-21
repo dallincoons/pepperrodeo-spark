@@ -39,7 +39,7 @@ class InstallImages
 
         $files = [
             SPARK_STUB_PATH.'/public/favicon.png' => public_path('favicon.png'),
-            SPARK_STUB_PATH.'/public/favicon.ico' => public_path('favicon.ico'),
+            SPARK_STUB_PATH.'/public/favicon.ico' => public_path('PR_favicon.ico'),
             SPARK_STUB_PATH.'/public/img/spark-bg.png' => public_path('img/spark-bg.png'),
             SPARK_STUB_PATH.'/public/img/mono-48px.png' => public_path('img/mono-48px.png'),
             SPARK_STUB_PATH.'/public/img/mono-logo.png' => public_path('img/mono-logo.png'),
