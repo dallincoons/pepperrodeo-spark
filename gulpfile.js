@@ -26,6 +26,8 @@ elixir(function(mix) {
         })
         .copy('node_modules/sweetalert/dist/sweetalert.min.js', 'public/js/sweetalert.min.js')
         .copy('node_modules/sweetalert/dist/sweetalert.css', 'public/css/sweetalert.css')
+        .copy('resources/assets/img/PR_favicon.ico', 'public')
+        .copy('resources/assets/img/favicon.png', 'public')
         .version(['css/app.css']);
 
 });
