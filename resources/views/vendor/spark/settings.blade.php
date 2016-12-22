@@ -38,12 +38,28 @@
                                     </li>
                                 @endif
 
+                            <!-- Departments Link -->
+                                <li role="presentation">
+                                    <a href="/departments" aria-controls="department">
+                                        <i class="fa fa-fw fa-btn fa-pencil"></i>Grocery List Departments
+                                    </a>
+                                </li>
+
+                                <!-- Categories Link -->
+                                <li role="presentation">
+                                    <a href="/recipecategory" aria-controls="recipecategory">
+                                        <i class="fa fa-fw fa-btn fa-pencil"></i>Recipe Categories
+                                    </a>
+                                </li>
+
                                 <!-- Security Link -->
                                 <li role="presentation">
                                     <a href="#security" aria-controls="security" role="tab" data-toggle="tab">
                                         <i class="fa fa-fw fa-btn fa-lock"></i>Security
                                     </a>
                                 </li>
+
+
 
                                 <!-- API Link -->
                                 @if (Spark::usesApi())
