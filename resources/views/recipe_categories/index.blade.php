@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<all-recipe-categories inline-template><div>
-    <ul>
-        <li v-for="category in recipe_categories">@{{category.name}}<span v-on:click="removeCategory(category.id)">X</span></li>
+<all-recipe-categories inline-template><div class="category-wrapper">
+        <h2 class="page-title">My Categories</h2>
+    <ul class="category create-list-wrapper">
+        <li class="list-item" v-for="category in recipe_categories">
+            <div class="list-item-wrapper"> @{{category.name}}</div>
+            <div class="remove-item">
+                <span v-on:click="removeCategory(category.id)" class="darker-remove"><i class="fa fa-times-circle-o"></i></span>
+            </div>
+        </li>
     </ul>
 
-    <button v-on:click="addCategory()">+ Add Department</button>
+        <div class="centering-buttons">
+            <button v-on:click="addCategory()" class="pr-button save-button"><i class="fa fa-plus-circle"></i> Add Category</button>
+        </div>
 </div></all-recipe-categories>
 @endsection
