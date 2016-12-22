@@ -41,7 +41,7 @@
 
 <div class="category-wrapper">
     <ul class="category" v-for="(items, groupName) in itemsGrouped">
-        <li class="category-title"><h3>@{{ groupName }}</h3><span class="remove-item"><a href="/departments"><i class="fa fa-pencil"></i></a></span></li>
+        <li class="category-title"><h3>@{{ groupName }}</h3></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
                 <div class="list-item-wrapper">
