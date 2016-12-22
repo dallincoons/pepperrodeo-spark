@@ -8,7 +8,6 @@
         <li class="list-item" v-for="department in departments">
             <div class="list-item-wrapper">@{{department.name}}</div>
             <div class="remove-item">
-                <span class="darker-remove"><i class="fa fa-pencil"></i></span>
                 <span v-on:click="removeDepartment(department.id)" class="darker-remove"><i class="fa fa-times-circle-o"></i></span>
             </div>
 
