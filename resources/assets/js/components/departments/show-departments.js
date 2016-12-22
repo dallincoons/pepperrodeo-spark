@@ -52,14 +52,15 @@ Vue.component('show-departments', {
 
             swal({
                     title               : "Add a department",
-                    text                : "Do eeeet",
+                    text                : "Organize your grocery list",
                     type                : "input",
                     showCancelButton    : true,
                     closeOnConfirm      : true,
                     animation           : "slide-from-top",
                     confirmButtonText   : "Save",
-                    inputPlaceholder    : "Write something",
+                    inputPlaceholder    : "Pharmacy",
                     showLoaderOnConfirm : true,
+                    confirmButtonColor: "#ff4b2e",
                 },
                 function (inputValue) {
                     self.$http.post('departments', JSON.stringify({
