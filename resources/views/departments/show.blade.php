@@ -4,9 +4,9 @@
 <show-departments inline-template><div class="category-wrapper">
 
     <h2 class="page-title">My Departments</h2>
-    <ul class="category create-list-wrapper ">
+    <ul class="category create-list-wrapper">
         <li class="list-item" v-for="department in departments">
-            <div class="list-item-wrapper">@{{department.name}}</div>
+            <div class="list-item-wrapper"> @{{department.name}}</div>
             <div class="remove-item">
                 <span v-on:click="removeDepartment(department.id)" class="darker-remove"><i class="fa fa-times-circle-o"></i></span>
             </div>

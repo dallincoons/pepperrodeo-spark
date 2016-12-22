@@ -51,15 +51,16 @@ Vue.component('all-recipe-categories', {
             let self = this;
 
             swal({
-                    title               : "Add a department",
-                    text                : "Do eeeet",
+                    title               : "Add a Category",
+                    text                : "Organize your recipes",
                     type                : "input",
                     showCancelButton    : true,
                     closeOnConfirm      : true,
                     animation           : "slide-from-top",
                     confirmButtonText   : "Save",
-                    inputPlaceholder    : "Write something",
+                    inputPlaceholder    : "Party Favorites",
                     showLoaderOnConfirm : true,
+                    confirmButtonColor: "#ff4b2e",
                 },
                 function (inputValue) {
                     self.$http.post('recipecategory', JSON.stringify({
