@@ -79,24 +79,6 @@ class GroceryListController extends Controller
      */
     public function show(GroceryList $grocerylist, Request $request)
     {
-        if(!$request->get('sortBy') || $request->get('sortBy') == 'item') {
-            $grocerylist['items'] = $grocerylist->present()->items()->byCategory();
-        }
-
-        if($request->get('sortBy') == 'recipe'){
-            $grocerylist['items'] = $grocerylist->present()->items()->byRecipe();
-        }
-
-        return view('grocerylists.single-grocery-list', compact('grocerylist'));
-    }
-
-    /**
-     * @param \App\Entities\GroceryList $grocerylist
-     * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(GroceryList $grocerylist, Request $request)
-    {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
         \JavaScript::put(['items' =>  $grocerylist->items]);
@@ -105,7 +87,17 @@ class GroceryListController extends Controller
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
         \JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
 
-        return view('grocerylists.edit-grocery-list', compact('grocerylist'));
+        return view('grocerylists.show-grocery-list', compact('grocerylist'));
+    }
+
+    /**
+     * @param \App\Entities\GroceryList $grocerylist
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit()
+    {
+        abort(404);
     }
 
     /**
