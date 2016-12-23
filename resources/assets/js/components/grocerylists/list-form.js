@@ -18,6 +18,7 @@ Vue.component('list-form', {
             newItemCategoryId : '',
             newItemId         : 0,
             groupByValue      : 'category',
+            editing           : false
         }
     },
     computed : {
@@ -114,6 +115,9 @@ Vue.component('list-form', {
             this.itemsGrouped[groupName].forEach(function(item){
                 self.removeItem(item.id);
             });
+        },
+        toggleEdit(){
+            this.editing = !this.editing;
         }
     }
 });

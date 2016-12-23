@@ -1,12 +1,14 @@
-<div class="title-section">
-    <label for="title" class="form-heading">Title*</label>
-    <input type="text" placeholder="September Grocery List" v-model="title" id="title" name="title" required data-parsley-errors-messages-disabled>
+<div v-show="editing">
+    <div class="title-section">
+        <label for="title" class="form-heading">Title*</label>
+        <input type="text" placeholder="September Grocery List" v-model="title" id="title" name="title" required data-parsley-errors-messages-disabled>
 
+    </div>
+
+    <a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
+
+    <a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
 </div>
-
-<a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
-
-<a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
 <div class="item-section" v-if="addAnItem">
     <div class="items-inputs">
         <div class="ingredient-input">
@@ -61,8 +63,9 @@
     </ul>
 </div>
 
-<div class="centering-buttons">
+<div class="centering-buttons" v-show="editing">
     <button type="button" v-on:click="submitListForm()" class="save-button  " :disabled="!items.length">Save List</button>
+    <button type="button" v-on:click="editing = false">Cancel</button>
 </div>
 
 @if (count($errors) > 0)
