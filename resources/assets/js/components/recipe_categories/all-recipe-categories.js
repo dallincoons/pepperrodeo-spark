@@ -27,7 +27,7 @@ Vue.component('all-recipe-categories', {
         },
         sendRemoveRequest(id, force){
             let self = this;
-            self.$http.delete('recipecategory/' + id, {params : {force : force}}).then(response => {
+            self.$http.delete('/recipe/categories/' + id, {params : {force : force}}).then(response => {
                 if (response.status == this.confirmNeededCode) {
                     swal({
                             title              : "There are items still associated with this category",
@@ -60,10 +60,10 @@ Vue.component('all-recipe-categories', {
                     confirmButtonText   : "Save",
                     inputPlaceholder    : "Party Favorites",
                     showLoaderOnConfirm : true,
-                    confirmButtonColor: "#ff4b2e",
+                    confirmButtonColor  : "#ff4b2e",
                 },
                 function (inputValue) {
-                    self.$http.post('recipecategory', JSON.stringify({
+                    self.$http.post('/recipe/categories', JSON.stringify({
                         'name' : inputValue
                     })).then(response => {
                         self.recipe_categories = response.data;

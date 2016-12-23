@@ -21,7 +21,7 @@ class RecipeCategoryTest extends TestCase
     {
         $recipeCategory = factory(RecipeCategory::class)->make();
 
-        $this->post('recipecategory', $recipeCategory->toArray());
+        $this->post('recipe/categories', $recipeCategory->toArray());
 
         $this->seeInDatabase('recipe_categories', ['name' => $recipeCategory->name]);
     }
@@ -35,7 +35,7 @@ class RecipeCategoryTest extends TestCase
     {
         $recipeCategory = factory(RecipeCategory::class)->create();
 
-        $this->delete('recipecategory/' . $recipeCategory->getKey());
+        $this->delete('recipe/categories/' . $recipeCategory->getKey());
 
         $this->dontSeeInDatabase('recipe_categories', ['name' => $recipeCategory->name]);
     }
@@ -47,7 +47,7 @@ class RecipeCategoryTest extends TestCase
      */
     public function fails_when_deleting_non_existant_recipe_category()
     {
-        $this->delete('recipecategory/1');
+        $this->delete('recipe/categories/1');
 
         $this->assertResponseStatus(404);
     }
@@ -62,7 +62,7 @@ class RecipeCategoryTest extends TestCase
         $recipeCategory = factory(RecipeCategory::class)->create();
 
         $alteredName = $recipeCategory->name . 'altered';
-        $this->patch('recipecategory/' . $recipeCategory->getKey(), ['name' => $alteredName]);
+        $this->patch('recipe/categories/' . $recipeCategory->getKey(), ['name' => $alteredName]);
 
         $this->assertEquals($alteredName, $recipeCategory->fresh()->name);
     }
@@ -80,13 +80,13 @@ class RecipeCategoryTest extends TestCase
             'recipe_category_id' => $recipeCategory->getKey()
         ]);
 
-        $this->delete('recipecategory/' . $recipeCategory->getKey());
+        $this->delete('recipe/categories/' . $recipeCategory->getKey());
 
         $this->assertNotNull($recipeCategory->fresh());
         $this->assertTrue($recipe->fresh()->exists());
         $this->assertResponseStatus(290);
 
-        $this->delete('recipecategory/' . $recipeCategory->getKey(), ['force' => 'true']);
+        $this->delete('recipe/categories/' . $recipeCategory->getKey(), ['force' => 'true']);
 
         $this->assertNull($recipeCategory->fresh());
         $this->assertNull($recipe->fresh());
