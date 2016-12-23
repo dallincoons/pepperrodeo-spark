@@ -47,7 +47,7 @@
 
                                 <!-- Categories Link -->
                                 <li role="presentation">
-                                    <a href="/recipecategory" aria-controls="recipecategory">
+                                    <a href="/recipe/categories" aria-controls="recipecategory">
                                         <i class="fa fa-fw fa-btn fa-pencil"></i>Recipe Categories
                                     </a>
                                 </li>

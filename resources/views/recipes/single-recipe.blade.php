@@ -4,7 +4,7 @@
 <single-recipe inline-template v-cloak>
 <div class="recipe-wrapper">
     <h2 class="page-title">{{$recipe->title}}</h2>
-    <h6 class="recipe-cat">Category: <a href="/recipecategory/{{$recipe->category->getKey()}}">{{$recipe->category->name}}</a></h6>
+    <h6 class="recipe-cat">Category: <a href="/recipe/categories/{{$recipe->category->getKey()}}">{{$recipe->category->name}}</a></h6>
     <nav class="mini-nav">
         <ul class="mini-nav-options">
             <li><a v-on:click="toggleShowListSelection()"><i class="fa fa-cart-plus"></i></a></li>
