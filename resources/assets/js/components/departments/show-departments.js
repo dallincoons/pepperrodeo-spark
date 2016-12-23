@@ -63,6 +63,10 @@ Vue.component('show-departments', {
                     confirmButtonColor: "#ff4b2e",
                 },
                 function (inputValue) {
+                    if( inputValue === false) {
+                        return;
+                    }
+
                     self.$http.post('departments', JSON.stringify({
                         'name' : inputValue
                     })).then(response => {
