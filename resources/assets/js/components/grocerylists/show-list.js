@@ -1,6 +1,6 @@
 let list_form = require('../mixins/list-form.js');
 
-Vue.component('single-list', {
+Vue.component('show-list', {
     mixins : [list_form],
     data() {
         return {

@@ -36,7 +36,7 @@
         </div>
         <div class="add-wrapper ingredient-input">
             <button type="button" v-on:click="addItem(recipeFields)" class="add-button"><i class="fa fa-plus-circle"></i></button>
-            <button type="button" v-on:click="removeItem(item.id)" class="add-button"><i class="fa fa-times-circle-o"></i></button>
+            <button type="button" v-on:click="addAnItem = false" class="add-button"><i class="fa fa-times-circle-o"></i></button>
         </div>
     </div>
 </div>
@@ -65,7 +65,6 @@
 
 <div class="centering-buttons" v-show="editing">
     <button type="button" v-on:click="submitListForm()" class="save-button  " :disabled="!items.length">Save List</button>
-    <button type="button" v-on:click="editing = false">Cancel</button>
 </div>
 
 @if (count($errors) > 0)

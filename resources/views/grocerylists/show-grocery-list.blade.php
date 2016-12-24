@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<single-list inline-template v-cloak>
+<show-list inline-template v-cloak>
 <div class="create-list-wrapper">
     <div class="create-list" v-if="!showRecipes">
             <h2 class="page-title">{{$grocerylist->title}} <a href="#"><i v-on:click.prevent="toggleEdit()" class="fa fa-pencil"></i></a></h2>
@@ -34,5 +34,5 @@
         </div>
     </div>
 </div>
-</single-list>
+</show-list>
 @endsection

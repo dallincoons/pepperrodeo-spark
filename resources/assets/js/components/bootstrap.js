@@ -22,7 +22,6 @@ require('./recipe/edit-recipe');
 require('./grocerylists/all-grocery-lists');
 require('./grocerylists/show-list');
 require('./grocerylists/create-list');
-require('./grocerylists/list-form');
 
 require('./departments/show-departments');
 
