@@ -52,6 +52,30 @@ class GroceryListControllerTest extends TestCase
             ->see($firstlist->title);
     }
 
+    /**
+     * @group grocery-list-tests
+     *
+     * @test
+     */
+    public function make_update_request()
+    {
+        $grocerylist = factory(GroceryList::class)->create();
+
+        //items should be array
+        $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
+            'items' => 'notarray',
+        ]);
+
+        $this->assertResponseStatus(422);
+
+        //title should be string
+        $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
+            'title' => []
+        ]);
+
+        $this->assertResponseStatus(422);
+    }
+
     private function buildSampleGroceryList()
     {
         $this->user->recipes()->save(factory(GroceryList::class)->make());

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\GroceryList;
 use App\Http\Requests\StoreRecipeRequest;
+use App\Http\Requests\UpdateRecipeRequest;
 use App\Repositories\RecipeRepository;
 use Illuminate\Http\Request;
 use App\Entities\Recipe;
@@ -106,7 +107,7 @@ class RecipeController extends Controller
      * @param  Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
         $category = explode(',', $request->category);
         RecipeRepository::updateRecipe($recipe, [

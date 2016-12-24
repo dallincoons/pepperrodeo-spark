@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGroceryListRequest;
+use App\Http\Requests\UpdateGroceryListRequest;
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\Entities\GroceryList;
@@ -77,7 +78,7 @@ class GroceryListController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(GroceryList $grocerylist, Request $request)
+    public function show(GroceryList $grocerylist)
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
@@ -105,7 +106,7 @@ class GroceryListController extends Controller
      * @param \App\Entities\GroceryList $grocerylist
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, GroceryList $grocerylist)
+    public function update(UpdateGroceryListRequest $request, GroceryList $grocerylist)
     {
        GroceryListRepository::update([
         'items' => $request->items,
