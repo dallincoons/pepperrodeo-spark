@@ -11,6 +11,23 @@ Vue.component('all-grocery-lists', {
 
     methods : {
 
+        deleteLists : function () {
+
+            swal({
+                    title              : "",
+                    text               : this.deleteConfirmMessage(),
+                    showCancelButton   : true,
+                    confirmButtonColor : "#DD6B55",
+                    confirmButtonText  : "Yes",
+                    closeOnConfirm     : true,
+                    html               : true
+                },
+                function () {
+                    document.getElementById("deleteForm").submit();
+                });
+
+        },
+
         deleteConfirmMessage(){
 
             let itemNames = '<p>Are you sure you want to delete these lists?</p>';
