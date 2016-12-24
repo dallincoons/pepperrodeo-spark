@@ -20,7 +20,8 @@ require('./recipe/edit-recipe');
 
 /* Grocery Lists */
 require('./grocerylists/all-grocery-lists');
-require('./grocerylists/single-list');
+require('./grocerylists/show-list');
+require('./grocerylists/create-list');
 require('./grocerylists/list-form');
 
 require('./departments/show-departments');
