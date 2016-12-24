@@ -10,9 +10,6 @@ module.exports = {
     created(){
         this.showCheckBoxes = (typeof PepperRodeo !== 'undefined' && PepperRodeo.showCheckBoxes == true);
     },
-    toggleShowCheckBoxes(){
-        this.showCheckBoxes = !this.showCheckBoxes;
-    },
 
     methods : {
 
@@ -30,6 +27,9 @@ module.exports = {
                 function () {
                     document.getElementById("deleteForm").submit();
                 });
+        },
+        toggleShowCheckBoxes(){
+            this.showCheckBoxes = !this.showCheckBoxes;
         },
     },
 };
