@@ -60,6 +60,30 @@ class RecipeControllerTest extends TestCase
      * @group recipe-controller
      * @test
      */
+    public function make_recipe_update_request()
+    {
+        $recipe = factory(Recipe::class)->create();
+
+        //title should be string
+        $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
+            'title' => [],
+            'category' => []
+        ]);
+
+        $this->assertResponseStatus(422);
+
+        //category is required
+        $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
+            'title' => 'fake title',
+        ]);
+
+        $this->assertResponseStatus(422);
+    }
+
+    /**
+     * @group recipe-controller
+     * @test
+     */
     public function click_link_to_add_recipe_to_grocery_list()
     {
         $firstRecipe = Recipe::first();
