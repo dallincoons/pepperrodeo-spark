@@ -24,8 +24,9 @@ class UpdateRecipeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'string|required',
-            'category' => 'array|required'
+            'title' => 'string',
+            'category' => 'string',
+            'directions' => 'string',
         ];
     }
 }
