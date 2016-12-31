@@ -24,12 +24,10 @@ class SingleRecipeTest extends TestCase
     }
 
     /**
-     * A basic test example.
-     *
      * @group single-recipe-view
      * @return void
      */
-    public function testExample()
+    public function see_recipe_on_all_recipes_page()
     {
         $recipe = $this->exampleRecipeWithItems();
 

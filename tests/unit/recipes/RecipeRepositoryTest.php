@@ -187,6 +187,31 @@ class RecipeRepositoryTest extends TestCase
      * @group recipe-repository-tests
      * @test
      */
+    public function create_recipe_and_enforce_at_least_one_item()
+    {
+        $recipeData = [
+            'title' => 'poop',
+            'directions' => 'preheat',
+            'category' => ['id' => -1, 'name' => 'foocategory'],
+            'category_name' => 'test',
+            'recipeFields' => []
+        ];
+
+        try {
+            RecipeRepository::store($recipeData);
+        } catch (Exception $e) {
+            $this->assertContains('Recipe must contain at least one item', $e->getMessage());
+            return;
+        }
+
+        $this->fail('Recipe was allowed to be created with no items');
+    }
+
+    /**
+     * @group repository-tests
+     * @group recipe-repository-tests
+     * @test
+     */
     public function creates_recipe_using_new_item_category()
     {
         $categoryName = 'poop';

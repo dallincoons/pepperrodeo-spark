@@ -52,16 +52,20 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipeRequest $request)
     {
-        $category = explode(',', $request->category);
-        $recipe = RecipeRepository::store([
-            'title' => $request->title,
-            'directions' => $request->directions,
-            'category' => [
-                'id' => $category[0],
-                'name' => $category[1]
-            ],
-            'recipeFields' => $request->recipeFields ?: []
-        ]);
+        try {
+            $category = explode(',', $request->category);
+            $recipe   = RecipeRepository::store([
+                'title' => $request->title,
+                'directions' => $request->directions,
+                'category' => [
+                    'id' => $category[0],
+                    'name' => $category[1]
+                ],
+                'recipeFields' => $request->recipeFields ?: []
+            ]);
+        }catch(\Exception $e){
+            abort(422, $e->getMessage());
+        }
 
         return redirect('/recipe/' . $recipe->getKey());
     }

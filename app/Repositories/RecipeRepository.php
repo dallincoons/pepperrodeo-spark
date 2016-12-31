@@ -75,6 +75,10 @@ class RecipeRepository
 
     public static function store($recipeData)
     {
+        if(!count($recipeData['recipeFields'])){
+            throw new \Exception('Recipe must contain at least one item');
+        }
+
         $categoryData = $recipeData['category'];
         if(!$category = RecipeCategory::find($categoryData['id'])){
             $category = RecipeCategory::create([

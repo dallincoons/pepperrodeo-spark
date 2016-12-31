@@ -72,9 +72,9 @@ class RecipeControllerTest extends TestCase
 
         $this->assertResponseStatus(422);
 
-        //category is required
+        //category should be string
         $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
-            'title' => 'fake title',
+            'category' => [],
         ]);
 
         $this->assertResponseStatus(422);
