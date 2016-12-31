@@ -1,18 +1,18 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Entities\Recipe;
+
 use App\Entities\GroceryList;
 use App\Entities\Item;
+use App\Entities\Recipe;
+use App\Entities\RecipeCategory;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class RecipeControllerTest extends TestCase
+class RecipesTest extends TestCase
 {
-    use DatabaseTransactions, DatabaseMigrations;
-    use testHelpers;
+    use DatabaseTransactions, DatabaseMigrations, testHelpers;
 
     protected $Recipes;
-    protected $user;
 
     public function setUp()
     {
@@ -23,7 +23,7 @@ class RecipeControllerTest extends TestCase
     }
 
     /**
-     * @group recipe-controller
+     * @group recipe-tests
      * @test
      */
     public function views_recipe_dashboard_and_views_links_for_recipes()
@@ -34,12 +34,28 @@ class RecipeControllerTest extends TestCase
         $lastRecipe = $this->Recipes->last();
 
         $this->visit('recipe')
-             ->see($firstRecipe->title)
-             ->see($lastRecipe->title);
+            ->see($firstRecipe->title)
+            ->see($lastRecipe->title);
     }
 
     /**
-     * @group recipe-controller
+     * @group recipe-tests
+     * @return void
+     *
+     * @test
+     */
+    public function see_recipe_on_single_recipe_page()
+    {
+        $this->buildSampleRecipe();
+        $recipe = $this->Recipes->first();
+
+        $this->visit('/recipe/' . $recipe->getKey())
+            ->see($recipe->title)
+            ->see($recipe->items()->first()->name);
+    }
+
+    /**
+     * @group recipe-tests
      * @test
      */
     public function click_recipe_link_and_visit_individual_recipe_page()
@@ -57,7 +73,26 @@ class RecipeControllerTest extends TestCase
     }
 
     /**
-     * @group recipe-controller
+     * @group recipe-tests
+     * @test
+     */
+    public function create_recipe_with_no_items_fails()
+    {
+        $recipe = factory(Recipe::class)->make();
+        $category = RecipeCategory::find($recipe->recipe_category_id);
+
+        $this->post('recipe', $recipe->toArray() + [
+                'category' => (string)$category->id . ',' . $category->name,
+                'recipeFields' => [
+                    []
+                ]
+        ]);
+
+        $this->assertResponseStatus(302);
+    }
+
+    /**
+     * @group recipe-tests
      * @test
      */
     public function make_recipe_update_request()
@@ -67,7 +102,6 @@ class RecipeControllerTest extends TestCase
         //title should be string
         $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
             'title' => [],
-            'category' => []
         ]);
 
         $this->assertResponseStatus(422);
@@ -78,20 +112,6 @@ class RecipeControllerTest extends TestCase
         ]);
 
         $this->assertResponseStatus(422);
-    }
-
-    /**
-     * @group recipe-controller
-     * @test
-     */
-    public function click_link_to_add_recipe_to_grocery_list()
-    {
-        $firstRecipe = Recipe::first();
-
-//        $this->visit('recipe/' . $firstRecipe->getKey())
-//            ->see('Add to Grocery List')
-//            ->click('Add to Grocery List')
-//            ->see('Grocery Lists');
     }
 
     private function buildSampleRecipe()
