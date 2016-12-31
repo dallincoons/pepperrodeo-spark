@@ -128,4 +128,19 @@ class RecipesTest extends TestCase
         $grocerylists->first()->recipes()->saveMany($this->Recipes);
 
     }
+
+    /**
+     * @group recipe-tests
+     *
+     * @test
+     */
+    public function adds_recipe_to_grocery_list()
+    {
+        $recipe = factory(Recipe::class)->create();
+        $list = factory(GroceryList::class)->create();
+
+        $this->json('POST', '/grocerylist/' . $list->getKey() .'/add/' . $recipe->getKey());
+
+        $this->assertResponseOk();
+    }
 }

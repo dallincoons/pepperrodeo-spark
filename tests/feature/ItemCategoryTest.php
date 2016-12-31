@@ -15,6 +15,22 @@ class ItemCategoryTest extends TestCase
      *
      * @test
      */
+    public function categories_can_be_seen()
+    {
+        $category1 = factory(ItemCategory::class)->create();
+        $category2 = factory(ItemCategory::class)->create();
+
+        $this->visit('/departments');
+
+        $this->see($category1->name);
+        $this->see($category2->name);
+    }
+
+    /**
+     * @group item-category-tests
+     *
+     * @test
+     */
     public function add_a_new_item_category()
     {
         $itemCategory = factory(ItemCategory::class)->make();
