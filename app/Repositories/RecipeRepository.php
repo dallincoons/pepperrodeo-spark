@@ -92,7 +92,6 @@ class RecipeRepository
             'directions' => $recipeData['directions'],
             'recipe_category_id' => $category->getKey()
         ]);
-
         $recipe->category()->associate($category->getKey());
         foreach($recipeData['recipeFields'] as $itemJson)
         {
@@ -108,9 +107,7 @@ class RecipeRepository
             $item = Item::create($itemJson);
 
             $recipe->items()->save($item);
-
         }
-
         $recipe->save();
 
         return $recipe;

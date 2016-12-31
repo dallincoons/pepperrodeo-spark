@@ -3,6 +3,7 @@
 
 use App\Entities\GroceryList;
 use App\Entities\Item;
+use App\Entities\ItemCategory;
 use App\Entities\Recipe;
 use App\Entities\RecipeCategory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -20,6 +21,32 @@ class RecipesTest extends TestCase
 
         $this->signIn();
 
+    }
+
+    /**
+     * @group recipe-tests
+     * @test
+     */
+    public function create_recipe_with_existing_category()
+    {
+        $this->disableExceptionHandling();
+        $recipe = factory(Recipe::class)->make();
+        $category = RecipeCategory::find($recipe->recipe_category_id);
+        $itemCategory = factory(ItemCategory::class)->create();
+
+        $this->post('recipe', $recipe->toArray() + [
+                'category' => (string)$category->id . ',' . $category->name,
+                'recipeFields' => [
+                    [
+                        'type' => 'test_type',
+                        'name' => 'test_name',
+                        'item_category_id' => $itemCategory->getKey(),
+                        'quantity' => 2.0
+                    ]
+                ]
+            ]);
+
+        $this->assertResponseStatus(302);
     }
 
     /**
