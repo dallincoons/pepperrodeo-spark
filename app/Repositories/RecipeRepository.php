@@ -91,22 +91,8 @@ class RecipeRepository
             'recipe_category_id' => $category->getKey()
         ]);
         $recipe->category()->associate($category->getKey());
-        foreach($recipeData['recipeFields'] as $itemJson)
-        {
-            if($itemJson['item_category_id'] < 0){
-                if(!$itemCategory = ItemCategory::where('name', $itemJson['item_category_name'])->first()){
-                    $itemCategory = ItemCategory::create([
-                        'user_id' => \Auth::user()->getKey(),
-                        'name'    => $itemJson['item_category_name']
-                    ]);
-                }
-                $itemJson['item_category_id'] = $itemCategory->getKey();
-            };
-            $item = Item::create($itemJson);
 
-            $recipe->items()->save($item);
-        }
-        $recipe->save();
+        $recipe->populateItems(data_get($recipeData, 'recipeFields'))->save();
 
         return $recipe;
     }

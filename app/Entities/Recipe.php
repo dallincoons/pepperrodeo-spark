@@ -38,4 +38,24 @@ class Recipe extends Model
     {
         return $this->belongsToMany(GroceryList::class);
     }
+
+    public function populateItems(array $items)
+    {
+        foreach($items as $itemJson)
+        {
+            if(data_get($itemJson, 'item_category_id') < 0){
+                if(!$itemCategory = ItemCategory::where('name', data_get($itemJson, 'item_category_name'))->first()){
+                    $itemCategory = ItemCategory::create([
+                        'user_id' => \Auth::user()->getKey(),
+                        'name'    => data_get($itemJson, 'item_category_name')
+                    ]);
+                }
+                $itemJson['item_category_id'] = $itemCategory->getKey();
+            };
+            $item = Item::create($itemJson);
+
+            $this->items()->save($item);
+        }
+        return $this;
+    }
 }
