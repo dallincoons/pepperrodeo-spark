@@ -18,4 +18,11 @@ class RecipeCategory extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function populate($data)
+    {
+        $this->user_id = \Auth::user()->getKey();
+        $this->name = data_get($data, 'category.name');
+        return $this;
+    }
 }

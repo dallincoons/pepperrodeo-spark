@@ -78,14 +78,12 @@ class RecipeRepository
         if(!count($recipeData['recipeFields'])){
             throw new \Exception('Recipe must contain at least one item');
         }
-
         $categoryData = $recipeData['category'];
-        if(!$category = RecipeCategory::find($categoryData['id'])){
-            $category = RecipeCategory::create([
-                'user_id' => \Auth::user()->getKey(),
-                'name' => $categoryData['name']
-            ]);
+        $category = RecipeCategory::findOrNew($categoryData['id']);
+        if(!$category->exists()){
+            $category->populate($recipeData)->save();
         }
+
         $recipe = Recipe::create([
             'user_id' => \Auth::user()->getKey(),
             'title' => $recipeData['title'],
