@@ -5,7 +5,7 @@ namespace App\Entities;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemCategory extends Model
+class Department extends Model
 {
     protected $fillable = ['name', 'user_id'];
 

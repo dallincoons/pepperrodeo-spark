@@ -2,7 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Entities\ItemCategory;
+use App\Entities\Department;
 use App\Entities\RecipeCategory;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,8 +20,8 @@ class ComposerServiceProvider extends ServiceProvider
                          'grocerylists.create-grocery-list',
                          'grocerylists.show-grocery-list'
                          ], function($view){
-            $itemCategories = ItemCategory::all();
-            $view->with('itemCategories', $itemCategories);
+            $departments = Department::all();
+            $view->with('departments', $departments);
         });
 
         \View::composer(['recipes.show-all-recipes'], function($view){

@@ -28,7 +28,7 @@ class StoreGroceryListRequest extends FormRequest
             'items'                    => 'required|array',
             'items.*.quantity'         => 'required',
             'items.*.name'             => 'required|string',
-            'items.*.item_category_id' => 'required|integer',
+            'items.*.department_id' => 'required|integer',
         ];
     }
 
@@ -36,7 +36,7 @@ class StoreGroceryListRequest extends FormRequest
     {
         return [
             'items.*.name.required' => 'Item name is missing',
-            'items.*.item_category_id.required' => 'Item category is missing',
+            'items.*.department_id.required' => 'Item category is missing',
             'items.*.quantity.required' => 'Item quantity is missing',
         ];
     }

@@ -13,7 +13,8 @@
         "laravel/cashier": "~7.0",
         "laravel/spark": "*@dev",
         "laracasts/utilities": "~2.0",
-        "laravelcollective/html": "^5.3.0"
+        "laravelcollective/html": "^5.3.0",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

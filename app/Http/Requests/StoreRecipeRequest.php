@@ -36,7 +36,7 @@ class StoreRecipeRequest extends FormRequest
             'directions' => 'required|string',
             'recipeFields.*.type' => 'required|string',
             'recipeFields.*.name' => 'required|string',
-            'recipeFields.*.item_category_id' => 'required|int',
+            'recipeFields.*.department_id' => 'required|int',
             'recipeFields.*.quantity' => 'required|numeric'
         ];
     }
@@ -46,7 +46,7 @@ class StoreRecipeRequest extends FormRequest
         return [
             'recipeFields.*.type.required' => 'Item type is missing',
             'recipeFields.*.name.required' => 'Item name is missing',
-            'recipeFields.*.item_category_id.required' => 'Item category is missing',
+            'recipeFields.*.department_id.required' => 'Item category is missing',
             'recipeFields.*.quantity.required' => 'Item quantity is missing',
         ];
     }

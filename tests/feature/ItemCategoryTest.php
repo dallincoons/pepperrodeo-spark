@@ -1,5 +1,6 @@
 <?php
 
+use App\Entities\Department;
 use App\Entities\Item;
 use App\Entities\ItemCategory;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -17,8 +18,8 @@ class ItemCategoryTest extends TestCase
      */
     public function categories_can_be_seen()
     {
-        $category1 = factory(ItemCategory::class)->create();
-        $category2 = factory(ItemCategory::class)->create();
+        $category1 = factory(Department::class)->create();
+        $category2 = factory(Department::class)->create();
 
         $this->visit('/departments');
 
@@ -33,11 +34,11 @@ class ItemCategoryTest extends TestCase
      */
     public function add_a_new_item_category()
     {
-        $itemCategory = factory(ItemCategory::class)->make();
+        $department = factory(Department::class)->make();
 
-        $this->post('departments', $itemCategory->toArray());
+        $this->post('departments', $department->toArray());
 
-        $this->seeInDatabase('item_categories', ['name' => $itemCategory->name]);
+        $this->seeInDatabase('departments', ['name' => $department->name]);
     }
 
     /**
@@ -47,11 +48,11 @@ class ItemCategoryTest extends TestCase
      */
     public function can_delete_a_new_item_category()
     {
-        $itemCategory = factory(ItemCategory::class)->create();
+        $itemCategory = factory(Department::class)->create();
 
         $this->delete('departments/' . $itemCategory->getKey());
 
-        $this->dontSeeInDatabase('item_categories', ['name' => $itemCategory->name]);
+        $this->dontSeeInDatabase('departments', ['name' => $itemCategory->name]);
     }
 
     /**
@@ -73,7 +74,7 @@ class ItemCategoryTest extends TestCase
      */
     public function can_edit_item_category()
     {
-        $itemCategory = factory(ItemCategory::class)->create();
+        $itemCategory = factory(Department::class)->create();
 
         $alteredName = $itemCategory->name . 'altered';
         $this->patch('departments/' . $itemCategory->getKey(), ['name' => $alteredName]);
@@ -88,10 +89,10 @@ class ItemCategoryTest extends TestCase
      */
     public function delete_item_category_with_associated_items()
     {
-        $itemCategory = factory(ItemCategory::class)->create();
+        $itemCategory = factory(Department::class)->create();
 
         $item = factory(Item::class)->create([
-            'item_category_id' => $itemCategory->getKey()
+            'department_id' => $itemCategory->getKey()
         ]);
 
         $itemCategory->items()->save($item);

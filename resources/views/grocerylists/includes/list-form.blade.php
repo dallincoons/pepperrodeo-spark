@@ -28,9 +28,9 @@
 
         <div class="ingredient-input">
             <label for="category" class="sub-heading dept-label">Department</label>
-            <select name="category" v-model="newItemCategoryId">
-                @foreach($itemCategories as $category)
-                    <option value="{{ $category->id }}">{{$category->name}}</option>
+            <select name="category" v-model="newDepartmentId">
+                @foreach($departments as $departments)
+                    <option value="{{ $departments->id }}">{{$departments->name}}</option>
                 @endforeach
             </select>
         </div>

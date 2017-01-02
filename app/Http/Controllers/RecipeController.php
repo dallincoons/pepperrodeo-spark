@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Entities\GroceryList;
-use App\Entities\RecipeCategory;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Repositories\RecipeRepository;
@@ -40,7 +39,7 @@ class RecipeController extends Controller
         $categories = \Auth::user()->recipeCategories()->get();
 
         \JavaScript::put(['categories' => $categories->toArray()]);
-        \JavaScript::put(['itemCategories' => \Auth::user()->itemCategories->toArray()]);
+        \JavaScript::put(['departments' => \Auth::user()->departments->toArray()]);
 
         return view('recipes.create-recipe', compact('categories'));
     }
@@ -98,7 +97,7 @@ class RecipeController extends Controller
         $categories = \Auth::user()->recipeCategories()->get();
 
         \JavaScript::put(['categories' => $categories->toArray()]);
-        \JavaScript::put(['itemCategories' => \Auth::user()->itemCategories->toArray()]);
+        \JavaScript::put(['departments' => \Auth::user()->departments->toArray()]);
         \JavaScript::put(['selectedCategory' => [$recipe->category->getKey(), $recipe->category->name]]);
         \JavaScript::put(['recipeItems' => $recipe->items->toArray()]);
 
@@ -106,7 +105,6 @@ class RecipeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Recipe  $recipe

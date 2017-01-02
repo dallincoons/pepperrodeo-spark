@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Entities\Department;
 use App\Entities\GroceryList;
 use App\Entities\Item;
 use App\Entities\ItemCategory;
@@ -32,7 +33,7 @@ class RecipesTest extends TestCase
         $this->disableExceptionHandling();
         $recipe = factory(Recipe::class)->make();
         $category = RecipeCategory::find($recipe->recipe_category_id);
-        $itemCategory = factory(ItemCategory::class)->create();
+        $itemCategory = factory(Department::class)->create();
 
         $this->post('recipe', $recipe->toArray() + [
                 'category' => (string)$category->id . ',' . $category->name,
@@ -40,7 +41,7 @@ class RecipesTest extends TestCase
                     [
                         'type' => 'test_type',
                         'name' => 'test_name',
-                        'item_category_id' => $itemCategory->getKey(),
+                        'department_id' => $itemCategory->getKey(),
                         'quantity' => 2.0
                     ]
                 ]

@@ -2,18 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Entities\ItemCategory;
+use App\Entities\Department;
 
 class EloquentDepartmentRepository implements DepartmentRepository
 {
     public function getAll()
     {
-        return ItemCategory::all();
+        return Department::all();
     }
 
     public function store($data)
     {
-        return ItemCategory::create($data);
+        return Department::create($data);
     }
 
     public function update($department, $data)

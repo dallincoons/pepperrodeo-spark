@@ -8,8 +8,7 @@ use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 use App\Entities\GroceryList;
 use App\PepperRodeo\GroceryLists\GroceryListPresention;
-use App\Entities\ItemCategory;
-use App\Entities\Item;
+use App\Entities\Department;
 use JavaScript;
 
 class GroceryListController extends Controller
@@ -51,7 +50,7 @@ class GroceryListController extends Controller
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
         JavaScript::put(['recipes' => $recipes->keyBy('id')]);
-        JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
+        JavaScript::put(['categories' => Department::all()->keyBy('id')]);
 
         return view('grocerylists.create-grocery-list', compact('recipes'));
     }
@@ -86,7 +85,7 @@ class GroceryListController extends Controller
         \JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
         \JavaScript::put(['title' => $grocerylist->title]);
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
-        \JavaScript::put(['categories' => ItemCategory::all()->keyBy('id')]);
+        \JavaScript::put(['categories' => Department::all()->keyBy('id')]);
 
         return view('grocerylists.show-grocery-list', compact('grocerylist'));
     }

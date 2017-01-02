@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\ItemCategory;
+use App\Entities\Department;
 use App\Repositories\DepartmentRepository;
 use Illuminate\Http\Request;
 
@@ -54,7 +54,7 @@ class DepartmentController extends Controller
         $this->repository->store($data);
 
         return response(
-            ItemCategory::all()
+            Department::all()
         );
     }
 
@@ -84,10 +84,10 @@ class DepartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  ItemCategory             $department
+     * @param  Department             $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ItemCategory $department)
+    public function update(Request $request, Department $department)
     {
         $this->repository->update($department, $request->all());
     }
@@ -95,11 +95,11 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  ItemCategory $department
+     * @param  Department $department
      * @param  Request      $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ItemCategory $department, Request $request)
+    public function destroy(Department $department, Request $request)
     {
         if($request->force == 'false' && $department->items->count()){
             return response(
@@ -115,7 +115,7 @@ class DepartmentController extends Controller
         }
 
         return response(
-            ItemCategory::all()
+            Department::all()
         );
     }
 }

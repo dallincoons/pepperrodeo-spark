@@ -47,10 +47,10 @@
 
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Department</label>
-            <select :name="'recipeFields[' + index + '][item_category_id]'" v-model="item.item_category_id" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id" required data-parsley-errors-messages-disabled data-parsley-trigger="submit">
-                <option v-for="category in itemCategories" :value="category.id"  class="dropdown-item">@{{category.name}}</option>
+            <select :name="'recipeFields[' + index + '][department_id]'" v-model="item.department_id" class="recipe-section__selection--category dept_select ingredient-info" :value="item.department_id" required data-parsley-errors-messages-disabled data-parsley-trigger="submit">
+                <option v-for="department in departments" :value="department.id"  class="dropdown-item">@{{department.name}}</option>
             </select>
-            <input v-model="item.item_category_name" :name="'recipeFields[' + index + '][item_category_name]'" type="hidden">
+            <input v-model="item.department_name" :name="'recipeFields[' + index + '][department_name]'" type="hidden">
         </div>
 
         <div v-on:click="removeItem(index)" class="ingredient-input rmv-ingred">X</div>
@@ -75,16 +75,16 @@
 
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Department</label>
-            <select @change="checkAddNew(item.item_category_id)" v-model="item.item_category_id" :name="'recipeFields[' + -1 + '][item_category_id]'" class="recipe-section__selection--category dept_select ingredient-info" :value="item.item_category_id">
-                <option v-for="category in itemCategories" :value="category.id"  class="dropdown-item">@{{category.name}}</option>
+            <select @change="checkAddNew(item.department_id)" v-model="item.department_id" :name="'recipeFields[' + -1 + '][department_id]'" class="recipe-section__selection--category dept_select ingredient-info" :value="item.department_id">
+                <option v-for="department in departments" :value="department.id"  class="dropdown-item">@{{department.name}}</option>
                 <option value="0">+ Add New</option>
             </select>
-            <input v-model="item.item_category_name" :name="'recipeFields[' + -1 + '][item_category_name]'" type="hidden">
+            <input v-model="item.department_name" :name="'recipeFields[' + -1 + '][department_name]'" type="hidden">
         </div>
-        <div v-show="addingItemCategory" class="addingCategory">
-            <input v-model="newItemCategory" placeholder="Produce" />
-            <button v-on:click="addNewItemCategory()" type="button" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add</button>
-            <button v-on:click="addingItemCategory = false" type="button" class="recipe-section__button">Cancel</button>
+        <div v-show="addingDepartment" class="addingCategory">
+            <input v-model="newDepartment" placeholder="Produce" />
+            <button v-on:click="addNewDepartment()" type="button" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add</button>
+            <button v-on:click="addingDepartment = false" type="button" class="recipe-section__button">Cancel</button>
         </div>
     </template>
 </div>

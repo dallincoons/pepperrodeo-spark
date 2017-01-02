@@ -84,7 +84,7 @@ class RegisterController extends Controller
             'name' => 'Favorites'
         ]);
 
-        $itemCategories = [
+        $departments = [
             'Baking',
             'Canned Goods',
             'Condiments',
@@ -98,10 +98,10 @@ class RegisterController extends Controller
             'Spices'
         ];
 
-        foreach($itemCategories as $category)
+        foreach($departments as department)
         {
-            $user->itemCategories()->create([
-                'name' => $category
+            $user->departments()->create([
+                'name' => department
             ]);
         }
     }

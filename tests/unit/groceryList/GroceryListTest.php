@@ -1,5 +1,6 @@
 <?php
 
+use App\Entities\Department;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Entities\GroceryList;
@@ -55,7 +56,7 @@ class GroceryListTest extends TestCase
         $this->GroceryList->addItem([
             'quantity' => 2,
             'name' => 'Ketchup',
-            'item_category_id' => \App\Entities\ItemCategory::first()->getKey()
+            'department_id' => Department::first()->getKey()
         ]);
 
         $this->assertEquals($this->getItemCount(), ($itemCount + 1));
