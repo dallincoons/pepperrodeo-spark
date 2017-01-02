@@ -33,6 +33,10 @@
             </div>
         </div>
     </div>
+
+    <input type="button" class="print-btn"
+           onClick="window.print()"
+           value="Print List"/>
 </div>
 </show-list>
 @endsection
