@@ -4,6 +4,12 @@
 <show-all-recipes inline-template class="content-wrapper" v-cloak>
 <div>
         <h2 class="page-title">My Recipes</h2>
+        <div class="centering-buttons">
+            <a class="create-list-option">
+                <i class="fa fa-plus-circle"></i> Add Recipes to List
+            </a>
+        </div>
+
 
         <form method="POST" action="/recipe/deleteMultiple" id="deleteForm">
             <input type="hidden" name="_method" value="DELETE">

@@ -18,6 +18,10 @@
                 <a href="/grocerylist/delete"><i class="fa fa-trash"></i> Delete Lists</a>
             </div>
         </li>
-        <li class="l-nav-li"><a href="/settings"><i class="fa fa-user"></i> My Settings</a></li>
+        <li class="l-nav-li"><a href="/settings"><i class="fa fa-user"></i> My Settings</a>
+            <div class="l-dropdown-content">
+                <a href="/logout"><i class="fa fa-chevron-circle-right"></i> Logout</a>
+            </div>
+        </li>
     </ul>
 </nav>
