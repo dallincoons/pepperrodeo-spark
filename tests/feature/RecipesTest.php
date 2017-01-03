@@ -4,7 +4,6 @@
 use App\Entities\Department;
 use App\Entities\GroceryList;
 use App\Entities\Item;
-use App\Entities\ItemCategory;
 use App\Entities\Recipe;
 use App\Entities\RecipeCategory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -33,7 +32,7 @@ class RecipesTest extends TestCase
         $this->disableExceptionHandling();
         $recipe = factory(Recipe::class)->make();
         $category = RecipeCategory::find($recipe->recipe_category_id);
-        $itemCategory = factory(Department::class)->create();
+        $department = factory(Department::class)->create();
 
         $this->post('recipe', $recipe->toArray() + [
                 'category' => (string)$category->id . ',' . $category->name,
@@ -41,7 +40,7 @@ class RecipesTest extends TestCase
                     [
                         'type' => 'test_type',
                         'name' => 'test_name',
-                        'department_id' => $itemCategory->getKey(),
+                        'department_id' => $department->getKey(),
                         'quantity' => 2.0
                     ]
                 ]

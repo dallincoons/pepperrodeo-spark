@@ -2,37 +2,36 @@
 
 use App\Entities\Department;
 use App\Entities\Item;
-use App\Entities\ItemCategory;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ItemCategoryTest extends TestCase
+class DepartmentTest extends TestCase
 {
     use DatabaseMigrations;
 
     /**
-     * @group item-category-tests
+     * @group department-tests
      *
      * @test
      */
     public function categories_can_be_seen()
     {
-        $category1 = factory(Department::class)->create();
-        $category2 = factory(Department::class)->create();
+        $department1 = factory(Department::class)->create();
+        $department2 = factory(Department::class)->create();
 
         $this->visit('/departments');
 
-        $this->see($category1->name);
-        $this->see($category2->name);
+        $this->see($department1->name);
+        $this->see($department2->name);
     }
 
     /**
-     * @group item-category-tests
+     * @group department-tests
      *
      * @test
      */
-    public function add_a_new_item_category()
+    public function add_a_new_department()
     {
         $department = factory(Department::class)->make();
 
@@ -42,11 +41,11 @@ class ItemCategoryTest extends TestCase
     }
 
     /**
-     * @group item-category-tests
+     * @group department-tests
      *
      * @test
      */
-    public function can_delete_a_new_item_category()
+    public function can_delete_a_new_department()
     {
         $department = factory(Department::class)->create();
 
@@ -56,11 +55,11 @@ class ItemCategoryTest extends TestCase
     }
 
     /**
-     * @group item-category-tests
+     * @group department-tests
      *
      * @test
      */
-    public function fails_when_deleting_non_existant_item_category()
+    public function fails_when_deleting_non_existant_department()
     {
         $this->delete('departments/1');
 
@@ -68,11 +67,11 @@ class ItemCategoryTest extends TestCase
     }
 
     /**
-     * @group item-category-tests
+     * @group department-tests
      *
      * @test
      */
-    public function can_edit_item_category()
+    public function can_edit_department()
     {
         $department = factory(Department::class)->create();
 
@@ -83,29 +82,29 @@ class ItemCategoryTest extends TestCase
     }
 
     /**
-     * @group item-category-tests
+     * @group department-tests
      *
      * @test
      */
-    public function delete_item_category_with_associated_items()
+    public function delete_department_with_associated_items()
     {
-        $itemCategory = factory(Department::class)->create();
+        $department = factory(Department::class)->create();
 
         $item = factory(Item::class)->create([
-            'department_id' => $itemCategory->getKey()
+            'department_id' => $department->getKey()
         ]);
 
-        $itemCategory->items()->save($item);
+        $department->items()->save($item);
 
-        $this->delete('departments/' . $itemCategory->getKey(), ['force' => 'false']);
+        $this->delete('departments/' . $department->getKey(), ['force' => 'false']);
 
-        $this->assertNotNull($itemCategory->fresh());
+        $this->assertNotNull($department->fresh());
         $this->assertTrue($item->fresh()->exists());
         $this->assertResponseStatus(290);
 
-        $this->delete('departments/' . $itemCategory->getKey(), ['force' => 'true']);
+        $this->delete('departments/' . $department->getKey(), ['force' => 'true']);
 
-        $this->assertNull($itemCategory->fresh());
+        $this->assertNull($department->fresh());
         $this->assertNull($item->fresh());
         $this->assertResponseStatus(200);
     }

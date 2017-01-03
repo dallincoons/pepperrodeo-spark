@@ -20,4 +20,13 @@ class Department extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        Department::deleting(function($department){
+            $department->items()->delete();
+        });
+    }
 }

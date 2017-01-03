@@ -3,7 +3,6 @@
 use App\Entities\Department;
 use App\Entities\Item;
 use App\Entities\GroceryList;
-use App\Entities\ItemCategory;
 use App\Entities\Recipe;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

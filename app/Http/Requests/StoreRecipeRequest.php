@@ -46,7 +46,7 @@ class StoreRecipeRequest extends FormRequest
         return [
             'recipeFields.*.type.required' => 'Item type is missing',
             'recipeFields.*.name.required' => 'Item name is missing',
-            'recipeFields.*.department_id.required' => 'Item category is missing',
+            'recipeFields.*.department_id.required' => 'Department is missing',
             'recipeFields.*.quantity.required' => 'Item quantity is missing',
         ];
     }

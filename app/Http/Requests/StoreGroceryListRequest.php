@@ -36,7 +36,7 @@ class StoreGroceryListRequest extends FormRequest
     {
         return [
             'items.*.name.required' => 'Item name is missing',
-            'items.*.department_id.required' => 'Item category is missing',
+            'items.*.department_id.required' => 'Department is missing',
             'items.*.quantity.required' => 'Item quantity is missing',
         ];
     }

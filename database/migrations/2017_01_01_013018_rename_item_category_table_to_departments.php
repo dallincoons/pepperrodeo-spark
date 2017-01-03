@@ -18,7 +18,7 @@ class RenameItemCategoryTableToDepartments extends Migration
         Schema::table('items', function ($table) {
             $table->dropForeign(['item_category_id']);
             $table->renameColumn('item_category_id', 'department_id');
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreign(['department_id'])->references('id')->on('departments')->onDelete('cascade');
         });
     }
 

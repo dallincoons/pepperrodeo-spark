@@ -56,7 +56,7 @@
                 <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
                 <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
                 <input type="hidden" :name="'items[' + item.id + '][type]'" :value="item.type">
-                <input type="hidden" :name="'items[' + item.id + '][item_category_id]'" :value="item.item_category_id">
+                <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department_id">
                 <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
             </li>
         </ul>

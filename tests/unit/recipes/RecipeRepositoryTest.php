@@ -9,7 +9,6 @@ use App\User;
 use App\Entities\Recipe;
 use App\Entities\RecipeCategory;
 use App\Entities\Item;
-use App\Entities\ItemCategory;
 
 class RecipeRepositoryTest extends TestCase
 {
@@ -106,7 +105,7 @@ class RecipeRepositoryTest extends TestCase
      */
     public function update_and_add_recipe_items()
     {
-        $itemCategory = factory(Department::class)->create();
+        $department = factory(Department::class)->create();
         $recipe = factory(Recipe::class)->create();
 
         RecipeRepository::updateRecipeItems($recipe, [
@@ -114,14 +113,14 @@ class RecipeRepositoryTest extends TestCase
                 'id' => '',
                 'quantity' => 1,
                 'type' => str_random(),
-                'department_id' => $itemCategory->getKey(),
+                'department_id' => $department->getKey(),
                 'name' => str_random()
             ],
             [
                 'id' => '',
                 'quantity' => 1,
                 'type' => str_random(),
-                'department_id' => $itemCategory->getKey(),
+                'department_id' => $department->getKey(),
                 'name' => str_random()
             ],
         ]);
@@ -167,7 +166,7 @@ class RecipeRepositoryTest extends TestCase
      */
     public function creates_recipe_using_new_category()
     {
-        $itemCategory = factory(Department::class)->create();
+        $department = factory(Department::class)->create();
 
         $recipe = RecipeRepository::store([
             'title' => 'poop',
@@ -176,7 +175,7 @@ class RecipeRepositoryTest extends TestCase
             'category_name' => 'test',
             'recipeFields' => [[
                 'name' => 'pee',
-                'department_id' => $itemCategory->getKey()
+                'department_id' => $department->getKey()
             ]]
         ]);
 
@@ -213,7 +212,7 @@ class RecipeRepositoryTest extends TestCase
      * @group recipe-repository-tests
      * @test
      */
-    public function creates_recipe_using_new_item_category()
+    public function creates_recipe_using_new_department()
     {
         $categoryName = 'poop';
 
@@ -237,7 +236,7 @@ class RecipeRepositoryTest extends TestCase
      * @group recipe-repository-tests
      * @test
      */
-    public function creates_recipe_using_new_item_category_that_already_exists()
+    public function creates_recipe_using_new_department_that_already_exists()
     {
         $categoryName = 'poop';
 
