@@ -27,7 +27,7 @@
   }
 
   .toggle {
-    padding: 5px;
+    padding: 3px;
     border-radius: 3px;
     margin-right: 3px;
     color: #FFFFFF;
@@ -81,9 +81,13 @@
 
   .darker-remove {
     color: rgba(63, 63, 63, .4);
-    display: flex;
-    flex: 1 1 auto;
-    align-content: center;
+    //display: flex;
+    //flex: 1 1 auto;
+    //align-content: center;
+  }
+
+  .darker-remove > i {
+    font-size: .65em;
   }
 
   .darker-remove:hover {
@@ -118,7 +122,7 @@
   }
 
   .toggle {
-    padding: 5px;
+    padding: 3px;
     border-radius: 3px;
     margin-right: 3px;
     color: #FFFFFF;

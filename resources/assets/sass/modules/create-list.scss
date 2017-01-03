@@ -31,14 +31,19 @@
     color: #ff4b2e;
     font-weight: 400;
     font-size: 1.3em;
-    margin-bottom: 10px;
     display: block;
+    flex: .1 .1 auto;
+    border: 2px solid #ff4b2e;
+    border-radius: 5px;
+    margin: 30px 10px 10px 0;
   }
 
   .create-list-option:hover {
      cursor: pointer;
      color: #D44331;
      text-decoration: none;
+    flex: .1 .1 auto;
+    border: 3px solid #D44331;
   }
 
   .add-recipe-options {
@@ -180,14 +185,19 @@
     color: #ff4b2e;
     font-weight: 400;
     font-size: 1.3em;
-    margin-bottom: 10px;
     display: block;
+    flex: .1 .1 auto;
+    border: 2px solid #ff4b2e;
+    border-radius: 5px;
+    margin: 30px 10px 10px 0;
   }
 
   .create-list-option:hover {
     cursor: pointer;
     color: #D44331;
     text-decoration: none;
+    flex: .1 .1 auto;
+    border: 3px solid #D44331;
   }
 
   .add-recipe-options {
