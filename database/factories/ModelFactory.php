@@ -3,7 +3,7 @@
 use App\Entities\Item;
 use App\Entities\Recipe;
 use App\Entities\GroceryList;
-use App\Entities\ItemCategory;
+use App\Entities\Department;
 use App\Entities\RecipeCategory;
 use App\User;
 
@@ -29,22 +29,23 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 
 $factory->define(Item::class, function (Faker\Generator $faker) {
     $user = \Auth::user() ?: User::find(1);
-    if(!$user->itemCategories->count()){
-        \Auth::user()->itemCategories()->create([
+    if(!$user->departments->count()){
+        \Auth::user()->departments()->create([
             'name' => 'Baking'
         ]);
     }
+
     return [
         'quantity' => $faker->randomNumber(2),
         'name' => $faker->word,
         'type' => collect(['pkg', 'can', 'bottle', 'jug'])->random(),
         'isCheckedOff' => 0,
         'remember_token' => str_random(10),
-        'item_category_id' => $user->fresh()->itemCategories()->inRandomOrder()->first()->getKey()
+        'department_id' => $user->fresh()->departments()->inRandomOrder()->first()->getKey()
     ];
 });
 
-$factory->define(ItemCategory::class, function(Faker\Generator $faker){
+$factory->define(Department::class, function(Faker\Generator $faker){
     return [
         'name' => $faker->word,
         'user_id' => \Auth::user()->getKey()

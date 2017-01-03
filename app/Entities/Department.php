@@ -5,7 +5,7 @@ namespace App\Entities;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemCategory extends Model
+class Department extends Model
 {
     protected $fillable = ['name', 'user_id'];
 
@@ -19,5 +19,14 @@ class ItemCategory extends Model
     public function items()
     {
         return $this->hasMany(Item::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        Department::deleting(function($department){
+            $department->items()->delete();
+        });
     }
 }

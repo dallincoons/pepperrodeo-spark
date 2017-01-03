@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ItemCategorySeeder extends Seeder
+class DepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,7 +26,7 @@ class ItemCategorySeeder extends Seeder
         ];
 
         foreach($categories as $category){
-           App\Entities\ItemCategory::create([
+           App\Entities\Department::create([
                 'name' => $category,
                 'user_id' => 1
            ]);

@@ -4,11 +4,8 @@ namespace App\Entities;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use App\Entities\Item;
-use App\Entities\RecipeCategory;
 use App\Traits\Itemable;
 use App\Traits\Copyable;
-use App\Entities\GroceryList;
 
 class Recipe extends Model
 {
@@ -43,14 +40,14 @@ class Recipe extends Model
     {
         foreach($items as $itemJson)
         {
-            if(data_get($itemJson, 'item_category_id') < 0){
-                if(!$itemCategory = ItemCategory::where('name', data_get($itemJson, 'item_category_name'))->first()){
-                    $itemCategory = ItemCategory::create([
+            if(data_get($itemJson, 'department_id') < 0){
+                if(!$department = Department::where('name', data_get($itemJson, 'department_name'))->first()){
+                    $department = Department::create([
                         'user_id' => \Auth::user()->getKey(),
-                        'name'    => data_get($itemJson, 'item_category_name')
+                        'name'    => data_get($itemJson, 'department_name')
                     ]);
                 }
-                $itemJson['item_category_id'] = $itemCategory->getKey();
+                $itemJson['department_id'] = $department->getKey();
             };
             $item = Item::create($itemJson);
 

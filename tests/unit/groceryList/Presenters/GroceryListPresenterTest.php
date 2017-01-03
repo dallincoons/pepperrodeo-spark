@@ -1,8 +1,8 @@
 <?php
 
+use App\Entities\Department;
 use App\Entities\Item;
 use App\Entities\GroceryList;
-use App\Entities\ItemCategory;
 use App\Entities\Recipe;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -90,13 +90,13 @@ class GroceryListPresenterTest extends TestCase
     {
         $recipe1 = factory(Recipe::class)->create();
         $recipe2 = factory(Recipe::class)->create();
-        $category = factory(ItemCategory::class)->create();
-        $category2 = factory(ItemCategory::class)->create();
+        $category = factory(Department::class)->create();
+        $category2 = factory(Department::class)->create();
         $item1 = factory(Item::class)->create([
-            'item_category_id' => $category->getKey()
+            'department_id' => $category->getKey()
         ]);
         $item2 = factory(Item::class)->create([
-            'item_category_id' => $category2->getKey()
+            'department_id' => $category2->getKey()
         ]);
 
         $recipe1->items()->save($item1);

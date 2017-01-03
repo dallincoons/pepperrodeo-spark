@@ -1,5 +1,6 @@
 <?php
 
+use App\Entities\Department;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -52,7 +53,7 @@ class RecipeTest extends TestCase
         $this->MainRecipe->addItem([
             'quantity' => 2,
             'name' => 'Ketchup',
-            'item_category_id' => \App\Entities\ItemCategory::first()->getKey()
+            'department_id' => Department::first()->getKey()
         ]);
 
         $this->assertEquals(count($this->MainRecipe->items()->get()), ($itemCount + 1));

@@ -6,13 +6,13 @@ Vue.component('create-recipe', {
             recipeItemElement : '<input type="text">',
             recipeItems : [],
             addingCategory : false,
-            addingItemCategory : false,
+            addingDepartment : false,
             categories : PepperRodeo.categories || [],
-            itemCategories : PepperRodeo.itemCategories || [],
+            departments : PepperRodeo.departments || [],
             selectedCategory : PepperRodeo.categories[0] ? PepperRodeo.categories[0].id : '',
             newCategory : '',
-            newItemCategory : '',
-            newItemCategoryId : -1,
+            newDepartment : '',
+            newDepartmentId : -1,
             recipeFields : [],
             item         : {},
             showNewItemInputs : true
@@ -24,7 +24,7 @@ Vue.component('create-recipe', {
 
         checkAddNew(id){
             if(id == 0){
-                this.addingItemCategory = true;
+                this.addingDepartment = true;
             }
         },
 
@@ -35,7 +35,7 @@ Vue.component('create-recipe', {
                 !newItem.quantity ||
                 !newItem.type ||
                 !newItem.name ||
-                !newItem.item_category_id
+                !newItem.department_id
             ){
                 return;
             }
@@ -45,15 +45,14 @@ Vue.component('create-recipe', {
             this.item = {};
         },
 
-        addNewItemCategory() {
-            this.itemCategories.push({id : this.newItemCategoryId, name : this.newItemCategory});
+        addNewDepartment() {
+            this.departments.push({id : this.newDepartmentId, name : this.newDepartment});
+            this.item.department_id = this.newDepartmentId;
+            this.item.department_name = this.newDepartment;
 
-            this.item.item_category_id = this.newItemCategoryId;
-            this.item.item_category_name = this.newItemCategory;
+            this.addingDepartment = false;
 
-            this.addingItemCategory = false;
-
-            this.newItemCategoryId--;
+            this.newDepartmentId--;
         },
 
         removeItem(index) {

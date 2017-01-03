@@ -5,14 +5,14 @@ Vue.component('edit-single-recipe', {
             recipeItemElement : '<input type="text">',
             addingCategory : false,
             categories : PepperRodeo.categories,
-            itemCategories : PepperRodeo.itemCategories || [],
+            departments : PepperRodeo.departments || [],
             selectedCategory : PepperRodeo.selectedCategory,
             recipeItems : PepperRodeo.recipeItems,
             recipeFields : [],
             item         : {},
             category_ids : [],
             newCategory : '',
-            newItemCategory : '',
+            newDepartment : '',
             showNewItemInputs : false
         }
     },
@@ -39,8 +39,8 @@ Vue.component('edit-single-recipe', {
             this.addingCategory = false;
         },
 
-        addNewItemCategory() {
-            this.itemCategories.push({id : -1, name : this.newItemCategory});
+        addDepartment() {
+            this.departments.push({id : -1, name : this.newDepartment});
         },
 
         intializeRecipeItems(){

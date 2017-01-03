@@ -1,7 +1,6 @@
 <?php
 namespace App\Repositories;
 
-use App\Entities\ItemCategory;
 use App\Entities\RecipeCategory;
 use App\Entities\Recipe;
 use App\Entities\Item;
@@ -54,7 +53,7 @@ class RecipeRepository
                 $item->quantity = $itemJson['quantity'];
                 $item->type = $itemJson['type'];
                 $item->name = $itemJson['name'];
-                $item->item_category_id = $itemJson['item_category_id'];
+                $item->department_id = $itemJson['department_id'];
 
                 if($item->isDirty()){
                     $item->save();
@@ -80,7 +79,7 @@ class RecipeRepository
         }
         $categoryData = $recipeData['category'];
         $category = RecipeCategory::findOrNew($categoryData['id']);
-        if(!$category->exists()){
+        if(!$category->getKey()){
             $category->populate($recipeData)->save();
         }
 

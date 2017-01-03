@@ -1,7 +1,5 @@
 <?php
 
-use App\Entities\Item;
-use App\Entities\ItemCategory;
 use App\Entities\Recipe;
 use App\Entities\RecipeCategory;
 use Illuminate\Foundation\Testing\WithoutMiddleware;

@@ -28,6 +28,8 @@ class CreateItemCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('item_categories');
+        if(Schema::hasTable('item_categories')) {
+            Schema::drop('item_categories');
+        }
     }
 }

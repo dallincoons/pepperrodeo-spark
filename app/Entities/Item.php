@@ -3,13 +3,10 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Entities\Recipe;
-use App\Entities\GroceryList;
-use App\Entities\ItemCategory;
 
 class Item extends Model
 {
-    protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'item_category_id', 'category', 'recipe');
+    protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'department_id', 'category', 'recipe');
 
     protected $appends = ['recipe_id', 'category', 'recipe_title'];
 
@@ -48,8 +45,8 @@ class Item extends Model
 
     public function getCategoryAttribute()
     {
-        if($this->item_category_id){
-            return ItemCategory::find($this->item_category_id)->name;
+        if($this->department_id){
+            return Department::find($this->department_id)->name;
         }
 
         return null;

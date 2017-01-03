@@ -26,7 +26,7 @@ class GrocerylistRepositoryTest extends TestCase
             'name' => 'foobar_name',
             'type' => 'bottle',
             'quantity' => 1,
-            'item_category_id' => 1
+            'department_id' => 1
         ];
 
         $newItem2 = [
@@ -34,7 +34,7 @@ class GrocerylistRepositoryTest extends TestCase
             'name' => 'foobar_name2',
             'type' => 'can',
             'quantity' => 2,
-            'item_category_id' => 2
+            'department_id' => 2
         ];
 
         $items->add($newItem);
@@ -81,13 +81,13 @@ class GrocerylistRepositoryTest extends TestCase
                     'id' => -1,
                     'name' => 'shapoopy',
                     'quantity' => 2,
-                    'item_category_id' => 1
+                    'department_id' => 1
                 ],
                 [
                     'id' => -2,
                     'name' => 'shapoopy_dos',
                     'quantity' => 2,
-                    'item_category_id' => 1
+                    'department_id' => 1
                 ]
             ],
             'title' => $grocerylist->title

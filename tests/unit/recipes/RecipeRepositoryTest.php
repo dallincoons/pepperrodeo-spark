@@ -1,5 +1,6 @@
 <?php
 
+use App\Entities\Department;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -8,7 +9,6 @@ use App\User;
 use App\Entities\Recipe;
 use App\Entities\RecipeCategory;
 use App\Entities\Item;
-use App\Entities\ItemCategory;
 
 class RecipeRepositoryTest extends TestCase
 {
@@ -90,7 +90,7 @@ class RecipeRepositoryTest extends TestCase
                 'id' => $recipeItems->first()->getKey(),
                 'quantity' => $recipeItems->first()->quantity,
                 'type' => $recipeItems->first()->type,
-                'item_category_id' => $recipeItems->first()->item_category_id,
+                'department_id' => $recipeItems->first()->department_id,
                 'name' => $newName
             ]
         ]);
@@ -105,7 +105,7 @@ class RecipeRepositoryTest extends TestCase
      */
     public function update_and_add_recipe_items()
     {
-        $itemCategory = factory(ItemCategory::class)->create();
+        $department = factory(Department::class)->create();
         $recipe = factory(Recipe::class)->create();
 
         RecipeRepository::updateRecipeItems($recipe, [
@@ -113,14 +113,14 @@ class RecipeRepositoryTest extends TestCase
                 'id' => '',
                 'quantity' => 1,
                 'type' => str_random(),
-                'item_category_id' => $itemCategory->getKey(),
+                'department_id' => $department->getKey(),
                 'name' => str_random()
             ],
             [
                 'id' => '',
                 'quantity' => 1,
                 'type' => str_random(),
-                'item_category_id' => $itemCategory->getKey(),
+                'department_id' => $department->getKey(),
                 'name' => str_random()
             ],
         ]);
@@ -144,14 +144,14 @@ class RecipeRepositoryTest extends TestCase
                 'id' => $recipeItems->first()->getKey(),
                 'quantity' => $recipeItems->first()->quantity,
                 'type' => $recipeItems->first()->type,
-                'item_category_id' => $recipeItems->first()->item_category_id,
+                'department_id' => $recipeItems->first()->department_id,
                 'name' => str_random()
             ],
             [
                 'id' => $recipeItems->last()->getKey(),
                 'quantity' => $recipeItems->first()->quantity,
                 'type' => $recipeItems->first()->type,
-                'item_category_id' => $recipeItems->first()->item_category_id,
+                'department_id' => $recipeItems->first()->department_id,
                 'name' => str_random()
             ]
         ]);
@@ -166,7 +166,7 @@ class RecipeRepositoryTest extends TestCase
      */
     public function creates_recipe_using_new_category()
     {
-        $itemCategory = factory(ItemCategory::class)->create();
+        $department = factory(Department::class)->create();
 
         $recipe = RecipeRepository::store([
             'title' => 'poop',
@@ -175,7 +175,7 @@ class RecipeRepositoryTest extends TestCase
             'category_name' => 'test',
             'recipeFields' => [[
                 'name' => 'pee',
-                'item_category_id' => $itemCategory->getKey()
+                'department_id' => $department->getKey()
             ]]
         ]);
 
@@ -212,7 +212,7 @@ class RecipeRepositoryTest extends TestCase
      * @group recipe-repository-tests
      * @test
      */
-    public function creates_recipe_using_new_item_category()
+    public function creates_recipe_using_new_department()
     {
         $categoryName = 'poop';
 
@@ -223,8 +223,8 @@ class RecipeRepositoryTest extends TestCase
             'category_name' => 'test',
             'recipeFields' => [[
                                    'name' => 'pee',
-                                   'item_category_id' => -1,
-                                   'item_category_name' => $categoryName
+                                   'department_id' => -1,
+                                   'department_name' => $categoryName
                                ]]
         ]);
 
@@ -236,11 +236,11 @@ class RecipeRepositoryTest extends TestCase
      * @group recipe-repository-tests
      * @test
      */
-    public function creates_recipe_using_new_item_category_that_already_exists()
+    public function creates_recipe_using_new_department_that_already_exists()
     {
         $categoryName = 'poop';
 
-        ItemCategory::create([
+        Department::create([
             'user_id' => \Auth::user()->getKey(),
             'name' => $categoryName
         ]);
@@ -252,12 +252,12 @@ class RecipeRepositoryTest extends TestCase
             'category_name' => 'test',
             'recipeFields' => [[
                                    'name' => 'pee',
-                                   'item_category_id' => -1,
-                                   'item_category_name' => $categoryName
+                                   'department_id' => -1,
+                                   'department_name' => $categoryName
                                ]]
         ]);
 
         $this->assertEquals($categoryName, $recipe->items->where('name', 'pee')->first()->category);
-        $this->assertCount(1, ItemCategory::where('name',$categoryName)->get());
+        $this->assertCount(1, Department::where('name',$categoryName)->get());
     }
 }

@@ -74,7 +74,7 @@ class GroceryListPresention
             'name' => $items->first()->name,
             'quantity' => $items->sum('quantity'),
             'type' => $items->first()->type,
-            'item_category_id' => $items->first()->item_category_id,
+            'department_id' => $items->first()->department_id,
             'category' => $items->first()->category,
             'recipe' => $items->first()->recipe_title
         ]));

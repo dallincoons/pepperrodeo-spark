@@ -28,9 +28,9 @@
 
         <div class="ingredient-input">
             <label for="category" class="sub-heading dept-label">Department</label>
-            <select name="category" v-model="newItemCategoryId">
-                @foreach($itemCategories as $category)
-                    <option value="{{ $category->id }}">{{$category->name}}</option>
+            <select name="category" v-model="newDepartmentId">
+                @foreach($departments as $departments)
+                    <option value="{{ $departments->id }}">{{$departments->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -56,7 +56,7 @@
                 <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
                 <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
                 <input type="hidden" :name="'items[' + item.id + '][type]'" :value="item.type">
-                <input type="hidden" :name="'items[' + item.id + '][item_category_id]'" :value="item.item_category_id">
+                <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department_id">
                 <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
             </li>
         </ul>

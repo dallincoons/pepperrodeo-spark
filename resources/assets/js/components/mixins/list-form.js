@@ -5,7 +5,7 @@ module.exports = {
             title             : PepperRodeo.title,
             addedRecipes      : PepperRodeo.addedRecipes || [],
             unaddedRecipes    : Object.assign({}, PepperRodeo.recipes),
-            categories        : PepperRodeo.categories,
+            departments        : PepperRodeo.departments,
             showRecipes       : false,
             recipesToAdd      : [],
             addAnItem         : false,
@@ -15,7 +15,7 @@ module.exports = {
             newItemName       : '',
             newItemQty        : '',
             newItemType       : '',
-            newItemCategoryId : '',
+            newDepartmentId : '',
             newItemId         : 0,
             groupByValue      : 'category',
         }
@@ -62,7 +62,7 @@ module.exports = {
             if( this.newItemQty == "" ||
                 this.newItemName == "" ||
                 this.newItemType == "" ||
-                this.newItemCategoryId == ""){
+                this.newDepartmentId == ""){
                 return;
             }
 
@@ -71,9 +71,9 @@ module.exports = {
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
                 type             : this.newItemType,
-                item_category_id : this.newItemCategoryId,
+                department_id : this.newDepartmentId,
                 recipe_title     : 'Other',
-                category         : this.categories[this.newItemCategoryId].name
+                department       : this.departments[this.newDepartmentId].name
             };
 
             this.items.push(newItem);
@@ -81,7 +81,7 @@ module.exports = {
             this.newItemQty        = '';
             this.newItemName       = '';
             this.newItemType       = '';
-            this.newItemCategoryId = '';
+            this.newDepartmentId = '';
         },
         removeItem(itemId){
             this.items = _.without(this.items, _.findWhere(this.items, {
