@@ -79,7 +79,7 @@ class RecipeRepository
         }
         $categoryData = $recipeData['category'];
         $category = RecipeCategory::findOrNew($categoryData['id']);
-        if(!$category->exists()){
+        if(!$category->getKey()){
             $category->populate($recipeData)->save();
         }
 

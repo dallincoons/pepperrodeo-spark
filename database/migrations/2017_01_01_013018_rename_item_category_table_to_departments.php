@@ -29,6 +29,12 @@ class RenameItemCategoryTableToDepartments extends Migration
      */
     public function down()
     {
-        //
+        Schema::rename('departments', 'item_categories');
+
+        Schema::table('items', function ($table) {
+            $table->dropForeign(['department_id']);
+            $table->renameColumn('department_id', 'item_category_id');
+            $table->foreign('item_category_id')->references('id')->on('item_categories')->onDelete('cascade');
+        });
     }
 }

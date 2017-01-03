@@ -48,11 +48,11 @@ class ItemCategoryTest extends TestCase
      */
     public function can_delete_a_new_item_category()
     {
-        $itemCategory = factory(Department::class)->create();
+        $department = factory(Department::class)->create();
 
-        $this->delete('departments/' . $itemCategory->getKey());
+        $this->delete('departments/' . $department->getKey());
 
-        $this->dontSeeInDatabase('departments', ['name' => $itemCategory->name]);
+        $this->dontSeeInDatabase('departments', ['name' => $department->name]);
     }
 
     /**
@@ -74,12 +74,12 @@ class ItemCategoryTest extends TestCase
      */
     public function can_edit_item_category()
     {
-        $itemCategory = factory(Department::class)->create();
+        $department = factory(Department::class)->create();
 
-        $alteredName = $itemCategory->name . 'altered';
-        $this->patch('departments/' . $itemCategory->getKey(), ['name' => $alteredName]);
+        $alteredName = $department->name . 'altered';
+        $this->patch('departments/' . $department->getKey(), ['name' => $alteredName]);
 
-        $this->assertEquals($alteredName, $itemCategory->fresh()->name);
+        $this->assertEquals($alteredName, $department->fresh()->name);
     }
 
     /**

@@ -107,7 +107,6 @@ class DepartmentController extends Controller
                 290
             );
         }
-
         $success = $department->delete();
 
         if(!$success){
