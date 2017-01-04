@@ -39,7 +39,9 @@
 
         @endif
 
-        <input v-if="showCheckBoxes" v-on:click="deleteLists()" type="button" value="Delete" class="pr-btn recipe-list-delete-btn">
+        <div class="centering-buttons">
+            <input v-if="showCheckBoxes" v-on:click="deleteLists()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
+        </div>
     </form>
 
 </div>
