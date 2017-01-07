@@ -1,9 +1,10 @@
 module.exports = {
     data () {
         return {
-            items             : PepperRodeo.items || [],
-            title             : PepperRodeo.title,
-            addedRecipes      : PepperRodeo.addedRecipes || [],
+            grocerylist       : PepperRodeo.grocerylist,
+            items             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.items : [],
+            title             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.title : '',
+            addedRecipes      : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.recipes : [],
             unaddedRecipes    : Object.assign({}, PepperRodeo.recipes),
             departments        : PepperRodeo.departments,
             showRecipes       : false,
@@ -83,9 +84,29 @@ module.exports = {
             this.newItemType       = '';
             this.newDepartmentId = '';
         },
-        removeItem(itemId){
+        removeItemFromList(item){
+            let self = this;
+
+            swal({
+                    title              : "Hold on!",
+                    text               : "Are you sure you want to remove " + item.name + " from this grocery list?",
+                    showCancelButton   : true,
+                    confirmButtonColor : "#DD6B55",
+                    confirmButtonText  : "Yes",
+                    closeOnConfirm     : true
+                },
+                function () {
+                    self.$http.post('/grocerylistitem/remove', {grocerylist : self.grocerylist.id, itemIds : [item.id]})
+                        .then(function(response){
+                            if(response.status == 200) {
+                                self.removeItemFromView(item);
+                            }
+                        });
+                });
+        },
+        removeItemFromView(item){
             this.items = _.without(this.items, _.findWhere(this.items, {
-                id: itemId
+                id : item.id
             }));
             this.items.push({});
             this.items.pop();

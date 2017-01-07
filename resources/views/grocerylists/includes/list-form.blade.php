@@ -51,7 +51,7 @@
                     <span class="list-item-added">@{{ item.type }}</span>
                     <span class="list-item-added">@{{ item.name }} </span>
                 </div>
-                <span v-on:click="removeItem(item.id)" class="remove-item list-item-added"><i class="fa fa-times-circle-o"></i></span>
+                <span v-on:click="removeItemFromList(item)" class="remove-item list-item-added"><i class="fa fa-times-circle-o"></i></span>
 
                 <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
                 <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
