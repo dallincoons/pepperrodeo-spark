@@ -42,8 +42,18 @@ class GroceryList extends Model
 
     public function addRecipe($recipe)
     {
-        $this->recipes()->attach($recipe->id);
-        $this->items()->saveMany($recipe->items);
+        if(!$this->recipes->contains($recipe)) {
+            $this->recipes()->attach($recipe->id);
+            $this->items()->saveMany($recipe->items);
+        }
+    }
+
+    public function addRecipes($recipes)
+    {
+        foreach($recipes as $recipe)
+        {
+            $this->addRecipe($recipe);
+        }
     }
 
     public function removeRecipe($recipe)

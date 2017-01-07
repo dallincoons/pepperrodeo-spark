@@ -60,16 +60,13 @@ class GroceryListRepository
      * @param $recipe
      * @return mixed
      */
-    public static function addRecipe($list, $recipe)
+    public static function addRecipe($list, $recipeIds)
     {
         $grocerylist = GroceryList::findOrFail($list);
 
-        $recipe = Recipe::findOrFail($recipe);
-
-        $grocerylist->addRecipe($recipe);
-
-        $listsWithoutRecipe = GroceryList::ListsWithoutRecipe($recipe);
-
-        return $listsWithoutRecipe;
+        foreach($recipeIds as $recipeId)
+        {
+            $grocerylist->addRecipe(Recipe::findOrFail($recipeId));
+        }
     }
 }
