@@ -33,18 +33,27 @@
     font-size: 1.3em;
     display: block;
     flex: .1 .1 auto;
+
+  }
+
+  .create-list-option:hover {
+    cursor: pointer;
+    color: #D44331;
+    text-decoration: none;
+    flex: .1 .1 auto;
+  }
+
+  .centering-buttons .create-list-option {
     border: 2px solid #ff4b2e;
     border-radius: 5px;
     margin: 30px 10px 10px 0;
   }
 
-  .create-list-option:hover {
-     cursor: pointer;
-     color: #D44331;
-     text-decoration: none;
-    flex: .1 .1 auto;
+  .centering-buttons .create-list-option:hover {
     border: 3px solid #D44331;
   }
+
+
 
   .add-recipe-options {
     background: rgba(255, 75, 46, .05);
@@ -188,6 +197,20 @@
     font-weight: 800;
   }
 
+  .list-cat-wrapper {
+    margin-top: 30%;
+  }
+
+  .remove-dept {
+    color: rgba(255, 255, 255, .5);
+    padding-right: 5px;
+  }
+
+  .remove-dept:hover {
+    cursor: pointer;
+    color: #FFFFFF;
+  }
+
 }
 
 //Mobile
@@ -293,6 +316,7 @@
 
   .item-section {
     margin-bottom: 20px;
+    width: 90%;
   }
 
   .items-inputs {
@@ -376,5 +400,18 @@
     cursor: pointer;
     color: #D44331;
     font-weight: 800;
+  }
+  .list-cat-wrapper {
+    margin-top: 45%;
+  }
+
+  .remove-dept {
+    color: rgba(255, 255, 255, .5);
+    padding-right: 5px;
+  }
+
+  .remove-dept:hover {
+    cursor: pointer;
+    color: #FFFFFF;
   }
 }

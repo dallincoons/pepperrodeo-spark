@@ -97,6 +97,17 @@
     text-align: center;
   }
 
+  .list-header-section {
+    position: fixed;
+    display: flex;
+    background: #ffffff;
+    width: 65%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
 }
 
 //Mobile
@@ -172,6 +183,19 @@
   .pr-button {
     width: 20%;
     text-align: center;
+  }
+
+  .list-header-section {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    background: #ffffff;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
   }
 
 }

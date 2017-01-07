@@ -15,12 +15,7 @@
         <select v-model="selectedCategory" class="recipe-section__selection--category" name="category" style="flex:1;" required data-parsley-errors-messages-disabled data-parsley-trigger="submit">
             <option v-for="category in categories" :value="[category.id, category.name]">@{{category.name}}</option>
         </select>
-        <button type="button" v-show="!addingCategory" v-on:click="addingCategory = true" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add New</button>
-    </div>
-    <div v-show="addingCategory" class="addingCategory">
-        <input v-model="newCategory" placeholder="Favorites" />
-        <button v-on:click="addNewCategory()" type="button" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add</button>
-        <button v-on:click="addingCategory = false" type="button" class="recipe-section__button">Cancel</button>
+        <button type="button" v-show="!addingCategory" v-on:click="addCategory()" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add New</button>
     </div>
 </div>
 
@@ -80,11 +75,6 @@
                 <option value="0">+ Add New</option>
             </select>
             <input v-model="item.department_name" :name="'recipeFields[' + -1 + '][department_name]'" type="hidden">
-        </div>
-        <div v-show="addingDepartment" class="addingCategory">
-            <input v-model="newDepartment" placeholder="Produce" />
-            <button v-on:click="addNewDepartment()" type="button" class="recipe-section__button"><i class="fa fa-plus-circle"></i> Add</button>
-            <button v-on:click="addingDepartment = false" type="button" class="recipe-section__button">Cancel</button>
         </div>
     </template>
 </div>

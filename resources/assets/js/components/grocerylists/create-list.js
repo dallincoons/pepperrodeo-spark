@@ -6,5 +6,5 @@ Vue.component('create-list', {
         return {
             editing : true
         }
-    }
+    },
 });
