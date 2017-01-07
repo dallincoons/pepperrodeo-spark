@@ -1,143 +1,145 @@
 //Desktop
 
+
+
+
 @media only screen and (min-width: 800px) {
-  .content {
+  .home-content {
+    background-image: url(/red-lunch-green-knolling.jpg);
+    background-size: cover;
+    opacity: .8;
     min-height: 100%;
     display: flex;
     width: 100%;
+    justify-content: center;
   }
 
-  .section {
-    height: 100%;
-    background: #FFFFFF;
-    margin: 0 10px 0 0;
-    flex: 1 1 auto;
+  .home-section {
+    background: rgba(255, 255, 255, .8);
+    border-radius: 10px;
+    flex: .7 .7 auto;
+    margin: 10% 4%;
     display: flex;
-    position: relative;
-  }
-
-  .home-text {
-    z-index: 1000;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .home-background {
-    font-size: 25em;
-    opacity: .2;
-    color: #acacac;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    height: 55%;
   }
 
-  .home-option {
-    height: 100%;
+  .home-section:hover {
+    background: rgba(255, 225, 255, .5);
+  }
+
+  .home-section:hover .home-option-background {
+    font-size: 22em;
+    cursor: pointer;
+  }
+
+  .home-section:hover .home-link {
+    font-weight: bold;
+    cursor: pointer;
+    color: #d43f3a;
+  }
+
+  .home-section:first-child {
+    margin-left: 15%;
+  }
+
+  .home-section:last-child {
+    margin-right: 15%;
+  }
+
+
+  .home-option-background {
+    color: #FFFFFF;
+    font-size: 20em;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .home-link {
+    z-index: 1000;
+    position: absolute;
     color: #ff4b2e;
-    font-size: 2.2em;
-    font-weight: 500;
-    flex: 1 1 auto;
+    font-size: .2em;
   }
 
-  .home-option:hover {
-    cursor: pointer;
-    font-size: 2.5em;
-    color: #ff4b2e;
-    font-weight: 800;
+  .home-list > i {
+    font-size: .9em;
   }
-
-  .home-text:hover + .home-background {
-    opacity: .9;
-  }
-
-  //.more {
-  //  width: 150px;
-  //  height: 70px;
-  //  background: #FF7157;
-  //  border-bottom: 2px solid #FFFFFF;
-  //  border-radius: 5px;
-  //  text-align: center;
-  //  display: flex;
-  //  flex-direction: column;
-  //  justify-content: center;
-  //}
-  //
-  //.more:hover {
-  //  background: #ff4b2e;
-  //}
 
 }
 
+//Mobile
+
 @media only screen and (max-width: 799px) {
-  .content {
-    width: 90%;
-    margin: 0 auto;
+  .home-content {
+    background-image: url(/red-lunch-green-knolling.jpg);
+    background-size: cover;
+    opacity: .8;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    width: 100%;
+    justify-content: center;
   }
 
-  .section {
+  .home-section {
+    background: rgba(255, 255, 255, .8);
+    border-radius: 10px;
+    flex: .5 .5 auto;
     display: flex;
     justify-content: center;
-    padding: 5%;
-    background: #ff4b2e;
-    margin: 15% 5%;
-    border-radius: 5px;
-    border-bottom: 2px #FF816C solid;
+    align-content: center;
+    position: relative;
   }
 
-  .home-option {
+  .home-section:first-child {
+    margin: 5% 15% 0 15%;
+  }
+
+  .home-section:last-child {
+    margin:5% 15% 15%;
+  }
+
+  .home-section:hover {
+    background: rgba(255, 225, 255, .5);
+  }
+
+  .home-section:hover .home-option-background {
+    font-size: 18em;
+    cursor: pointer;
+  }
+
+  .home-section:hover .home-link {
+    font-weight: bold;
+    cursor: pointer;
+    color: #d43f3a;
+  }
+
+
+  .home-option-background {
     color: #FFFFFF;
-    font-size: 1.5em;
-  }
-
-  .divider {
-    width: 90%;
-    background: #acacac;
-    height: 2px;
-    margin: 0 auto;
-  }
-
-  .section:last-child {
-    flex-direction: column;
-    background: #FFFFFF;
-    margin: 2% 5% 15%;
-    color: #ff4b2e;
-    border: none;
-  }
-
-  .section:last-child a {
-    color: #3f3f3f;
-    font-weight: 400;
-  }
-
-
-  .more {
-    height: 50px;
-    border-radius: 5px;
+    font-size: 15em;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-
+    align-items: center;
+    position: relative;
+    width: 100%;
   }
 
-  .section:last-child .more {
+  .home-link {
+    z-index: 1000;
+    position: absolute;
     color: #ff4b2e;
-    font-size: 1.2em;
+    font-size: .2em;
+  }
+
+  .home-list > i {
+    font-size: .9em;
   }
   
 
