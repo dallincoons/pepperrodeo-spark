@@ -19,6 +19,7 @@ module.exports = {
             newDepartmentId : '',
             newItemId         : 0,
             groupByValue      : 'department',
+            toggledOption     : {}
         }
     },
     created(){
@@ -151,10 +152,23 @@ module.exports = {
         },
 
         toggleListOptions(item) {
-            this.items.forEach(function(item){
-                Vue.set(item, 'toggleOptions', false);
+            this.items.forEach(function(i){
+                if(i == item){
+                    return;
+                }
+                Vue.set(i, 'toggleOptions', false);
             });
+            document.body.addEventListener('click', this.closeListOptions);
+            this.toggledOption = item;
             item.toggleOptions = !item.toggleOptions;
+        },
+
+        closeListOptions(event){
+            if(typeof event.toElement.dataset.type !== undefined && event.toElement.dataset.type == 'toggle-list-option'){
+                return
+            }
+            this.toggledOption.toggleOptions = false;
+            document.body.removeEventListener('click', this.closeListOptions);
         },
 
         showEditItemModal() {
