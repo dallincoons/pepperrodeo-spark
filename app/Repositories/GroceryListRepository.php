@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Entities\GroceryList;
 use App\Entities\Item;
 use App\Entities\Recipe;
+use Illuminate\Support\Collection;
 
 class GroceryListRepository
 {
@@ -63,6 +64,8 @@ class GroceryListRepository
     public static function addRecipe($list, $recipeIds)
     {
         $grocerylist = GroceryList::findOrFail($list);
+
+        $recipeIds = ($recipeIds instanceof Collection) ? $recipeIds : collect($recipeIds);
 
         foreach($recipeIds as $recipeId)
         {

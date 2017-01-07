@@ -74,7 +74,7 @@ class GroceryListTest extends TestCase
 
         $this->GroceryList->addRecipe($recipe);
 
-        $this->assertTrue($this->GroceryList->recipes->contains($recipe));
+        $this->assertTrue($this->GroceryList->fresh()->recipes->contains($recipe));
         $this->assertTrue(collect($recipe->fresh()->items->pluck('name'))->contains($this->GroceryList->items->first()->name));
         $this->assertTrue(collect($recipe->fresh()->items->pluck('name'))->contains($this->GroceryList->items->last()->name));
         $this->assertEquals($itemCount, $recipe->fresh()->items->count());

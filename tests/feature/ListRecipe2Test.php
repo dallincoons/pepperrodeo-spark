@@ -50,7 +50,7 @@ class ListRecipeTest extends TestCase
 
         $grocerylist->addRecipes($recipes);
 
-        $this->post('/grocerylist/' . $grocerylist->getKey() .'/add/', ['recipes' => $recipes->pluck('id')]);
+        $this->post('/grocerylist/' . $grocerylist->getKey() .'/add', ['grocerylist' => $grocerylist->getKey(), 'recipes' => $recipes->pluck('id')]);
 
         $this->assertResponseOk();
 

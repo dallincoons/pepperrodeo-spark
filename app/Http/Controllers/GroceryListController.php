@@ -81,23 +81,11 @@ class GroceryListController extends Controller
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        \JavaScript::put(['items' =>  $grocerylist->items]);
-        \JavaScript::put(['addedRecipes' => $grocerylist->recipes]);
-        \JavaScript::put(['title' => $grocerylist->title]);
+        \JavaScript::put(['grocerylist' => $grocerylist->load('items')]);
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
         \JavaScript::put(['departments' => Department::all()->keyBy('id')]);
 
         return view('grocerylists.show-grocery-list', compact('grocerylist'));
-    }
-
-    /**
-     * @param \App\Entities\GroceryList $grocerylist
-     * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit()
-    {
-        abort(404);
     }
 
     /**

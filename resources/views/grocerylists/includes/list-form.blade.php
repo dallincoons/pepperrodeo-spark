@@ -43,20 +43,19 @@
 
 <div class="category-wrapper">
     <ul class="category" v-for="(items, groupName) in itemsGrouped">
-        <li class="category-title"><h3>@{{ groupName }}</h3></li>
+        <li class="category-title"><h3>@{{ groupName }}</h3> <span v-on:click="deleteGroup(items)"><i class="fa fa-times-circle-o"></i></span></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
                 <div class="list-item-wrapper">
                     <span class="list-item-added">@{{ item.quantity }}</span>
                     <span class="list-item-added">@{{ item.type }}</span>
                     <span class="list-item-added">@{{ item.name }} </span>
-
                 </div>
                 <div class="options-dropdown-wrapper">
                     <a class="dropdown-indicator" v-on:click="toggleListOptions(item)" ><i class="fa fa-ellipsis-h"></i></a>
                     <ul class="options-dropdown" v-show="item.toggleOptions">
                         <li v-on:click="showEditItemModal()"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
-                        <li><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
+                        <li v-on:click="removeItemFromList(item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
                     </ul>
                 </div>
 
