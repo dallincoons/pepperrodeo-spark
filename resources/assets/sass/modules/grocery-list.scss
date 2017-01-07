@@ -27,11 +27,12 @@
   }
 
   .toggle {
-    padding: 3px;
+    padding: 5px;
     border-radius: 3px;
     margin-right: 3px;
     color: #FFFFFF;
     cursor: pointer;
+    font-size: 1.2em;
   }
 
   .toggle-active {
@@ -81,13 +82,10 @@
 
   .darker-remove {
     color: rgba(63, 63, 63, .4);
-    //display: flex;
-    //flex: 1 1 auto;
-    //align-content: center;
   }
 
   .darker-remove > i {
-    font-size: .65em;
+    font-size: .55em;
   }
 
   .darker-remove:hover {
@@ -122,11 +120,12 @@
   }
 
   .toggle {
-    padding: 3px;
+    padding: 5px;
     border-radius: 3px;
     margin-right: 3px;
     color: #FFFFFF;
     cursor: pointer;
+    font-size: 1.2em;
   }
 
   .toggle-active {
@@ -163,10 +162,11 @@
   }
 
   .darker-remove {
-    color: #ff4b2e;
-    display: flex;
-    flex: 1 1 auto;
-    align-content: center;
+    color: rgba(63, 63, 63, .4);
+  }
+
+  .darker-remove > i {
+    font-size: .55em;
   }
 
   .pr-button {
