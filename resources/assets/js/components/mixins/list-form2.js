@@ -18,7 +18,7 @@ module.exports = {
             newItemType       : '',
             newDepartmentId : '',
             newItemId         : 0,
-            groupByValue      : 'category',
+            groupByValue      : 'department',
         }
     },
     computed : {
@@ -130,11 +130,16 @@ module.exports = {
 
             this.setShowRecipes(false);
         },
-        removeGroup(groupName){
-            let self        = this;
-            this.itemsGrouped[groupName].forEach(function(item){
-                self.removeItem(item.id);
-            });
+        deleteGroup(items){
+            let self = this;
+            this.$http.post('/grocerylistitem/remove', {grocerylist : this.grocerylist.id, itemIds : _.pluck(items, 'id')})
+                .then(function(response){
+                    if(response.status == 200){
+                        items.forEach(function(item){
+                            self.removeItemFromView(item);
+                        });
+                    }
+                });
         },
         toggleEdit(){
             this.editing = !this.editing;
