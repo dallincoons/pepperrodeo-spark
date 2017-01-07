@@ -126,6 +126,25 @@ module.exports = {
 
         toggleListOptions(item) {
             item.toggleOptions = !item.toggleOptions;
+        },
+
+        showEditItemModal() {
+            swal({
+                    title              : "",
+                    text               : this.editItemView(),
+                    showCancelButton   : true,
+                    confirmButtonColor : "#DD6B55",
+                    confirmButtonText  : "Yes",
+                    closeOnConfirm     : true,
+                    html               : true
+                },
+                function () {
+                    alert('you clicked yes good jorb');
+                });
+        },
+
+        editItemView() {
+            return "<input type='text' placeholder='qty'>";
         }
     }
 };

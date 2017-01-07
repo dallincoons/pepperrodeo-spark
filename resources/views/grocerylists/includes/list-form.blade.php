@@ -55,7 +55,7 @@
                 <div class="options-dropdown-wrapper">
                     <a class="dropdown-indicator" v-on:click="toggleListOptions(item)" ><i class="fa fa-ellipsis-h"></i></a>
                     <ul class="options-dropdown" v-show="item.toggleOptions">
-                        <li><i class="fa fa-pencil"></i><a> Edit Item</a></li>
+                        <li v-on:click="showEditItemModal()"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
                         <li><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
                     </ul>
                 </div>
