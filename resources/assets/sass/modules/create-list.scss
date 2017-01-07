@@ -192,6 +192,16 @@
     margin-top: 30%;
   }
 
+  .remove-dept {
+    color: rgba(255, 255, 255, .5);
+    padding-right: 5px;
+  }
+
+  .remove-dept:hover {
+    cursor: pointer;
+    color: #FFFFFF;
+  }
+
 }
 
 //Mobile
@@ -384,5 +394,15 @@
   }
   .list-cat-wrapper {
     margin-top: 45%;
+  }
+
+  .remove-dept {
+    color: rgba(255, 255, 255, .5);
+    padding-right: 5px;
+  }
+
+  .remove-dept:hover {
+    cursor: pointer;
+    color: #FFFFFF;
   }
 }
