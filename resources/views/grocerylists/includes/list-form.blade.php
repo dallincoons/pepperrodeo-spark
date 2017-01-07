@@ -13,7 +13,7 @@
 
 <div class="list-cat-wrapper category-wrapper">
     <ul class="category" v-for="(items, groupName) in itemsGrouped">
-        <li class="category-title"><h3>@{{ groupName }}</h3> <span v-on:click="deleteGroup(items)"><i class="fa fa-times-circle-o"></i></span></li>
+        <li class="category-title"><h3>@{{ groupName }}</h3> <span v-on:click="deleteGroup(items)" class="remove-dept"><i class="fa fa-times-circle-o"></i></span></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
                 <div class="list-item-wrapper">
