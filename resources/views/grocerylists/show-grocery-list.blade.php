@@ -37,8 +37,8 @@
                     <div class="ingredient-input">
                         <label for="category" class="sub-heading dept-label">Department</label>
                         <select name="category" v-model="newDepartmentId">
-                            @foreach($departments as $departments)
-                                <option value="{{ $departments->id }}">{{$departments->name}}</option>
+                            @foreach($departments as $department)
+                                <option value="{{ $department->id }}">{{$department->name}}</option>
                             @endforeach
                         </select>
                     </div>
