@@ -188,6 +188,10 @@
     font-weight: 800;
   }
 
+  .list-cat-wrapper {
+    margin-top: 30%;
+  }
+
 }
 
 //Mobile
@@ -293,6 +297,7 @@
 
   .item-section {
     margin-bottom: 20px;
+    width: 90%;
   }
 
   .items-inputs {
@@ -376,5 +381,8 @@
     cursor: pointer;
     color: #D44331;
     font-weight: 800;
+  }
+  .list-cat-wrapper {
+    margin-top: 45%;
   }
 }
