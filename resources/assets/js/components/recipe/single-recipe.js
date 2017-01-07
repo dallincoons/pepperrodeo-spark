@@ -11,9 +11,9 @@ Vue.component('single-recipe', {
     methods : {
 
         addToGroceryList        : function (list) {
-            this.$http.post('/grocerylist/' + list.id + '/add/' + this.recipe.id).then(function (response) {
-                this.grocerylists = response.data.grocerylists;
+            this.$http.post('/grocerylist/' + list.id + '/add', {recipes : [list.id]}).then(function (response) {
                 if(response.status === 200){
+                    this.removeGroceryList(list);
                     swal({
                             title              : "",
                             text               : this.addConfirmMessage(list),
@@ -24,6 +24,12 @@ Vue.component('single-recipe', {
                         });
                 }
             });
+        },
+
+        removeGroceryList(list){
+            this.grocerylists = _.without(this.grocerylists, _.findWhere(this.grocerylists, {
+                id: list.id
+            }));
         },
 
         addConfirmMessage : function(list){

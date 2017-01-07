@@ -5,11 +5,14 @@
 <div>
         <h2 class="page-title">My Recipes</h2>
         <div class="centering-buttons">
-            <a class="create-list-option">
+            <a class="create-list-option" v-on:click="showListSelection = !showListSelection">
                 <i class="fa fa-plus-circle"></i> Add Recipes to List
             </a>
         </div>
 
+        <ul v-show="showListSelection">
+            <li class="list" v-for="list in grocerylists" :value="list.id" v-on:click="addToGroceryList(list)"><i class="fa fa-list"></i><a> @{{ list.title }}</a></li>
+        </ul>
 
         <form method="POST" action="/recipe/deleteMultiple" id="deleteForm">
             <input type="hidden" name="_method" value="DELETE">
@@ -31,8 +34,8 @@
                         @foreach($recipes as $recipe)
                             <li class="recipe">
                                 <label class="control control--checkbox"><a href="/recipe/{{$recipe->id}}">{{$recipe->title}}</a>
-                                    <input type="checkbox" v-model="recipes" id="cbox1" name="recipeIds[]"  value="{{$recipe}}">
-                                    <div v-if="showCheckBoxes" class="control__indicator"></div>
+                                    <input type="checkbox" v-model="recipes" id="cbox1" name="recipeIds[]"  value="{{$recipe->getKey()}}">
+                                    <div class="control__indicator"></div>
                                 </label>
                             </li>
                         @endforeach

@@ -31,14 +31,19 @@
     color: #ff4b2e;
     font-weight: 400;
     font-size: 1.3em;
-    margin-bottom: 10px;
     display: block;
+    flex: .1 .1 auto;
+    border: 2px solid #ff4b2e;
+    border-radius: 5px;
+    margin: 30px 10px 10px 0;
   }
 
   .create-list-option:hover {
      cursor: pointer;
      color: #D44331;
      text-decoration: none;
+    flex: .1 .1 auto;
+    border: 3px solid #D44331;
   }
 
   .add-recipe-options {
@@ -145,6 +150,44 @@
   .no-content > h4 {
     font-weight: normal;
   }
+
+  .dropdown-indicator {
+    font-weight: 300;
+    color: rgba(63, 63, 63, .4);
+    margin-right: 10px;
+  }
+
+  .dropdown-indicator:hover {
+    font-weight: 500;
+    color: rgba(63, 63, 63, .8);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .options-dropdown {
+    position: absolute;
+    left: 85%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    color: #ff4b2e;
+    padding: 8px;
+    margin-top: -6px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
+  }
+
+  .options-dropdown a {
+    color: #ff4b2e;
+    margin-bottom: 3px;
+  }
+
+  .options-dropdown a:hover {
+    cursor: pointer;
+    color: #D44331;
+    font-weight: 800;
+  }
+
 }
 
 //Mobile
@@ -180,14 +223,19 @@
     color: #ff4b2e;
     font-weight: 400;
     font-size: 1.3em;
-    margin-bottom: 10px;
     display: block;
+    flex: .1 .1 auto;
+    border: 2px solid #ff4b2e;
+    border-radius: 5px;
+    margin: 30px 10px 10px 0;
   }
 
   .create-list-option:hover {
     cursor: pointer;
     color: #D44331;
     text-decoration: none;
+    flex: .1 .1 auto;
+    border: 3px solid #D44331;
   }
 
   .add-recipe-options {
@@ -291,5 +339,42 @@
 
   .no-content > .pr-button {
     width: 35%;
+  }
+
+  .dropdown-indicator {
+    font-weight: 300;
+    color: rgba(63, 63, 63, .4);
+    margin-right: 10px;
+  }
+
+  .dropdown-indicator:hover {
+    font-weight: 500;
+    color: rgba(63, 63, 63, .8);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .options-dropdown {
+    position: absolute;
+    left: 75%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    color: #ff4b2e;
+    padding: 8px;
+    margin-top: -6px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
+  }
+
+  .options-dropdown a {
+    color: #ff4b2e;
+    margin-bottom: 5px;
+  }
+
+  .options-dropdown a:hover {
+    cursor: pointer;
+    color: #D44331;
+    font-weight: 800;
   }
 }
