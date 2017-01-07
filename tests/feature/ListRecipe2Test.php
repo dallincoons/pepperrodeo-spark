@@ -20,12 +20,39 @@ class ListRecipeTest extends TestCase
     {
         $grocerylist = factory(GroceryList::class)->create();
         $recipes = factory(Recipe::class, 2)->create();
+
         $item1 = factory(Item::class)->create();
         $item2 = factory(Item::class)->create();
+
         $recipes->first()->items()->save($item1);
         $recipes->last()->items()->save($item2);
 
         $this->post('/grocerylist/' . $grocerylist->getKey() .'/add/', ['recipes' => $recipes->pluck('id')]);
+
+        $this->assertEquals(2, $grocerylist->fresh()->items->count());
+    }
+
+    /**
+     * @group recipe-list-tests
+     *
+     * @test
+     */
+    public function skips_dupicate_recipe_when_adding_to_grocery_list()
+    {
+        $grocerylist = factory(GroceryList::class)->create();
+        $recipes = factory(Recipe::class, 2)->create();
+
+        $item1 = factory(Item::class)->create();
+        $item2 = factory(Item::class)->create();
+
+        $recipes->first()->items()->save($item1);
+        $recipes->last()->items()->save($item2);
+
+        $grocerylist->addRecipes($recipes);
+
+        $this->post('/grocerylist/' . $grocerylist->getKey() .'/add/', ['recipes' => $recipes->pluck('id')]);
+
+        $this->assertResponseOk();
 
         $this->assertEquals(2, $grocerylist->fresh()->items->count());
     }

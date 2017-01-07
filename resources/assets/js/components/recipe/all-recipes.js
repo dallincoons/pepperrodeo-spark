@@ -25,12 +25,11 @@ Vue.component('show-all-recipes', {
         },
 
         addToGroceryList(list) {
-            this.$http.post('/grocerylist/' + list.id + '/add/' + this.recipe.id).then(function (response) {
-                this.grocerylists = response.data.grocerylists;
+            this.$http.post('/grocerylist/' + list.id + '/add', {recipes : this.recipes}).then(function (response) {
                 if(response.status === 200){
                     swal({
                         title              : "",
-                        text               : this.addConfirmMessage(list),
+                        text               : this.confirmMessage(list),
                         confirmButtonColor : "#DD6B55",
                         confirmButtonText  : "Ok",
                         closeOnConfirm     : true,
@@ -39,6 +38,10 @@ Vue.component('show-all-recipes', {
                 }
             });
         },
+
+        confirmMessage(list) {
+            return 'You have successfully added recipes to <a href="/grocerylist/' + list.id + '">' + list.title + '</a>';
+        }
     },
 
 });

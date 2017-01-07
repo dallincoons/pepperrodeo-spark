@@ -34,7 +34,7 @@
                         @foreach($recipes as $recipe)
                             <li class="recipe">
                                 <label class="control control--checkbox"><a href="/recipe/{{$recipe->id}}">{{$recipe->title}}</a>
-                                    <input type="checkbox" v-model="recipes" id="cbox1" name="recipeIds[]"  value="{{$recipe}}">
+                                    <input type="checkbox" v-model="recipes" id="cbox1" name="recipeIds[]"  value="{{$recipe->getKey()}}">
                                     <div class="control__indicator"></div>
                                 </label>
                             </li>
