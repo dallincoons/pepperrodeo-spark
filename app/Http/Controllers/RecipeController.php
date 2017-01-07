@@ -23,6 +23,7 @@ class RecipeController extends Controller
         if(parse_url($request->url())['path'] == '/recipe/delete'){
             \JavaScript::put(['showCheckBoxes' => true]);
         }
+        \JavaScript::put('grocerylists', GroceryList::take(10)->get());
 
         $recipesWithCategories = RecipeRepository::recipesWithCategories();
 
