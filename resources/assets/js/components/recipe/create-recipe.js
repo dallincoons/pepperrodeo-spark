@@ -24,7 +24,7 @@ Vue.component('create-recipe', {
 
         checkAddNew(id){
             if(id == 0){
-                this.addingDepartment = true;
+                this.addNewDepartment();
             }
         },
 
@@ -45,25 +45,68 @@ Vue.component('create-recipe', {
             this.item = {};
         },
 
+        addCategory    : function () {
+            let self = this;
+
+            swal({
+                    title               : "Add a Category",
+                    text                : "Organize your recipes",
+                    type                : "input",
+                    showCancelButton    : true,
+                    closeOnConfirm      : true,
+                    animation           : "slide-from-top",
+                    confirmButtonText   : "Save",
+                    inputPlaceholder    : "Produce",
+                    showLoaderOnConfirm : true,
+                    confirmButtonColor: "#ff4b2e",
+                },
+                function (inputValue) {
+                    if( inputValue === false) {
+                        return;
+                    }
+
+                    self.$http.post('/recipe/categories', JSON.stringify({
+                        'name' : inputValue
+                    })).then(response => {
+                        self.categories = response.data;
+                    }).catch(response => {
+                        this.invalidRequest = true;
+                    });
+                });
+        },
+
         addNewDepartment() {
-            this.departments.push({id : this.newDepartmentId, name : this.newDepartment});
-            this.item.department_id = this.newDepartmentId;
-            this.item.department_name = this.newDepartment;
+            let self = this;
 
-            this.addingDepartment = false;
+            swal({
+                    title               : "Add a department",
+                    text                : "Organize your grocery list",
+                    type                : "input",
+                    showCancelButton    : true,
+                    closeOnConfirm      : true,
+                    animation           : "slide-from-top",
+                    confirmButtonText   : "Save",
+                    inputPlaceholder    : "Pharmacy",
+                    showLoaderOnConfirm : true,
+                    confirmButtonColor: "#ff4b2e",
+                },
+                function (inputValue) {
+                    if( inputValue === false) {
+                        return;
+                    }
 
-            this.newDepartmentId--;
+                    self.$http.post('/departments', JSON.stringify({
+                        'name' : inputValue
+                    })).then(response => {
+                        self.departments = response.data;
+                    }).catch(response => {
+                        this.invalidRequest = true;
+                    });
+                });
         },
 
         removeItem(index) {
             this.recipeItems.splice(index, 1);
         },
-
-
-        addNewCategory() {
-            this.categories.push({'name' : this.newCategory, 'id' : -1});
-            this.selectedCategory = [-1, this.newCategory];
-            this.addingCategory = false;
-        }
     }
 });
