@@ -20,6 +20,11 @@ module.exports = {
             groupByValue      : 'category',
         }
     },
+    created(){
+        this.items.forEach(function(item){
+            Vue.set(item, 'toggleOptions', false);
+        });
+    },
     computed : {
         itemsGrouped : function () {
             let items = _.sortBy(this.items, this.groupByValue);
@@ -117,6 +122,10 @@ module.exports = {
         },
         toggleEdit(){
             this.editing = !this.editing;
+        },
+
+        toggleListOptions(item) {
+            item.toggleOptions = !item.toggleOptions;
         }
     }
 };

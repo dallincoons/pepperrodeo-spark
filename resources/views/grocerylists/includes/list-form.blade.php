@@ -52,8 +52,8 @@
                     <span class="list-item-added">@{{ item.name }} </span>
                 </div>
                 <div class="options-dropdown-wrapper">
-                    <a class="dropdown-indicator">...</a>
-                    <ul class="options-dropdown">
+                    <a class="dropdown-indicator" v-on:click="toggleListOptions(item)" >...</a>
+                    <ul class="options-dropdown" v-show="item.toggleOptions">
                         <li><i class="fa fa-pencil"></i><a> Edit Item</a></li>
                         <li><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
                     </ul>
