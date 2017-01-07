@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Entities\GroceryList;
 use App\Entities\Recipe;
+use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 class RecipeListController extends Controller
 {
@@ -31,13 +32,11 @@ class RecipeListController extends Controller
      */
     public function store(Request $request)
     {
-        $grocerylist = GroceryList::findOrFail($request->grocerylist);
+        $grocerylists = GroceryListRepository::addRecipe($request->grocerylist, $request->recipes);
 
-        $recipe = Recipe::findOrFail($request->recipe);
-
-        $grocerylist->addRecipe($recipe);
-
-        return back();
+        return response()->json([
+            'grocerylists' => $grocerylists
+        ], 200);
     }
     /**
      * Display the specified resource.
