@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
 
     Route::get('grocerylist/delete', 'GroceryListController@index');
     Route::delete('grocerylist/deleteMultiple', 'GroceryListController@destroyMultiple');
-    Route::post('/grocerylist/{grocerylist}/add/{recipe}', 'Api\RecipeListApiController@store');
+    Route::post('/grocerylist/{grocerylist}/add', 'RecipeListController@store');
     Route::resource('grocerylist', 'GroceryListController', ['except' => 'edit']);
 
     Route::resource('departments', 'DepartmentController');

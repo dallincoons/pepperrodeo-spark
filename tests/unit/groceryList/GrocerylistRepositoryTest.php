@@ -114,9 +114,8 @@ class GrocerylistRepositoryTest extends TestCase
         \Auth::user()->groceryLists()->save($grocerylist);
         \Auth::user()->groceryLists()->save($grocerylist2);
 
-        $listsWithoutRecipes = GroceryListRepository::addRecipe($grocerylist2->getKey(), $recipe->getKey());
+        GroceryListRepository::addRecipe($grocerylist2->getKey(), $recipe->getKey());
 
         $this->assertEquals($items->count(), $grocerylist2->fresh()->items->count());
-        $this->assertEquals([$grocerylist->getKey()], $listsWithoutRecipes->pluck('id')->all());
     }
 }
