@@ -11,7 +11,7 @@ Vue.component('single-recipe', {
     methods : {
 
         addToGroceryList        : function (list) {
-            this.$http.post('/grocerylist/' + list.id + '/add', {recipes : [list.id]}).then(function (response) {
+            this.$http.post('/grocerylist/' + list.id + '/add', {grocerylist : list.id, recipes : [this.recipe.id]}).then(function (response) {
                 if(response.status === 200){
                     this.removeGroceryList(list);
                     swal({

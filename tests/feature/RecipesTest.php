@@ -116,7 +116,7 @@ class RecipesTest extends TestCase
         $recipe = factory(Recipe::class)->create();
         $list = factory(GroceryList::class)->create();
 
-        $this->json('POST', '/grocerylist/' . $list->getKey() .'/add/' . $recipe->getKey());
+        $this->json('POST', '/grocerylist/' . $list->getKey() .'/add', ['grocerylist' => $list->getKey(), 'recipes' => [$recipe->getKey()]]);
 
         $this->assertResponseOk();
     }
