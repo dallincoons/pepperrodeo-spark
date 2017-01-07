@@ -1,22 +1,24 @@
-<div class="content">
-    <div class="section">
-            <a href="/recipe/create" class="home-option">+ <i class="fa fa-cutlery fa-fw"> </i>  Add a Recipe</a>
+
+<div class="home-content">
+
+    <div class="home-section">
+
+        <div class="home-option-background">
+            <a href="/recipe/create" class="home-link">Add Recipe</a>
+            <i class="fa fa-cutlery"></i>
+        </div>
+
     </div>
 
-    <div class="section">
-            <a href="/grocerylist/create" class="home-option">+ <i class="fa fa-shopping-cart fa-fw"> </i>  Create a List</a>
+    <div class="home-section">
+        <div class="home-option-background home-list">
+            <a href="/grocerylist/create" class="home-link">Create List</a>
+            <i class="fa fa-shopping-basket"></i>
+        </div>
+
     </div>
 
-    <div class="divider"></div>
 
-    <div class="section">
-        <h2>Recent Lists</h2>
-        @foreach($lists as $list)
-            <h3><i class="fa fa-list"></i> <a href="grocerylist/{{$list->getKey()}}">{{$list->title}}</a></h3>
-        @endforeach
-
-        <a href="/grocerylist" class="more">All Lists</a>
-    </div>
 </div>
 
 
