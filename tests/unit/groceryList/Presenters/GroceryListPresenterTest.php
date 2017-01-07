@@ -76,12 +76,12 @@ class GroceryListPresenterTest extends TestCase
     public function combines_sorts_and_groups_similar_items_by_recipe()
     {
         $this->addItemsToGroceryList();
-        $recipe1 = $this->grocerylist->recipes->first();
-        $recipe2 = $this->grocerylist->recipes->find(2);
+        $recipe1 = $this->grocerylist->fresh()->recipes->first();
+        $recipe2 = $this->grocerylist->fresh()->recipes->find(2);
 
         $items = $this->grocerylist->present()->items()->byRecipe();
 
-        $expected = collect([$recipe1->title, $recipe2->title])->sort()->toArray();
+        $expected = collect([$recipe1->title, $recipe2->title]);
 
 //        $this->assertEquals(end($expected), end(array_keys($items->toArray())));
     }

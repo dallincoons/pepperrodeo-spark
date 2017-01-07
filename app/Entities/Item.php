@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'department_id', 'category', 'recipe');
+    protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'department_id', 'department', 'recipe');
 
-    protected $appends = ['recipe_id', 'category', 'recipe_title'];
+    protected $appends = ['recipe_id', 'department', 'recipe_title'];
 
     public function recipe()
     {
@@ -43,7 +43,7 @@ class Item extends Model
         return null;
     }
 
-    public function getCategoryAttribute()
+    public function getDepartmentAttribute()
     {
         if($this->department_id){
             return Department::find($this->department_id)->name;

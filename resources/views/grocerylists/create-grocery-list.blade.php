@@ -6,7 +6,7 @@
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Create List</h2>
         <div class="centering-buttons">
-            <a  v-bind:class="{ 'toggle-active': groupByValue == 'category', 'toggle-inactive': groupByValue != 'category' }"  v-on:click="setGroupBy('category')" class="toggle">By Dept.</a>
+            <a  v-bind:class="{ 'toggle-active': groupByValue == 'department', 'toggle-inactive': groupByValue != 'department' }"  v-on:click="setGroupBy('department')" class="toggle">By Dept.</a>
             <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
         </div>
         {{Form::open(['url' => '/grocerylist', 'id' => 'list-form', 'data-parsley-validate' => ''])}}
