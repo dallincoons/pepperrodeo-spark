@@ -4,11 +4,19 @@
 <show-list inline-template v-cloak>
 <div class="create-list-wrapper">
     <div class="create-list" v-if="!showRecipes">
-            <h2 class="page-title">{{$grocerylist->title}} <a href="#"><i v-on:click.prevent="toggleEdit()" class="fa fa-pencil"></i></a></h2>
+            <h2 class="page-title">{{$grocerylist->title}} <a href="#" class="darker-remove"><i v-on:click.prevent="toggleEdit()" class="fa fa-pencil"></i></a></h2>
             <div class="centering-buttons">
                 <a  v-bind:class="{ 'toggle-active': groupByValue == 'category', 'toggle-inactive': groupByValue != 'category' }"  v-on:click="setGroupBy('category')" class="toggle">By Items</a>
                 <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
             </div>
+
+            <div class="centering-buttons">
+                <a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
+                <a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
+                <a class="create-list-option" onClick="window.print()"><i class="fa fa-print"></i> Printer Friendly</a>
+            </div>
+
+
         {!! Form::model($grocerylist, ['method' => 'POST', 'route' => ['grocerylist.update', $grocerylist->id], 'id' => 'list-form']) !!}
             {!! method_field('patch') !!}
             @include('grocerylists.includes.list-form')
@@ -34,9 +42,6 @@
         </div>
     </div>
 
-    <input type="button" class="print-btn"
-           onClick="window.print()"
-           value="Print List"/>
 </div>
 </show-list>
 @endsection
