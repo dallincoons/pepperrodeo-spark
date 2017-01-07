@@ -81,7 +81,7 @@ class GroceryListController extends Controller
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        \JavaScript::put(['grocerylist' => $grocerylist->load('items')]);
+        \JavaScript::put(['grocerylist' => $grocerylist->load(['items', 'recipes'])]);
         \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
         \JavaScript::put(['departments' => Department::all()->keyBy('id')]);
 
