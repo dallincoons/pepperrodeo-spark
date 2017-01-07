@@ -151,6 +151,9 @@ module.exports = {
         },
 
         toggleListOptions(item) {
+            this.items.forEach(function(item){
+                Vue.set(item, 'toggleOptions', false);
+            });
             item.toggleOptions = !item.toggleOptions;
         },
 
