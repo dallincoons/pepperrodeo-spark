@@ -98,10 +98,10 @@ class RegisterController extends Controller
             'Spices'
         ];
 
-        foreach($departments as department)
+        foreach($departments as $department)
         {
             $user->departments()->create([
-                'name' => department
+                'name' => $department
             ]);
         }
     }
