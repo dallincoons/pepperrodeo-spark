@@ -26,6 +26,10 @@ module.exports = {
         this.items.forEach(function(item){
             Vue.set(item, 'toggleOptions', false);
         });
+
+        this.items.forEach(function(item){
+            Vue.set(item, 'editing', false);
+        });
     },
     computed : {
         itemsGrouped : function () {
@@ -161,6 +165,19 @@ module.exports = {
             document.body.addEventListener('click', this.closeListOptions);
             this.toggledOption = item;
             item.toggleOptions = !item.toggleOptions;
+        },
+
+        toggleItemEditing(item) {
+            item.editing = !item.editing;
+        },
+
+        saveItemEdit(item) {
+            this.$http.patch('/grocerylistitem/edit/' + item.id, {item : {'quantity' : item.quantity, 'type' : item.type, 'name' : item.name}})
+                .then(function(response){
+                    if(response.status == 200){
+                        item.editing = false;
+                    }
+                });
         },
 
         closeListOptions(event){

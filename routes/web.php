@@ -27,6 +27,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::resource('recipe', 'RecipeController');
 
     Route::post('grocerylistitem/remove', 'GroceryListItemController@remove');
+    Route::patch('grocerylistitem/edit/{item}', 'GroceryListItemController@update');
 
     Route::get('grocerylist/delete', 'GroceryListController@index');
     Route::delete('grocerylist/deleteMultiple', 'GroceryListController@destroyMultiple');

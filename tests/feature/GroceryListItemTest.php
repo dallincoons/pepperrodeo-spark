@@ -40,4 +40,27 @@ class GroceryListItemTest extends TestCase
         $this->assertResponseOk();
         $this->assertCount(1, $grocerylist->fresh()->items);
     }
+
+    /**
+     * @group grocery-list-tests
+     *
+     * @test
+     */
+    public function update_a_grocery_list_item()
+    {
+        $this->disableExceptionHandling();
+
+        $item = factory(Item::class)->create(['quantity' => 1]);
+
+        $this->assertEquals(1, $item->quantity);
+
+        $item->quantity = 2;
+
+        $itemArray = $item->toArray();
+
+        $this->patch('/grocerylistitem/edit/' . $item->getKey(), ['item' => ['quantity' => array_get($itemArray, 'quantity')]]);
+
+        $this->assertResponseOk();
+        $this->assertEquals(2, $item->quantity);
+    }
 }
