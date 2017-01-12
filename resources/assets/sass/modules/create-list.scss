@@ -175,7 +175,6 @@
 
   .options-dropdown {
     position: absolute;
-    left: 85%;
     background: #FFFFFF;
     border-radius: 5px;
     color: #ff4b2e;
@@ -198,7 +197,7 @@
   }
 
   .list-cat-wrapper {
-    margin-top: 30%;
+    margin-top: 20%;
   }
 
   .remove-dept {
@@ -209,6 +208,47 @@
   .remove-dept:hover {
     cursor: pointer;
     color: #FFFFFF;
+  }
+
+  .list-item-editing {
+    display: flex;
+    width: 100%;
+  }
+
+  .edit-button {
+    color: #ff4b2e;
+    font-size: 1.5em;
+    margin: 0 5px;
+  }
+
+
+  .edit-button:hover {
+    color: #d43f3a;
+    cursor: pointer;
+  }
+
+  .edit-info-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .editing-button-wrapper > .edit-button {
+    color: rgba(63,63,63, .5);
+  }
+
+  .editing-button-wrapper > .edit-button:hover {
+    color: rgba(63,63,63, .9);
+  }
+
+  .edit-inputs {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .dept-edit-info {
+    margin-right: 5px;
   }
 
 }
@@ -369,6 +409,7 @@
     font-weight: 300;
     color: rgba(63, 63, 63, .4);
     margin-right: 10px;
+    position: relative;
   }
 
   .dropdown-indicator:hover {
@@ -380,7 +421,6 @@
 
   .options-dropdown {
     position: absolute;
-    left: 75%;
     background: #FFFFFF;
     border-radius: 5px;
     color: #ff4b2e;
@@ -401,8 +441,14 @@
     color: #D44331;
     font-weight: 800;
   }
+
+  .list-item-editing {
+    display: flex;
+    width: 100%;
+  }
+
   .list-cat-wrapper {
-    margin-top: 45%;
+    margin-top: 10%;
   }
 
   .remove-dept {
@@ -414,4 +460,51 @@
     cursor: pointer;
     color: #FFFFFF;
   }
+
+  .edit-button {
+    color: #ff4b2e;
+    font-size: 1.5em;
+    margin: 0 4px;
+  }
+
+  .edit-button:hover {
+    color: #d43f3a;
+    cursor: pointer;
+  }
+
+  .category-title > h3 {
+    flex: 1 1 auto;
+  }
+
+  .edit-info-wrapper {
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .editing-button-wrapper > .edit-button {
+    color: rgba(63,63,63, .5);
+  }
+
+  .editing-button-wrapper > .edit-button:hover {
+    color: rgba(63,63,63, .9);
+  }
+
+  .edit-inputs {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .dept-edit-info {
+    margin-right: 5px;
+  }
+
+  .edit-inputs > .ingredient-info {
+    flex: .3 .3 auto;
+    width: 20%;
+    margin-right: 2%;
+  }
+
 }

@@ -47,7 +47,7 @@
         <li class="category-title"><h3>@{{ groupName }}</h3> <span v-on:click="deleteGroup(items)" class="remove-dept"><i class="fa fa-times-circle-o"></i></span></li>
         <ul class="recipes list-items">
             <li v-for="item in items" class="list-item">
-                <div v-if="!item.editing">
+                <div v-if="!item.editing" class="list-item-editing">
                     <div class="list-item-wrapper">
                         <span class="list-item-added">@{{ item.quantity }}</span>
                         <span class="list-item-added">@{{ item.type }}</span>
@@ -68,15 +68,21 @@
                     <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department.id">
                     <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
                 </div>
-                <div v-else>
-                    <input class="list-item-added" v-model="item.quantity" :value="item.quantity" />
-                    <input class="list-item-added" v-model="item.type" :value="item.type" />
-                    <input class="list-item-added" v-model="item.name" :value="item.name" />
-                    <select name="category" v-model="item.department.id">
-                        <option v-for="department in departments" :value="department.id">@{{department.name}}</option>
-                    </select>
-                    <a class="pr-button" v-on:click="saveItemEdit(item)">Save</a>
-                    <a class="pr-button" v-on:click="toggleItemEditing(item)">Cancel</a>
+                <div v-else class="edit-info-wrapper">
+                    <div class="edit-inputs">
+                        <input class="list-item-added ingredient-info" v-model="item.quantity" :value="item.quantity" type="number"/>
+                        <input class="list-item-added ingredient-info" v-model="item.type" :value="item.type" />
+                        <input class="list-item-added ingredient-info" v-model="item.name" :value="item.name" />
+                        <select name="category" v-model="item.department.id" class="ingredient-info dept-edit-info">
+                            <option v-for="department in departments" :value="department.id">@{{department.name}}</option>
+                        </select>
+                        <a class="edit-button" v-on:click="saveItemEdit(item)"><i class="fa fa-check-circle-o"></i></a>
+                    </div>
+
+                    <div class="editing-button-wrapper">
+                        <a class="edit-button" v-on:click="toggleItemEditing(item)"><i class="fa fa-times-circle-o"></i></a>
+                    </div>
+
                 </div>
             </li>
         </ul>
