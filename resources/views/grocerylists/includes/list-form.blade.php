@@ -28,8 +28,8 @@
             <div class="ingredient-input">
                 <label for="category" class="sub-heading dept-label">Department</label>
                 <select name="category" v-model="newDepartmentId">
-                    @foreach($departments as $departments)
-                        <option value="{{ $departments->id }}">{{$departments->name}}</option>
+                    @foreach($departments as $department)
+                        <option value="{{ $department->id }}">{{$department->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -65,13 +65,16 @@
                     <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
                     <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
                     <input type="hidden" :name="'items[' + item.id + '][type]'" :value="item.type">
-                    <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department_id">
+                    <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department.id">
                     <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
                 </div>
                 <div v-else>
                     <input class="list-item-added" v-model="item.quantity" :value="item.quantity" />
                     <input class="list-item-added" v-model="item.type" :value="item.type" />
                     <input class="list-item-added" v-model="item.name" :value="item.name" />
+                    <select name="category" v-model="item.department.id">
+                        <option v-for="department in departments" :value="department.id">@{{department.name}}</option>
+                    </select>
                     <a class="pr-button" v-on:click="saveItemEdit(item)">Save</a>
                     <a class="pr-button" v-on:click="toggleItemEditing(item)">Cancel</a>
                 </div>

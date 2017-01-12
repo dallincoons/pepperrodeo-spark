@@ -228,7 +228,7 @@ class RecipeRepositoryTest extends TestCase
                                ]]
         ]);
 
-        $this->assertEquals($categoryName, $recipe->items->where('name', 'pee')->first()->department);
+        $this->assertEquals($categoryName, $recipe->items->where('name', 'pee')->first()->department->name);
     }
 
     /**
@@ -257,7 +257,7 @@ class RecipeRepositoryTest extends TestCase
                                ]]
         ]);
 
-        $this->assertEquals($categoryName, $recipe->items->where('name', 'pee')->first()->department);
+        $this->assertEquals($categoryName, $recipe->items->where('name', 'pee')->first()->department->name);
         $this->assertCount(1, Department::where('name',$categoryName)->get());
     }
 }

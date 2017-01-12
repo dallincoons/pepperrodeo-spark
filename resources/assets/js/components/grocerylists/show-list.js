@@ -4,7 +4,7 @@ Vue.component('show-list', {
     mixins : [list_form],
     data() {
         return {
-            editing : false
+            editing : true
         }
     },
     methods : {
