@@ -46,7 +46,7 @@ class Item extends Model
     public function getDepartmentAttribute()
     {
         if($this->department_id){
-            return Department::find($this->department_id)->name;
+            return Department::find($this->department_id);
         }
 
         return null;

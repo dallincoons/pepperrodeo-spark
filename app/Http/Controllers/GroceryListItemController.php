@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class GroceryListItemController extends Controller
 {
     /**
+     * @param \Illuminate\Http\Request  $request
+     * @param \App\Entities\Item $item
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Request $request, Item $item)
+    {
+        $item->update($request->item);
+    }
+
+    /**
      * @return \Illuminate\Http\Response
      */
     public function remove(Request $request)

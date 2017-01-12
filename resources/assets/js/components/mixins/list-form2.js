@@ -18,13 +18,16 @@ module.exports = {
             newItemType       : '',
             newDepartmentId : '',
             newItemId         : 0,
-            groupByValue      : 'department',
+            groupByValue      : 'department_name',
             toggledOption     : {}
         }
     },
     created(){
         this.items.forEach(function(item){
             Vue.set(item, 'toggleOptions', false);
+            Vue.set(item, 'editing', false);
+            Vue.set(item, 'editing', false);
+            Vue.set(item, 'department_name', item.department.name);
         });
     },
     computed : {
@@ -78,9 +81,9 @@ module.exports = {
                 quantity         : this.newItemQty,
                 name             : this.newItemName,
                 type             : this.newItemType,
-                department_id : this.newDepartmentId,
+                department_name  : this.departments[this.newDepartmentId].name,
                 recipe_title     : 'Other',
-                department       : this.departments[this.newDepartmentId].name
+                department       : this.departments[this.newDepartmentId]
             };
 
             this.items.push(newItem);
@@ -128,6 +131,10 @@ module.exports = {
                 self.addedRecipes.push(self.unaddedRecipes[recipeId]);
                 recipe = self.unaddedRecipes[recipeId];
 
+                recipe.items.forEach(function(item){
+                    Vue.set(item, 'department_name', item.department.name);
+                });
+
                 self.items = Array.from(self.items).concat(recipe.items);
 
                 self.recipesToAdd = [];
@@ -161,6 +168,20 @@ module.exports = {
             document.body.addEventListener('click', this.closeListOptions);
             this.toggledOption = item;
             item.toggleOptions = !item.toggleOptions;
+        },
+
+        toggleItemEditing(item) {
+            item.editing = !item.editing;
+        },
+
+        saveItemEdit(item) {
+            this.$http.patch('/grocerylistitem/edit/' + item.id, {item : {'quantity' : item.quantity, 'type' : item.type, 'name' : item.name, 'department_id' : item.department.id}})
+                .then(function(response){
+                    if(response.status == 200){
+                        item.department_name = this.departments[item.department.id].name;
+                        item.editing = false;
+                    }
+                });
         },
 
         closeListOptions(event){

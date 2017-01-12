@@ -6,7 +6,7 @@
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Create List</h2>
         <div class="centering-buttons">
-            <a  v-bind:class="{ 'toggle-active': groupByValue == 'department', 'toggle-inactive': groupByValue != 'department' }"  v-on:click="setGroupBy('department')" class="toggle">By Dept.</a>
+            <a  v-bind:class="{ 'toggle-active': groupByValue == 'department', 'toggle-inactive': groupByValue != 'department' }"  v-on:click="setGroupBy('department_name')" class="toggle">By Dept.</a>
             <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
         </div>
 
@@ -45,8 +45,8 @@
                     <div class="ingredient-input">
                         <label for="category" class="sub-heading dept-label">Department</label>
                         <select name="category" v-model="newDepartmentId">
-                            @foreach($departments as $departments)
-                                <option value="{{ $departments->id }}">{{$departments->name}}</option>
+                            @foreach($departments as $department)
+                                <option value="{{ $department->id }}">{{$department->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -81,7 +81,7 @@
                         <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
                         <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
                         <input type="hidden" :name="'items[' + item.id + '][type]'" :value="item.type">
-                        <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department_id">
+                        <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department.id">
                         <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
                     </li>
                 </ul>
