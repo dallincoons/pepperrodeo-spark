@@ -28,7 +28,7 @@ elixir(function(mix) {
         .copy('node_modules/sweetalert/dist/sweetalert.css', 'public/css/sweetalert.css')
         .copy('resources/assets/img/PR_favicon.ico', 'public')
         .copy('resources/assets/img/favicon.png', 'public')
-        .copy('resources/assets/img/red-lunch-green-knolling.jpg', 'public')
+        .copy('resources/assets/img/pepperrodeo_background_image.jpg', 'public')
         .version(['css/app.css']);
 
 });
