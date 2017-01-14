@@ -369,11 +369,12 @@
 
   .item-section {
     margin-bottom: 20px;
-    width: 90%;
+    width: 95%;
   }
 
   .items-inputs {
     display: flex;
+    width: 100%;
   }
 
   .add-wrapper {
@@ -388,6 +389,7 @@
     color: #ff4b2e;
     font-size: 2em;
     align-self: baseline;
+    padding: 3px;
   }
 
   .pr-button {

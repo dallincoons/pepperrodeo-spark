@@ -61,7 +61,7 @@
         <div class="category-wrapper">
             <ul class="category recipes">
                 <li v-for="recipe in unaddedRecipes" class="add-recipe-options">
-                    <label class="control control--checkbox"><a>@{{recipe.title}}</a>
+                    <label class="control control--checkbox"><a class="add-recipe-list">@{{recipe.title}}</a>
                         <input type="checkbox" :value="recipe.id" v-model="recipesToAdd" />
                         <div class="control__indicator"></div>
                     </label>
