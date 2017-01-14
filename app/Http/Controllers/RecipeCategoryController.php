@@ -107,18 +107,7 @@ class RecipeCategoryController extends Controller
      */
     public function destroy(RecipeCategory $recipecategory, Request $request)
     {
-        if($request->force != 'true' && $recipecategory->recipes->count()){
-            return response(
-                $request->force,
-                290
-            );
-        }
-
-        $success = $recipecategory->delete();
-
-        if(!$success){
-            abort('422');
-        }
+        $recipecategory->delete();
 
         return response(
             $this->repository->getAll()

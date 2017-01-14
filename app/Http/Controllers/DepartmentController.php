@@ -101,17 +101,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department, Request $request)
     {
-        if($request->force == 'false' && $department->items->count()){
-            return response(
-                $request->force,
-                290
-            );
-        }
-        $success = $department->delete();
-
-        if(!$success){
-            abort('422');
-        }
+        $department->delete();
 
         return response(
             Department::all()
