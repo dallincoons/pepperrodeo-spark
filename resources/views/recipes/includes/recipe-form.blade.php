@@ -48,7 +48,7 @@
             <input v-model="item.department_name" :name="'recipeFields[' + index + '][department_name]'" type="hidden">
         </div>
 
-        <div v-on:click="removeItem(index)" class="ingredient-input rmv-ingred">X</div>
+        <div v-on:click="removeItem(index)" class="ingredient-input rmv-ingred"><i class="fa fa-times-circle-o"></i></div>
     </div>
 
 
