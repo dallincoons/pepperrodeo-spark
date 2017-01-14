@@ -49,7 +49,7 @@
             <li v-for="item in items" class="list-item">
                 <div v-if="!item.editing" class="list-item-editing">
                     <div class="list-item-wrapper">
-                        <span class="list-item-added">@{{ item.quantity }}</span>
+                        <div class="print-checkbox"></div><span class="list-item-added">@{{ item.quantity }}</span>
                         <span class="list-item-added">@{{ item.type }}</span>
                         <span class="list-item-added">@{{ item.name }} </span>
                     </div>
