@@ -16,6 +16,8 @@ class Recipe extends Model
 
     protected $fillable = array('user_id', 'title', 'directions', 'recipe_category_id');
 
+    protected $appends = ['category_name'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -34,6 +36,11 @@ class Recipe extends Model
     public function groceryLists()
     {
         return $this->belongsToMany(GroceryList::class);
+    }
+
+    public function getCategoryNameAttribute()
+    {
+        return $this->category->name;
     }
 
     public function populateItems(array $items)

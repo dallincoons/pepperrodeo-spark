@@ -3,7 +3,7 @@
 @section('content')
 <show-all-recipes inline-template class="content-wrapper all-recipes-wrapper" v-cloak>
 <div>
-        <h2 class="page-title">My Recipes</h2>
+    <h2 class="page-title">My Recipes</h2>
         <div class="centering-buttons">
             <a class="create-list-option" v-on:click="showListSelection = !showListSelection">
                 <i class="fa fa-plus-circle"></i> Add Recipes to List
@@ -26,35 +26,28 @@
              </ul>
         </nav>
         <div class="category-wrapper">
-        @if(count($recipesWithCategories))
-            <ul>
-                @foreach($recipesWithCategories as $category => $recipes)
-                <li class="category-title"><h3>{{$category}}</h3></li>
+            <ul v-if="recipes.length" v-for="(recipes, category) in recipesByCategory">
+                <li class="category-title"><h3>@{{category}}</h3></li>
                 <li>
                     <ul class="recipes">
-                        @foreach($recipes as $recipe)
-                            <li class="recipe">
-                                <label class="control control--checkbox"><a href="/recipe/{{$recipe->id}}">{{$recipe->title}}</a>
-                                    <input type="checkbox" v-model="recipes" id="cbox1" name="recipeIds[]"  value="{{$recipe->getKey()}}">
+                            <li v-for="recipe in recipes" class="recipe">
+                                <label class="control control--checkbox"><a>@{{recipe.title}}</a>
+                                    <input type="checkbox" v-model="selectedRecipes" id="cbox1" name="recipeIds[]"  :value="recipe.id">
                                     <div class="control__indicator"></div>
                                 </label>
                             </li>
-                        @endforeach
                     </ul>
                 </li>
-                @endforeach
             </ul>
 
-            @else
-                <div class="lists-wrapper no-content">
-                    <h4>Looks like you don't have any recipes yet!</h4>
-                    <a href="/recipe/create" class="pr-button save-button"><i class="fa fa-plus-circle"></i> Add a Recipe</a>
-                </div>
-        @endif
+            <div class="lists-wrapper no-content" v-else>
+                <h4>Looks like you don't have any recipes yet!</h4>
+                <a href="/recipe/create" class="pr-button save-button"><i class="fa fa-plus-circle"></i> Add a Recipe</a>
+            </div>
         </div>
 
         <div class="centering-buttons">
-            <input v-show="recipes.length" v-on:click="deleteRecipes()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
+            <input v-show="selectedRecipes.length" v-on:click="deleteRecipes()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
         </div>
 
         </form>

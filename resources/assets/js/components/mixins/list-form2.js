@@ -23,6 +23,7 @@ module.exports = {
         }
     },
     created(){
+        console.log(this.items);
         this.items.forEach(function(item){
             Vue.set(item, 'toggleOptions', false);
             Vue.set(item, 'editing', false);

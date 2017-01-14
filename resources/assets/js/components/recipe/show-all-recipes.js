@@ -5,10 +5,20 @@ Vue.component('show-all-recipes', {
 
     data() {
         return {
-            recipes        : [],
+            recipes          : PepperRodeo.recipes,
+            selectedRecipes        : [],
             showListSelection : false,
             grocerylists : PepperRodeo.grocerylists
         };
+    },
+
+    computed : {
+
+        recipesByCategory : function(){
+            let recipes = _.sortBy(this.recipes, 'category_name');
+            return _.groupBy(recipes, 'category_name');
+        }
+
     },
 
     methods : {
@@ -19,7 +29,7 @@ Vue.component('show-all-recipes', {
         },
 
         addToGroceryList(list) {
-            this.$http.post('/grocerylist/' + list.id + '/add', {recipes : this.recipes}).then(function (response) {
+            this.$http.post('/grocerylist/' + list.id + '/add', {recipes : this.selectedRecipes}).then(function (response) {
                 if(response.status === 200){
                     swal({
                         title              : "",

@@ -11,11 +11,14 @@
 
 require('./../spark-components/bootstrap');
 
+/* Lists */
+require('./lists/lists.js');
+
 /* Recipes */
 require('./home');
 require('./recipe/create-recipe');
 require('./recipe/single-recipe');
-require('./recipe/all-recipes');
+require('./recipe/show-all-recipes');
 require('./recipe/edit-recipe');
 
 /* Grocery Lists */

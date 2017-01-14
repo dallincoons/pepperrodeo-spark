@@ -10,16 +10,12 @@
             <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
         </div>
 
-
-
         {{Form::open(['url' => '/grocerylist', 'id' => 'list-form', 'data-parsley-validate' => ''])}}
-            {{--@include('grocerylists.includes.list-form')--}}
 
         <div v-show="editing">
             <div class="title-section">
                 <label for="title" class="form-heading">Title*</label>
                 <input type="text" placeholder="September Grocery List" v-model="title" id="title" name="title" required data-parsley-errors-messages-disabled>
-
             </div>
 
             <a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
@@ -58,7 +54,6 @@
             </div>
         </div>
 
-
         <div class="category-wrapper">
             <ul class="category" v-for="(items, groupName) in itemsGrouped">
                 <li class="category-title"><h3>@{{ groupName }}</h3> <span v-on:click="deleteGroup(items)" class="remove-dept"><i class="fa fa-times-circle-o"></i></span></li>
@@ -76,7 +71,6 @@
                                 <li v-on:click="removeItemFromList(item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
                             </ul>
                         </div>
-
 
                         <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
                         <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
@@ -101,9 +95,6 @@
                 </ul>
             </div>
         @endif
-
-
-
 
         <ul v-if="list_form_errors">
             <li v-for="error in list_form_errors">@{{ error.reason }}</li>

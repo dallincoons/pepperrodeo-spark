@@ -21,9 +21,11 @@ class RecipeController extends Controller
     {
         \JavaScript::put('grocerylists', GroceryList::take(10)->get());
 
-        $recipesWithCategories = RecipeRepository::recipesWithCategories();
+        $recipes = \Auth::user()->recipes()->get();
 
-        return view('recipes.all-recipes', compact('recipesWithCategories'));
+        \Javascript::put(['recipes' => $recipes->toArray()]);
+
+        return view('recipes.all-recipes');
     }
 
     /**
