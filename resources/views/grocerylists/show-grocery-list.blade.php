@@ -12,9 +12,9 @@
             </div>
 
             <div class="centering-buttons">
-                <a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
-                <a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
-                <a class="create-list-option" onClick="window.print()"><i class="fa fa-print"></i> Printer Friendly</a>
+                <a v-on:click="setShowRecipes(true)" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add a recipe</a>
+                <a v-on:click="setAddAnItem(true)" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add an item</a>
+                <a class="create-list-option hide-options" onClick="window.print()"><i class="fa fa-print"></i> Printer Friendly</a>
             </div>
 
             <nav class="mini-nav">

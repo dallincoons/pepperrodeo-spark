@@ -11,8 +11,8 @@
 
         <h2 class="page-title">My Lists</h2>
         <div class="centering-buttons">
-            <a href="/grocerylist/create" class="create-list-option"><i class="fa fa-plus"></i> Create List</a>
-            <a v-on:click="deleteLists()" class="create-list-option"><i class="fa fa-trash"></i> Delete Lists</a>
+            <a href="/grocerylist/create" class="create-list-option hide-options"><i class="fa fa-plus"></i> Create List</a>
+            <a v-on:click="deleteLists()" class="create-list-option hide-options"><i class="fa fa-trash"></i> Delete Lists</a>
         </div>
 
 
