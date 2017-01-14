@@ -123,7 +123,7 @@
 
   .home-option-background {
     color: #FFFFFF;
-    font-size: 15em;
+    font-size: 12em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,12 +136,36 @@
     position: absolute;
     color: #ff4b2e;
     font-size: .2em;
+    font-weight: 500;
   }
 
   .home-list > i {
     font-size: .9em;
   }
-  
+  .list-option {
+    padding: 5px;
+  }
 
 
 }
+
+//Ipad Styling
+
+@media only screen and (max-height: 1024px) {
+
+  .recipe-option {
+    padding: 30px;
+  }
+
+}
+
+@media only screen and (max-height: 1366px) and (max-width: 1024px) {
+
+  .recipe-option {
+    padding: 30px;
+  }
+
+}
+
+
+

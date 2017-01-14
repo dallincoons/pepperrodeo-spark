@@ -245,10 +245,17 @@
     flex: 1 1 auto;
     display: flex;
     align-items: center;
+    width: 100%;
   }
 
   .dept-edit-info {
     margin-right: 5px;
+  }
+
+  .edit-inputs > .ingredient-info {
+    flex: .3 .3 auto;
+    width: 20%;
+    margin-right: 2%;
   }
 
 }
@@ -429,7 +436,15 @@
     -webkit-box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
     -moz-box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
     box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.3);
+    z-index: 100;
+    left: 65%;
   }
+
+  .options-dropdown > li {
+    padding: 5px 3px;
+  }
+
+
 
   .options-dropdown a {
     color: #ff4b2e;
