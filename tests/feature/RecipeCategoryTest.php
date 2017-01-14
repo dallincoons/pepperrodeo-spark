@@ -80,12 +80,6 @@ class RecipeCategoryTest extends TestCase
 
         $this->delete('recipe/categories/' . $recipeCategory->getKey());
 
-        $this->assertNotNull($recipeCategory->fresh());
-        $this->assertTrue($recipe->fresh()->exists());
-        $this->assertResponseStatus(290);
-
-        $this->delete('recipe/categories/' . $recipeCategory->getKey(), ['force' => 'true']);
-
         $this->assertNull($recipeCategory->fresh());
         $this->assertNull($recipe->fresh());
         $this->assertResponseStatus(200);

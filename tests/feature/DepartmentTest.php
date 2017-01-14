@@ -96,13 +96,7 @@ class DepartmentTest extends TestCase
 
         $department->items()->save($item);
 
-        $this->delete('departments/' . $department->getKey(), ['force' => 'false']);
-
-        $this->assertNotNull($department->fresh());
-        $this->assertTrue($item->fresh()->exists());
-        $this->assertResponseStatus(290);
-
-        $this->delete('departments/' . $department->getKey(), ['force' => 'true']);
+        $this->delete('departments/' . $department->getKey());
 
         $this->assertNull($department->fresh());
         $this->assertNull($item->fresh());
