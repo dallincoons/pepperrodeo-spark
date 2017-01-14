@@ -83,6 +83,20 @@ class GroceryListControllerTest extends TestCase
      *
      * @test
      */
+    public function it_makes_show_list_request()
+    {
+        $grocerylist = factory(GroceryList::class)->create();
+
+        $this->get('/grocerylist/' . $grocerylist->getKey());
+
+        $this->assertResponseOk();
+    }
+
+    /**
+     * @group grocery-list-tests
+     *
+     * @test
+     */
     public function make_update_grocery_list_request()
     {
         $departments = factory(Department::class)->create();
@@ -109,12 +123,13 @@ class GroceryListControllerTest extends TestCase
         $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'title' => 'fake-title',
             'items' => [
-                ['id' => $item->first()->getKey(), 'name' => 'item1', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
+                ['id' => -1, 'name' => 'item1', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
             ]
         ]);
 
+
         $this->assertEquals('fake-title', $grocerylist->fresh()->title);
-        $this->assertCount(1, $grocerylist->items);
+        $this->assertCount(1, $grocerylist->fresh()->items);
         $this->assertResponseStatus(302);
     }
 
