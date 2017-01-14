@@ -8,7 +8,7 @@ class Item extends Model
 {
     protected $fillable = array('quantity', 'name', 'type', 'recipe_id', 'grocery_list_id', 'department_id', 'department', 'recipe');
 
-    protected $appends = ['recipe_id', 'department', 'recipe_title'];
+    protected $appends = ['recipe_id', 'recipe_title'];
 
     public function recipe()
     {
@@ -18,6 +18,11 @@ class Item extends Model
     public function groceryList()
     {
         return $this->morphedByMany(GroceryList::class, 'itemable');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 
     public function itemable()
@@ -38,15 +43,6 @@ class Item extends Model
     {
         if($this->recipe()->first()){
             return $this->recipe()->first()->title;
-        }
-
-        return null;
-    }
-
-    public function getDepartmentAttribute()
-    {
-        if($this->department_id){
-            return Department::find($this->department_id);
         }
 
         return null;

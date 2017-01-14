@@ -7,9 +7,12 @@ use Laravel\Spark\User as SparkUser;
 use App\Entities\GroceryList;
 use App\Entities\Recipe;
 use App\Entities\RecipeCategory;
+use Illuminate\Notifications\Notifiable;
 
 class User extends SparkUser
 {
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *

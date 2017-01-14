@@ -49,7 +49,7 @@ class GroceryListController extends Controller
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        JavaScript::put(['recipes' => $recipes->keyBy('id')]);
+        JavaScript::put(['recipes' => $recipes->load('items.department')->keyBy('id')]);
         JavaScript::put(['departments' => Department::all()->keyBy('id')]);
 
         return view('grocerylists.create-grocery-list', compact('recipes'));
@@ -81,8 +81,8 @@ class GroceryListController extends Controller
     {
         $recipes = \Auth::user()->recipes()->with('items')->get();
 
-        \JavaScript::put(['grocerylist' => $grocerylist->load(['items', 'recipes'])]);
-        \JavaScript::put(['recipes' => $recipes->keyBy('id')]);
+        \JavaScript::put(['grocerylist' => $grocerylist->load(['items', 'items.department', 'recipes'])]);
+        \JavaScript::put(['recipes' => $recipes->load('items.department')->keyBy('id')]);
         \JavaScript::put(['departments' => Department::all()->keyBy('id')]);
 
         return view('grocerylists.show-grocery-list', compact('grocerylist'));

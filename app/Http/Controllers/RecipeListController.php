@@ -1,7 +1,5 @@
 <?php
 namespace App\Http\Controllers;
-use App\Entities\GroceryList;
-use App\Entities\Recipe;
 use App\Repositories\GroceryListRepository;
 use Illuminate\Http\Request;
 class RecipeListController extends Controller
