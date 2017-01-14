@@ -86,10 +86,7 @@ class GroceryListController extends Controller
      */
     public function update(UpdateGroceryListRequest $request, GroceryList $grocerylist)
     {
-       GroceryListRepository::update([
-        'items' => $request->items,
-        'title' => $request->title
-       ], $grocerylist);
+       GroceryListRepository::update($request->only(['title', 'items']), $grocerylist);
 
         return redirect('/grocerylist/' . $grocerylist->getKey());
     }

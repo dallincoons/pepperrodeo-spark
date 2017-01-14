@@ -83,9 +83,13 @@ class GroceryListControllerTest extends TestCase
      *
      * @test
      */
-    public function make_update_request()
+    public function make_update_grocery_list_request()
     {
+        $departments = factory(Department::class)->create();
+
         $grocerylist = factory(GroceryList::class)->create();
+        $item = factory(Item::class, 3)->make();
+        $grocerylist->items()->saveMany($item);
 
         //items should be array
         $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
@@ -100,6 +104,18 @@ class GroceryListControllerTest extends TestCase
         ]);
 
         $this->assertResponseStatus(422);
+
+        //title should be string
+        $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
+            'title' => 'fake-title',
+            'items' => [
+                ['id' => $item->first()->getKey(), 'name' => 'item1', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
+            ]
+        ]);
+
+        $this->assertEquals('fake-title', $grocerylist->fresh()->title);
+        $this->assertCount(1, $grocerylist->items);
+        $this->assertResponseStatus(302);
     }
 
     private function buildSampleGroceryList()
