@@ -27,17 +27,17 @@
         <input type="hidden" :name="'recipeFields[' + index + '][id]'" :value="item.id"/>
         <div class="ingredient-input">
             <label for="quantity" class="sub-heading">Qty</label>
-            <input type="text" id="quantity" :name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="text" id="quantity" :name="'recipeFields[' + index + '][quantity]'" v-model="item.quantity" class="ingredient-info" placeholder="3" :value="item.quantity" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Type</label>
-            <input type="text" id="type" :name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="cups"  :value="item.type" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="text" id="type" :name="'recipeFields[' + index + '][type]'" v-model="item.type" class="ingredient-info" placeholder="cups"  :value="item.type" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
             <label for="ingredient" class="sub-heading">Ingredient</label>
-            <input type="text" id="ingredient" :name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="flour" :value="item.name" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
+            <input type="text" id="ingredient" :name="'recipeFields[' + index + '][name]'" v-model="item.name" class="ingredient-info" placeholder="flour" :value="item.name" required data-parsley-errors-messages-disabled data-parsley-trigger="submit"/>
         </div>
 
         <div class="ingredient-input">
