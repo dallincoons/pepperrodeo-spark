@@ -5,7 +5,8 @@ Vue.component('all-grocery-lists', {
 
     data() {
         return {
-            lists        : []
+            lists        : [],
+            showCheckBoxes : true
         };
     },
 

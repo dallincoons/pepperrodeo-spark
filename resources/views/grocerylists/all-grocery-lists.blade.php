@@ -13,7 +13,7 @@
         <nav class="mini-nav">
             <ul class="mini-nav-options">
                 <li><a href="/grocerylist/create"><i class="fa fa-plus"></i></a></li>
-                <li><a v-on:click="toggleShowCheckBoxes()"><i class="fa fa-trash"></i></a></li>
+                <li><a v-on:click="deleteLists()"><i class="fa fa-trash"></i></a></li>
             </ul>
         </nav>
 
@@ -23,7 +23,7 @@
                 <li class="list">
                     <label class="control control--checkbox"><i class="fa fa-list list-info"></i> <a href="/grocerylist/{{$list->id}}" class="list-info">{{$list->title}}</a>
                         <input type="checkbox" v-model="lists" id="cbox1" name="lists[]"  value="{{$list}}">
-                        <div v-if="showCheckBoxes" class="control__indicator"></div>
+                        <div class="control__indicator"></div>
                     </label>
                 </li>
                 <li></li>
@@ -40,7 +40,7 @@
         @endif
 
         <div class="centering-buttons">
-            <input v-if="showCheckBoxes" v-on:click="deleteLists()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
+            <input v-if="lists.length" v-on:click="deleteLists()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
         </div>
     </form>
 
