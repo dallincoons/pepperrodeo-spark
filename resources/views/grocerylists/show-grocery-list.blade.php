@@ -17,6 +17,15 @@
                 <a class="create-list-option" onClick="window.print()"><i class="fa fa-print"></i> Printer Friendly</a>
             </div>
 
+            <nav class="mini-nav">
+                <ul class="mini-nav-options">
+                    <li><a v-on:click="setShowRecipes(true)"><i class="fa fa-cutlery"></i></a></li>
+                    <li><a v-on:click="setAddAnItem(true)"><i class="fa fa-plus"></i></a></li>
+                    <li><a onClick="window.print()"><i class="fa fa-print"></i></a></li>
+                </ul>
+            </nav>
+
+
             <div class="item-section" v-if="addAnItem">
                 <div class="items-inputs">
                     <div class="ingredient-input">
