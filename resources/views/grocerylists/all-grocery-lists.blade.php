@@ -10,6 +10,12 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <h2 class="page-title">My Lists</h2>
+        <div class="centering-buttons">
+            <a href="/grocerylist/create" class="create-list-option"><i class="fa fa-plus"></i> Create List</a>
+            <a v-on:click="deleteLists()" class="create-list-option"><i class="fa fa-trash"></i> Delete Lists</a>
+        </div>
+
+
         <nav class="mini-nav">
             <ul class="mini-nav-options">
                 <li><a href="/grocerylist/create"><i class="fa fa-plus"></i></a></li>
@@ -38,10 +44,7 @@
 
 
         @endif
-
-        <div class="centering-buttons">
-            <input v-if="lists.length" v-on:click="deleteLists()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
-        </div>
+        
     </form>
 
 </div>
