@@ -83,6 +83,14 @@
     margin: 0 auto;
   }
 
+  .all-recipes-wrapper {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .all-recipes-wrapper > .centering-buttons {
+    display: none;
+  }
 
   .category-title {
     color: #FFFFFF;
