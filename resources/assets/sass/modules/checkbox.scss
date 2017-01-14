@@ -14,11 +14,13 @@
 
 .control__indicator {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 0;
   width: 20px;
   height: 20px;
-  background: #e6e6e6;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: inset 5px 5px 7px 2px rgba(172,172,172,0.2);
+  border: rgba(172, 172, 172, .5) solid 1px;
 }
 
 .control--radio .control__indicator {
@@ -28,7 +30,8 @@
 /* Hover and focus states */
 .control:hover input ~ .control__indicator,
 .control input:focus ~ .control__indicator {
-  background: #ccc;
+  background: rgba(255, 75, 46, .5);
+  box-shadow: inset 5px 5px 7px 2px rgba(172,172,172,0.2);
 }
 
 /* Checked state */
@@ -79,6 +82,7 @@
 
 @media only screen and (max-width: 799px) {
   .control__indicator {
-    background: #FFF4F1;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: inset 2px 2px 7px 2px rgba(172,172,172,0.39);
   }
 }
