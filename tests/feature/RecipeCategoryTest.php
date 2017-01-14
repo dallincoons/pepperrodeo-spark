@@ -90,4 +90,18 @@ class RecipeCategoryTest extends TestCase
         $this->assertNull($recipe->fresh());
         $this->assertResponseStatus(200);
     }
+
+    /**
+     * @group recipe-category-tests
+     *
+     * @test
+     */
+    public function it_makes_a_request_to_see_recipes_of_a_certain_category()
+    {
+        $recipe = factory(Recipe::class)->create();
+
+        $this->get('/recipe/categories/' . $recipe->category->getKey());
+
+        $this->assertResponseOk();
+    }
 }

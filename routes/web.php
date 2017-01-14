@@ -18,6 +18,7 @@ Auth::routes();
 Route::group(['middleware' => ['web', 'auth']], function(){
 
     Route::get('recipe/categories', 'RecipeCategoryController@index');
+    Route::get('recipe/categories/{recipecategory}', 'RecipeCategoryController@show');
     Route::delete('recipe/categories/{recipecategory}', 'RecipeCategoryController@destroy');
     Route::post('recipe/categories', 'RecipeCategoryController@store');
     Route::patch('recipe/categories/{recipecategory}', 'RecipeCategoryController@update');
