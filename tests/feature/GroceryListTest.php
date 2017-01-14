@@ -1,5 +1,7 @@
 <?php
 
+use App\Entities\Department;
+use App\Entities\Recipe;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Entities\GroceryList;
@@ -50,6 +52,30 @@ class GroceryListControllerTest extends TestCase
         $this->visit('grocerylist')
             ->click($firstlist->title)
             ->see($firstlist->title);
+    }
+
+    /**
+     * @group grocery-list-tests
+     *
+     * @test
+     */
+    public function it_makes_a_store_grocery_list_request()
+    {
+        $this->disableExceptionHandling();
+
+        $departments = factory(Department::class, 2)->create();
+
+        $this->post('/grocerylist', [
+            'title' => 'poo32',
+            'items' => [
+                ['name' => 'item1', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
+                ['name' => 'item2', 'quantity' => 2, 'department_id' => $departments->last()->getKey()],
+            ]
+        ]);
+
+        $this->assertResponseStatus(302);
+
+        $this->assertCount(1, GroceryList::get());
     }
 
     /**

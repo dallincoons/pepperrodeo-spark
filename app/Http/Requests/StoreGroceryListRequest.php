@@ -26,9 +26,9 @@ class StoreGroceryListRequest extends FormRequest
         return [
             'title'                    => 'required|string',
             'items'                    => 'required|array',
-            'items.*.quantity'         => 'required',
+            'items.*.quantity'         => 'required|numeric',
             'items.*.name'             => 'required|string',
-            'items.*.department_id' => 'required|integer',
+            'items.*.department_id'    => 'required|integer',
         ];
     }
 

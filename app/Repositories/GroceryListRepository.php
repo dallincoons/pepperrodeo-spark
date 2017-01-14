@@ -25,12 +25,6 @@ class GroceryListRepository
         }
 
         $grocerylist->items()->saveMany($items);
-        foreach(explode(',', $listData['recipeIds']) as $recipeId)
-        {
-            if($recipeId) {
-                $grocerylist->recipes()->save(Recipe::find($recipeId));
-            }
-        }
 
         return $grocerylist;
     }

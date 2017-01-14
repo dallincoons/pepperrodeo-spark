@@ -58,11 +58,7 @@ class GroceryListController extends Controller
      */
     public function store(StoreGroceryListRequest $request)
     {
-        $grocerylist = GroceryListRepository::store([
-            'title' => $request->title,
-            'items' => $request->items,
-            'recipeIds' => $request->recipeIds
-        ]);
+        $grocerylist = GroceryListRepository::store($request->only(['title', 'items']));
 
         return redirect('/grocerylist/' . $grocerylist->getKey());
     }

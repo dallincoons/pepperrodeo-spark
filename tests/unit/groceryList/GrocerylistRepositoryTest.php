@@ -18,7 +18,6 @@ class GrocerylistRepositoryTest extends TestCase
      */
     public function stores_new_list()
     {
-        $recipes = factory(Recipe::class, 2)->create();
         $items = factory(Item::class, 2)->create();
 
         $newItem = [
@@ -43,7 +42,6 @@ class GrocerylistRepositoryTest extends TestCase
         $grocerylist = GroceryListRepository::store([
             'title' => 'foobar_title',
             'items' => $items,
-            'recipeIds' => $recipes->pluck('id')->implode(',')
         ]);
 
         foreach($items->pluck('name') as $itemName)
@@ -54,11 +52,6 @@ class GrocerylistRepositoryTest extends TestCase
         foreach($items->pluck('type') as $itemName)
         {
             $this->assertContains($itemName, $grocerylist->items->pluck('type'));
-        }
-
-        foreach($recipes as $recipe)
-        {
-            $this->assertContains($recipe->title, $grocerylist->recipes->pluck('title'));
         }
     }
 
