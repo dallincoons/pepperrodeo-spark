@@ -15,13 +15,7 @@ Vue.component('show-all-recipes', {
 
         deleteConfirmMessage(){
 
-            let recipeNames = '<p>Are you sure you want to delete these recipes?</p>';
-
-            this.recipes.forEach(function (recipe) {
-                recipeNames += "<p>" + JSON.parse(recipe).title + "</p>";
-            });
-
-            return recipeNames;
+            return '<p>Are you sure you want to permanently delete this?</p>';
         },
 
         addToGroceryList(list) {

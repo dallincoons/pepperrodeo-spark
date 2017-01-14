@@ -21,6 +21,7 @@ class RecipesTest extends TestCase
 
         $this->signIn();
 
+        $this->withoutMiddleware();
     }
 
     /**
@@ -119,5 +120,21 @@ class RecipesTest extends TestCase
         $this->json('POST', '/grocerylist/' . $list->getKey() .'/add', ['grocerylist' => $list->getKey(), 'recipes' => [$recipe->getKey()]]);
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * @group recipe-tests
+     *
+     * @test
+     */
+    public function it_makes_request_to_delete_multiple_recipes()
+    {
+        $this->disableExceptionHandling();
+
+        $recipes = factory(Recipe::class, 2)->create();
+
+        $this->delete('/recipe/deleteMultiple', ['recipeIds' => $recipes->pluck('id')->toArray()]);
+
+        $this->assertCount(0, Recipe::get());
     }
 }

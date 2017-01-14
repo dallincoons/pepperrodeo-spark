@@ -148,14 +148,7 @@ class RecipeController extends Controller
      */
     public function destroyMultiple()
     {
-        $ids = [];
-
-        foreach(\Request::input('recipeIds') as $list)
-        {
-            $ids[] = json_decode($list)->id;
-        }
-
-        Recipe::destroy($ids);
+        Recipe::destroy(\Request::input('recipeIds'));
 
         return redirect('/recipe/delete');
     }

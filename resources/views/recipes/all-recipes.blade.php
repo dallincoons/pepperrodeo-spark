@@ -21,7 +21,7 @@
         <nav class="mini-nav">
              <ul class="mini-nav-options">
                  <li><a href="/recipe/create"><i class="fa fa-plus"></i></a></li>
-                 <li><a v-on:click="toggleShowCheckBoxes(true)"><i class="fa fa-trash"></i></a></li>
+                 <li><a v-on:click="deleteRecipes()"><i class="fa fa-trash"></i></a></li>
              </ul>
         </nav>
         <div class="category-wrapper">
@@ -53,7 +53,7 @@
         </div>
 
         <div class="centering-buttons">
-            <input v-show="showCheckBoxes" v-on:click="deleteRecipes()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
+            <input v-show="recipes.length" v-on:click="deleteRecipes()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
         </div>
 
         </form>
