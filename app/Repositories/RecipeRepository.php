@@ -74,7 +74,8 @@ class RecipeRepository
 
     public static function store($recipeData)
     {
-        if(!count($recipeData['recipeFields'])){
+        $recipeFields = data_get($recipeData, 'recipeFields', []);
+        if(!count($recipeFields)){
             throw new \Exception('Recipe must contain at least one item');
         }
         $categoryData = $recipeData['category'];
@@ -91,7 +92,7 @@ class RecipeRepository
         ]);
         $recipe->category()->associate($category->getKey());
 
-        $recipe->populateItems(data_get($recipeData, 'recipeFields'))->save();
+        $recipe->populateItems($recipeFields)->save();
 
         return $recipe;
     }

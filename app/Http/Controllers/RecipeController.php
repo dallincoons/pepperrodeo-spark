@@ -51,15 +51,13 @@ class RecipeController extends Controller
     {
         try {
             $category = explode(',', $request->category);
-            $recipe   = RecipeRepository::store([
-                'title' => $request->title,
-                'directions' => $request->directions,
-                'category' => [
-                    'id' => $category[0],
-                    'name' => $category[1]
-                ],
-                'recipeFields' => $request->recipeFields ?: []
+            $data = $request->only(['title', 'directions', 'recipeFields']);
+            data_set($data, 'category', [
+                'id' => $category[0],
+                'name' => $category[1]
             ]);
+
+            $recipe   = RecipeRepository::store($data);
         }catch(\Exception $e){
             abort(422, $e->getMessage());
         }
@@ -110,14 +108,13 @@ class RecipeController extends Controller
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
         $category = explode(',', $request->category);
-        RecipeRepository::updateRecipe($recipe, [
-            'title' => $request->title,
-            'category' => [
-                'id' => $category[0],
-                'name' => $category[1]
-            ],
-            'directions' => $request->directions
-        ]);
+        $data = $request->only(['title', 'directions']);
+        $data['category'] = [
+            'id' => $category[0],
+            'name' => $category[1]
+        ];
+
+        RecipeRepository::updateRecipe($recipe, $data);
 
         RecipeRepository::updateRecipeItems($recipe, $request->input('recipeFields'));
 

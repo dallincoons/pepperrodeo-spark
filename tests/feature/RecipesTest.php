@@ -15,6 +15,8 @@ class RecipesTest extends TestCase
 
     protected $Recipes;
 
+    protected $user;
+
     public function setUp()
     {
         parent::setUp();
@@ -120,6 +122,29 @@ class RecipesTest extends TestCase
         $this->json('POST', '/grocerylist/' . $list->getKey() .'/add', ['grocerylist' => $list->getKey(), 'recipes' => [$recipe->getKey()]]);
 
         $this->assertResponseOk();
+    }
+
+    /**
+     * @group recipe-tests
+     *
+     * @test
+     */
+    public function it_makes_request_to_update_recipe()
+    {
+//        $this->disableExceptionHandling();
+//
+//        $recipe = factory(Recipe::class)->create();
+//        $category = factory(RecipeCategory::class)->create();
+//
+//        $this->patch('/recipe/' . $recipe->getKey(), [
+//            'title' => 'fake-title',
+//            'directions' => 'fake directions',
+//            'category' => $category->getKey() . ',' . $category->name
+//        ]);
+//
+//        $this->assertResponseOk();
+//
+//        $this->assertEquals('fake-title', $recipe->fresh()->title);
     }
 
     /**

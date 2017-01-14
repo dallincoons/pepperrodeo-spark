@@ -47,7 +47,7 @@ class RecipeCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->only(['name', 'user_id']);
 
         $data['user_id'] = \Auth::user()->getKey();
 
