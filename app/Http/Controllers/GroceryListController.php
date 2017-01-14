@@ -28,11 +28,6 @@ class GroceryListController extends Controller
      */
     public function index(Request $request)
     {
-        //should we toggle delete functionality
-        if(parse_url($request->url())['path'] == '/grocerylist/delete'){
-            \JavaScript::put(['showCheckBoxes' => true]);
-        }
-
         $user = \Auth::user();
 
         $grocerylists = $user->groceryLists;
