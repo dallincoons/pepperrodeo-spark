@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Entities\Department;
+use App\Repositories\Contracts\DepartmentRepository;
 
 class EloquentDepartmentRepository implements DepartmentRepository
 {

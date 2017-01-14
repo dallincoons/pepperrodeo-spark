@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\DepartmentRepository;
+use App\Repositories\Contracts\DepartmentRepository;
+use App\Repositories\Contracts\RecipeCategoryRepository;
 use App\Repositories\EloquentDepartmentRepository;
 use App\Repositories\EloquentRecipeCategoryRepository;
-use App\Repositories\RecipeCategoryRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\RecipeCategory;
-use App\Repositories\RecipeCategoryRepository;
+use App\Repositories\Contracts\RecipeCategoryRepository;
 use Illuminate\Http\Request;
 
 class RecipeCategoryController extends Controller

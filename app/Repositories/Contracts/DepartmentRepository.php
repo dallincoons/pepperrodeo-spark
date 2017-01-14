@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Contracts;
 
-interface RecipeCategoryRepository
+interface DepartmentRepository
 {
     public function getAll();
 

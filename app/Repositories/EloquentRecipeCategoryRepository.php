@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Entities\RecipeCategory;
+use App\Repositories\Contracts\RecipeCategoryRepository;
 
 class EloquentRecipeCategoryRepository implements RecipeCategoryRepository
 {
