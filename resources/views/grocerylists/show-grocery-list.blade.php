@@ -7,7 +7,7 @@
         <div class="list-header-section">
             <h2 class="page-title">{{$grocerylist->title}} <a href="#" class="darker-remove"><i v-on:click.prevent="toggleEdit()" class="fa fa-pencil"></i></a></h2>
             <div class="centering-buttons">
-                <a  v-bind:class="{ 'toggle-active': groupByValue == 'department', 'toggle-inactive': groupByValue != 'department' }"  v-on:click="setGroupBy('department_name')" class="toggle">By Dept.</a>
+                <a  v-bind:class="{ 'toggle-active': groupByValue == 'department_name', 'toggle-inactive': groupByValue != 'department_name' }"  v-on:click="setGroupBy('department_name')" class="toggle">By Dept.</a>
                 <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
             </div>
 
