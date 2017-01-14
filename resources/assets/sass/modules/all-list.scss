@@ -23,6 +23,7 @@
 
   .list:hover {
     background: rgba(255, 75, 46, .2);
+    cursor: pointer;
   }
 }
 
@@ -50,6 +51,7 @@
   }
 
   .list:hover {
-    background: rgba(255, 75, 46, .05);
+    background: rgba(255, 75, 46, .2);
+    cursor: pointer;
   }
 }

@@ -53,7 +53,9 @@
     border: 3px solid #D44331;
   }
 
-
+  .centering-buttons .create-list-option:focus {
+    border: 3px solid #D44331;
+  }
 
   .add-recipe-options {
     background: rgba(255, 75, 46, .05);
@@ -305,6 +307,10 @@
     color: #D44331;
     text-decoration: none;
     flex: .1 .1 auto;
+    border: 3px solid #D44331;
+  }
+
+  .centering-buttons .create-list-option:focus {
     border: 3px solid #D44331;
   }
 
