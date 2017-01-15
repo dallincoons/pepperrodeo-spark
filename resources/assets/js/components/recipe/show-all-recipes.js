@@ -21,6 +21,12 @@ Vue.component('show-all-recipes', {
 
     },
 
+    created() {
+
+        Bus.$on('saveSubmitted', (items) => this.deleteRecipes());
+
+    },
+
     methods : {
 
         deleteConfirmMessage(){

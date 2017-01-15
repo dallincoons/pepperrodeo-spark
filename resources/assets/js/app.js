@@ -13,7 +13,6 @@
  | customize this script as you desire and load your own components.
  |
  */
-
 require('spark-bootstrap');
 
 require('bootstrap-sass');

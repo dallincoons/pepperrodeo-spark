@@ -9,10 +9,16 @@
  | your components that you write while building your applications.
  */
 
+if (window.Vue === undefined) {
+    window.Vue = require('vue');
+
+    window.Bus = new Vue();
+}
+
 require('./../spark-components/bootstrap');
 
 /* Lists */
-require('./lists/lists.js');
+require('./recipe/components/all-recipes-list.js');
 
 /* Recipes */
 require('./home');
