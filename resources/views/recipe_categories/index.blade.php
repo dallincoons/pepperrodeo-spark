@@ -7,7 +7,7 @@
         <li class="list-item" v-for="category in recipe_categories">
             <div class="list-item-wrapper"> @{{category.name}}</div>
             <div class="remove-item">
-                <span v-on:click="removeCategory(category.id)" class="darker-remove"><i class="fa fa-times-circle-o"></i></span>
+                <span v-on:click="removeCategory(category.id)"><i class="fa fa-times-circle-o"></i></span>
             </div>
         </li>
     </ul>

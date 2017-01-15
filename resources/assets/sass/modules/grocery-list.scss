@@ -99,6 +99,10 @@
     color: #ff4b2e;
   }
 
+  .darker-remove:focus {
+    color: #ff4b2e;
+  }
+
   .pr-button {
     width: 20%;
     text-align: center;
@@ -125,6 +129,7 @@
 
   .mini-nav {
     display: flex;
+    width: 100%;
   }
 
   .centering-buttons {

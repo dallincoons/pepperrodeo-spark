@@ -36,6 +36,10 @@
 
   }
 
+  .mini-nav {
+    display: none;
+  }
+
   .create-list-option:hover {
     cursor: pointer;
     color: #D44331;
@@ -297,21 +301,10 @@
     font-size: 1.3em;
     display: block;
     flex: .1 .1 auto;
-    border: 2px solid #ff4b2e;
-    border-radius: 5px;
-    margin: 30px 10px 10px 0;
   }
 
-  .create-list-option:hover {
-    cursor: pointer;
-    color: #D44331;
-    text-decoration: none;
-    flex: .1 .1 auto;
-    border: 3px solid #D44331;
-  }
-
-  .centering-buttons .create-list-option:focus {
-    border: 3px solid #D44331;
+  .hide-options {
+    display: none;
   }
 
   .add-recipe-options {
@@ -369,11 +362,12 @@
 
   .item-section {
     margin-bottom: 20px;
-    width: 90%;
+    width: 95%;
   }
 
   .items-inputs {
     display: flex;
+    width: 100%;
   }
 
   .add-wrapper {
@@ -388,6 +382,7 @@
     color: #ff4b2e;
     font-size: 2em;
     align-self: baseline;
+    padding: 3px;
   }
 
   .pr-button {
@@ -469,7 +464,7 @@
   }
 
   .list-cat-wrapper {
-    margin-top: 10%;
+    margin-top: 35%;
   }
 
   .remove-dept {
