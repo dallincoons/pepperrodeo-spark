@@ -19,6 +19,8 @@ require('./../spark-components/bootstrap');
 
 /* Lists */
 require('./recipe/components/all-recipes-list.js');
+require('./recipe/components/recipe-mobile-nav.js');
+require('./recipe/components/desktop-nav.js');
 
 /* Recipes */
 require('./home');

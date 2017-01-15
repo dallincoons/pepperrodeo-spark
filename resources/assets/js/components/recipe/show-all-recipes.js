@@ -23,7 +23,9 @@ Vue.component('show-all-recipes', {
 
     created() {
 
-        Bus.$on('saveSubmitted', (items) => this.deleteRecipes());
+        Bus.$on('deleteRecipes', () => this.deleteRecipes());
+
+        Bus.$on('addToGroceryList', (list) => this.addToGroceryList(list));
 
     },
 

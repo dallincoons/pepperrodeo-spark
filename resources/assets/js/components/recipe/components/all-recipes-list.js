@@ -3,8 +3,11 @@ Vue.component('all-recipes-list', {
     props : ['recipes', 'groupedRecipes'],
 
     methods : {
-        submitSave(){
-            Bus.$emit('saveSubmitted');
+        deleteRecipes(){
+            Bus.$emit('deleteRecipes');
+        },
+        recipeUrl : function(recipe){
+            return '/recipe/' + recipe.id;
         }
     },
 
@@ -23,7 +26,7 @@ Vue.component('all-recipes-list', {
                     <li>
                         <ul class="recipes">
                                 <li v-for="recipe in recipes" class="recipe">
-                                    <label class="control control--checkbox"><a>{{recipe.title}}</a>
+                                    <label class="control control--checkbox"><a :href="recipeUrl(recipe)">{{recipe.title}}</a>
                                         <input type="checkbox" v-model="selectedItems" id="cbox1" name="recipeIds[]"  :value="recipe.id">
                                         <div class="control__indicator"></div>
                                     </label>
@@ -38,7 +41,7 @@ Vue.component('all-recipes-list', {
             </div>
             
             <div class="centering-buttons">
-                <input v-show="selectedItems.length" v-on:click="submitSave()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
+                <input v-show="selectedItems.length" v-on:click="deleteRecipes()" type="button" value="Delete" class="pr-btn save-button recipe-list-delete-btn">
             </div>
             
         </div>
