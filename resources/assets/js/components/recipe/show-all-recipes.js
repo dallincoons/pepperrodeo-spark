@@ -1,7 +1,10 @@
 let all_recipes = require('../mixins/all-lists-recipes.js');
+import AllRecipesList from './components/grouped-list.vue';
 
 Vue.component('show-all-recipes', {
     mixins: [all_recipes],
+
+    components: { AllRecipesList },
 
     data() {
         return {
