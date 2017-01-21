@@ -71,8 +71,8 @@
         <div class="ingredient-input">
             <label for="type" class="sub-heading">Department</label>
             <select @change="checkAddNew(item.department_id)" v-model="item.department_id" :name="'recipeFields[' + -1 + '][department_id]'" class="recipe-section__selection--category dept_select ingredient-info" :value="item.department_id">
-                <option v-for="department in departments" :value="department.id"  class="dropdown-item">@{{department.name}}</option>
-                <option value="0">+ Add New</option>
+            <option v-for="department in departments" :value="department.id"  class="dropdown-item">@{{department.name}}</option>
+            <option value="0">+ Add New</option>
             </select>
             <input v-model="item.department_name" :name="'recipeFields[' + -1 + '][department_name]'" type="hidden">
         </div>

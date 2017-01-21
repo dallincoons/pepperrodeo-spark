@@ -7,7 +7,9 @@
         <div class="recipe-wrapper">
             {!! Form::model($recipe, ['method' => 'POST', 'route' => ['recipe.update', $recipe->getKey()], 'data-parsley-validate' => '']) !!}
             {!! method_field('patch') !!}
-            @include('recipes.includes.recipe-form')
+
+                @include('recipes.includes.recipe-form')
+
             {!! Form::submit('Submit', ['class' => 'save-button']) !!}
             {!! Form::close() !!}
         </div>

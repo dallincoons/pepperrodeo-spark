@@ -15,7 +15,7 @@
 
             <all-recipes-list :grouped-items="recipesByCategory" v-if="recipes.length">
                 <template scope="props">
-                    <label class="control control--checkbox"><a>@{{ props.item.title }}</a>
+                    <label class="control control--checkbox"><a :href="recipeUrl(props.item.id)">@{{ props.item.title }}</a>
                         <input type="checkbox" v-model="selectedRecipes" id="cbox1" name="recipeIds[]"  :value="props.item.id">
                         <div class="control__indicator"></div>
                     </label>

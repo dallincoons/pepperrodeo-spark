@@ -18,8 +18,8 @@ if (window.Vue === undefined) {
 require('./../spark-components/bootstrap');
 
 /* Lists */
-require('./recipe/components/recipe-mobile-nav.js');
-require('./recipe/components/desktop-nav.js');
+require('./recipe/components/recipe-mobile-nav.vue');
+require('./recipe/components/desktop-nav.vue');
 
 /* Recipes */
 require('./home');
