@@ -24,13 +24,13 @@
     text-decoration: underline;
   }
 
-  .lg-mini-nav-options {
+  .lg-mini-nav ul {
     display: flex;
     width: 100%;
     justify-content: center;
   }
 
-  .lg-mini-nav-options > li {
+  .lg-mini-nav li {
     padding: 5px;
     border-radius: 5px;
     margin-right: 10px;
@@ -42,11 +42,11 @@
     width: 156px;
   }
 
-  .lg-mini-nav-options > li:hover {
+  .lg-mini-nav li:hover {
     background: #ff4b2e;
   }
 
-  .lg-mini-nav-options a {
+  .lg-mini-nav a {
     color: #FFFFFF;
     display: block;
     width: 100%;
@@ -133,10 +133,12 @@
     text-decoration: underline;
   }
 
-  .lg-mini-nav-options {
+  .lg-mini-nav {
     display: none;
   }
-
+  .lg-mini-nav__options-text {
+    display: none;
+  }
 
   .form-heading {
     color: #ff4b2e;

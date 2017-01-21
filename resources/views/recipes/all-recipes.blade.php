@@ -13,14 +13,14 @@
 
             <recipe-mobile-nav></recipe-mobile-nav>
 
-            <all-recipes-list :grouped-items="recipesByCategory" v-if="recipes.length">
+            <grouped-list :grouped-items="recipesByCategory" v-if="recipes.length">
                 <template scope="props">
                     <label class="control control--checkbox"><a :href="recipeUrl(props.item.id)">@{{ props.item.title }}</a>
                         <input type="checkbox" v-model="selectedRecipes" id="cbox1" name="recipeIds[]"  :value="props.item.id">
                         <div class="control__indicator"></div>
                     </label>
                 </template>
-            </all-recipes-list>
+            </grouped-list>
             <div class="lists-wrapper no-content" v-else>
                 <h4>Looks like you don't have any recipes yet!</h4>
                 <a href="/recipe/create" class="pr-button save-button"><i class="fa fa-plus-circle"></i> Add a Recipe</a>

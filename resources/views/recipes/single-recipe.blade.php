@@ -6,29 +6,11 @@
     <h2 class="page-title">{{$recipe->title}}</h2>
     <h6 class="recipe-cat">Category: <a href="/recipe/categories/{{$recipe->category->getKey()}}">{{$recipe->category->name}}</a></h6>
     <nav class="mini-nav">
-        <ul class="mini-nav-options">
-            <li><a v-on:click="toggleShowListSelection()"><i class="fa fa-cart-plus"></i></a></li>
-            <li><a href="{{$recipe->getKey()}}/edit"><i class="fa fa-pencil"></i></a></li>
-            <li><form action="/recipe/{{$recipe->id}}" method="POST" id="recipe-delete">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <a v-on:click="submitDeleteRecipe()"><i class="fa fa-trash"></i></a>
-            </form></li>
-        </ul>
+        <mini-nav-options></mini-nav-options>
     </nav>
 
     <nav class="lg-mini-nav">
-        <ul class="lg-mini-nav-options">
-            <li><a v-on:click="toggleShowListSelection()"><i class="fa fa-cart-plus"></i> Add to Grocery List</a></li>
-            <li><a href="{{$recipe->getKey()}}/edit"><i class="fa fa-pencil"></i> Edit</a></li>
-            <li><form action="/recipe/{{$recipe->id}}" method="POST" id="recipe-delete">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <a v-on:click="submitDeleteRecipe()"><i class="fa fa-trash"></i> Delete</a>
-                </form>
-            </li>
-        </ul>
-
+        <mini-nav-options></mini-nav-options>
     </nav>
 
     <ul class="lists" v-show="showListSelection">

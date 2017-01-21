@@ -133,7 +133,7 @@ class RecipeController extends Controller
     {
         $recipe->delete();
 
-        return redirect('/recipe');
+        return response('recipe deleted');
     }
 
     /**

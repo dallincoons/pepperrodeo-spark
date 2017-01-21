@@ -1,4 +1,8 @@
+import MiniNavOptions from './components/mini-nav-options.vue';
+
 Vue.component('single-recipe', {
+
+    components : {MiniNavOptions},
 
     data    : function () {
         return {
@@ -8,7 +12,18 @@ Vue.component('single-recipe', {
             showListSelection : false
         }
     },
+
+    created() {
+
+        Bus.$on('toggleShowListSelection', () => this.toggleShowListSelection());
+
+    },
+
     methods : {
+
+        toggleShowListSelection : function () {
+            this.showListSelection = !this.showListSelection;
+        },
 
         addToGroceryList        : function (list) {
             this.$http.post('/grocerylist/' + list.id + '/add', {grocerylist : list.id, recipes : [this.recipe.id]}).then(function (response) {
@@ -36,13 +51,5 @@ Vue.component('single-recipe', {
             return 'You have successfully added ' + this.recipe.title + ' to <a href="/grocerylist/' + list.id + '">' + list.title + '</a>';
         },
 
-        toggleShowListSelection : function () {
-            this.showListSelection = !this.showListSelection;
-        },
-
-        submitDeleteRecipe      : function () {
-            document.getElementById('recipe-delete').submit();
-        }
-        
     }
 });

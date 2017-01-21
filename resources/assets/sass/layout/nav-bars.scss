@@ -140,14 +140,14 @@
     margin-top: 0;
   }
 
-  .mini-nav-options {
+  .mini-nav ul {
     display: flex;
     width: 100%;
     justify-content: center;
     margin-top: 0;
   }
 
-  .mini-nav-options > li {
+  .mini-nav li {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -161,7 +161,7 @@
     text-align: center;
   }
 
-  .mini-nav-options a {
+  .mini-nav a {
     color: #ff4b2e;
     text-align: center;
   }

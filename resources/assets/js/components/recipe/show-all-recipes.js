@@ -1,12 +1,12 @@
 let all_recipes = require('../mixins/all-lists-recipes.js');
-import AllRecipesList from './components/grouped-list.vue';
+import GroupedList from './components/grouped-list.vue';
 import DesktopNav from './components/desktop-nav.vue';
 import RecipeMobileNav from './components/recipe-mobile-nav.vue';
 
 Vue.component('show-all-recipes', {
     mixins: [all_recipes],
 
-    components: { DesktopNav, RecipeMobileNav, AllRecipesList },
+    components: { DesktopNav, RecipeMobileNav, GroupedList },
 
     data() {
         return {
@@ -37,7 +37,7 @@ Vue.component('show-all-recipes', {
     methods : {
 
         recipeUrl : function(recipeId){
-            return `recipe/${recipeId}`;
+            return `/recipe/${recipeId}`;
         },
 
         deleteConfirmMessage(){

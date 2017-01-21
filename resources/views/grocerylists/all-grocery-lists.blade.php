@@ -15,7 +15,6 @@
             <a v-on:click="deleteLists()" class="create-list-option hide-options"><i class="fa fa-trash"></i> Delete Lists</a>
         </div>
 
-
         <nav class="mini-nav">
             <ul class="mini-nav-options">
                 <li><a href="/grocerylist/create"><i class="fa fa-plus"></i></a></li>
@@ -41,12 +40,8 @@
             <h4>Looks like you don't have any lists yet!</h4>
             <a href="/grocerylist/create" class="pr-button save-button"><i class="fa fa-plus-circle"></i> Create a List</a>
         </div>
-
-
         @endif
-        
     </form>
-
 </div>
 </all-grocery-lists>
 @endsection
