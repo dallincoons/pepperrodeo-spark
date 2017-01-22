@@ -23,10 +23,8 @@ module.exports = {
         }
     },
     created(){
-        console.log(this.items);
         this.items.forEach(function(item){
             Vue.set(item, 'toggleOptions', false);
-            Vue.set(item, 'editing', false);
             Vue.set(item, 'editing', false);
             Vue.set(item, 'department_name', item.department.name);
         });
@@ -34,6 +32,9 @@ module.exports = {
     computed : {
         itemsGrouped : function () {
             let items = _.sortBy(this.items, this.groupByValue);
+            if(this.shouldCombine()){
+                items = this.combineItems();
+            }
             return _.groupBy(items, this.groupByValue);
         }
     },
@@ -59,6 +60,33 @@ module.exports = {
         noFormErrors : function(){
             return this.list_form_errors.length < 1;
         },
+        shouldCombine(){
+            return this.groupByValue == 'department_name';
+        },
+        combineItems() {
+            let items = this.items;
+            let newItems = [];
+
+            //start with new array
+            //for each item, check if similar item exists in new array
+            //if not, find any items with similar properties in old array
+            //combine items together and put in new array
+
+            items.forEach((item) => {
+                if(!_.findWhere(newItems, {department_name : item.department_name, name : item.name, type : item.type})) {
+                    let likeItems = (_.where(items, {
+                        department_name : item.department_name,
+                        name            : item.name,
+                        type            : item.type
+                    }));
+                    let newItem = Object.assign({}, item);
+                    newItem.quantity = _.reduce(_.pluck(likeItems, 'quantity'), (a, b) => a + b, 0);
+                    newItems.push(newItem);
+                }
+            });
+
+            return newItems;
+        },
         setGroupBy(groupBy){
             this.groupByValue = groupBy;
         },
@@ -79,7 +107,7 @@ module.exports = {
 
             let newItem = {
                 id               : --this.newItemId,
-                quantity         : this.newItemQty,
+                quantity         : parseInt(this.newItemQty),
                 name             : this.newItemName,
                 type             : this.newItemType,
                 department_name  : this.departments[this.newDepartmentId].name,
