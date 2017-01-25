@@ -45,6 +45,6 @@ class Item extends Model
             return $this->recipe()->first()->title;
         }
 
-        return null;
+        return 'Other';
     }
 }

@@ -189,26 +189,36 @@ module.exports = {
 
         toggleListOptions(item) {
             this.items.forEach(i => {
-                if(i == item){
-                    return;
+                if(i.id == item.id){
+                    this.toggledOption = i;
+                    i.toggleOptions = true;
                 }
-                Vue.set(i, 'toggleOptions', false);
             });
             document.body.addEventListener('click', this.closeListOptions);
-            this.toggledOption = item;
-            item.toggleOptions = !item.toggleOptions;
         },
 
         toggleItemEditing(item) {
-            item.editing = !item.editing;
+            this.items.forEach(i => {
+                if(i.id == item.id){
+                    this.toggledOption = i;
+                    i.editing = !i.editing;
+                }
+            });
         },
 
         saveItemEdit(item) {
             this.$http.patch('/grocerylistitem/edit/' + item.id, {item : {'quantity' : item.quantity, 'type' : item.type, 'name' : item.name, 'department_id' : item.department.id}})
                 .then(function(response){
                     if(response.status == 200){
-                        item.department_name = this.departments[item.department.id].name;
-                        item.editing = false;
+                        this.items.forEach(i => {
+                            if(i.id == item.id){
+                                i.department_name = this.departments[item.department.id].name;
+                                i.quantity = item.quantity;
+                                i.type = item.type;
+                                i.name = item.name;
+                                i.editing = false;
+                            }
+                        });
                     }
                 });
         },
