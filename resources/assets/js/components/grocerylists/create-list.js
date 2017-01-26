@@ -7,4 +7,7 @@ Vue.component('create-list', {
             editing : true
         }
     },
+    methods : {
+
+    }
 });

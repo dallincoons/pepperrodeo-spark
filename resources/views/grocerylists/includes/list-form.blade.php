@@ -5,7 +5,7 @@
 
     </div>
 
-    <a v-on:click="setShowRecipes(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
+    <a v-on:click="showRecipes = true" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
 
     <a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
     <div class="item-section" v-if="addAnItem">
@@ -87,6 +87,10 @@
             </li>
         </ul>
     </ul>
+</div>
+
+<div class="centering-buttons" v-show="editing">
+    <button type="button" v-on:click="submitListForm()" class="save-button  " :disabled="!items.length">Save List</button>
 </div>
 
 @if (count($errors) > 0)

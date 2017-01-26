@@ -12,14 +12,14 @@
             </div>
 
             <div class="centering-buttons">
-                <a v-on:click="setShowRecipes(true)" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add a recipe</a>
+                <a v-on:click="showRecipes = true" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add a recipe</a>
                 <a v-on:click="setAddAnItem(true)" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add an item</a>
                 <a class="create-list-option hide-options" onClick="window.print()"><i class="fa fa-print"></i> Printer Friendly</a>
             </div>
 
             <nav class="mini-nav">
                 <ul class="mini-nav-options">
-                    <li><a v-on:click="setShowRecipes(true)"><i class="fa fa-cutlery"></i></a></li>
+                    <li><a v-on:click="showRecipes = true"><i class="fa fa-cutlery"></i></a></li>
                     <li><a v-on:click="setAddAnItem(true)"><i class="fa fa-plus"></i></a></li>
                     <li><a onClick="window.print()"><i class="fa fa-print"></i></a></li>
                 </ul>
@@ -78,7 +78,7 @@
             </ul>
 
             <div class="add-recipe-buttons">
-                <button v-on:click="setShowRecipes(false)" class="  save-button"><i class="fa fa-chevron-circle-left"></i> Back</button>
+                <button v-on:click="showRecipes = false" class="  save-button"><i class="fa fa-chevron-circle-left"></i> Back</button>
                 <button v-on:click="addRecipes(recipesToAdd)" class="  save-button"> Add <i class="fa fa-plus-circle"></i></button>
             </div>
         </div>

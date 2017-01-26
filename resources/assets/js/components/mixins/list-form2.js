@@ -44,7 +44,10 @@ module.exports = {
             let $form = $('#list-form');
 
             if($form.parsley().validate() && this.noFormErrors()){
-                $form.submit();
+                this.$http.patch('/grocerylist/' + this.grocerylist.id, {items : this.items})
+                    .then(function(response){
+                        //
+                    });
             }
         },
         validateForm : function(){
@@ -67,11 +70,6 @@ module.exports = {
             let items = this.items;
             let newItems = [];
 
-            //start with new array
-            //for each item, check if similar item exists in new array
-            //if not, find any items with similar properties in old array
-            //combine items together and put in new array
-
             items.forEach((item) => {
                 if(!_.findWhere(newItems, {department_name : item.department_name, name : item.name, type : item.type})) {
                     let likeItems = (_.where(items, {
@@ -89,9 +87,6 @@ module.exports = {
         },
         setGroupBy(groupBy){
             this.groupByValue = groupBy;
-        },
-        setShowRecipes($bool) {
-            this.showRecipes = $bool;
         },
         setAddAnItem($bool){
             this.addAnItem = $bool;
@@ -176,7 +171,7 @@ module.exports = {
                 delete self.unaddedRecipes[recipeId];
             });
 
-            this.setShowRecipes(false);
+            this.showRecipes = false;
         },
         deleteGroup(items){
             let self = this;
