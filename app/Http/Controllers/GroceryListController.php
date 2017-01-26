@@ -31,7 +31,7 @@ class GroceryListController extends Controller
     {
         $user = \Auth::user();
 
-        $grocerylists = $user->groceryLists;
+        $grocerylists = $user->groceryLists()->latest()->get();
 
         return view('grocerylists.all-grocery-lists', compact('grocerylists'));
     }
