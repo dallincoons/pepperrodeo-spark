@@ -89,10 +89,6 @@
     </ul>
 </div>
 
-<div class="centering-buttons" v-show="editing">
-    <button type="button" v-on:click="submitListForm()" class="save-button  " :disabled="!items.length">Save List</button>
-</div>
-
 @if (count($errors) > 0)
     <div>
         <ul>

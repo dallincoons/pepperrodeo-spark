@@ -37,13 +37,19 @@ class GroceryListRepository
 
         foreach($newItems as $itemJson)
         {
-            $item = Item::create($itemJson);
+            $name = $itemJson['name'];
+            $quantity = $itemJson['quantity'];
+            $type = $itemJson['type'];
+            $department_id = $itemJson['department_id'];
+            $item = Item::create(compact('name', 'quantity', 'type', 'department_id'));
             $itemIds->push($item->id);
         }
 
         $grocerylist->items()->sync($itemIds->toArray());
 
-        $grocerylist->title = $data['title'];
+        if($item = data_get($data, 'title', null)) {
+            $grocerylist->title = $item;
+        }
 
         $grocerylist->save();
 

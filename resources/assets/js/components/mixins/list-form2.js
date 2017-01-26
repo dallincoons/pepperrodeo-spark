@@ -110,6 +110,7 @@ module.exports = {
                 quantity         : parseInt(this.newItemQty),
                 name             : this.newItemName,
                 type             : this.newItemType,
+                department_id    : this.newDepartmentId,
                 department_name  : this.departments[this.newDepartmentId].name,
                 recipe_title     : 'Other',
                 department       : this.departments[this.newDepartmentId]
@@ -117,10 +118,16 @@ module.exports = {
 
             this.items.push(newItem);
 
+            this.$http.patch('/grocerylist/' + this.grocerylist.id, {items : this.items})
+                .then(function(response){
+                    console.log(response);
+                });
+
+
             this.newItemQty        = '';
             this.newItemName       = '';
             this.newItemType       = '';
-            this.newDepartmentId = '';
+            this.newDepartmentId   = '';
         },
         removeItemFromList(item){
             let self = this;
