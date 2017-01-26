@@ -9,6 +9,10 @@
 
                 @include('recipes.includes.recipe-form')
 
+                <div class="confirm">
+                    <button class="save-button">Save</button>
+                </div>
+
             {{ Form::close() }}
 
         </div>
