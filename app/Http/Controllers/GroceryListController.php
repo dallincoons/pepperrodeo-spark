@@ -89,7 +89,7 @@ class GroceryListController extends Controller
     {
        GroceryListRepository::update($request->only(['title', 'items']), $grocerylist);
 
-        return redirect('/grocerylist/' . $grocerylist->getKey());
+        return response(200);
     }
 
     /**
