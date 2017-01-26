@@ -1,9 +1,17 @@
+import Form from '../../Form.js';
+
 module.exports = {
     data () {
         return {
             grocerylist       : PepperRodeo.grocerylist,
             items             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.items : [],
             title             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.title : '',
+            form              : new Form({
+                newItemQty        : '',
+                newItemName       : '',
+                newItemType       : '',
+                newDepartmentId   : ''
+            }),
             addedRecipes      : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.recipes : [],
             unaddedRecipes    : Object.assign({}, PepperRodeo.recipes),
             departments        : PepperRodeo.departments,
@@ -93,35 +101,26 @@ module.exports = {
         },
         addItem(){
 
-            if( this.newItemQty == "" ||
-                this.newItemName == "" ||
-                this.newItemType == "" ||
-                this.newDepartmentId == ""){
-                return;
-            }
+            let items = _.clone(this.items);
 
             let newItem = {
                 id               : --this.newItemId,
-                quantity         : parseInt(this.newItemQty),
-                name             : this.newItemName,
-                type             : this.newItemType,
-                department_id    : this.newDepartmentId,
-                department_name  : this.departments[this.newDepartmentId].name,
+                name             : this.form.newItemName,
+                quantity         : parseInt(this.form.newItemQty),
+                type             : this.form.newItemType,
+                department_id    : this.form.newDepartmentId,
+                department_name  : this.departments[this.form.newDepartmentId].name,
                 recipe_title     : 'Other',
-                department       : this.departments[this.newDepartmentId]
+                department       : this.departments[this.form.newDepartmentId]
             };
 
-            this.items.push(newItem);
+            items.push(newItem);
 
-            this.$http.patch('/grocerylist/' + this.grocerylist.id, {items : this.items})
+            this.$http.patch('/grocerylist/' + this.grocerylist.id, {items : items})
                 .then(function(response){
-                    //
+                    this.items.push(newItem);
+                    this.form.reset();
                 });
-
-            this.newItemQty        = '';
-            this.newItemName       = '';
-            this.newItemType       = '';
-            this.newDepartmentId   = '';
         },
         removeItemFromList(item){
             let self = this;
