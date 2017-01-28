@@ -1,8 +1,9 @@
-let list_form = require('../mixins/list-form.js');
-import Form from '../../Form.js';
+let list_form = require('./mixins/list-form.js');
+import ListNav from './components/list-nav.vue';
 
 Vue.component('create-list', {
     mixins : [list_form],
+    // components : {AddItem},
     data() {
         return {
             editing : true,
@@ -36,9 +37,6 @@ Vue.component('create-list', {
                 return;
             }
 
-            console.log(this.form.department_id);
-            console.log(this.departments);
-
             let newItem = {
                 id               : --this.newItemId,
                 name             : this.form.name,
@@ -56,8 +54,6 @@ Vue.component('create-list', {
         submitListForm : function(){
             this.validateForm();
             let $form = $('#list-form');
-
-            console.log(this.items);
 
             if($form.parsley().validate() && this.noFormErrors()){
                 this.$http.post('/grocerylist', {items : this.items, title : this.title})

@@ -1,4 +1,4 @@
-let list_form = require('../mixins/list-form.js');
+let list_form = require('./mixins/list-form.js');
 
 Vue.component('show-list', {
     mixins : [list_form],
