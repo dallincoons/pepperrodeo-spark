@@ -155,6 +155,7 @@ module.exports = {
 
         toggleListOptions(item) {
             this.items.forEach(i => {
+                i.toggleOptions = false;
                 if(i.id == item.id){
                     this.toggledOption = i;
                     i.toggleOptions = true;

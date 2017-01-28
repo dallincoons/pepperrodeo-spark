@@ -20,6 +20,8 @@ Vue.component('create-list', {
 
                 recipe.items.forEach(function(item){
                     Vue.set(item, 'department_name', item.department.name);
+                    Vue.set(item, 'toggleOptions', false);
+                    Vue.set(item, 'editing', false);
                 });
 
                 self.items = Array.from(self.items).concat(recipe.items);
@@ -44,12 +46,27 @@ Vue.component('create-list', {
                 department_id    : this.form.department_id,
                 department_name  : this.departments[this.form.department_id].name,
                 recipe_title     : 'Other',
-                department       : this.departments[this.form.department_id]
+                department       : this.departments[this.form.department_id],
+                toggleOptions    : false,
+                editing          : false
             };
 
             this.items.push(newItem);
             this.form.reset();
         },
+
+        saveItemEdit(item){
+            let og_item = _.findWhere(this.items, {id : item.id});
+
+            og_item.raw_quantity = item.quantity;
+            og_item.quantity = item.quantity;
+            og_item.type = item.type;
+            og_item.name = item.name;
+            og_item.department_id = item.department_id;
+
+            this.toggleItemEditing(og_item);
+        },
+
         submitListForm : function(){
             this.validateForm();
             let $form = $('#list-form');

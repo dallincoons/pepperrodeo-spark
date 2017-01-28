@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Item;
 use App\Http\Requests\StoreGroceryListRequest;
 use App\Http\Requests\UpdateGroceryListRequest;
 use App\Repositories\GroceryListRepository;

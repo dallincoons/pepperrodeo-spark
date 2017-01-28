@@ -56,24 +56,42 @@
                 <li class="category-title"><h3>@{{ groupName }}</h3> <span v-on:click="deleteGroup(items)" class="remove-dept"><i class="fa fa-times-circle-o"></i></span></li>
                 <ul class="recipes list-items">
                     <li v-for="item in items" class="list-item">
-                        <div class="list-item-wrapper">
-                            <span class="list-item-added">@{{ item.quantity }}</span>
-                            <span class="list-item-added">@{{ item.type }}</span>
-                            <span class="list-item-added">@{{ item.name }} </span>
-                        </div>
-                        <div class="options-dropdown-wrapper">
-                            <a class="dropdown-indicator" v-on:click="toggleListOptions(item)" ><i class="fa fa-ellipsis-h"></i></a>
-                            <ul class="options-dropdown" v-show="item.toggleOptions">
-                                <li><i class="fa fa-pencil"></i><a> Edit Item</a></li>
-                                <li v-on:click="removeItemFromList(item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
-                            </ul>
-                        </div>
+                        <div v-if="!item.editing" class="list-item-editing">
+                            <div class="list-item-wrapper">
+                                <span class="list-item-added">@{{ item.quantity }}</span>
+                                <span class="list-item-added">@{{ item.type }}</span>
+                                <span class="list-item-added">@{{ item.name }} </span>
+                            </div>
+                            <div class="options-dropdown-wrapper">
+                                <a class="dropdown-indicator" v-on:click="toggleListOptions(item)" ><i data-type="toggle-list-option" class="fa fa-ellipsis-h"></i></a>
+                                <ul class="options-dropdown" v-show="item.toggleOptions">
+                                    <li v-on:click="toggleItemEditing(item)"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
+                                    <li v-on:click="removeItemFromList(item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
+                                </ul>
+                            </div>
 
-                        <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
-                        <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
-                        <input type="hidden" :name="'items[' + item.id + '][type]'" :value="item.type">
-                        <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department.id">
-                        <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
+                            <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
+                            <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
+                            <input type="hidden" :name="'items[' + item.id + '][type]'" :value="item.type">
+                            <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department.id">
+                            <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
+                        </div>
+                        <div v-else class="edit-info-wrapper">
+                            <div class="edit-inputs">
+                                <input class="list-item-added ingredient-info" v-model="item.quantity" :value="item.quantity" type="number"/>
+                                <input class="list-item-added ingredient-info" v-model="item.type" :value="item.type" />
+                                <input class="list-item-added ingredient-info" v-model="item.name" :value="item.name" />
+                                <select name="category" v-model="item.department.id" class="ingredient-info dept-edit-info">
+                                    <option v-for="department in departments" :value="department.id">@{{department.name}}</option>
+                                </select>
+                                <a class="edit-button" v-on:click="saveItemEdit(item)"><i class="fa fa-check-circle-o"></i></a>
+                            </div>
+
+                            <div class="editing-button-wrapper">
+                                <a class="edit-button" v-on:click="toggleItemEditing(item)"><i class="fa fa-times-circle-o"></i></a>
+                            </div>
+
+                        </div>
                     </li>
                 </ul>
             </ul>

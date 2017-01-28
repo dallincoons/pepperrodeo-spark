@@ -15,11 +15,7 @@ class GroceryListRepository
 
         $grocerylist = GroceryList::create(['user_id' => \Auth::user()->getKey(), 'title' => $listData['title']]);
 
-        foreach(Item::findMany(collect($listData['items'])->pluck('id')) as $item)
-        {
-            $items[] = $item;
-        }
-        foreach(collect($listData['items'])->where('id', '<', 0) as $item)
+        foreach($listData['items'] as $item)
         {
             $items[] = Item::create([
                 'name' => $item['name'],
