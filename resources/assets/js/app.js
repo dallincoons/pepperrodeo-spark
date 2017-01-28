@@ -1,4 +1,3 @@
-import routes from './routes';
 /*
  |--------------------------------------------------------------------------
  | Laravel Spark Bootstrap

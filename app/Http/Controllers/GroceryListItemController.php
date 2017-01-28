@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Entities\GroceryList;
 use App\Entities\Item;
+use App\Http\Requests\StoreGroceryListItemRequest;
 use Illuminate\Http\Request;
 
 class GroceryListItemController extends Controller
 {
+    public function store(StoreGroceryListItemRequest $request, GroceryList $grocerylist)
+    {
+        $itemData = $request->only(['name', 'type', 'quantity', 'department_id']);
+
+        $grocerylist->items()->create($itemData);
+    }
+
     /**
      * @param \Illuminate\Http\Request  $request
      * @param \App\Entities\Item $item

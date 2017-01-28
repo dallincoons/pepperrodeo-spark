@@ -1,3 +1,5 @@
+import 'vue-resource';
+
 export default class Form {
     constructor(data){
         this.originalData = data;
@@ -16,7 +18,15 @@ export default class Form {
 
     /* submit the form with current data */
     submit(requestType, url) {
-        this.$http[requestType](url, this.data())
+        return new Promise((resolve, reject) => {
+            this.$http[requestType](url, this.data())
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error.response);
+                });
+        });
     }
 
     /* check against validation rules */

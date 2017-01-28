@@ -21,7 +21,12 @@ class GroceryListRepository
         }
         foreach(collect($listData['items'])->where('id', '<', 0) as $item)
         {
-            $items[] = Item::create($item);
+            $items[] = Item::create([
+                'name' => $item['name'],
+                'type' => $item['type'],
+                'quantity' => $item['quantity'],
+                'department_id' => $item['department_id']
+            ]);
         }
 
         $grocerylist->items()->saveMany($items);

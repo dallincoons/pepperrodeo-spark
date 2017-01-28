@@ -25,22 +25,21 @@
                 <div class="items-inputs">
                     <div class="ingredient-input">
                         <label for="quantity" class="sub-heading">Qty</label>
-                        <input type="text" id="quantity" v-model="newItemQty" name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="1" @keyup.enter="addItem(recipeFields)"/>
+                        <input type="text" id="quantity" v-model="form.quantity" name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="1" @keyup.enter="addItem(recipeFields)"/>
                     </div>
-
                     <div class="ingredient-input">
                         <label for="type" class="sub-heading">Type</label>
-                        <input type="text" id="type" v-model="newItemType" name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="bottle" @keyup.enter="addItem(recipeFields)">
+                        <input type="text" id="type" v-model="form.type" name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="bottle" @keyup.enter="addItem(recipeFields)">
                     </div>
 
                     <div class="ingredient-input">
                         <label for="item" class="sub-heading">Item</label>
-                        <input type="text" id="item" v-model="newItemName" name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="shampoo" @keyup.enter="addItem(recipeFields)"/>
+                        <input type="text" id="item" v-model="form.name" name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="shampoo" @keyup.enter="addItem(recipeFields)"/>
                     </div>
 
                     <div class="ingredient-input">
                         <label for="category" class="sub-heading dept-label">Department</label>
-                        <select name="category" v-model="newDepartmentId">
+                        <select name="category" v-model="form.department_id">
                             @foreach($departments as $department)
                                 <option value="{{ $department->id }}">{{$department->name}}</option>
                             @endforeach

@@ -7,10 +7,11 @@ module.exports = {
             items             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.items : [],
             title             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.title : '',
             form              : new Form({
-                newItemQty        : '',
-                newItemName       : '',
-                newItemType       : '',
-                newDepartmentId   : ''
+                $http             : this.$http,
+                quantity          : '',
+                name              : '',
+                type              : '',
+                department_id     : '',
             }),
             addedRecipes      : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.recipes : [],
             unaddedRecipes    : Object.assign({}, PepperRodeo.recipes),
@@ -47,17 +48,6 @@ module.exports = {
         }
     },
     methods  : {
-        submitListForm : function(){
-            this.validateForm();
-            let $form = $('#list-form');
-
-            if($form.parsley().validate() && this.noFormErrors()){
-                this.$http.patch('/grocerylist/' + this.grocerylist.id, {items : this.items})
-                    .then(function(response){
-                        //
-                    });
-            }
-        },
         validateForm : function(){
             if(this.items.length < 1){
                 this.list_form_errors.push({
@@ -101,23 +91,19 @@ module.exports = {
         },
         addItem(){
 
-            let items = _.clone(this.items);
-
             let newItem = {
                 id               : --this.newItemId,
-                name             : this.form.newItemName,
-                quantity         : parseInt(this.form.newItemQty),
-                type             : this.form.newItemType,
-                department_id    : this.form.newDepartmentId,
-                department_name  : this.departments[this.form.newDepartmentId].name,
+                name             : this.form.name,
+                quantity         : parseInt(this.form.quantity),
+                type             : this.form.type,
+                department_id    : this.form.department_id,
+                department_name  : this.departments[this.form.department_id].name,
                 recipe_title     : 'Other',
-                department       : this.departments[this.form.newDepartmentId]
+                department       : this.departments[this.form.department_id]
             };
 
-            items.push(newItem);
-
-            this.$http.patch('/grocerylist/' + this.grocerylist.id, {items : items})
-                .then(function(response){
+            this.form.submit('post', `/grocerylist/${this.grocerylist.id}/item`)
+                .then(response => {
                     this.items.push(newItem);
                     this.form.reset();
                 });
@@ -155,19 +141,24 @@ module.exports = {
         addRecipes(recipeIds){
             let self = this,
                 recipe;
+
             recipeIds.forEach(function (recipeId) {
-                self.recipeIds.push(recipeId);
-                self.addedRecipes.push(self.unaddedRecipes[recipeId]);
-                recipe = self.unaddedRecipes[recipeId];
 
-                recipe.items.forEach(function(item){
-                    Vue.set(item, 'department_name', item.department.name);
-                });
+                self.$http.post('/grocerylist/' + self.grocerylist.id + '/recipe/' + recipeId)
+                    .then(response => {
+                        self.recipeIds.push(recipeId);
+                        self.addedRecipes.push(self.unaddedRecipes[recipeId]);
+                        recipe = self.unaddedRecipes[recipeId];
 
-                self.items = Array.from(self.items).concat(recipe.items);
+                        recipe.items.forEach(function(item){
+                            Vue.set(item, 'department_name', item.department.name);
+                        });
 
-                self.recipesToAdd = [];
-                delete self.unaddedRecipes[recipeId];
+                        self.items = Array.from(self.items).concat(recipe.items);
+
+                        self.recipesToAdd = [];
+                        delete self.unaddedRecipes[recipeId];
+                    });
             });
 
             this.showRecipes = false;
