@@ -1,4 +1,4 @@
-import 'vue-resource';
+import http from 'axios';
 
 export default class Form {
     constructor(data){
@@ -7,6 +7,8 @@ export default class Form {
         for(let field in data){
             this[field] = data[field];
         }
+
+        this.$http = http;
     }
 
     /* reset all form values */

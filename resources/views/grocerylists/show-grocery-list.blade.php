@@ -11,12 +11,6 @@
                 <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
             </div>
 
-            <div class="centering-buttons">
-                <a v-on:click="showRecipes = true" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add a recipe</a>
-                <a v-on:click="setAddAnItem(true)" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add an item</a>
-                <a class="create-list-option hide-options" onClick="window.print()"><i class="fa fa-print"></i> Printer Friendly</a>
-            </div>
-
             <nav class="mini-nav">
                 <ul class="mini-nav-options">
                     <li><a v-on:click="showRecipes = true"><i class="fa fa-cutlery"></i></a></li>
@@ -25,38 +19,8 @@
                 </ul>
             </nav>
 
+            <list-desktop-nav></list-desktop-nav>
 
-            <div class="item-section" v-if="addAnItem">
-                <div class="items-inputs">
-                    <div class="ingredient-input">
-                        <label for="quantity" class="sub-heading">Qty</label>
-                        <input type="text" id="quantity" v-model="form.quantity" name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="1" @keyup.enter="addItem(recipeFields)"/>
-                    </div>
-
-                    <div class="ingredient-input">
-                        <label for="type" class="sub-heading">Type</label>
-                        <input type="text" id="type" v-model="form.type" name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="bottle" @keyup.enter="addItem(recipeFields)">
-                    </div>
-
-                    <div class="ingredient-input">
-                        <label for="item" class="sub-heading">Item</label>
-                        <input type="text" id="item" v-model="form.name" name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="shampoo" @keyup.enter="addItem(recipeFields)"/>
-                    </div>
-
-                    <div class="ingredient-input">
-                        <label for="category" class="sub-heading dept-label">Department</label>
-                        <select name="category" v-model="form.department_id">
-                            @foreach($departments as $department)
-                                <option value="{{ $department->id }}">{{$department->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="add-wrapper ingredient-input">
-                        <button type="button" v-on:click="addItem(recipeFields)" class="add-button"><i class="fa fa-plus-circle"></i></button>
-                        <button type="button" v-on:click="addAnItem = false" class="add-button"><i class="fa fa-times-circle-o"></i></button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         {!! Form::model($grocerylist, ['method' => 'POST', 'route' => ['grocerylist.update', $grocerylist->id], 'id' => 'list-form']) !!}

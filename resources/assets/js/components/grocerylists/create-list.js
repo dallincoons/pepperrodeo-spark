@@ -1,12 +1,11 @@
 let list_form = require('./mixins/list-form.js');
-import ListNav from './components/list-nav.vue';
 
 Vue.component('create-list', {
     mixins : [list_form],
-    // components : {AddItem},
     data() {
         return {
             editing : true,
+            newItemId : 0
         }
     },
     methods : {

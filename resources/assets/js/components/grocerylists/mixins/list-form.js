@@ -7,7 +7,6 @@ module.exports = {
             items             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.items : [],
             title             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.title : '',
             form              : new Form({
-                $http             : this.$http,
                 quantity          : '',
                 name              : '',
                 type              : '',
@@ -22,11 +21,6 @@ module.exports = {
             recipeFields      : [],
             recipeIds         : [],
             list_form_errors  : [],
-            newItemName       : '',
-            newItemQty        : '',
-            newItemType       : '',
-            newDepartmentId : '',
-            newItemId         : 0,
             groupByValue      : 'department_name',
             toggledOption     : {}
         }
@@ -88,25 +82,6 @@ module.exports = {
         },
         setAddAnItem($bool){
             this.addAnItem = $bool;
-        },
-        addItem(){
-
-            let newItem = {
-                id               : --this.newItemId,
-                name             : this.form.name,
-                quantity         : parseInt(this.form.quantity),
-                type             : this.form.type,
-                department_id    : this.form.department_id,
-                department_name  : this.departments[this.form.department_id].name,
-                recipe_title     : 'Other',
-                department       : this.departments[this.form.department_id]
-            };
-
-            this.form.submit('post', `/grocerylist/${this.grocerylist.id}/item`)
-                .then(response => {
-                    this.items.push(newItem);
-                    this.form.reset();
-                });
         },
         removeItemFromList(item){
             let self = this;
