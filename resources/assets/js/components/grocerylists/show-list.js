@@ -30,6 +30,53 @@ Vue.component('show-list', {
                 });
         },
 
+        addRecipes(recipeIds){
+            let self = this,
+                recipe;
+
+            recipeIds.forEach(function (recipeId) {
+
+                self.$http.post('/grocerylist/' + self.grocerylist.id + '/recipe/' + recipeId)
+                    .then(response => {
+                        self.recipeIds.push(recipeId);
+                        self.addedRecipes.push(self.unaddedRecipes[recipeId]);
+                        recipe = self.unaddedRecipes[recipeId];
+
+                        recipe.items.forEach(function(item){
+                            Vue.set(item, 'department_name', item.department.name);
+                        });
+
+                        self.items = Array.from(self.items).concat(recipe.items);
+
+                        self.recipesToAdd = [];
+                        delete self.unaddedRecipes[recipeId];
+                    });
+            });
+
+            this.showRecipes = false;
+        },
+
+        removeItemFromList(item){
+            let self = this;
+
+            swal({
+                    title              : "Hold on!",
+                    text               : "Are you sure you want to remove " + item.name + " from this grocery list?",
+                    showCancelButton   : true,
+                    confirmButtonColor : "#DD6B55",
+                    confirmButtonText  : "Yes",
+                    closeOnConfirm     : true
+                },
+                function () {
+                    self.$http.post('/grocerylistitem/remove', {grocerylist : self.grocerylist.id, itemIds : [item.id]})
+                        .then(function(response){
+                            if(response.status == 200) {
+                                self.removeItemFromView(item);
+                            }
+                        });
+                });
+        },
+
         deleteGroup(items){
             let self = this;
             this.$http.post('/grocerylistitem/remove', {grocerylist : this.grocerylist.id, itemIds : _.pluck(items, 'id')})

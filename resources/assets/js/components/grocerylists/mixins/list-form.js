@@ -63,63 +63,13 @@ module.exports = {
 
             return newItems;
         },
-        removeItemFromList(item){
-            let self = this;
 
-            swal({
-                    title              : "Hold on!",
-                    text               : "Are you sure you want to remove " + item.name + " from this grocery list?",
-                    showCancelButton   : true,
-                    confirmButtonColor : "#DD6B55",
-                    confirmButtonText  : "Yes",
-                    closeOnConfirm     : true
-                },
-                function () {
-                    self.$http.post('/grocerylistitem/remove', {grocerylist : self.grocerylist.id, itemIds : [item.id]})
-                        .then(function(response){
-                            if(response.status == 200) {
-                                self.removeItemFromView(item);
-                            }
-                        });
-                });
-        },
         removeItemFromView(item){
             this.items = _.without(this.items, _.findWhere(this.items, {
                 id : item.id
             }));
             this.items.push({});
             this.items.pop();
-        },
-        removeAddedRecipe(recipeIndex){
-            this.addedRecipes.splice(recipeIndex, 1);
-        },
-        addRecipes(recipeIds){
-            let self = this,
-                recipe;
-
-            recipeIds.forEach(function (recipeId) {
-
-                self.$http.post('/grocerylist/' + self.grocerylist.id + '/recipe/' + recipeId)
-                    .then(response => {
-                        self.recipeIds.push(recipeId);
-                        self.addedRecipes.push(self.unaddedRecipes[recipeId]);
-                        recipe = self.unaddedRecipes[recipeId];
-
-                        recipe.items.forEach(function(item){
-                            Vue.set(item, 'department_name', item.department.name);
-                        });
-
-                        self.items = Array.from(self.items).concat(recipe.items);
-
-                        self.recipesToAdd = [];
-                        delete self.unaddedRecipes[recipeId];
-                    });
-            });
-
-            this.showRecipes = false;
-        },
-        toggleEdit(){
-            this.editing = !this.editing;
         },
 
         toggleListOptions(item) {
@@ -133,6 +83,14 @@ module.exports = {
             document.body.addEventListener('click', this.closeListOptions);
         },
 
+        closeListOptions(event){
+            if(typeof event.toElement.dataset.type !== 'undefined' && event.toElement.dataset.type == 'toggle-list-option'){
+                return
+            }
+            this.toggledOption.toggleOptions = false;
+            document.body.removeEventListener('click', this.closeListOptions);
+        },
+
         toggleItemEditing(item) {
             this.items.forEach(i => {
                 if(i.id == item.id){
@@ -142,12 +100,5 @@ module.exports = {
             });
         },
 
-        closeListOptions(event){
-            if(typeof event.toElement.dataset.type !== 'undefined' && event.toElement.dataset.type == 'toggle-list-option'){
-                return
-            }
-            this.toggledOption.toggleOptions = false;
-            document.body.removeEventListener('click', this.closeListOptions);
-        },
     }
 };

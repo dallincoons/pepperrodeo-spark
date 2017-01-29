@@ -32,6 +32,7 @@ Vue.component('create-list', {
 
             this.showRecipes = false;
         },
+
         addItem(){
 
             if(!this.form.validate()){
@@ -65,6 +66,10 @@ Vue.component('create-list', {
             og_item.department_id = item.department_id;
 
             this.toggleItemEditing(og_item);
+        },
+
+        removeItemFromList(item){
+            this.removeItemFromView(item);
         },
 
         submitListForm : function(){
