@@ -1,18 +1,42 @@
 let list_form = require('./mixins/list-form.js');
-import ListDesktopNav from './components/list-desktop-nav.vue';
+let AddItemForm = require('./components/add-item-form.vue');
 
 Vue.component('show-list', {
     mixins : [list_form],
-    components : {ListDesktopNav},
+    components : {AddItemForm},
     data() {
         return {
-            editing : true
+            editing : true,
+            addAnItem : false,
         }
     },
     methods : {
         submitDeleteList : function(){
             document.getElementById('list-delete').submit();
         },
+
+        addItem(item){
+
+            let newItem = {
+                name             : item.name,
+                quantity         : parseInt(item.quantity),
+                type             : item.type,
+                department_id    : item.department_id,
+                department_name  : this.departments[item.department_id].name,
+                recipe_title     : 'Other',
+                department       : this.departments[item.department_id]
+            };
+
+            this.$http.post(`/grocerylist/${this.grocerylist.id}/item`, item)
+                .then(response => {
+                    this.items.push(newItem);
+                    this.form.reset();
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
         saveItemEdit(item) {
             this.$http.patch('/grocerylistitem/edit/' + item.id, {item : {'quantity' : item.quantity, 'type' : item.type, 'name' : item.name, 'department_id' : item.department.id}})
                 .then(function(response){
