@@ -1,9 +1,10 @@
 let list_form = require('./mixins/list-form.js');
 let AddItemForm = require('./components/add-item-form.vue');
+let GroupedList = require('../recipe/components/grouped-list.vue');
 
 Vue.component('show-list', {
     mixins : [list_form],
-    components : {AddItemForm},
+    components : {AddItemForm, GroupedList},
     data() {
         return {
             editing : true,
