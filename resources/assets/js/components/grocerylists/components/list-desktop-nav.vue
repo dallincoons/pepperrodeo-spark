@@ -9,6 +9,9 @@
             }
         },
         methods : {
+            emitShowRecipes(){
+                this.$emit('show-recipes');
+            },
             addItem(){
 
                 let newItem = {
@@ -38,7 +41,7 @@
 <template>
     <div>
         <div class="centering-buttons">
-            <a v-on:click="showRecipes = true" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add a recipe</a>
+            <a v-on:click="emitShowRecipes()" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add a recipe</a>
             <a v-on:click="addAnItem = true" class="create-list-option hide-options"><i class="fa fa-plus-circle"></i> Add an item</a>
             <a class="create-list-option hide-options" onClick="window.print()"><i class="fa fa-print"></i> Printer Friendly</a>
         </div>

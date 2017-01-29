@@ -68,15 +68,21 @@ Vue.component('create-list', {
         },
 
         submitListForm : function(){
-            this.validateForm();
             let $form = $('#list-form');
 
-            if($form.parsley().validate() && this.noFormErrors()){
+            if($form.parsley().validate()){
                 this.$http.post('/grocerylist', {items : this.items, title : this.title})
                     .then(function(response){
                         window.location.href = '/grocerylist/' + response.data.grocerylist;
                     });
             }
+        },
+
+        deleteGroup(items){
+            let self = this;
+            items.forEach(function(item){
+                self.removeItemFromView(item);
+            });
         },
     }
 });

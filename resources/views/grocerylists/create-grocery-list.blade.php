@@ -6,8 +6,8 @@
     <div class="create-list" v-if="!showRecipes">
         <h2 class="page-title">Create List</h2>
         <div class="centering-buttons">
-            <a  v-bind:class="{ 'toggle-active': groupByValue == 'department', 'toggle-inactive': groupByValue != 'department' }"  v-on:click="setGroupBy('department_name')" class="toggle">By Dept.</a>
-            <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="setGroupBy('recipe_title')" class="toggle">By Recipe</a>
+            <a  v-bind:class="{ 'toggle-active': groupByValue == 'department', 'toggle-inactive': groupByValue != 'department' }"  v-on:click="groupByValue = 'department_name'" class="toggle">By Dept.</a>
+            <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="groupByValue = 'recipe_title'" class="toggle">By Recipe</a>
         </div>
 
         {{Form::open(['url' => '/grocerylist', 'id' => 'list-form', 'data-parsley-validate' => ''])}}
@@ -19,7 +19,7 @@
             </div>
 
             <a v-on:click="showRecipes = true" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
-            <a v-on:click="setAddAnItem(true)" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
+            <a v-on:click="addAnItem = true" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
 
             <div class="item-section" v-if="addAnItem">
                 <div class="items-inputs">
@@ -110,10 +110,6 @@
                 </ul>
             </div>
         @endif
-
-        <ul v-if="list_form_errors">
-            <li v-for="error in list_form_errors">@{{ error.reason }}</li>
-        </ul>
 
         {{Form::close()}}
     </div>

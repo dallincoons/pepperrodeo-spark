@@ -6,6 +6,7 @@ module.exports = {
             grocerylist       : PepperRodeo.grocerylist,
             items             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.items : [],
             title             : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.title : '',
+            departments        : PepperRodeo.departments,
             form              : new Form({
                 quantity          : '',
                 name              : '',
@@ -14,13 +15,11 @@ module.exports = {
             }),
             addedRecipes      : typeof PepperRodeo.grocerylist == 'object' ? PepperRodeo.grocerylist.recipes : [],
             unaddedRecipes    : Object.assign({}, PepperRodeo.recipes),
-            departments        : PepperRodeo.departments,
             showRecipes       : false,
             recipesToAdd      : [],
             addAnItem         : false,
             recipeFields      : [],
             recipeIds         : [],
-            list_form_errors  : [],
             groupByValue      : 'department_name',
             toggledOption     : {}
         }
@@ -42,19 +41,6 @@ module.exports = {
         }
     },
     methods  : {
-        validateForm : function(){
-            if(this.items.length < 1){
-                this.list_form_errors.push({
-                    'reason' : 'No items added'
-                });
-                return;
-            }
-
-            this.list_form_errors = [];
-        },
-        noFormErrors : function(){
-            return this.list_form_errors.length < 1;
-        },
         shouldCombine(){
             return this.groupByValue == 'department_name';
         },
@@ -76,12 +62,6 @@ module.exports = {
             });
 
             return newItems;
-        },
-        setGroupBy(groupBy){
-            this.groupByValue = groupBy;
-        },
-        setAddAnItem($bool){
-            this.addAnItem = $bool;
         },
         removeItemFromList(item){
             let self = this;
@@ -138,17 +118,6 @@ module.exports = {
 
             this.showRecipes = false;
         },
-        deleteGroup(items){
-            let self = this;
-            this.$http.post('/grocerylistitem/remove', {grocerylist : this.grocerylist.id, itemIds : _.pluck(items, 'id')})
-                .then(function(response){
-                    if(response.status == 200){
-                        items.forEach(function(item){
-                            self.removeItemFromView(item);
-                        });
-                    }
-                });
-        },
         toggleEdit(){
             this.editing = !this.editing;
         },
@@ -173,23 +142,6 @@ module.exports = {
             });
         },
 
-        saveItemEdit(item) {
-            this.$http.patch('/grocerylistitem/edit/' + item.id, {item : {'quantity' : item.quantity, 'type' : item.type, 'name' : item.name, 'department_id' : item.department.id}})
-                .then(function(response){
-                    if(response.status == 200){
-                        this.items.forEach(i => {
-                            if(i.id == item.id){
-                                i.department_name = this.departments[item.department.id].name;
-                                i.quantity = item.quantity;
-                                i.type = item.type;
-                                i.name = item.name;
-                                i.editing = false;
-                            }
-                        });
-                    }
-                });
-        },
-
         closeListOptions(event){
             if(typeof event.toElement.dataset.type !== 'undefined' && event.toElement.dataset.type == 'toggle-list-option'){
                 return
@@ -197,13 +149,5 @@ module.exports = {
             this.toggledOption.toggleOptions = false;
             document.body.removeEventListener('click', this.closeListOptions);
         },
-
-        showEditItemModal() {
-            $('#editItemModal').modal('show');
-        },
-
-        editItemView() {
-            return "<input type='text' placeholder='qty'>";
-        }
     }
 };
