@@ -1,7 +1,9 @@
 let list_form = require('./mixins/list-form.js');
+let AddItemForm = require('./components/add-item-form.vue');
 
 Vue.component('create-list', {
     mixins : [list_form],
+    components : {AddItemForm},
     data() {
         return {
             editing : true,
@@ -33,21 +35,17 @@ Vue.component('create-list', {
             this.showRecipes = false;
         },
 
-        addItem(){
-
-            if(!this.form.validate()){
-                return;
-            }
+        addItem(item){
 
             let newItem = {
                 id               : --this.newItemId,
-                name             : this.form.name,
-                quantity         : parseInt(this.form.quantity),
-                type             : this.form.type,
-                department_id    : this.form.department_id,
-                department_name  : this.departments[this.form.department_id].name,
+                name             : item.name,
+                quantity         : parseInt(item.quantity),
+                type             : item.type,
+                department_id    : item.department_id,
+                department_name  : this.departments[item.department_id].name,
                 recipe_title     : 'Other',
-                department       : this.departments[this.form.department_id],
+                department       : this.departments[item.department_id],
                 toggleOptions    : false,
                 editing          : false
             };

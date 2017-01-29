@@ -21,34 +21,7 @@
             <a v-on:click="showRecipes = true" class="create-list-option"><i class="fa fa-plus-circle"></i> Add a recipe</a>
             <a v-on:click="addAnItem = true" class="create-list-option"><i class="fa fa-plus-circle"></i> Add an item</a>
 
-            <div class="item-section" v-if="addAnItem">
-                <div class="items-inputs">
-                    <div class="ingredient-input">
-                        <label for="quantity" class="sub-heading">Qty</label>
-                        <input type="text" id="quantity" v-model="form.quantity" class="ingredient-info" placeholder="1" @keyup.enter="addItem()"/>
-                    </div>
-                    <div class="ingredient-input">
-                        <label for="type" class="sub-heading">Type</label>
-                        <input type="text" id="type" v-model="form.type" class="ingredient-info" placeholder="bottle" @keyup.enter="addItem()">
-                    </div>
-
-                    <div class="ingredient-input">
-                        <label for="item" class="sub-heading">Item</label>
-                        <input type="text" id="item" v-model="form.name" class="ingredient-info" placeholder="shampoo" @keyup.enter="addItem()"/>
-                    </div>
-
-                    <div class="ingredient-input">
-                        <label for="category" class="sub-heading dept-label">Department</label>
-                        <select name="category" v-model="form.department_id">
-                            <option v-for="department in departments" :value="department.id">@{{department.name}}</option>
-                        </select>
-                    </div>
-                    <div class="add-wrapper ingredient-input">
-                        <button type="button" v-on:click="addItem()" class="add-button"><i class="fa fa-plus-circle"></i></button>
-                        <button type="button" v-on:click="addAnItem = false" class="add-button"><i class="fa fa-times-circle-o"></i></button>
-                    </div>
-                </div>
-            </div>
+            <add-item-form v-if="addAnItem" v-on:hide="addAnItem = false" v-on:add="addItem"></add-item-form>
         </div>
 
         <div class="category-wrapper">
