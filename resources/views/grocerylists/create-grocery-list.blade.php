@@ -25,16 +25,16 @@
                 <div class="items-inputs">
                     <div class="ingredient-input">
                         <label for="quantity" class="sub-heading">Qty</label>
-                        <input type="text" id="quantity" v-model="form.quantity" name="'recipeFields[' + index + '][quantity]'" class="ingredient-info" placeholder="1" @keyup.enter="addItem(recipeFields)"/>
+                        <input type="text" id="quantity" v-model="form.quantity" class="ingredient-info" placeholder="1" @keyup.enter="addItem()"/>
                     </div>
                     <div class="ingredient-input">
                         <label for="type" class="sub-heading">Type</label>
-                        <input type="text" id="type" v-model="form.type" name="'recipeFields[' + index + '][type]'" class="ingredient-info" placeholder="bottle" @keyup.enter="addItem(recipeFields)">
+                        <input type="text" id="type" v-model="form.type" class="ingredient-info" placeholder="bottle" @keyup.enter="addItem()">
                     </div>
 
                     <div class="ingredient-input">
                         <label for="item" class="sub-heading">Item</label>
-                        <input type="text" id="item" v-model="form.name" name="'recipeFields[' + index + '][name]'" class="ingredient-info" placeholder="shampoo" @keyup.enter="addItem(recipeFields)"/>
+                        <input type="text" id="item" v-model="form.name" class="ingredient-info" placeholder="shampoo" @keyup.enter="addItem()"/>
                     </div>
 
                     <div class="ingredient-input">
@@ -44,7 +44,7 @@
                         </select>
                     </div>
                     <div class="add-wrapper ingredient-input">
-                        <button type="button" v-on:click="addItem(recipeFields)" class="add-button"><i class="fa fa-plus-circle"></i></button>
+                        <button type="button" v-on:click="addItem()" class="add-button"><i class="fa fa-plus-circle"></i></button>
                         <button type="button" v-on:click="addAnItem = false" class="add-button"><i class="fa fa-times-circle-o"></i></button>
                     </div>
                 </div>
@@ -70,11 +70,6 @@
                                 </ul>
                             </div>
 
-                            <input type="hidden" :name="'items[' + item.id + '][quantity]'" :value="item.quantity">
-                            <input type="hidden" :name="'items[' + item.id + '][name]'" :value="item.name">
-                            <input type="hidden" :name="'items[' + item.id + '][type]'" :value="item.type">
-                            <input type="hidden" :name="'items[' + item.id + '][department_id]'" :value="item.department.id">
-                            <input type="hidden" :name="'items[' + item.id + '][id]'" :value="item.id">
                         </div>
                         <div v-else class="edit-info-wrapper">
                             <div class="edit-inputs">

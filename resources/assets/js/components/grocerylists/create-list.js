@@ -69,7 +69,7 @@ Vue.component('create-list', {
         },
 
         removeItemFromList(item){
-            this.removeItemFromView(item);
+            self.removeItemFromView(item);
         },
 
         submitListForm : function(){

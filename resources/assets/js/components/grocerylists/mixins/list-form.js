@@ -18,7 +18,6 @@ module.exports = {
             showRecipes       : false,
             recipesToAdd      : [],
             addAnItem         : false,
-            recipeFields      : [],
             recipeIds         : [],
             groupByValue      : 'department_name',
             toggledOption     : {}
