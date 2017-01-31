@@ -1,16 +1,17 @@
 let list_form = require('./mixins/list-form.js');
 let AddItemForm = require('./components/add-item-form.vue');
-let GroupedList = require('../recipe/components/grouped-list.vue');
+let GroupedGroceryLists = require('./components/grouped-grocery-lists.vue');
+let ListItemGroupByMenu = require('./components/list-item-group-by-menu.vue');
 
 Vue.component('show-list', {
     mixins : [list_form],
-    components : {AddItemForm, GroupedList},
+    components : {AddItemForm, GroupedGroceryLists, ListItemGroupByMenu},
     data() {
         return {
             editing : true,
-            addAnItem : false,
         }
     },
+
     methods : {
         submitDeleteList : function(){
             document.getElementById('list-delete').submit();
@@ -31,7 +32,6 @@ Vue.component('show-list', {
             this.$http.post(`/grocerylist/${this.grocerylist.id}/item`, item)
                 .then(response => {
                     this.items.push(newItem);
-                    this.form.reset();
                 })
                 .catch(error => {
                     console.log(error);

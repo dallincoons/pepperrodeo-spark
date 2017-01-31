@@ -1,10 +1,11 @@
 let list_form = require('./mixins/list-form.js');
 let AddItemForm = require('./components/add-item-form.vue');
-let GroupedList = require('../recipe/components/grouped-list.vue');
+let GroupedGroceryLists = require('./components/grouped-grocery-lists.vue');
+let ListItemGroupByMenu = require('./components/list-item-group-by-menu.vue');
 
 Vue.component('create-list', {
     mixins : [list_form],
-    components : {AddItemForm, GroupedList},
+    components : {AddItemForm, GroupedGroceryLists, ListItemGroupByMenu},
     data() {
         return {
             editing : true,
@@ -52,7 +53,6 @@ Vue.component('create-list', {
             };
 
             this.items.push(newItem);
-            this.form.reset();
         },
 
         saveItemEdit(item){
@@ -63,8 +63,7 @@ Vue.component('create-list', {
             og_item.type = item.type;
             og_item.name = item.name;
             og_item.department_id = item.department_id;
-
-            this.toggleItemEditing(og_item);
+            og_item.editing = false;
         },
 
         removeItemFromList(item){

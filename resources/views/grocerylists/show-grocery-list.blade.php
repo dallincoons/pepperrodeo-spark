@@ -6,10 +6,8 @@
     <div class="create-list" v-if="!showRecipes">
         <div class="list-header-section">
             <h2 class="page-title">{{$grocerylist->title}} <a href="#" class="darker-remove"><i v-on:click.prevent="editing = !editing" class="fa fa-pencil"></i></a></h2>
-            <div class="centering-buttons">
-                <a  v-bind:class="{ 'toggle-active': groupByValue == 'department_name', 'toggle-inactive': groupByValue != 'department_name' }"  v-on:click="groupByValue = 'department_name'" class="toggle">By Dept.</a>
-                <a v-bind:class="{ 'toggle-active': groupByValue == 'recipe_title', 'toggle-inactive': groupByValue != 'recipe_title' }" v-on:click="groupByValue = 'recipe_title'" class="toggle">By Recipe</a>
-            </div>
+
+            <list-item-group-by-menu></list-item-group-by-menu>
 
             <nav class="mini-nav">
                 <ul class="mini-nav-options">
@@ -34,44 +32,10 @@
             <div class="title-section">
                 <label for="title" class="form-heading">Title*</label>
                 <input type="text" placeholder="September Grocery List" v-model="title" id="title" name="title" required data-parsley-errors-messages-disabled>
-
             </div>
-
         </div>
 
-        <grouped-list :grouped-items="itemsGrouped">
-            <template scope="props">
-                <div v-if="!props.item.editing" class="list-item-editing">
-                    <div class="list-item-wrapper">
-                        <div class="print-checkbox"></div><span class="list-item-added">@{{ props.item.quantity }}</span>
-                        <span class="list-item-added">@{{ props.item.type }}</span>
-                        <span class="list-item-added">@{{ props.item.name }} </span>
-                    </div>
-                    <div class="options-dropdown-wrapper">
-                        <a class="dropdown-indicator" v-on:click="toggleListOptions(props.item)" ><i data-type="toggle-list-option" class="fa fa-ellipsis-h"></i></a>
-                        <ul class="options-dropdown" v-show="props.item.toggleOptions">
-                            <li v-on:click="toggleItemEditing(props.item)"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
-                            <li v-on:click="removeItemFromList(props.item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div v-else class="edit-info-wrapper">
-                    <div class="edit-inputs">
-                        <input class="list-item-added ingredient-info" v-model="props.item.quantity" :value="props.item.quantity" type="number"/>
-                        <input class="list-item-added ingredient-info" v-model="props.item.type" :value="props.item.type" />
-                        <input class="list-item-added ingredient-info" v-model="props.item.name" :value="props.item.name" />
-                        <select name="category" v-model="props.item.department.id" class="ingredient-info dept-edit-info">
-                            <option v-for="department in departments" :value="department.id">@{{department.name}}</option>
-                        </select>
-                        <a class="edit-button" v-on:click="saveItemEdit(props.item)"><i class="fa fa-check-circle-o"></i></a>
-                    </div>
-
-                    <div class="editing-button-wrapper">
-                        <a class="edit-button" v-on:click="toggleItemEditing(props.item)"><i class="fa fa-times-circle-o"></i></a>
-                    </div>
-                </div>
-            </template>
-        </grouped-list>
+        <grouped-grocery-lists :items="items" v-on:save-edit="saveItemEdit" v-on:delete="removeItemFromList"></grouped-grocery-lists>
 
         @if (count($errors) > 0)
             <div>

@@ -12,6 +12,13 @@
                 }),
                 departments : PepperRodeo.departments,
             }
+        },
+
+        methods : {
+            addEvent(){
+                this.$emit('add', this.form.data());
+                this.form.reset();
+            }
         }
     }
 </script>
@@ -40,7 +47,7 @@
                 </select>
             </div>
             <div class="add-wrapper ingredient-input">
-                <button type="button" v-on:click="$emit('add', form.data())" class="add-button"><i class="fa fa-plus-circle"></i></button>
+                <button type="button" v-on:click="addEvent()" class="add-button"><i class="fa fa-plus-circle"></i></button>
                 <button type="button" v-on:click="$emit('hide')" class="add-button"><i class="fa fa-times-circle-o"></i></button>
             </div>
         </div>
