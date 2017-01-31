@@ -68,13 +68,12 @@ class GroceryListControllerTest extends TestCase
         $this->post('/grocerylist', [
             'title' => 'poo32',
             'items' => [
-                ['name' => 'item1', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
-                ['name' => 'item2', 'quantity' => 2, 'department_id' => $departments->last()->getKey()],
+                ['name' => 'item1', 'type' => 'test-type', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
+                ['name' => 'item2', 'type' => 'test-type', 'quantity' => 2, 'department_id' => $departments->last()->getKey()],
             ]
         ]);
 
-        $this->assertResponseStatus(302);
-
+        $this->assertResponseOk();
         $this->assertCount(1, GroceryList::get());
     }
 
@@ -123,14 +122,14 @@ class GroceryListControllerTest extends TestCase
         $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'title' => 'fake-title',
             'items' => [
-                ['id' => -1, 'name' => 'item1', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
+                ['id' => -1, 'name' => 'item1', 'type' => 'test', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
             ]
         ]);
 
 
         $this->assertEquals('fake-title', $grocerylist->fresh()->title);
         $this->assertCount(1, $grocerylist->fresh()->items);
-        $this->assertResponseStatus(302);
+        $this->assertResponseStatus(200);
     }
 
     private function buildSampleGroceryList()

@@ -73,12 +73,14 @@ class GrocerylistRepositoryTest extends TestCase
                 [
                     'id' => -1,
                     'name' => 'shapoopy',
+                    'type' => 'test',
                     'quantity' => 2,
                     'department_id' => 1
                 ],
                 [
                     'id' => -2,
                     'name' => 'shapoopy_dos',
+                    'type' => 'test',
                     'quantity' => 2,
                     'department_id' => 1
                 ]

@@ -24,8 +24,6 @@ class GroceryListItemTest extends TestCase
      */
     public function it_stores_a_new_grocery_list_item()
     {
-        $this->disableExceptionHandling();
-
         $grocerylist = factory(GroceryList::class)->create();
 
         $listitem = factory(Item::class)->make();
@@ -39,7 +37,7 @@ class GroceryListItemTest extends TestCase
             'department_id' => $listitem->department_id
         ];
 
-        $this->post("grocerylist/{$grocerylist->getKey()}/item/create", $data);
+        $this->post("grocerylist/{$grocerylist->getKey()}/item", $data);
 
         $this->assertResponseOk();
         $this->assertCount(1, $grocerylist->fresh()->items);

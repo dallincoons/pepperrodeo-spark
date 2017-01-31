@@ -32,13 +32,14 @@ class RecipesTest extends TestCase
      */
     public function create_recipe_with_existing_category()
     {
-        $this->disableExceptionHandling();
         $recipe = factory(Recipe::class)->make();
         $category = RecipeCategory::find($recipe->recipe_category_id);
         $department = factory(Department::class)->create();
 
         $this->post('recipe', $recipe->toArray() + [
                 'category' => (string)$category->id . ',' . $category->name,
+                'title' => 'heyo',
+                'directions' => 'youll know what to do',
                 'recipeFields' => [
                     [
                         'type' => 'test_type',
