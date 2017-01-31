@@ -98,4 +98,25 @@ class RecipeCategoryTest extends TestCase
 
         $this->assertResponseOk();
     }
+
+    /**
+     * @group recipe-category-tests
+     *
+     * @test
+     */
+    public function it_deletes_all_recipes_associated_with_a_deleted_category()
+    {
+        $count = 2;
+        $recipes = factory(Recipe::class, $count)->create();
+        $category = factory(RecipeCategory::class)->create();
+
+        $category->recipes()->saveMany($recipes);
+
+        $this->assertCount($count, $category->recipes);
+
+        $this->delete('recipe/categories/' . $category->getKey());
+
+        $this->assertNull($category->fresh());
+        $this->assertCount(0, Recipe::get());
+    }
 }

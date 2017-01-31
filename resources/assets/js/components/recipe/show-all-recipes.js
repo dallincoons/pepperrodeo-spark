@@ -37,10 +37,14 @@ Vue.component('show-all-recipes', {
     methods : {
 
         deleteGroup(items){
-            let self = this;
-            let recipeIds = _.pluck(items, 'id');
+            if(!items.length){
+                return;
+            }
 
-            this.$http.delete('recipe/deleteMultiple', {params : {'recipeIds' : recipeIds}})
+            let categoryId = items[0].category.id;
+            let self = this;
+
+            this.$http.delete('recipe/categories/' + categoryId)
                 .then((response) => {
                     items.forEach(function(item){
                         self.removeItemFromView(item);

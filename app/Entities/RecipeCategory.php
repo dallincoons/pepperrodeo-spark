@@ -25,4 +25,13 @@ class RecipeCategory extends Model
         $this->name = data_get($data, 'category.name');
         return $this;
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        RecipeCategory::deleting(function($category){
+            $category->recipes()->delete();
+        });
+    }
 }
