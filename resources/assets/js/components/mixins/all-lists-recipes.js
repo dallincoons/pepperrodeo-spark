@@ -19,14 +19,6 @@ module.exports = {
 
     methods : {
 
-        deleteGroup(items){
-            alert('in progress');
-            // let self = this;
-            // items.forEach(function(item){
-            //     self.removeItemFromView(item);
-            // });
-        },
-
         deleteRecipes : function () {
 
             swal({

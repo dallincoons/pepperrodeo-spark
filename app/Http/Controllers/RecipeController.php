@@ -145,6 +145,6 @@ class RecipeController extends Controller
     {
         Recipe::destroy(\Request::input('recipeIds'));
 
-        return redirect('/recipe/delete');
+        return response('recipes deleted');
     }
 }

@@ -36,6 +36,26 @@ Vue.component('show-all-recipes', {
 
     methods : {
 
+        deleteGroup(items){
+            let self = this;
+            let recipeIds = _.pluck(items, 'id');
+
+            this.$http.delete('recipe/deleteMultiple', {params : {'recipeIds' : recipeIds}})
+                .then((response) => {
+                    items.forEach(function(item){
+                        self.removeItemFromView(item);
+                    });
+                });
+        },
+
+        removeItemFromView(item){
+            this.recipes = _.without(this.recipes, _.findWhere(this.recipes, {
+                id : item.id
+            }));
+            this.recipes.push({});
+            this.recipes.pop();
+        },
+
         recipeUrl : function(recipeId){
             return `/recipe/${recipeId}`;
         },
