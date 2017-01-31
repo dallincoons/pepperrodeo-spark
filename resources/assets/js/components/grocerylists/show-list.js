@@ -12,6 +12,12 @@ Vue.component('show-list', {
         }
     },
 
+    mounted(){
+        Bus.$on('deleteGroup', items => {
+            this.deleteGroup(items);
+        });
+    },
+
     methods : {
         submitDeleteList : function(){
             document.getElementById('list-delete').submit();

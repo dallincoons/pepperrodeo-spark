@@ -1,6 +1,11 @@
 <script>
     export default {
-        props : ['groupedItems']
+        props : ['groupedItems'],
+        methods : {
+            deleteGroup(items){
+                Bus.$emit('deleteGroup', items);
+            }
+        }
     }
 </script>
 
@@ -9,7 +14,7 @@
 
         <div>
             <ul v-for="(items, groupName) in groupedItems">
-                <li class="category-title"><h3>{{groupName}}</h3></li>
+                <li class="category-title"><h3>{{groupName}}</h3><span v-on:click="deleteGroup(items)" class="remove-dept"><i class="fa fa-times-circle-o"></i></span></li>
                 <li>
                     <ul class="items">
                         <li v-for="item in items" class="recipe">

@@ -12,6 +12,13 @@ Vue.component('create-list', {
             newItemId : 0
         }
     },
+
+    mounted(){
+        Bus.$on('deleteGroup', items => {
+            this.deleteGroup(items);
+        });
+    },
+
     methods : {
         addRecipes(recipeIds){
             let self = this,
