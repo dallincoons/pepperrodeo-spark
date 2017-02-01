@@ -23,6 +23,36 @@ Vue.component('edit-single-recipe', {
 
     methods : {
 
+        addCategory    : function () {
+            let self = this;
+
+            swal({
+                    title               : "Add a Category",
+                    text                : "Organize your recipes",
+                    type                : "input",
+                    showCancelButton    : true,
+                    closeOnConfirm      : true,
+                    animation           : "slide-from-top",
+                    confirmButtonText   : "Save",
+                    inputPlaceholder    : "Produce",
+                    showLoaderOnConfirm : true,
+                    confirmButtonColor: "#ff4b2e",
+                },
+                function (inputValue) {
+                    if( inputValue === false) {
+                        return;
+                    }
+
+                    self.$http.post('/recipe/categories', JSON.stringify({
+                        'name' : inputValue
+                    })).then(response => {
+                        self.categories = response.data;
+                }).catch(response => {
+                        this.invalidRequest = true;
+                });
+                });
+        },
+
         addNewItem() {
             this.recipeItems.push(this.item);
 
