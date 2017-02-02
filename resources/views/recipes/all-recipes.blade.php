@@ -15,10 +15,16 @@
 
             <grouped-list :grouped-items="recipesByCategory" v-if="recipes.length">
                 <template scope="props">
-                    <label class="control control--checkbox"><a :href="recipeUrl(props.item.id)">@{{ props.item.title }}</a>
-                        <input type="checkbox" v-model="selectedRecipes" id="cbox1" name="recipeIds[]"  :value="props.item.id">
-                        <div class="control__indicator"></div>
-                    </label>
+                            <div>
+                                <span><a :href="recipeUrl(props.item.id)">@{{ props.item.title }} </a></span>
+                            </div>
+                            <div class="options-dropdown-wrapper">
+                                <a class="dropdown-indicator" v-on:click="toggleListOptions(props.item)" ><i data-type="toggle-list-option" class="fa fa-ellipsis-h"></i></a>
+                                <ul class="options-dropdown" v-show="props.item.toggleOptions">
+                                    <li><i class="fa fa-pencil"></i><a :href="recipeEditUrl(props.item.id)"> Edit</a></li>
+                                    <li v-on:click="deleteRecipe(props.item)"><i class="fa fa-trash-o"></i><a> Delete</a></li>
+                                </ul>
+                            </div>
                 </template>
             </grouped-list>
             <div class="lists-wrapper no-content" v-else>

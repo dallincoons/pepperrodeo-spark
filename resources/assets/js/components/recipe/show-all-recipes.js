@@ -28,6 +28,10 @@ Vue.component('show-all-recipes', {
 
     created() {
 
+        this.recipes.forEach(function(item){
+            Vue.set(item, 'toggleOptions', false);
+        });
+
         Bus.$on('deleteRecipes', () => this.deleteRecipes());
 
         Bus.$on('addToGroceryList', (list) => this.addToGroceryList(list));
@@ -35,6 +39,15 @@ Vue.component('show-all-recipes', {
     },
 
     methods : {
+
+        deleteRecipe(recipe){
+            let self = this;
+
+            this.$http.delete(`recipe/${recipe.id}`)
+                .then((response) => {
+                    self.removeItemFromView(recipe);
+                });
+        },
 
         deleteGroup(items){
             if(!items.length){
@@ -64,6 +77,10 @@ Vue.component('show-all-recipes', {
             return `/recipe/${recipeId}`;
         },
 
+        recipeEditUrl : function(recipeId){
+            return `/recipe/${recipeId}/edit`;
+        },
+
         deleteConfirmMessage(){
 
             return '<p>Are you sure you want to permanently delete this?</p>';
@@ -86,7 +103,26 @@ Vue.component('show-all-recipes', {
 
         confirmMessage(list) {
             return 'You have successfully added recipes to <a href="/grocerylist/' + list.id + '">' + list.title + '</a>';
-        }
+        },
+
+        toggleListOptions(recipe) {
+            this.recipes.forEach(r => {
+                r.toggleOptions = false;
+                if(r.id == recipe.id){
+                    this.toggledOption = r;
+                    r.toggleOptions = true;
+                }
+            });
+            document.body.addEventListener('click', this.closeListOptions);
+        },
+
+        closeListOptions(event){
+            if(typeof event.toElement.dataset.type !== 'undefined' && event.toElement.dataset.type == 'toggle-list-option'){
+                return
+            }
+            this.toggledOption.toggleOptions = false;
+            document.body.removeEventListener('click', this.closeListOptions);
+        },
     },
 
 });
