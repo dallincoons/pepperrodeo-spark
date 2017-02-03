@@ -21,7 +21,7 @@ class RecipeCategoryTest extends TestCase
 
         $this->post('recipe/categories', $recipeCategory->toArray());
 
-        $this->seeInDatabase('recipe_categories', ['name' => $recipeCategory->name]);
+        $this->assertDatabaseHas('recipe_categories', ['name' => $recipeCategory->name]);
     }
 
     /**
@@ -35,7 +35,7 @@ class RecipeCategoryTest extends TestCase
 
         $this->delete('recipe/categories/' . $recipeCategory->getKey());
 
-        $this->dontSeeInDatabase('recipe_categories', ['name' => $recipeCategory->name]);
+        $this->assertDatabaseMissing('recipe_categories', ['name' => $recipeCategory->name]);
     }
 
     /**
@@ -45,9 +45,9 @@ class RecipeCategoryTest extends TestCase
      */
     public function fails_when_deleting_non_existant_recipe_category()
     {
-        $this->delete('recipe/categories/1');
+        $response = $this->delete('recipe/categories/1');
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 
     /**
@@ -78,11 +78,11 @@ class RecipeCategoryTest extends TestCase
             'recipe_category_id' => $recipeCategory->getKey()
         ]);
 
-        $this->delete('recipe/categories/' . $recipeCategory->getKey());
+        $response = $this->delete('recipe/categories/' . $recipeCategory->getKey());
 
         $this->assertNull($recipeCategory->fresh());
         $this->assertNull($recipe->fresh());
-        $this->assertResponseStatus(200);
+        $response->assertStatus(200);
     }
 
     /**
@@ -94,9 +94,9 @@ class RecipeCategoryTest extends TestCase
     {
         $recipe = factory(Recipe::class)->create();
 
-        $this->get('/recipe/categories/' . $recipe->category->getKey());
+        $response = $this->get('/recipe/categories/' . $recipe->category->getKey());
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
     }
 
     /**

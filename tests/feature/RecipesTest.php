@@ -36,7 +36,7 @@ class RecipesTest extends TestCase
         $category = RecipeCategory::find($recipe->recipe_category_id);
         $department = factory(Department::class)->create();
 
-        $this->post('recipe', $recipe->toArray() + [
+        $response = $this->post('recipe', $recipe->toArray() + [
                 'category' => (string)$category->id . ',' . $category->name,
                 'title' => 'heyo',
                 'directions' => 'youll know what to do',
@@ -50,7 +50,7 @@ class RecipesTest extends TestCase
                 ]
             ]);
 
-        $this->assertResponseStatus(302);
+        $response->assertStatus(302);
     }
 
     /**
@@ -62,14 +62,14 @@ class RecipesTest extends TestCase
         $recipe = factory(Recipe::class)->make();
         $category = RecipeCategory::find($recipe->recipe_category_id);
 
-        $this->post('recipe', $recipe->toArray() + [
+        $response = $this->post('recipe', $recipe->toArray() + [
                 'category' => (string)$category->id . ',' . $category->name,
                 'recipeFields' => [
                     []
                 ]
         ]);
 
-        $this->assertResponseStatus(302);
+        $response->assertStatus(302);
     }
 
     /**
@@ -81,18 +81,18 @@ class RecipesTest extends TestCase
         $recipe = factory(Recipe::class)->create();
 
         //title should be string
-        $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
+        $response = $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
             'title' => [],
         ]);
 
-        $this->assertResponseStatus(422);
+        $response->assertStatus(422);
 
         //category should be string
-        $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
+        $response = $this->json('PATCH', "/recipe/{$recipe->getKey()}", [
             'category' => [],
         ]);
 
-        $this->assertResponseStatus(422);
+        $response->assertStatus(422);
     }
 
     private function buildSampleRecipe()
@@ -120,9 +120,9 @@ class RecipesTest extends TestCase
         $recipe = factory(Recipe::class)->create();
         $list = factory(GroceryList::class)->create();
 
-        $this->json('POST', '/grocerylist/' . $list->getKey() .'/add', ['grocerylist' => $list->getKey(), 'recipes' => [$recipe->getKey()]]);
+        $response = $this->json('POST', '/grocerylist/' . $list->getKey() .'/add', ['grocerylist' => $list->getKey(), 'recipes' => [$recipe->getKey()]]);
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
     }
 
     /**
