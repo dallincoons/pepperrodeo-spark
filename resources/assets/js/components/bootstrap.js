@@ -16,8 +16,6 @@ if (window.Vue === undefined) {
 
 require('./../spark-components/bootstrap');
 
-Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('content');
-
 /* Lists */
 require('./recipe/components/recipe-mobile-nav.vue');
 require('./recipe/components/desktop-nav.vue');
