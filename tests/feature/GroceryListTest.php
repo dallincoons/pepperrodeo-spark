@@ -33,9 +33,11 @@ class GroceryListControllerTest extends TestCase
         $firstlist = $this->GroceryList->first();
         $lastlist = $this->GroceryList->last();
 
-        $this->visit('grocerylist')
-            ->see($firstlist->title)
-            ->see($lastlist->title);
+        $response = $this->get('/grocerylist');
+
+        $response->assertSee($firstlist->title);
+        $response->assertSee($lastlist->title);
+        $response->assertStatus(200);
     }
 
     /**
@@ -49,9 +51,9 @@ class GroceryListControllerTest extends TestCase
 
         $firstlist = $this->GroceryList->first();
 
-        $this->visit('grocerylist')
-            ->click($firstlist->title)
-            ->see($firstlist->title);
+        $response = $this->get('/grocerylist');
+        $response->assertSee($firstlist->title);
+        $response->assertSee($firstlist->title);
     }
 
     /**
@@ -65,7 +67,7 @@ class GroceryListControllerTest extends TestCase
 
         $departments = factory(Department::class, 2)->create();
 
-        $this->post('/grocerylist', [
+        $response = $this->post('/grocerylist', [
             'title' => 'poo32',
             'items' => [
                 ['name' => 'item1', 'type' => 'test-type', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
@@ -73,7 +75,7 @@ class GroceryListControllerTest extends TestCase
             ]
         ]);
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
         $this->assertCount(1, GroceryList::get());
     }
 
@@ -86,9 +88,9 @@ class GroceryListControllerTest extends TestCase
     {
         $grocerylist = factory(GroceryList::class)->create();
 
-        $this->get('/grocerylist/' . $grocerylist->getKey());
+        $response = $this->get('/grocerylist/' . $grocerylist->getKey());
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
     }
 
     /**
@@ -105,21 +107,21 @@ class GroceryListControllerTest extends TestCase
         $grocerylist->items()->saveMany($item);
 
         //items should be array
-        $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
+        $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'items' => 'notarray',
         ]);
 
-        $this->assertResponseStatus(422);
+        $response->assertStatus(422);
 
         //title should be string
-        $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
+        $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'title' => []
         ]);
 
-        $this->assertResponseStatus(422);
+        $response->assertStatus(422);
 
         //title should be string
-        $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
+        $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'title' => 'fake-title',
             'items' => [
                 ['id' => -1, 'name' => 'item1', 'type' => 'test', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
@@ -129,7 +131,7 @@ class GroceryListControllerTest extends TestCase
 
         $this->assertEquals('fake-title', $grocerylist->fresh()->title);
         $this->assertCount(1, $grocerylist->fresh()->items);
-        $this->assertResponseStatus(200);
+        $response->assertStatus(200);
     }
 
     private function buildSampleGroceryList()

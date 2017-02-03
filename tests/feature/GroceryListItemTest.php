@@ -37,9 +37,9 @@ class GroceryListItemTest extends TestCase
             'department_id' => $listitem->department_id
         ];
 
-        $this->post("grocerylist/{$grocerylist->getKey()}/item", $data);
+        $response = $this->post("grocerylist/{$grocerylist->getKey()}/item", $data);
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
         $this->assertCount(1, $grocerylist->fresh()->items);
     }
 
@@ -61,9 +61,9 @@ class GroceryListItemTest extends TestCase
 
         $this->assertCount(2, $grocerylist->items);
 
-        $this->post('grocerylistitem/remove', ['grocerylist' => $grocerylist->getKey(), 'itemIds' => $item->getKey()]);
+        $response = $this->post('grocerylistitem/remove', ['grocerylist' => $grocerylist->getKey(), 'itemIds' => $item->getKey()]);
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
         $this->assertCount(1, $grocerylist->fresh()->items);
     }
 
@@ -84,9 +84,9 @@ class GroceryListItemTest extends TestCase
 
         $itemArray = $item->toArray();
 
-        $this->patch('/grocerylistitem/edit/' . $item->getKey(), ['item' => ['quantity' => array_get($itemArray, 'quantity')]]);
+        $response = $this->patch('/grocerylistitem/edit/' . $item->getKey(), ['item' => ['quantity' => array_get($itemArray, 'quantity')]]);
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
         $this->assertEquals(2, $item->quantity);
     }
 }

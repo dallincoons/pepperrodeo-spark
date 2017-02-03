@@ -20,10 +20,11 @@ class DepartmentTest extends TestCase
         $department1 = factory(Department::class)->create();
         $department2 = factory(Department::class)->create();
 
-        $this->visit('/departments');
+        $response = $this->get('/departments');
 
-        $this->see($department1->name);
-        $this->see($department2->name);
+        $response->assertSee($department1->name);
+        $response->assertSee($department2->name);
+        $response->assertStatus(200);
     }
 
     /**
@@ -37,7 +38,7 @@ class DepartmentTest extends TestCase
 
         $this->post('departments', $department->toArray());
 
-        $this->seeInDatabase('departments', ['name' => $department->name]);
+        $this->assertDatabaseHas('departments', ['name' => $department->name]);
     }
 
     /**
@@ -51,7 +52,7 @@ class DepartmentTest extends TestCase
 
         $this->delete('departments/' . $department->getKey());
 
-        $this->dontSeeInDatabase('departments', ['name' => $department->name]);
+        $this->assertDatabaseMissing('departments', ['name' => $department->name]);
     }
 
     /**
@@ -61,9 +62,9 @@ class DepartmentTest extends TestCase
      */
     public function fails_when_deleting_non_existant_department()
     {
-        $this->delete('departments/1');
+        $response = $this->delete('departments/1');
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 
     /**
@@ -96,10 +97,10 @@ class DepartmentTest extends TestCase
 
         $department->items()->save($item);
 
-        $this->delete('departments/' . $department->getKey());
+        $response = $this->delete('departments/' . $department->getKey());
 
         $this->assertNull($department->fresh());
         $this->assertNull($item->fresh());
-        $this->assertResponseStatus(200);
+        $response->assertStatus(200);
     }
 }
