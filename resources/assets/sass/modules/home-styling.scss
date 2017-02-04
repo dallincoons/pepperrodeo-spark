@@ -77,8 +77,6 @@
 
 @media only screen and (max-width: 799px) {
   .home-content {
-    background-image: url(/pepperrodeo_background_image.jpg);
-    background-size: cover;
     opacity: .8;
     min-height: 100%;
     display: flex;
@@ -88,42 +86,24 @@
   }
 
   .home-section {
-    background: rgba(255, 255, 255, .8);
+    background: #ff4b2e;
     border-radius: 10px;
-    flex: .5 .5 auto;
+    border-bottom: #d44331 5px solid;
     display: flex;
-    justify-content: center;
-    align-content: center;
-    position: relative;
   }
 
   .home-section:first-child {
-    margin: 5% 15% 0 15%;
+    margin: 0 15% 0 15%;
   }
 
   .home-section:last-child {
-    margin:5% 15% 15%;
-  }
-
-  .home-section:hover {
-    background: rgba(255, 225, 255, .5);
-  }
-
-  .home-section:hover .home-option-background {
-    font-size: 18em;
-    cursor: pointer;
-  }
-
-  .home-section:hover .home-link {
-    font-weight: bold;
-    cursor: pointer;
-    color: #d43f3a;
+    margin: 15% 15%;
   }
 
 
   .home-option-background {
     color: #FFFFFF;
-    font-size: 12em;
+    font-size: 10em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,18 +114,20 @@
   .home-link {
     z-index: 1000;
     position: absolute;
-    color: #ff4b2e;
+    color: #FFFFFF;
     font-size: .2em;
     font-weight: 500;
+    bottom: 0;
   }
 
   .home-list > i {
     font-size: .9em;
   }
-  .list-option {
-    padding: 5px;
-  }
 
+  .list-option {
+    padding: 25px;
+    margin-bottom: 15px;
+  }
 
 }
 
@@ -155,6 +137,7 @@
 
   .recipe-option {
     padding: 30px;
+    margin-bottom: 15px;
   }
 
 }
