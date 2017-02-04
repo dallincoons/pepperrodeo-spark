@@ -16,6 +16,9 @@ Vue.component('show-list', {
         Bus.$on('deleteGroup', items => {
             this.deleteGroup(items);
         });
+
+        //Add margin top dynamically to grocery list form
+        $('#list-form').css("margin-top", $("#list_header").height() + 'px');
     },
 
     methods : {
@@ -24,6 +27,7 @@ Vue.component('show-list', {
         },
 
         addItem(item){
+
 
             let newItem = {
                 name             : item.name,
