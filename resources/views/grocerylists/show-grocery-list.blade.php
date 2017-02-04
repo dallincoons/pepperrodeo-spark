@@ -4,7 +4,7 @@
 <show-list inline-template v-cloak>
 <div class="create-list-wrapper">
     <div class="create-list" v-if="!showRecipes">
-        <div class="list-header-section">
+        <div class="list-header-section" id="list_header">
             <h2 class="page-title">{{$grocerylist->title}} <a href="#" class="darker-remove"><i v-on:click.prevent="editing = !editing" class="fa fa-pencil"></i></a></h2>
 
             <list-item-group-by-menu></list-item-group-by-menu>
@@ -26,14 +26,8 @@
 
         </div>
 
-        {!! Form::model($grocerylist, ['method' => 'POST', 'route' => ['grocerylist.update', $grocerylist->id], 'id' => 'list-form']) !!}
+        {!! Form::model($grocerylist, ['method' => 'POST', 'route' => ['grocerylist.update', $grocerylist->id], 'id' => 'list-form', 'class' => 'list-form']) !!}
             {!! method_field('patch') !!}
-            <div v-show="editing">
-            <div class="title-section">
-                <label for="title" class="form-heading">Title*</label>
-                <input type="text" placeholder="September Grocery List" v-model="title" id="title" name="title" required data-parsley-errors-messages-disabled>
-            </div>
-        </div>
 
         <grouped-grocery-lists :items="items" v-on:save-edit="saveItemEdit" v-on:delete="removeItemFromList"></grouped-grocery-lists>
 

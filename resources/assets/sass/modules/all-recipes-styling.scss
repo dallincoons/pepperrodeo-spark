@@ -26,11 +26,15 @@
 
   .recipe {
     background: #FFF2ED;
-    margin: 5px 0;
+    margin: 3px 0;
     padding: 5px 10px;
   }
 
-  .recipe a {
+  .recipe:hover {
+    background: rgba(255, 75, 42, .2);
+  }
+
+  .recipe > a {
     font-size: 1.4em;
     font-weight: normal;
     color: #3f3f3f;
@@ -112,7 +116,7 @@
     padding: 5px 10px;
   }
 
-  .recipe a {
+  .recipe > a {
     font-size: 1.4em;
     font-weight: normal;
     color: #3f3f3f;
