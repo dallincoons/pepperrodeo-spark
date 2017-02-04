@@ -27,9 +27,9 @@ class GroceryListRecipesTest extends TestCase
 
         $this->assertCount(0, $grocerylist->items);
 
-        $this->post('/grocerylist/' . $grocerylist->getKey() . '/recipe/' . $recipe->getKey());
+        $response = $this->post('/grocerylist/' . $grocerylist->getKey() . '/recipe/' . $recipe->getKey());
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
         $this->assertCount($recipe->items->count(), $grocerylist->fresh()->items);
     }
 }

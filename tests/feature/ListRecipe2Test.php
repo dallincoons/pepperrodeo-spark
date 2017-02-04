@@ -50,9 +50,9 @@ class ListRecipeTest extends TestCase
 
         $grocerylist->addRecipes($recipes);
 
-        $this->post('/grocerylist/' . $grocerylist->getKey() .'/add', ['grocerylist' => $grocerylist->getKey(), 'recipes' => $recipes->pluck('id')]);
+        $response = $this->post('/grocerylist/' . $grocerylist->getKey() .'/add', ['grocerylist' => $grocerylist->getKey(), 'recipes' => $recipes->pluck('id')]);
 
-        $this->assertResponseOk();
+        $response->assertStatus(200);
 
         $this->assertEquals(2, $grocerylist->fresh()->items->count());
     }

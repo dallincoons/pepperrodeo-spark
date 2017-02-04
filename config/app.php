@@ -162,6 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Laravel\Dusk\DuskServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -184,6 +185,7 @@ return [
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Http\ViewComposers\ComposerServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class
 //        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 

@@ -21,7 +21,7 @@ class RecipeController extends Controller
     {
         \JavaScript::put('grocerylists', GroceryList::take(10)->get());
 
-        $recipes = \Auth::user()->recipes()->get();
+        $recipes = \Auth::user()->recipes()->latest()->get();
 
         \Javascript::put(['recipes' => $recipes->toArray()]);
 
