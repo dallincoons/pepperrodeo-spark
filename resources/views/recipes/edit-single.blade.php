@@ -10,7 +10,7 @@
 
                 @include('recipes.includes.recipe-form')
 
-            {!! Form::submit('Submit', ['class' => 'save-button']) !!}
+            {!! Form::submit('Submit', ['class' => 'save-button pr-button']) !!}
             {!! Form::close() !!}
         </div>
     </div>
