@@ -98,6 +98,10 @@
     padding: 3px;
   }
 
+  .list-item-added > a {
+    color: #3f3f3f;
+  }
+
   .list-item-wrapper {
     flex: 1.8 1.8 auto;
     font-size: 1.2em;
@@ -348,6 +352,10 @@
 
   .list-item-added {
     padding: 3px;
+  }
+
+  .list-item-added > a {
+    color: #3f3f3f;
   }
 
   .list-item-wrapper {

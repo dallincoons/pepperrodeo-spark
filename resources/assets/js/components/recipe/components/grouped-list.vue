@@ -18,6 +18,7 @@
                 <li>
                     <ul class="items">
                         <li v-for="item in items" class="recipe">
+
                             <slot :item="item"></slot>
                         </li>
                     </ul>

@@ -76,6 +76,14 @@
     margin-bottom: 20%;
   }
 
+  .all-recipes-items {
+    display: flex;
+  }
+
+  .all-recipes-items .control__indicator {
+    top: 5px;
+  }
+
 }
 
 //Mobile
