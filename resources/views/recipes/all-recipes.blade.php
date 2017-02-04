@@ -19,10 +19,10 @@
                                 <span><a :href="recipeUrl(props.item.id)">@{{ props.item.title }} </a></span>
                             </div>
                             <div class="options-dropdown-wrapper">
-                                <a class="dropdown-indicator" v-on:click="toggleListOptions(props.item)" ><i data-type="toggle-list-option" class="fa fa-ellipsis-h"></i></a>
+                                <a class="dropdown-indicator" v-on:click="toggleListOptions(props.item)" ><i :id="'toggleOptions' + props.item.id" data-type="toggle-list-option" class="fa fa-ellipsis-h"></i></a>
                                 <ul class="options-dropdown" v-show="props.item.toggleOptions">
-                                    <li><i class="fa fa-pencil"></i><a :href="recipeEditUrl(props.item.id)"> Edit</a></li>
-                                    <li v-on:click="deleteRecipe(props.item)"><i class="fa fa-trash-o"></i><a> Delete</a></li>
+                                    <li><i class="fa fa-pencil"></i><a :id="'edit' + props.item.id" :href="recipeEditUrl(props.item.id)"> Edit</a></li>
+                                    <li v-on:click="deleteRecipe(props.item)" :id="'delete' + props.item.id"><i class="fa fa-trash-o"></i><a> Delete</a></li>
                                 </ul>
                             </div>
                 </template>
