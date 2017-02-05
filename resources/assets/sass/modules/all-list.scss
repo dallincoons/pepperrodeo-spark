@@ -10,7 +10,7 @@
 
   .list {
     background: #FFF2ED;
-    padding: 2%;
+    padding: 1%;
     color: #ff4b2e;
     margin-bottom: 5px;
   }
@@ -19,6 +19,8 @@
     color: #3f3f3f;
     font-size: 1.2em;
     font-weight: normal;
+    display: inline-block;
+    width: 90%;
   }
 
   .list:hover {

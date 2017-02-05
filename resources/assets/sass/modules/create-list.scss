@@ -96,11 +96,16 @@
 
   .list-item-added {
     padding: 3px;
+    width: 90%;
   }
 
   .list-item-added > a {
     color: #3f3f3f;
+    display: inline-block;
+    width: 90%;
+
   }
+  
 
   .list-item-wrapper {
     flex: 1.8 1.8 auto;
@@ -537,6 +542,16 @@
     flex: .3 .3 auto;
     width: 20%;
     margin-right: 2%;
+  }
+
+  .list-item-added {
+    padding: 3px 0 3px 10%;
+  }
+
+  .list-item-added > a {
+    color: #3f3f3f;
+    display: inline-block;
+    width: 90%;
   }
 
 }
