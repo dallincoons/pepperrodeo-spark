@@ -29,8 +29,8 @@
 </script>
 
 <template>
-    <ul>
-        <li><a v-on:click="toggleShowListSelection()"><i class="fa fa-cart-plus"></i><span class="lg-mini-nav__options-text"> Add to Grocery List</span></a></li>
+    <ul id="availableLists">
+        <li><a id="addToList" v-on:click="toggleShowListSelection()"><i class="fa fa-cart-plus"></i><span class="lg-mini-nav__options-text"> Add to Grocery List</span></a></a></li>
         <li><a :href="recipeUrl"><i class="fa fa-pencil"></i><span class="lg-mini-nav__options-text"> Edit</span></a></a></li>
         <li><a v-on:click="submitDeleteRecipe()"><i class="fa fa-trash"></i><span class="lg-mini-nav__options-text"> Delete</span></a></a></li>
     </ul>

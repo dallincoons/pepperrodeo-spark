@@ -14,7 +14,7 @@
     </nav>
 
     <ul class="lists" v-show="showListSelection">
-        <li class="list" v-for="list in grocerylists" :value="list.id" v-on:click="addToGroceryList(list)"><i class="fa fa-list"></i><a> @{{ list.title }}</a></li>
+        <li :id="'list' + list.id" class="list" v-for="list in grocerylists" :value="list.id" v-on:click="addToGroceryList(list)"><i class="fa fa-list"></i><a> @{{ list.title }}</a></li>
     </ul>
 
     <h3 class="form-heading">Ingredients</h3>

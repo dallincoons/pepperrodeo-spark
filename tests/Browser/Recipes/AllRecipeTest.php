@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Recipes;
 
 use App\Entities\Recipe;
 use App\User;
