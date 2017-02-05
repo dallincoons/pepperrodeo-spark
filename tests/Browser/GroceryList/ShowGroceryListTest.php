@@ -107,7 +107,7 @@ class ShowGroceryListTest extends DuskTestCase
 
             $browser->type('quantity', 999);
             $browser->type('name', 'test-name');
-            $browser->type('type', 'test-  type');
+            $browser->type('type', 'test-type');
             $browser->select('department', (string)$department->getKey());
 
             $browser->click('#addItem');
@@ -146,8 +146,8 @@ class ShowGroceryListTest extends DuskTestCase
 
             $browser->press('Add');
 
-            $browser->waitForText($item->name);
-            $browser->assertSee($item->name);
+            $browser->waitForText($item->title);
+            $browser->assertSee($item->title);
         });
     }
 }
