@@ -99,10 +99,12 @@
                     <span class="list-item-added">{{ props.item.name }} </span>
                 </div>
                 <div class="options-dropdown-wrapper">
-                    <a class="dropdown-indicator" v-on:click="toggleListOptions(props.item)" ><i data-type="toggle-list-option" class="fa fa-ellipsis-h"></i></a>
+                    <a class="dropdown-indicator" :id="'toggleOptions' + props.item.id" v-on:click="toggleListOptions(props.item)">
+                        <i data-type="toggle-list-option" class="fa fa-ellipsis-h"></i>
+                    </a>
                     <ul class="options-dropdown" v-show="props.item.toggleOptions">
-                        <li v-on:click="toggleItemEditing(props.item)"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
-                        <li v-on:click="$emit('delete', props.item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
+                        <li :id="'toggleOptions' + props.item.id" v-on:click="toggleItemEditing(props.item)"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
+                        <li :id="'delete' + props.item.id" v-on:click="$emit('delete', props.item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
                     </ul>
                 </div>
             </div>
