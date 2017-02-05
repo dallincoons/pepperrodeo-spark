@@ -5,6 +5,7 @@ namespace Tests\Browser\GroceryList;
 use App\Entities\Department;
 use App\Entities\GroceryList;
 use App\Entities\Item;
+use App\Entities\Recipe;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -106,7 +107,7 @@ class ShowGroceryListTest extends DuskTestCase
 
             $browser->type('quantity', 999);
             $browser->type('name', 'test-name');
-            $browser->type('type', 'test-type');
+            $browser->type('type', 'test-  type');
             $browser->select('department', (string)$department->getKey());
 
             $browser->click('#addItem');
@@ -117,6 +118,36 @@ class ShowGroceryListTest extends DuskTestCase
             $browser->assertSee('test-type');
 
             $this->assertNotNull($grocerylist->items()->where('name', 'test-name'));
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function add_a_recipe_to_grocery_list()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
+            $this->be($user);
+            $browser->loginAs($user);
+
+            $recipe = factory(Recipe::class)->create();
+            $item = factory(Item::class)->create();
+            $recipe->items()->save($item);
+            $user->recipes()->save($recipe);
+            $grocerylist = factory(GroceryList::class)->create();
+
+            $browser->visit('/grocerylist/' . $grocerylist->getKey());
+
+            $browser->clickLink('Add a recipe');
+
+            $browser->waitForText($recipe->title);
+            $browser->clickLink($recipe->title);
+
+            $browser->press('Add');
+
+            $browser->waitForText($item->name);
+            $browser->assertSee($item->name);
         });
     }
 }
