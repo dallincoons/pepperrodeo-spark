@@ -103,20 +103,20 @@
                         <i data-type="toggle-list-option" class="fa fa-ellipsis-h"></i>
                     </a>
                     <ul class="options-dropdown" v-show="props.item.toggleOptions">
-                        <li :id="'toggleOptions' + props.item.id" v-on:click="toggleItemEditing(props.item)"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
+                        <li :id="'edit' + props.item.id" v-on:click="toggleItemEditing(props.item)"><i class="fa fa-pencil"></i><a> Edit Item</a></li>
                         <li :id="'delete' + props.item.id" v-on:click="$emit('delete', props.item)"><i class="fa fa-trash-o"></i><a> Delete Item</a></li>
                     </ul>
                 </div>
             </div>
             <div v-else class="edit-info-wrapper">
                 <div class="edit-inputs">
-                    <input class="list-item-added ingredient-info" v-model="props.item.quantity" :value="props.item.quantity" type="number"/>
-                    <input class="list-item-added ingredient-info" v-model="props.item.type" :value="props.item.type" />
-                    <input class="list-item-added ingredient-info" v-model="props.item.name" :value="props.item.name" />
-                    <select name="category" v-model="props.item.department.id" class="ingredient-info dept-edit-info">
+                    <input class="list-item-added ingredient-info" v-model="props.item.quantity" :value="props.item.quantity" name="quantity" type="number"/>
+                    <input class="list-item-added ingredient-info" v-model="props.item.type" name="type" :value="props.item.type" />
+                    <input class="list-item-added ingredient-info" v-model="props.item.name" name="name" :value="props.item.name" />
+                    <select v-model="props.item.department.id" name="department" class="ingredient-info dept-edit-info">
                         <option v-for="department in departments" :value="department.id">{{department.name}}</option>
                     </select>
-                    <a class="edit-button" v-on:click="$emit('save-edit', props.item)"><i class="fa fa-check-circle-o"></i></a>
+                    <a id="save-edit" class="edit-button" v-on:click="$emit('save-edit', props.item)"><i class="fa fa-check-circle-o"></i></a>
                 </div>
 
                 <div class="editing-button-wrapper">
