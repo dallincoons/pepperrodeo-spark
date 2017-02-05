@@ -86,4 +86,37 @@ class ShowGroceryListTest extends DuskTestCase
             $browser->assertSee($department->getKey());
         });
     }
+
+    /**
+     * @test
+     */
+    public function add_a_new_item()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
+            $this->be($user);
+            $browser->loginAs($user);
+
+            $grocerylist = factory(GroceryList::class)->create();
+            $department = factory(Department::class)->create();
+
+            $browser->visit('/grocerylist/' . $grocerylist->getKey());
+
+            $browser->clickLink('Add an item');
+
+            $browser->type('quantity', 999);
+            $browser->type('name', 'test-name');
+            $browser->type('type', 'test-type');
+            $browser->select('department', (string)$department->getKey());
+
+            $browser->click('#addItem');
+
+            $browser->waitForText('999');
+            $browser->assertSee('999');
+            $browser->assertSee('test-name');
+            $browser->assertSee('test-type');
+
+            $this->assertNotNull($grocerylist->items()->where('name', 'test-name'));
+        });
+    }
 }
