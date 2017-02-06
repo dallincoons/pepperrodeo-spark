@@ -146,8 +146,8 @@ class ShowGroceryListTest extends DuskTestCase
 
             $browser->press('Add');
 
-            $browser->waitForText($item->title);
-            $browser->assertSee($item->title);
+            $browser->waitForText($item->name);
+            $browser->assertSee($item->name);
         });
     }
 }
