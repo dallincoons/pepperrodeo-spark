@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\GroceryList;
 use App\Entities\Item;
 use App\Http\Requests\StoreGroceryListItemRequest;
+use App\Http\Requests\UpdateGroceryListItemRequest;
 use Illuminate\Http\Request;
 
 class GroceryListItemController extends Controller
@@ -21,9 +22,9 @@ class GroceryListItemController extends Controller
      * @param \App\Entities\Item $item
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Item $item)
+    public function update(UpdateGroceryListItemRequest $request, Item $item)
     {
-        $item->update($request->item);
+        $item->update(array_filter($request->all()));
     }
 
     /**

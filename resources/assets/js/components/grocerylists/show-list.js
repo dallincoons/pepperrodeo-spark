@@ -49,7 +49,7 @@ Vue.component('show-list', {
         },
 
         saveItemEdit(item) {
-            this.$http.patch('/grocerylistitem/edit/' + item.id, {item : {'quantity' : item.quantity, 'type' : item.type, 'name' : item.name, 'department_id' : item.department.id}})
+            this.$http.patch('/grocerylistitem/edit/' + item.id, {'quantity' : item.quantity, 'type' : item.type, 'name' : item.name, 'department_id' : item.department.id})
                 .then(function(response){
                     if(response.status == 200){
                         this.items.forEach(i => {

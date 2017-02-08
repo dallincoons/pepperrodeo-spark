@@ -48,6 +48,31 @@ class GroceryListItemTest extends TestCase
      *
      * @test
      */
+    public function it_fails_to_stores_a_new_grocery_list_item_when_quantity_is_zero()
+    {
+        $grocerylist = factory(GroceryList::class)->create();
+
+        $listitem = factory(Item::class)->make();
+
+        $this->assertCount(0, $grocerylist->items);
+
+        $data = [
+            'name' => $listitem->name,
+            'type' => $listitem->type,
+            'quantity' => 0,
+            'department_id' => $listitem->department_id
+        ];
+
+        $response = $this->post("grocerylist/{$grocerylist->getKey()}/item", $data);
+
+        $response->assertStatus(302);
+    }
+
+    /**
+     * @group grocery-list-tests
+     *
+     * @test
+     */
     public function deletes_item_from_grocery_list()
     {
         $this->disableExceptionHandling();
@@ -74,19 +99,16 @@ class GroceryListItemTest extends TestCase
      */
     public function update_a_grocery_list_item()
     {
-        $this->disableExceptionHandling();
-
         $item = factory(Item::class)->create(['quantity' => 1]);
+
+        $response = $this->patch('/grocerylistitem/edit/' . $item->getKey(), ['quantity' => 0]);
+        $response->assertStatus(302);
 
         $this->assertEquals(1, $item->quantity);
 
-        $item->quantity = 2;
-
-        $itemArray = $item->toArray();
-
-        $response = $this->patch('/grocerylistitem/edit/' . $item->getKey(), ['item' => ['quantity' => array_get($itemArray, 'quantity')]]);
+        $response = $this->patch('/grocerylistitem/edit/' . $item->getKey(), ['quantity' => 2]);
 
         $response->assertStatus(200);
-        $this->assertEquals(2, $item->quantity);
+        $this->assertEquals(2, $item->fresh()->quantity);
     }
 }
