@@ -25,11 +25,13 @@
 
         computed : {
             itemsGrouped : function () {
-                let items = _.sortBy(this.items, this.groupByValue);
+                let items = this.items;
                 if(this.shouldCombine()){
                     items = this.combineItems();
                 }
-                return _.groupBy(items, this.groupByValue);
+                items = _.sortBy(items, 'department_name');
+                items = _.groupBy(items, this.groupByValue);
+                return items;
             }
         },
 

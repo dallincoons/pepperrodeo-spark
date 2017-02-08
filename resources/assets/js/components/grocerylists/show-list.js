@@ -28,7 +28,6 @@ Vue.component('show-list', {
 
         addItem(item){
 
-
             let newItem = {
                 name             : item.name,
                 quantity         : parseInt(item.quantity),
