@@ -24,8 +24,11 @@ class UpdateGroceryListRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'string',
             'items' => 'array',
-            'title' => 'string'
+            'items.*.quantity'         => 'numeric|min:.01',
+            'items.*.name'             => 'string',
+            'items.*.department_id'    => 'integer',
         ];
     }
 }

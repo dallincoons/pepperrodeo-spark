@@ -80,6 +80,34 @@ class GroceryListControllerTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function it_cant_create_item_with_zero_quantity()
+    {
+        $department = factory(Department::class)->create();
+
+        $response = $this->post('/grocerylist', [
+            'title' => 'poo32',
+            'items' => [
+                ['name' => 'item1', 'type' => 'test-type', 'quantity' => 0, 'department_id' => $department->getKey()],
+            ]
+        ]);
+
+        $response->assertStatus(302);
+        $this->assertNull(GroceryList::where(['title' => 'poo32'])->first());
+
+        $response = $this->post('/grocerylist', [
+            'title' => 'poo32',
+            'items' => [
+                ['name' => 'item1', 'type' => 'test-type', 'quantity' => .01, 'department_id' => $department->getKey()],
+            ]
+        ]);
+
+        $response->assertStatus(200);
+        $this->assertNotNull(GroceryList::where(['title' => 'poo32'])->first());
+    }
+
+    /**
      * @group grocery-list-tests
      *
      * @test
@@ -120,6 +148,15 @@ class GroceryListControllerTest extends TestCase
 
         $response->assertStatus(422);
 
+        $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
+            'title' => 'fake-title',
+            'items' => [
+                ['id' => -1, 'name' => 'item1', 'type' => 'test', 'quantity' => 0, 'department_id' => $departments->first()->getKey()],
+            ]
+        ]);
+
+        $response->assertStatus(422);
+
         //title should be string
         $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'title' => 'fake-title',
@@ -127,7 +164,6 @@ class GroceryListControllerTest extends TestCase
                 ['id' => -1, 'name' => 'item1', 'type' => 'test', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
             ]
         ]);
-
 
         $this->assertEquals('fake-title', $grocerylist->fresh()->title);
         $this->assertCount(1, $grocerylist->fresh()->items);
