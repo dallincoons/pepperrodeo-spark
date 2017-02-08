@@ -134,13 +134,6 @@ class GroceryListControllerTest extends TestCase
         $item = factory(Item::class, 3)->make();
         $grocerylist->items()->saveMany($item);
 
-        //items should be array
-        $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
-            'items' => 'notarray',
-        ]);
-
-        $response->assertStatus(422);
-
         //title should be string
         $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'title' => []
@@ -150,23 +143,9 @@ class GroceryListControllerTest extends TestCase
 
         $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
             'title' => 'fake-title',
-            'items' => [
-                ['id' => -1, 'name' => 'item1', 'type' => 'test', 'quantity' => 0, 'department_id' => $departments->first()->getKey()],
-            ]
-        ]);
-
-        $response->assertStatus(422);
-
-        //title should be string
-        $response = $this->json('PATCH', "/grocerylist/{$grocerylist->getKey()}", [
-            'title' => 'fake-title',
-            'items' => [
-                ['id' => -1, 'name' => 'item1', 'type' => 'test', 'quantity' => 1, 'department_id' => $departments->first()->getKey()],
-            ]
         ]);
 
         $this->assertEquals('fake-title', $grocerylist->fresh()->title);
-        $this->assertCount(1, $grocerylist->fresh()->items);
         $response->assertStatus(200);
     }
 

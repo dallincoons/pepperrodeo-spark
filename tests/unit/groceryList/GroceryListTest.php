@@ -84,22 +84,6 @@ class GroceryListTest extends TestCase
      * @group GroceryList
      * @test
      */
-    public function adds_existing_recipe_to_grocery_list_through_http()
-    {
-        $recipe = $this->createRecipe();
-        $items = $recipe->items->keyBy('id');
-
-        $request = Request::create('/grocerylist/' . $this->GroceryList->getKey(), 'PUT', ['items' => $items->toArray()]);
-        app()->handle($request);
-
-        $this->assertEquals(array_keys($items->toArray()), array_keys($this->GroceryList->items->keyBy('id')->toArray()));
-
-    }
-
-    /**
-     * @group GroceryList
-     * @test
-     */
     public function remove_recipe_from_grocery_list()
     {
         $recipe = $this->createRecipe();

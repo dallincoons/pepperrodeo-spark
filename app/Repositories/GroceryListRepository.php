@@ -32,22 +32,6 @@ class GroceryListRepository
 
     public static function update($data, $grocerylist)
     {
-        $itemIds = collect($data['items'])->where('id', '>', 0)->pluck('id');
-
-        $newItems = collect($data['items'])->where('id', '<', 0);
-
-        foreach($newItems as $itemJson)
-        {
-            $name = $itemJson['name'];
-            $quantity = $itemJson['quantity'];
-            $type = $itemJson['type'];
-            $department_id = $itemJson['department_id'];
-            $item = Item::create(compact('name', 'quantity', 'type', 'department_id'));
-            $itemIds->push($item->id);
-        }
-
-        $grocerylist->items()->sync($itemIds->toArray());
-
         if($item = data_get($data, 'title', null)) {
             $grocerylist->title = $item;
         }

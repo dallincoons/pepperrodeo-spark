@@ -61,44 +61,6 @@ class GrocerylistRepositoryTest extends TestCase
      *
      * @test
      */
-    public function updates_grocery_list_including_new_items()
-    {
-        $grocerylist = factory(GroceryList::class)->create();
-
-        $item = factory(Item::class)->create();
-        $grocerylist->items()->save($item);
-
-        GroceryListRepository::update([
-            'items' => [
-                [
-                    'id' => -1,
-                    'name' => 'shapoopy',
-                    'type' => 'test',
-                    'quantity' => 2,
-                    'department_id' => 1
-                ],
-                [
-                    'id' => -2,
-                    'name' => 'shapoopy_dos',
-                    'type' => 'test',
-                    'quantity' => 2,
-                    'department_id' => 1
-                ]
-            ],
-            'title' => $grocerylist->title
-        ], $grocerylist);
-
-        $this->assertFalse($grocerylist->items->pluck('name')->contains($item->name));
-        $this->assertTrue($grocerylist->items->pluck('name')->contains('shapoopy'));
-        $this->assertTrue($grocerylist->items->pluck('name')->contains('shapoopy_dos'));
-    }
-
-    /**
-     * @group repository-tests
-     * @group grocerylist-repository-tests
-     *
-     * @test
-     */
     public function add_a_recipe_to_grocery_list()
     {
         $grocerylist = factory(GroceryList::class)->create();

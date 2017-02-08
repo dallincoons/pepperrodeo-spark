@@ -5,7 +5,9 @@
 <div class="create-list-wrapper">
     <div class="create-list" v-if="!showRecipes">
         <div class="list-header-section" id="list_header">
-            <h2 class="page-title">{{$grocerylist->title}} <a href="#" class="darker-remove"><i v-on:click.prevent="editing = !editing" class="fa fa-pencil"></i></a></h2>
+            <h2 v-if="!editing" class="page-title">@{{ title }} <a href="#" class="darker-remove">
+            <i v-on:click.prevent="editing = !editing" class="fa fa-pencil"></i></a></h2>
+            <div v-else><input :value="title" v-model="title"><a v-on:click="saveTitle">save</a><a v-on:click="editing = false">back</a></div>
 
             <list-item-group-by-menu></list-item-group-by-menu>
 

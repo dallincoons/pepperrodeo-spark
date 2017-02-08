@@ -8,7 +8,7 @@ Vue.component('show-list', {
     components : {AddItemForm, GroupedGroceryLists, ListItemGroupByMenu},
     data() {
         return {
-            editing : true,
+            editing : false,
         }
     },
 
@@ -22,6 +22,12 @@ Vue.component('show-list', {
     },
 
     methods : {
+        saveTitle() {
+            this.$http.patch('/grocerylist/' + this.grocerylist.id, {title : this.title}).then((response) => {
+                this.editing = false;
+            });
+        },
+
         submitDeleteList : function(){
             document.getElementById('list-delete').submit();
         },
