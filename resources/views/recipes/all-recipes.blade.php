@@ -5,8 +5,6 @@
 <div>
     <h2 class="page-title">My Recipes</h2>
 
-        <desktop-nav :grocerylists="grocerylists"></desktop-nav>
-
         <form method="POST" action="/recipe/deleteMultiple" id="deleteForm">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -17,10 +15,6 @@
                 <template scope="props">
                             <div class="list-item-editing">
                                 <div class="list-item-wrapper all-recipes-items">
-                                    <label class="control control--checkbox"><i class="list-info"></i>
-                                        <input type="checkbox" id="cbox1" >
-                                        <div class="control__indicator"></div>
-                                    </label>
                                     <span class="list-item-added"><a :href="recipeUrl(props.item.id)">@{{ props.item.title }} </a></span>
                                 </div>
                                 <div class="options-dropdown-wrapper">

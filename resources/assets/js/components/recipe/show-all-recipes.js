@@ -34,8 +34,6 @@ Vue.component('show-all-recipes', {
 
         Bus.$on('deleteRecipes', () => this.deleteRecipes());
 
-        Bus.$on('addToGroceryList', (list) => this.addToGroceryList(list));
-
     },
 
     methods : {
@@ -84,21 +82,6 @@ Vue.component('show-all-recipes', {
         deleteConfirmMessage(){
 
             return '<p>Are you sure you want to permanently delete this?</p>';
-        },
-
-        addToGroceryList(list) {
-            this.$http.post('/grocerylist/' + list.id + '/add', {recipes : this.selectedRecipes}).then(function (response) {
-                if(response.status === 200){
-                    swal({
-                        title              : "",
-                        text               : this.confirmMessage(list),
-                        confirmButtonColor : "#DD6B55",
-                        confirmButtonText  : "Ok",
-                        closeOnConfirm     : true,
-                        html               : true
-                    });
-                }
-            });
         },
 
         confirmMessage(list) {
