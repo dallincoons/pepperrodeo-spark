@@ -39,6 +39,7 @@ class ListRecipeTest extends TestCase
      */
     public function skips_dupicate_recipe_when_adding_to_grocery_list()
     {
+        /* @var GroceryList $grocerylist */
         $grocerylist = factory(GroceryList::class)->create();
         $recipes = factory(Recipe::class, 2)->create();
 

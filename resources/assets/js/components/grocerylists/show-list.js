@@ -74,10 +74,9 @@ Vue.component('show-list', {
             let self = this,
                 recipe;
 
-            recipeIds.forEach(function (recipeId) {
-
-                self.$http.post('/grocerylist/' + self.grocerylist.id + '/recipe/' + recipeId)
-                    .then(response => {
+            self.$http.post('/grocerylist/' + self.grocerylist.id + '/recipe', {recipes : recipeIds})
+                .then(response => {
+                    recipeIds.forEach(function (recipeId) {
                         self.recipeIds.push(recipeId);
                         self.addedRecipes.push(self.unaddedRecipes[recipeId]);
                         recipe = self.unaddedRecipes[recipeId];
@@ -91,7 +90,7 @@ Vue.component('show-list', {
                         self.recipesToAdd = [];
                         delete self.unaddedRecipes[recipeId];
                     });
-            });
+                });
 
             this.showRecipes = false;
         },
