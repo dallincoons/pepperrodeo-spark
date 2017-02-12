@@ -3,7 +3,7 @@
 @section('content')
 <show-list inline-template v-cloak>
 <div class="create-list-wrapper">
-    <div class="create-list" v-if="!showRecipes">
+    <div class="create-list" v-show="!showRecipes">
         <div class="list-header-section" id="list_header">
             <h2 v-if="!editing" class="page-title">@{{ title }} <a href="#" class="darker-remove">
             <i v-on:click.prevent="editing = !editing" class="fa fa-pencil"></i></a></h2>
@@ -44,7 +44,7 @@
         @endif
         {{Form::close()}}
     </div>
-    <div v-if="showRecipes" class="choose-recipe">
+    <div v-show="showRecipes" class="choose-recipe">
         <h3 class="page-title">My Recipes</h3>
 
         <div class="category-wrapper">
