@@ -52,40 +52,6 @@ class GroceryListPresenterTest extends TestCase
         $this->grocerylist->addRecipe($recipe2);
     }
 
-    /**
- * @group grocery-list-presenter-tests
- *
- * @test
- */
-    public function combines_sorts_and_groups_like_items_by_category()
-    {
-        list($item1, $item2) = $this->addItemsToGroceryList();
-
-        $items = $this->grocerylist->present()->items()->byCategory();
-
-        $expected = [$item1->category, $item2->category];
-
-//        $this->assertEquals($expected, array_keys($items->toArray()));
-    }
-
-    /**
-     * @group grocery-list-presenter-tests
-     *
-     * @test
-     */
-    public function combines_sorts_and_groups_similar_items_by_recipe()
-    {
-        $this->addItemsToGroceryList();
-        $recipe1 = $this->grocerylist->fresh()->recipes->first();
-        $recipe2 = $this->grocerylist->fresh()->recipes->find(2);
-
-        $items = $this->grocerylist->present()->items()->byRecipe();
-
-        $expected = collect([$recipe1->title, $recipe2->title]);
-
-//        $this->assertEquals(end($expected), end(array_keys($items->toArray())));
-    }
-
     protected function addItemsToGroceryList()
     {
         $recipe1 = factory(Recipe::class)->create();

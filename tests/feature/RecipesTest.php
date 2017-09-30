@@ -130,29 +130,6 @@ class RecipesTest extends TestCase
      *
      * @test
      */
-    public function it_makes_request_to_update_recipe()
-    {
-//        $this->disableExceptionHandling();
-//
-//        $recipe = factory(Recipe::class)->create();
-//        $category = factory(RecipeCategory::class)->create();
-//
-//        $this->patch('/recipe/' . $recipe->getKey(), [
-//            'title' => 'fake-title',
-//            'directions' => 'fake directions',
-//            'category' => $category->getKey() . ',' . $category->name
-//        ]);
-//
-//        $this->assertResponseOk();
-//
-//        $this->assertEquals('fake-title', $recipe->fresh()->title);
-    }
-
-    /**
-     * @group recipe-tests
-     *
-     * @test
-     */
     public function it_makes_request_to_delete_multiple_recipes()
     {
         $this->disableExceptionHandling();
