@@ -67,6 +67,13 @@
     "config": {
         "preferred-install": "dist"
     },
+    "extra" : {
+        "laravel" : {
+            "dont-discover" : [
+                "laravel/dusk"
+            ]
+        }
+    },
     "repositories": [
         {
             "type": "path",
